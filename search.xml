@@ -24,7 +24,8 @@
     <entry>
       <title><![CDATA[about]]></title>
       <url>http://yoursite.com/about/index.html</url>
-      <content type="html"></content>
+      <content type="html"><![CDATA[<p>这里啥都没有😂，哈哈！！</p>
+]]></content>
     </entry>
     
   
