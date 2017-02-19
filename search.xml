@@ -34,5 +34,11 @@
       <content type="html"></content>
     </entry>
     
+    <entry>
+      <title><![CDATA[tags]]></title>
+      <url>http://yoursite.com/tags/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
   
 </search>
