@@ -28,5 +28,11 @@
 ]]></content>
     </entry>
     
+    <entry>
+      <title><![CDATA[links]]></title>
+      <url>http://yoursite.com/links/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
   
 </search>
