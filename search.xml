@@ -21,5 +21,11 @@
   
   
     
+    <entry>
+      <title><![CDATA[about]]></title>
+      <url>http://yoursite.com/about/index.html</url>
+      <content type="html"></content>
+    </entry>
+    
   
 </search>
