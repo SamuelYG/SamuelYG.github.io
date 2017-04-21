@@ -12,11 +12,11 @@
 <p>2.安装一些编译时需要的程序 </p>
 <p><code>sudo apt-get install build-essential debhelper make autoconf automake dpkg-dev fakeroot pbuilder gnupg</code></p>
 <p>3.解包</p>
-<p>建立目录<br><code>sudo mkdir -p netease/ubuntu</code></p>
+<p>建立目录<br><code>sudo mkdir -p netease/DEBIAN</code></p>
 <p><code>sudo mkdir fix</code></p>
 <p>解包<br><code>sudo dpkg -x netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb ./netease</code></p>
-<p>解出控制文件<br><code>sudo dpkg -e netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb netease/ubuntu/</code></p>
-<p>修改控制文件<br><code>sudo gedit netease/ubuntu/control</code></p>
+<p>解出控制文件<br><code>sudo dpkg -e netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb netease/DEBIAN/</code></p>
+<p>修改控制文件<br><code>sudo gedit netease/DEBIAN/control</code></p>
 <p>找到 libqt5libqgtk2 ，替换为 qt5-style-plugins ，保存，退出。</p>
 <p>4.重新打包</p>
 <p><code>sudo dpkg-deb -b netease/fix/</code></p>
@@ -24,6 +24,8 @@
 <p><code>sudo dpkg -i netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb</code></p>
 <p>6.至此，理论上不会出错。</p>
 <p>（如若报错尝试命令<code>sudo apt-get install -f</code>）</p>
+<p>PS:修改过的包</p>
+<p><a href="https://mega.nz/#!DtcQgLaT" target="_blank" rel="external">网易云音乐fixed</a></p>
 ]]></content>
       
         
