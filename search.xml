@@ -1,23 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
-  <entry>
-    <title><![CDATA[Google I/O 17]]></title>
-    <url>%2F2017%2F05%2F10%2FGoogle-I-O-17-1%2F</url>
-    <content type="text"><![CDATA[Google I/O 17—May 17-19, 2017 Google I/O is an annual developer festival held at the outdoor Shoreline Amphitheatre.May 17-19, 2017Shoreline Amphitheatre Mountain View, California 官方网站：Google I/O17]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[修复Ubuntu17.04无法安装网易云音乐问题（转载）]]></title>
-    <url>%2F2017%2F04%2F17%2Funtitled-1492388748768%2F</url>
-    <content type="text"><![CDATA[装了Ubuntu17.04的用户会出现这一问题，原因是libqt5libqgtk2的依赖问题，这里需要将其替换为qt5-style-plugins.教程如下（以下内容来自互联网）： 1.下载deb包，备用 网易云音乐 2.安装一些编译时需要的程序 sudo apt-get install build-essential debhelper make autoconf automake dpkg-dev fakeroot pbuilder gnupg 3.解包 建立目录sudo mkdir -p netease/DEBIAN sudo mkdir fix 解包sudo dpkg -x netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb ./netease 解出控制文件sudo dpkg -e netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb netease/DEBIAN/ 修改控制文件sudo gedit netease/DEBIAN/control 找到 libqt5libqgtk2 ，替换为 qt5-style-plugins ，保存，退出。 4.重新打包 sudo dpkg-deb -b netease/fix/ 5.安装 sudo dpkg -i netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb 6.至此，理论上不会出错。 （如若报错尝试命令sudo apt-get install -f） PS:修改过的包 网易云音乐fixed 密钥：!aTE_wj3jalmc7Gu5rxhgM3WpLtGzv6ymBrbgJCpDEIg]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[Linux-deepin 体验两三事]]></title>
-    <url>%2F2017%2F04%2F14%2FLinux-deepin-%E4%BD%93%E9%AA%8C%E4%B8%A4%E4%B8%89%E4%BA%8B%2F</url>
-    <content type="text"><![CDATA[Windows creator update 貌似把deepin搞坏了，可以引导但无法启动，又突然发现ubunut17.04发布，于是乎重新装上了ubunut，so，此文暂且搁置（估计直接弃坑了），逃。]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2017%2F02%2F17%2FHello-World%2F</url>
-    <content type="text"><![CDATA[]]></content>
-  </entry>
+  
+  
+    
+    <entry>
+      <title><![CDATA[Google I/O 17]]></title>
+      <url>http://yoursite.com/2017/05/10/Google-I-O-17-1/</url>
+      <content type="html"><![CDATA[<h1 id="Google-I-O-17—May-17-19-2017"><a href="#Google-I-O-17—May-17-19-2017" class="headerlink" title="Google I/O 17—May 17-19, 2017"></a><font size="20">Google I/O 17</font>—May 17-19, 2017</h1><p><br></p>
+<svg width="277" height="95" viewbox="0 0 277 95" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path fill="#5471F9" d="M195.129 90.674h6.85V2.514h-6.85zm-111.083 0h6.85V24.919h-6.85zM81.709 8.359c0-3.238 2.619-5.845 5.871-5.845 3.253 0 5.872 2.607 5.872 5.845 0 3.237-2.62 5.845-5.872 5.845s-5.871-2.608-5.871-5.845M220.1 9.81l-.014-7.191 40.773-.082.014 7.192z"/><path fill="#40E7B8" d="M232.99 92.868l-6.122-3.06 43.927-87.052 6.122 3.06z"/><path fill="#5471F9" d="M147.112 38.276L143.7 21.693l2.409-.32 3.39 16.581z"/><path stroke="#5471F9" stroke-width=".5" d="M147.112 38.276L143.7 21.693l2.409-.32 3.39 16.581z"/><path fill="#5471F9" d="M154.681 42.097l3.674-16.528 2.33.686-3.691 16.517z"/><path stroke="#5471F9" stroke-width=".5" d="M154.681 42.097l3.674-16.528 2.33.686-3.691 16.517z"/><path fill="#5471F9" d="M160.062 48.656l10.075-13.638 1.852 1.565-10.086 13.62z"/><path stroke="#5471F9" stroke-width=".5" d="M160.062 48.656l10.075-13.638 1.852 1.565-10.086 13.62z"/><path fill="#5471F9" d="M162.295 56.817l14.79-8.357 1.05 2.182-14.794 8.336z"/><path stroke="#5471F9" stroke-width=".5" d="M162.295 56.817l14.79-8.357 1.05 2.182-14.794 8.336z"/><path fill="#5471F9" d="M161.014 65.196l16.922-1.697.074 2.418-16.916 1.677z"/><path stroke="#5471F9" stroke-width=".5" d="M161.014 65.196l16.922-1.697.074 2.418-16.916 1.677z"/><path fill="#5471F9" d="M156.424 72.312l16.152 5.301-.92 2.238-16.138-5.317z"/><path stroke="#5471F9" stroke-width=".5" d="M156.424 72.312l16.152 5.301-.92 2.238-16.138-5.317z"/><path fill="#5471F9" d="M149.331 76.977l12.615 11.353-1.751 1.677-12.597-11.363z"/><path stroke="#5471F9" stroke-width=".5" d="M149.331 76.977l12.615 11.353-1.751 1.677-12.597-11.363z"/><path fill="#5471F9" d="M140.96 78.353l6.81 15.512-2.29.811-6.788-15.513z"/><path stroke="#5471F9" stroke-width=".5" d="M140.96 78.353l6.81 15.512-2.29.811-6.788-15.513z"/><path fill="#5471F9" d="M132.715 76.253l-.02 16.927-2.424-.171.04-16.92z"/><path stroke="#5471F9" stroke-width=".5" d="M132.715 76.253l-.02 16.927-2.424-.171.04-16.92z"/><path fill="#5471F9" d="M126.049 70.982l-6.923 15.462-2.145-1.136 6.937-15.448z"/><path stroke="#5471F9" stroke-width=".5" d="M126.049 70.982l-6.923 15.462-2.145-1.136 6.937-15.448z"/><path fill="#5471F9" d="M122.106 63.49l-12.627 11.34-1.498-1.904 12.634-11.32z"/><path stroke="#5471F9" stroke-width=".5" d="M122.106 63.49l-12.627 11.34-1.498-1.904 12.634-11.32z"/><path fill="#5471F9" d="M121.573 55.072l-16.188 5.192-.582-2.348 16.187-5.17z"/><path stroke="#5471F9" stroke-width=".5" d="M121.573 55.072l-16.188 5.192-.582-2.348 16.187-5.17z"/><path fill="#5471F9" d="M124.507 47.11l-16.917-1.736.417-2.382 16.908 1.754z"/><path stroke="#5471F9" stroke-width=".5" d="M124.507 47.11l-16.917-1.736.417-2.382 16.908 1.754z"/><path fill="#5471F9" d="M130.436 41.046l-14.764-8.403 1.35-2.01 14.748 8.415z"/><path stroke="#5471F9" stroke-width=".5" d="M130.436 41.046l-14.764-8.403 1.35-2.01 14.748 8.415z"/><path fill="#5471F9" d="M138.337 37.891l-10.053-13.653 2.054-1.291 10.034 13.66z"/><path stroke="#5471F9" stroke-width=".5" d="M138.337 37.891l-10.053-13.653 2.054-1.291 10.034 13.66z"/><path fill="#40E7B8" d="M46.11 21.874l-.006-3.01 17.065-.033.005 3.01zm-22.642 0l-.006-3.01 17.064-.033.006 3.01zm-23.462 0L0 18.864l17.064-.033.006 3.01zM46.11 44.615l-.006-3.01 17.065-.034.005 3.01zm-22.642 0l-.006-3.01 17.064-.034.006 3.01zm-23.462 0L0 41.605l17.064-.034.006 3.01z"/><path fill="#32E8B7" d="M21.897 17.472l-3.024.006L18.839.493l3.024-.005z"/><path fill="#40E7B8" d="M21.897 40.008l-3.023.006-.035-16.984 3.024-.006zm0 23.352l-3.023.006-.035-16.984 3.024-.006z"/><path fill="#32E8B7" d="M44.745 17.472l-3.024.006L41.687.493 44.71.488z"/><path fill="#40E7B8" d="M44.745 40.008l-3.024.006-.034-16.984 3.023-.006zm0 23.352l-3.024.006-.034-16.984 3.023-.006z"/></g></svg>
+
+<p><br></p>
+<font size="6"><strong>Google I/O is an annual developer festival held at the outdoor Shoreline Amphitheatre.</strong></font><br><br><font size="5">May 17-19, 2017</font><br><br><font size="4">Shoreline Amphitheatre Mountain View, California</font>
+
+<p><br></p>
+<iframe src="https://events.google.com/io/embed" style="width:700px;height:360px" frameborder="0" allowfullscreen></iframe>
+
+
+
+<p><br><font size="4">官方网站：<a href="https://events.google.com/io/" target="_blank" rel="external">Google I/O17</a></font></p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[修复Ubuntu17.04无法安装网易云音乐问题（转载）]]></title>
+      <url>http://yoursite.com/2017/04/17/untitled-1492388748768/</url>
+      <content type="html"><![CDATA[<p>装了Ubuntu17.04的用户会出现这一问题，原因是libqt5libqgtk2的依赖问题，这里需要将其替换为qt5-style-plugins.教程如下（以下内容来自互联网）：</p>
+<p>1.下载deb包，备用</p>
+<p><a href="http://music.163.com/#/download" target="_blank" rel="external">网易云音乐</a></p>
+<p>2.安装一些编译时需要的程序 </p>
+<p><code>sudo apt-get install build-essential debhelper make autoconf automake dpkg-dev fakeroot pbuilder gnupg</code></p>
+<p>3.解包</p>
+<p>建立目录<br><code>sudo mkdir -p netease/DEBIAN</code></p>
+<p><code>sudo mkdir fix</code></p>
+<p>解包<br><code>sudo dpkg -x netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb ./netease</code></p>
+<p>解出控制文件<br><code>sudo dpkg -e netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb netease/DEBIAN/</code></p>
+<p>修改控制文件<br><code>sudo gedit netease/DEBIAN/control</code></p>
+<p>找到 libqt5libqgtk2 ，替换为 qt5-style-plugins ，保存，退出。</p>
+<p>4.重新打包</p>
+<p><code>sudo dpkg-deb -b netease/fix/</code></p>
+<p>5.安装</p>
+<p><code>sudo dpkg -i netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb</code></p>
+<p>6.至此，理论上不会出错。</p>
+<p>（如若报错尝试命令<code>sudo apt-get install -f</code>）</p>
+<p>PS:修改过的包</p>
+<p><a href="https://mega.nz/#!DtcQgLaT" target="_blank" rel="external">网易云音乐fixed</a>    密钥：!aTE_wj3jalmc7Gu5rxhgM3WpLtGzv6ymBrbgJCpDEIg</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Linux-deepin 体验两三事]]></title>
+      <url>http://yoursite.com/2017/04/14/Linux-deepin-%E4%BD%93%E9%AA%8C%E4%B8%A4%E4%B8%89%E4%BA%8B/</url>
+      <content type="html"><![CDATA[<p>Windows creator update 貌似把deepin搞坏了，可以引导但无法启动，又突然发现ubunut17.04发布，于是乎重新装上了ubunut，so，此文暂且搁置（估计直接弃坑了），逃。</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>http://yoursite.com/2017/02/17/Hello-World/</url>
+      <content type="html"><![CDATA[<p><a href="https://miao.su/image/jOMk0" target="_blank" rel="external"><img src="https://miao.su/images/2017/04/30/6c2fc79ely1fetwfnj13oj20pp0bzwgz3127f.md.jpg" alt="6c2fc79ely1fetwfnj13oj20pp0bzwgz3127f.md.jpg"></a><br><a href="https://miao.su/image/jOJYO" target="_blank" rel="external"><img src="https://miao.su/images/2017/04/30/6c2fc79ely1fetwfnrishj20pp0bzmzqb2fe6.md.jpg" alt="6c2fc79ely1fetwfnrishj20pp0bzmzqb2fe6.md.jpg"></a></p>
+]]></content>
+      
+        
+    </entry>
+    
+  
+  
 </search>
