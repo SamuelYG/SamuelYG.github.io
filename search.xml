@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[Google I/O 17]]></title>
+    <url>%2F2017%2F05%2F10%2FGoogle-I-O-17-1%2F</url>
+    <content type="text"><![CDATA[Google I/O 17—May 17-19, 2017 Google I/O is an annual developer festival held at the outdoor Shoreline Amphitheatre.May 17-19, 2017Shoreline Amphitheatre Mountain View, California 官方网站：Google I/O17]]></content>
+  </entry>
+  <entry>
     <title><![CDATA[修复Ubuntu17.04无法安装网易云音乐问题（转载）]]></title>
     <url>%2F2017%2F04%2F17%2Funtitled-1492388748768%2F</url>
     <content type="text"><![CDATA[装了Ubuntu17.04的用户会出现这一问题，原因是libqt5libqgtk2的依赖问题，这里需要将其替换为qt5-style-plugins.教程如下（以下内容来自互联网）： 1.下载deb包，备用 网易云音乐 2.安装一些编译时需要的程序 sudo apt-get install build-essential debhelper make autoconf automake dpkg-dev fakeroot pbuilder gnupg 3.解包 建立目录sudo mkdir -p netease/DEBIAN sudo mkdir fix 解包sudo dpkg -x netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb ./netease 解出控制文件sudo dpkg -e netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb netease/DEBIAN/ 修改控制文件sudo gedit netease/DEBIAN/control 找到 libqt5libqgtk2 ，替换为 qt5-style-plugins ，保存，退出。 4.重新打包 sudo dpkg-deb -b netease/fix/ 5.安装 sudo dpkg -i netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb 6.至此，理论上不会出错。 （如若报错尝试命令sudo apt-get install -f） PS:修改过的包 网易云音乐fixed 密钥：!aTE_wj3jalmc7Gu5rxhgM3WpLtGzv6ymBrbgJCpDEIg]]></content>
