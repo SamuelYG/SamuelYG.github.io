@@ -10,7 +10,7 @@
     
     <title>
         
-            归档: 2017/6 | 
+            OpenCV 在 Visual Studio 中的使用 | 
         
         YangGang&#39;Blog
     </title>
@@ -48,7 +48,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2017/6 | YangGang&#39;Blog">
+    <meta property="og:title" content="OpenCV 在 Visual Studio 中的使用 | YangGang&#39;Blog">
     <meta property="og:description" content="null">
 
     <!--[if lte IE 9]>
@@ -206,87 +206,381 @@ ga('create', 'UA-98889996-1', 'auto'); ga('send', 'pageview');
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
     
-        
-            <!-- Paradox Thumbnail -->
-            <div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#OpenCV-在-Visual-Studio-2017-中的使用"><span class="post-toc-number">1.</span> <span class="post-toc-text">OpenCV 在 Visual Studio 2017 中的使用</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#OpenCV-的安装"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">OpenCV 的安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Visual-Studio-的安装"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">Visual Studio 的安装</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#VS-中配置-OpenCV"><span class="post-toc-number">1.3.</span> <span class="post-toc-text">VS 中配置 OpenCV</span></a></li></ol></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/06/26/Ludus/">Ludus</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-             
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/06/26/Ludus/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Yang Gang's avatar">
-            </div>
-            <div>
-                <strong>Yang Gang</strong>
-                <span>6月 26, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-        
-        
-    
-
-    
-
-    
-        <script>
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')')
-
-        locatePost = locatePost.next();
-    }
+    $('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                OpenCV 在 Visual Studio 中的使用
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Yang Gang</strong>
+        <span>4月 28, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=OpenCV 在 Visual Studio 中的使用&url=http://yoursite.com//2018/04/28/OpenCV-在-Visual-Studio-中的使用/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=OpenCV 在 Visual Studio 中的使用&url=http://yoursite.com//2018/04/28/OpenCV-在-Visual-Studio-中的使用/index.html&via=Yang Gang" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com//2018/04/28/OpenCV-在-Visual-Studio-中的使用/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com//2018/04/28/OpenCV-在-Visual-Studio-中的使用/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=YangGang&#39;Blog&title=OpenCV 在 Visual Studio 中的使用&summary=null&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2018/04/28/OpenCV-在-Visual-Studio-中的使用/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=http://yoursite.com//2018/04/28/OpenCV-在-Visual-Studio-中的使用/index.html&text=OpenCV 在 Visual Studio 中的使用" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Telegram
+            </li>
+        </a>
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h1 id="OpenCV-在-Visual-Studio-2017-中的使用"><a href="#OpenCV-在-Visual-Studio-2017-中的使用" class="headerlink" title="OpenCV 在 Visual Studio 2017 中的使用"></a>OpenCV 在 Visual Studio 2017 中的使用</h1><p>因为 nonfree 的算法问题，重写部分内容，文中图片暂不更换，文件名及路径以文字为准。</p>
+<p>PS: 文中理论上没有错误的地方了=￣ω￣=</p>
+<p>因为某些原因，阅读体验较差</p>
+<p>本文内容：    </p>
+<ul>
+<li>OpenCV 的安装</li>
+<li>Visual Studio 的安装</li>
+<li>VS 中配置 OpenCV</li>
+</ul>
+<p>所需环境及文件（仅供参考）：    </p>
+<ul>
+<li>Windows 10 64 bit</li>
+<li>opencv-2.4.13.6-vc14.exe</li>
+<li>Visual Studio 2017</li>
+</ul>
+<p>推荐使用 <code>OpenCV-2.*</code> 是因为可以更方便使用如 SIFT 等 nonfree 算法</p>
+<h2 id="OpenCV-的安装"><a href="#OpenCV-的安装" class="headerlink" title="OpenCV 的安装"></a>OpenCV 的安装</h2><ol>
+<li>下载<br>在 OpenCV 的 GitHub 的 <a href="https://github.com/opencv/opencv/releases" target="_blank" rel="noopener">Releases</a> 页面下载 <code>opencv-2.4.13.6-vc14.exe</code> 文件 （<a href="https://www.opencv.org/releases.html" target="_blank" rel="noopener">OpenCV</a> 此页面也可下载到）</li>
+<li>安装<br>上述下载的文件为自解压文件，双击后选择要解压的目录即可（本文直接解压到 C 盘，后续用到的路径根据自己解压的路径自行替换）</li>
+<li>添加环境变量<br>右键此电脑 –&gt; 属性 –&gt; 高级系统设置 –&gt; 环境变量<br>编辑系统变量的 Path 变量，添加 <code>C:\opencv\build\x64\vc14\bin</code> 此路径</li>
+</ol>
+<h2 id="Visual-Studio-的安装"><a href="#Visual-Studio-的安装" class="headerlink" title="Visual Studio 的安装"></a>Visual Studio 的安装</h2><ol>
+<li>下载<br>进入官方<a href="https://www.visualstudio.com/zh-hans/downloads/" target="_blank" rel="noopener">下载</a>页面下载 Visual Studio Community 2017 版本 （确保你有微软账号，软件需要登陆，不登陆可能会有使用时间限制）</li>
+<li>安装<br>打开刚下载的软件，等待些许时间会进入 Visual Studio Installer , 选择 Visual Studio Community 2017 安装，接下来我们选择要安装的环境（本文选择 c++ ）如下图    (此处需要注意，C 盘务必保留充足空间，即使更换了安装位置还是要占用 C 盘部分空间)<br><img src="https://miao.su/images/2018/04/26/vs_install14beb.png" alt="vs_install14beb.png"></li>
+</ol>
+<p>接下来等待安装程序自动下载安装，时间长短依赖个人网速及电脑性能</p>
+<h2 id="VS-中配置-OpenCV"><a href="#VS-中配置-OpenCV" class="headerlink" title="VS 中配置 OpenCV"></a>VS 中配置 OpenCV</h2><p>大致需要三个步骤：</p>
+<ul>
+<li>编译器添加 include 路径</li>
+<li>编译器添加 lib 路径</li>
+<li>编译器添加 lib 文件</li>
+</ul>
+<ol>
+<li>新建一个空/控制台项目<br><img src="https://miao.su/images/2018/04/26/create8e7cd.png" alt="create8e7cd.png"></li>
+<li>添加一个源文件<br><img src="https://miao.su/images/2018/04/26/new_file20a5b.png" alt="new_file20a5b.png"><br><img src="https://miao.su/images/2018/04/26/new_file_2b4733.png" alt="new_file_2b4733.png"></li>
+<li>配置 OpenCV 并运行测试代码</li>
+</ol>
+<ul>
+<li>配置</li>
+</ul>
+<p>红框处按图片上设置然后在新建的项目上右键然后选择属性</p>
+<p><img src="https://miao.su/images/2018/04/27/setting47ecf.png" alt="setting47ecf.png"></p>
+<p>添加 <code>C:\opencv\build\include</code> 路径，注意红框处</p>
+<p><img src="https://miao.su/images/2018/04/27/set1c0bf0.png" alt="set1c0bf0.png"></p>
+<p>添加 <code>C:\opencv\build\x64\vc14\lib</code> 路径</p>
+<p><img src="https://miao.su/images/2018/04/27/set2fd47e.png" alt="set2fd47e.png"></p>
+<p>添加 <code>opencv_ml2413d.lib</code><br><code>opencv_calib3d2413d.lib</code><br><code>opencv_contrib2413d.lib</code><br><code>opencv_core2413d.lib</code><br><code>opencv_features2d2413d.lib</code><br><code>opencv_flann2413d.lib</code><br><code>opencv_gpu2413d.lib</code><br><code>opencv_highgui2413d.lib</code><br><code>opencv_imgproc2413d.lib</code><br><code>opencv_legacy2413d.lib</code><br><code>opencv_objdetect2413d.lib</code><br><code>opencv_ts2413d.lib</code><br><code>opencv_video2413d.lib</code><br><code>opencv_nonfree2413d.lib</code><br><code>opencv_ocl2413d.lib</code><br><code>opencv_photo2413d.lib</code><br><code>opencv_stitching2413d.lib</code><br><code>opencv_superres2413d.lib</code><br><code>opencv_videostab2413d.lib</code><br>这些库文件，Release mod 删除后缀前的 <code>d</code> 即可，其他版本根据具体版本修改每个文件中的数字（即版本号）</p>
+<p><img src="https://miao.su/images/2018/04/27/set3b23e4.png" alt="set3b23e4.png">    </p>
+<ul>
+<li>测试代码</li>
+</ul>
+<p>将代码 copy 到刚刚新建的源文件并保存</p>
+<pre><code>    /**********************************************************
+    Name :
+    Date : 2016/05/29
+    By   : CharlotteHonG
+    Final: 2016/05/29
+    **********************************************************/
+    #include &amp;lt;iostream&amp;gt;
+    #include &amp;lt;opencv2/opencv.hpp&amp;gt;
+
+    using namespace cv;
+
+    int main(int argc, char const *argv[]) {
+    /* 畫布 */
+    Mat img(270, 720, CV_8UC3, Scalar(56, 50, 38));
+    /* 直線 */
+    line(img, Point(20, 40), Point(120, 140), Scalar(255, 0, 0), 3);
+    /* 實心方塊 */
+    rectangle(img, Point(150, 40), Point(250, 140), Scalar(0, 0, 255), -1);
+    /* 實心圓 */
+    circle(img, Point(330, 90), 50, Scalar(0, 255, 0), -1);
+    /* 空心橢圓 */
+    ellipse(img, Point(460, 90), Size(60, 40), 45, 0, 360, Scalar(255, 255, 0), 2);
+    /* 不規則圖形 */
+    Point points[1][5];
+    int x = 40, y = 540;
+    points[0][0] = Point(0 + y, 50 + x);
+    points[0][1] = Point(40 + y, 0 + x);
+    points[0][2] = Point(110 + y, 35 + x);
+    points[0][3] = Point(74 + y, 76 + x);
+    points[0][4] = Point(28 + y, 96 + x);
+    const Point* ppt[1] = { points[0] };
+    int npt[] = { 5 };
+    polylines(img, ppt, npt, 1, 1, Scalar(0, 255, 255), 3);
+    /* 繪出文字 */
+    putText(img, &quot;Test Passed !!&quot;, Point(10, 230), 0, 3, Scalar(255, 170, 130), 3);
+    /* 開啟畫布 */
+    namedWindow(&quot;OpenCV Test By:Charlotte.HonG&quot;, WINDOW_AUTOSIZE);
+    imshow(&quot;OpenCV Test By:Charlotte.HonG&quot;, img);
+    waitKey(0);
+    return 0;
+}    
+</code></pre><p>一切准备好了，现在，直接按 F5 运行即可。不出意外，你会看到下图，如果出现问题，请检查以上步骤。</p>
+<p><img src="https://miao.su/images/2018/04/27/result90832.png" alt="result90832.png"></p>
+<hr>
+<p>关于 SIFT 算法的程序问题，新建项目时推荐新建 <code>Windows控制台应用程序</code> ，网上的程序可能会因为配置的 OpenCV 的路径不同，无法在你的电脑上运行（即找不到头文件），所以如果你使用本文的方法配置环境，对于 OpenCV 的扩展头文件应使用如下形式： <code>#include &quot;opencv2/highgui/highgui.hpp&quot;</code></p>
+<hr>
+<p>ps: 此方法在每次新建项目后都要重新配置，貌似是 vs2017 无法全局配置，可以尝试将配置导出，以后直接导入配置，应该会方便些，具体方法这里就不说了（或者其他的配置方式）。</p>
+<hr>
+<p>本文部分内容及代码借鉴自此博主 <a href="https://charlottehong.blogspot.tw/" target="_blank" rel="noopener">Charlotte.HonG</a> 的文章 <a href="https://charlottehong.blogspot.com/2017/06/opencv-320-vc14-visual-studio-2017.html?showComment=1524791827206#c7492050726078333196" target="_blank" rel="noopener">[圖文] OpenCV 3.4.1 安裝配置在 Visual Studio 2017</a> （感谢 <a href="https://charlottehong.blogspot.tw/" target="_blank" rel="noopener">Charlotte.HonG</a> ^_^）</p>
+
+    
+
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+    <!-- 使用 DISQUS -->
+    <div id="disqus-comment">
+        <div id="disqus_thread"></div>
+<script>
+    $('html').ready(function() {
+        setTimeout(function() {
+            var disqus_config = function () {
+                this.page.url = 'http://yoursite.com/2018/04/28/OpenCV-在-Visual-Studio-中的使用/index.html';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//yanggang96.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        },1500);
+    });
+</script>
+
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+        <a href="/2018/06/05/Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python/" id="post_nav-newer" class="prev-content">
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_back</i>
+            </button>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            新篇
+        </a>
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018/04/10/在-Ubuntu-中安装-TensorFlow-1/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     

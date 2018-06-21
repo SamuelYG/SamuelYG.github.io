@@ -10,7 +10,7 @@
     
     <title>
         
-            归档: 2017/6 | 
+            Ubuntu 下安装 opencv-contrib 做 SIFT 特征匹配(Python) | 
         
         YangGang&#39;Blog
     </title>
@@ -48,7 +48,7 @@
     <!-- The Open Graph protocol -->
     <meta property="og:url" content="http://yoursite.com">
     <meta property="og:type" content="blog">
-    <meta property="og:title" content="归档: 2017/6 | YangGang&#39;Blog">
+    <meta property="og:title" content="Ubuntu 下安装 opencv-contrib 做 SIFT 特征匹配(Python) | YangGang&#39;Blog">
     <meta property="og:description" content="null">
 
     <!--[if lte IE 9]>
@@ -206,87 +206,363 @@ ga('create', 'UA-98889996-1', 'auto'); ga('send', 'pageview');
                         </button>
                     
 
-                    <!-- Index Module -->
-<div class="material-index mdl-grid">
-    
-    <div class="locate-thumbnail-symbol"></div>
+                    <!-- Post TOC -->
 
     
-        
-            <!-- Paradox Thumbnail -->
-            <div class="post_entry-module mdl-card mdl-cell mdl-cell--12-col fade out">
-    <!-- Post Thumbnail -->
+    <!-- Back Button -->
+    <!--
+    <div class="material-back" id="backhome-div" tabindex="0">
+        <a class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon"
+           href="#" onclick="window.history.back();return false;"
+           target="_self"
+           role="button"
+           data-upgraded=",MaterialButton,MaterialRipple">
+            <i class="material-icons" role="presentation">arrow_back</i>
+            <span class="mdl-button__ripple-container">
+                <span class="mdl-ripple"></span>
+            </span>
+        </a>
+    </div>
+    -->
+
+    <!-- Left aligned menu below button -->
+    <button id="post-toc-trigger-btn"
+        class="mdl-button mdl-js-button mdl-button--icon">
+        <i class="material-icons">format_list_numbered</i>
+    </button>
+
+    <ul class="post-toc-wrap mdl-menu mdl-menu--bottom-left mdl-js-menu mdl-js-ripple-effect" for="post-toc-trigger-btn">
+        <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python"><span class="post-toc-number">1.</span> <span class="post-toc-text">Ubuntu 下安装 opencv-contrib 做 SIFT 特征匹配(Python)</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#安装-opencv-contrib"><span class="post-toc-number">1.1.</span> <span class="post-toc-text">安装 opencv-contrib</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#SIFT-特征匹配"><span class="post-toc-number">1.2.</span> <span class="post-toc-text">SIFT 特征匹配</span></a></li></ol></li></ol>
+
+        <!--
+        <li class="mdl-menu__item">
+            Some Action
+        </li>
+        -->
+    </ul>
+
+
+
+
+<!-- Layouts -->
+
+    <!-- Post Module -->
+    <div class="material-post_container">
+
+        <div class="material-post mdl-grid">
+            <div class="mdl-card mdl-shadow--4dp mdl-cell mdl-cell--12-col">
+
+                <!-- Post Header(Thumbnail & Title) -->
+                
+    <!-- Paradox Post Header -->
     
         
             <!-- Random Thumbnail -->
             <div class="post_thumbnail-random mdl-card__media mdl-color-text--grey-50">
-        
-    
+            <script>
+    var randomNum = Math.floor(Math.random() * 19 + 1);
 
-        <!-- Post Title -->
-        <p class="article-headline-p"><a href="/2017/06/26/Ludus/">Ludus</a></p>
-    </div>
-
-    <!-- Post Excerpt -->
-    <div class="mdl-color-text--grey-600 mdl-card__supporting-text post_entry-content">
-        
-             
-        
-        &nbsp;&nbsp;&nbsp;
-        <span>
-            <a href="/2017/06/26/Ludus/" target="_self">继续阅读</a>
-        </span>
-    </div>
-    <!-- Post_entry Info-->
-    <div id="post_entry-info">
-        <div id="post_entry-left-info" class="mdl-card__supporting-text meta mdl-color-text--grey-600 ">
-            <!-- Author Avatar -->
-            <div id="author-avatar">
-                <img src="/img/avatar.png" width="44px" height="44px" alt="Yang Gang's avatar">
-            </div>
-            <div>
-                <strong>Yang Gang</strong>
-                <span>6月 26, 2017</span>
-            </div>
-        </div>
-        <div id="post_entry-right-info">
-            <!-- Category -->
-            <span class="post_entry-category">
-                
-            </span>
-
-            
-
-            <!-- Post Views -->
-            <span class="post_entry-views">
-            </span>
-        </div>
-    </div>
-</div>
-
-        
-        
-    
-
-    
-
-    
-        <script>
-    var randomNum;
-
-    var locatePost = $('.locate-thumbnail-symbol').next();
-    for(var i = 0; i < 10; i++) {
-        randomNum = Math.floor(Math.random() * 19 + 1);
-
-        locatePost.children('.post_thumbnail-random').attr('id', 'random_thumbnail-'+randomNum);
-        locatePost.children('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')')
-
-        locatePost = locatePost.next();
-    }
+    $('.post_thumbnail-random').css('background-image', 'url(' + '/img/random/material-' + randomNum + '.png' + ')');
 </script>
 
+        
+    
+            <p class="article-headline-p">
+                Ubuntu 下安装 opencv-contrib 做 SIFT 特征匹配(Python)
+            </p>
+        </div>
+
+
+
+
+
+                
+                    <!-- Paradox Post Info -->
+                    <div class="mdl-color-text--grey-700 mdl-card__supporting-text meta">
+
+    <!-- Author Avatar -->
+    <div id="author-avatar">
+        <img src="/img/avatar.png" width="44px" height="44px" alt="Author Avatar"/>
+    </div>
+    <!-- Author Name & Date -->
+    <div>
+        <strong>Yang Gang</strong>
+        <span>6月 05, 2018</span>
+    </div>
+
+    <div class="section-spacer"></div>
+
+    <!-- Favorite -->
+    <!--
+        <button id="article-functions-like-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon btn-like">
+            <i class="material-icons" role="presentation">favorite</i>
+            <span class="visuallyhidden">favorites</span>
+        </button>
+    -->
+
+    <!-- Qrcode -->
+    
+
+    <!-- Tags (bookmark) -->
+    
+    <button id="article-functions-viewtags-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+        <i class="material-icons" role="presentation">bookmark</i>
+        <span class="visuallyhidden">bookmark</span>
+    </button>
+    <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-functions-viewtags-button">
+        <li class="mdl-menu__item">
+        
+    </ul>
+    
+
+    <!-- Share -->
+    <button id="article-fuctions-share-button" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+    <i class="material-icons" role="presentation">share</i>
+    <span class="visuallyhidden">share</span>
+</button>
+<ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="article-fuctions-share-button">
+    
+
+    
+        
+            <!-- Busuanzi Views -->
+            <a class="post_share-link" href="#">
+                <li class="mdl-menu__item">
+                    <span id="busuanzi_container_page_pv">
+                        <span id="busuanzi_value_page_pv"></span>&nbsp;浏览量
+                    </span>
+                </li>
+            </a>
+        
+    
+
+    <!-- Share Weibo -->
+    
+        <a class="post_share-link" href="http://service.weibo.com/share/share.php?appkey=&title=Ubuntu 下安装 opencv-contrib 做 SIFT 特征匹配(Python)&url=http://yoursite.com//2018/06/05/Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python/index.html&pic=&searchPic=false&style=simple" target="_blank">
+            <li class="mdl-menu__item">
+                分享到微博
+            </li>
+        </a>
+    
+
+    <!-- Share Twitter -->
+    
+        <a class="post_share-link" href="https://twitter.com/intent/tweet?text=Ubuntu 下安装 opencv-contrib 做 SIFT 特征匹配(Python)&url=http://yoursite.com//2018/06/05/Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python/index.html&via=Yang Gang" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Twitter
+            </li>
+        </a>
+    
+
+    <!-- Share Facebook -->
+    
+        <a class="post_share-link" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com//2018/06/05/Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Facebook
+            </li>
+        </a>
+    
+
+    <!-- Share Google+ -->
+    
+        <a class="post_share-link" href="https://plus.google.com/share?url=http://yoursite.com//2018/06/05/Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Google+
+            </li>
+        </a>
+    
+
+    <!-- Share LinkedIn -->
+    
+
+    <!-- Share QQ -->
+    
+        <a class="post_share-link" href="http://connect.qq.com/widget/shareqq/index.html?site=YangGang&#39;Blog&title=Ubuntu 下安装 opencv-contrib 做 SIFT 特征匹配(Python)&summary=null&pics=http://yoursite.com/img/favicon.png&url=http://yoursite.com/2018/06/05/Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python/index.html" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 QQ
+            </li>
+        </a>
+    
+
+    <!-- Share Telegram -->
+    
+        <a class="post_share-link" href="https://telegram.me/share/url?url=http://yoursite.com//2018/06/05/Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python/index.html&text=Ubuntu 下安装 opencv-contrib 做 SIFT 特征匹配(Python)" target="_blank">
+            <li class="mdl-menu__item">
+                分享到 Telegram
+            </li>
+        </a>
+    
+</ul>
+
+</div>
+
+                
+
+                <!-- Post Content -->
+                <div id="post-content" class="markdown-Github mdl-color-text--grey-700 mdl-card__supporting-text fade out">
+    
+        <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h1 id="Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python"><a href="#Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python" class="headerlink" title="Ubuntu 下安装 opencv-contrib 做 SIFT 特征匹配(Python)"></a>Ubuntu 下安装 opencv-contrib 做 SIFT 特征匹配(Python)</h1><p>因为 SIFT 算法的授权问题，导致 OpenCV 有两个版本，即如需使用 SIFT 算法就必须要用 OpenCV-contrib ，但是 VS2017 里配置 OpenCV-contrib 比较繁琐，在 Linux 下就会方便很多。</p>
+<p>本文所使用环境：</p>
+<ul>
+<li>Ubuntu 16.04 LTS</li>
+<li>Python 2.7</li>
+</ul>
+<h2 id="安装-opencv-contrib"><a href="#安装-opencv-contrib" class="headerlink" title="安装 opencv-contrib"></a>安装 opencv-contrib</h2><ul>
+<li><p>先安装 pip 软件包管理系统</p>
+<ul>
+<li><p>打开一个 Terminal (快捷键 <code>ctrl + alt + t</code> )</p>
+</li>
+<li><p>输入以下命令后回车，按提示操作</p>
+</li>
+</ul>
+<p><code>sudo apt-get install python-pip</code></p>
+</li>
+<li><p>安装 OpenCV-contrib</p>
+</li>
+</ul>
+<p>Terminal 中输入以下命令，等待提示完成即可</p>
+<p><code>pip install opencv-contrib-python</code></p>
+<ul>
+<li>验证</li>
+</ul>
+<p>Terminal 中执行以下命令验证是否安装成功</p>
+<p><code>$ python</code></p>
+<p><code>import cv2 as cv</code></p>
+<p><code>print(cv.__version__)</code></p>
+<p>安装成功会输出当前版本号</p>
+<h2 id="SIFT-特征匹配"><a href="#SIFT-特征匹配" class="headerlink" title="SIFT 特征匹配"></a>SIFT 特征匹配</h2><ul>
+<li><p>代码</p>
+<pre><code>#sift feature
+import cv2
+import numpy as np
+MIN_MATCH_COUNT = 4
+imgname1 = &quot;1.jpg&quot;
+imgname2 = &quot;2.jpg&quot;
+## (1) prepare data
+img1 = cv2.imread(imgname1)
+img2 = cv2.imread(imgname2)
+gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+## (2) Create SIFT object
+sift = cv2.xfeatures2d.SIFT_create()
+## (3) Create flann matcher
+matcher = cv2.FlannBasedMatcher(dict(algorithm = 1, trees = 5), {})
+## (4) Detect keypoints and compute keypointer descriptors
+kpts1, descs1 = sift.detectAndCompute(gray1,None)
+kpts2, descs2 = sift.detectAndCompute(gray2,None)
+## (5) knnMatch to get Top2
+matches = matcher.knnMatch(descs1, descs2, 2)
+# Sort by their distance.
+matches = sorted(matches, key = lambda x:x[0].distance)
+## (6) Ratio test, to get good matches.
+good = [m1 for (m1, m2) in matches if m1.distance &amp;lt; 0.7 * m2.distance]
+canvas = img2.copy()
+## (7) find homography matrix
+if len(good)&amp;gt;MIN_MATCH_COUNT:
+    ## (queryIndex for the small object, trainIndex for the scene )
+    src_pts = np.float32([ kpts1[m.queryIdx].pt for m in good ]).reshape(-1,1,2)
+    dst_pts = np.float32([ kpts2[m.trainIdx].pt for m in good ]).reshape(-1,1,2)
+    ## find homography matrix in cv2.RANSAC using good match points
+    M, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC,5.0)
+    #matchesMask2 = mask.ravel().tolist()
+    h,w = img1.shape[:2]
+    pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0] ]).reshape(-1,1,2)
+    dst = cv2.perspectiveTransform(pts,M)
+    cv2.polylines(canvas,[np.int32(dst)],True,(0,255,0),3, cv2.LINE_AA)
+else:
+    print( &quot;Not enough matches are found - {}/{}&quot;.format(len(good),MIN_MATCH_COUNT))
+## (8) drawMatches
+matched = cv2.drawMatches(img1,kpts1,canvas,kpts2,good,None)#,**draw_params)
+## (9) Crop the matched region from scene
+h,w = img1.shape[:2]
+pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0] ]).reshape(-1,1,2)
+dst = cv2.perspectiveTransform(pts,M)
+perspectiveM = cv2.getPerspectiveTransform(np.float32(dst),pts)
+found = cv2.warpPerspective(img2,perspectiveM,(w,h))
+## (10) save and display
+cv2.imwrite(&quot;matched.png&quot;, matched)
+cv2.imwrite(&quot;found.png&quot;, found)
+cv2.imshow(&quot;matched&quot;, matched);
+#cv2.imshow(&quot;found&quot;, found);
+cv2.waitKey();cv2.destroyAllWindows()
+</code></pre></li>
+</ul>
+<p>原始图像：</p>
+<p><a href="https://miao.su/image/w8eD7" target="_blank" rel="noopener"><img src="https://miao.su/images/2018/05/02/1e043b.md.jpg" alt="1e043b.md.jpg"></a></p>
+<p><a href="https://miao.su/image/w83a5" target="_blank" rel="noopener"><img src="https://miao.su/images/2018/05/02/2c0118.md.jpg" alt="2c0118.md.jpg"></a></p>
+<p>匹配结果：</p>
+<p><img src="https://miao.su/images/2018/05/02/3346ac.jpg" alt="3346ac.jpg"></p>
+
+    
+
     
 </div>
+
+
+                
+
+                <!-- Post Comments -->
+                
+                    
+
+
+    <!-- 使用 DISQUS -->
+    <div id="disqus-comment">
+        <div id="disqus_thread"></div>
+<script>
+    $('html').ready(function() {
+        setTimeout(function() {
+            var disqus_config = function () {
+                this.page.url = 'http://yoursite.com/2018/06/05/Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python/index.html';  // Replace PAGE_URL with your page's canonical URL variable
+                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+            };
+
+            (function() { // DON'T EDIT BELOW THIS LINE
+                var d = document;
+                var s = d.createElement('script');
+                s.src = '//yanggang96.disqus.com/embed.js';
+                s.setAttribute('data-timestamp', + new Date());
+                (d.head || d.body).appendChild(s);
+            })();
+        },1500);
+    });
+</script>
+
+    </div>
+    <style>
+        #disqus-comment{
+            background-color: #eee;
+            padding: 2pc;
+        }
+    </style>
+
+
+                
+            </div>
+
+            <!-- Post Prev & Next Nav -->
+            <nav class="material-nav mdl-color-text--grey-50 mdl-cell mdl-cell--12-col">
+    <!-- Prev Nav -->
+    
+
+    <!-- Section Spacer -->
+    <div class="section-spacer"></div>
+
+    <!-- Next Nav -->
+    
+        <a href="/2018/04/28/OpenCV-在-Visual-Studio-中的使用/" id="post_nav-older" class="next-content">
+            旧篇
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon mdl-color--white mdl-color-text--grey-900" role="presentation">
+                <i class="material-icons">arrow_forward</i>
+            </button>
+        </a>
+    
+</nav>
+
+        </div>
+    </div>
+
 
 
                     
