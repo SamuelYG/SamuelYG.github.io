@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[类原生跳过 Google 向导的各种办法]]></title>
+    <url>%2F2019%2F04%2F22%2F%E7%B1%BB%E5%8E%9F%E7%94%9F%E8%B7%B3%E8%BF%87Google%E5%90%91%E5%AF%BC%E7%9A%84%E5%90%84%E7%A7%8D%E5%8A%9E%E6%B3%95%2F</url>
+    <content type="text"><![CDATA[相信很多人跟俺一样喜欢使用类原生的 Android 系统，而缺少了 Google 服务框架的 Android 就如同人没有了灵魂。但是有时候 Google 的开机向导却让人很烦，下面就总结一下各种跳过开机向导的办法。 0、先说一下出现的原因如果你先阅读了本章节，可能免去阅读以下章节造成的时间浪费。 下面几种操作会让你必须在第一次进入系统时完成设置向导： 刷机之前没有退出登录 Google 账号 没有拔掉中国的手机卡 买了 Google Pixel （咱没用过，应该必须要走设置向导这个流程吧） 人品差 如果你能避免以上操作，开机向导应该能非常舒适的跳过。 总之，如果你因为上面的原因或其他不可预知的问题造成你未能舒适的进入系统，下面的内容可能就有你需要的。 1、方法有很多种以下内容尽量采取由简到繁的顺序。但是部分方法因为没有设备或者条件不足或者懒的原因，本文并不提供具体方法。 良好的网络环境 身处国外 路由器插件科学上网 电脑科学上网并共享给手机 非中国大陆地区电话卡 “良好”的 ROM + Gapps 设置向导界面点击四角跳过 其他emmm 个人喜欢的方法 数据线连接电脑，进入 TWRP 并 mount（挂载）system 分区 adb devices 确保一切无误 adb pull system/build.prop /dir 将所需文件拉取到电脑 echo &#39;ro.setupwizard.mode=DISABLED&#39; &gt;&gt; /dir/build.prop 或手动编辑 build.prop 加入一行 ro.setupwizard.mode=DISABLED adb push /dir/build.prop system 将文件放回去 adb shell 进入手机内部 shell cd system chmod 0644 build.prop exit 重启 或者 TWRP 内直接使用 vi 编辑器添加 ro.setupwizard.mode=DISABLED ，前提是知道 vi 的基本操作。 不推荐的方法 直接 TWRP 删除 setupwizard 相关软件 大致如此，有更好的方法欢迎评论。当然，Google 如果能够回来才是最吼的。]]></content>
+      <categories>
+        <category>Tips</category>
+      </categories>
+      <tags>
+        <tag>Google</tag>
+        <tag>开机向导</tag>
+        <tag>setupwizard</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[Pop!_OS 与 Windows10 不同盘双系统启动问题]]></title>
     <url>%2F2019%2F04%2F05%2FPop!_OS%20%E4%B8%8E%20Windows10%20%E4%B8%8D%E5%90%8C%E7%9B%98%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E9%97%AE%E9%A2%98%2F</url>
     <content type="text"><![CDATA[前言：Pop!_OS 在新的版本不再使用 GRUB 而是选择了能让启动速度更快（在某些论坛看到一些说法，不知是否准确）的 systemd-boot&gt;) 。但是 systemd-boot&gt;) 无法识别到另一个磁盘 EFI 分区的 Windows 。因为不了解 systemd-boot&gt;) 所以就在网上搜索了一些信息，这里做个总结。 一假设你是根据此教程已完成双系统的安装，且 EFI 与 Windows 不在同一块硬盘。那么 Pop!_OS 的 EFI 会在 /boot/efi/ 路径下，其中 EFI 下存有相应的文件，loader 下是对应的启动配置文件。 找到 Windows 的 EFI 分区，挂载 1sudo fdisk -l 1sudo mount /dev/nvme0n1p2 /dir # 每个人的分区可能有所不同 然后将分区内文件复制到 /boot/efi/EFI/ 内。 二先查看 Windows EFI 分区的 PARTUUID 1blkid -s PARTUUID -0 value /dev/nvme0n1p2 然后在 /boot/efi/loader/entries/ 下创建一个 Windows 的配置文件 Windows_10.conf，填入以下内容（其中 PARTUUID 替换为上一步中得到的信息） 123title Microsoft Windows 10efi /EFI/Microsoft/Boot/bootmgfw.efioptions root=PARTUUID=6ded70ea-82c3-4b0c-9edc-b5a71a55a0e8 rw 三1bootctl update 因为 systemd-boot&gt;) 会默认直接进入 Pop!_OS 所以你可以选择在开机时按住空格键或者修改 /boot/efi/loader/loader.conf 文件，添加一行： 1timeout 30 接下来重启就可以选择启动那个系统了。 疑惑经过上述步骤后，启动时会出现 Microsoft Windows 10 和 Windows Boot Manager 两个 Windows 选项，前者是我们创建的，后者应该是自动识别的。 所以很疑惑是否一和二只需其一？我没有去测试，如果有人尝试了可以评论/Email告诉我结果。 参考文章： 想问下systemd-boot引导双系统的问题]]></content>
