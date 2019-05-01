@@ -508,12 +508,9 @@
       
         <script src="\assets\js\APlayer.min.js"> </script><p>原本使用的 <a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="noopener">Material Theme</a> 这两日使用起来很不舒服，页面滚动起来竟然会有些掉帧。于是就想着换个主题用用。由于心水 <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">NexT</a> 已久，所以就着手更换了。</p>
 <a id="more"></a>
-<p>参考[主题文档](git clone <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">https://github.com/iissnan/hexo-theme-next</a> themes/next)。</p>
-<h2 id="安装并启用-next"><a class="markdownIt-Anchor" href="#安装并启用-next"></a> 安装并启用 NexT</h2>
-<h3 id="下载主题"><a class="markdownIt-Anchor" href="#下载主题"></a> 下载主题</h3>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd bolg</span><br><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<h3 id="启用主题"><a class="markdownIt-Anchor" href="#启用主题"></a> 启用主题</h3>
-<p>打开站点根目录下 <code>_config.yml</code> 配置文件，编辑：</p>
+<p>参考<a href="git clone https://github.com/iissnan/hexo-theme-next themes/next">主题文档</a>。</p>
+<h2 id="安装并启用-NexT"><a href="#安装并启用-NexT" class="headerlink" title="安装并启用 NexT"></a>安装并启用 NexT</h2><h3 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd bolg</span><br><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<h3 id="启用主题"><a href="#启用主题" class="headerlink" title="启用主题"></a>启用主题</h3><p>打开站点根目录下 <code>_config.yml</code> 配置文件，编辑：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
 <p>此时网站语言可能是英文，因为旧的主题语言设置可能与此主题不同，所以设置：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">language: zh-Hans</span><br></pre></td></tr></table></figure>
@@ -521,13 +518,10 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
 <p>根据提示在浏览器打开 <code>http://localhost:4000</code> 即可见到新主题芳容。</p>
 <p>但总感觉哪里有些不对劲，所以需要继续进行配置。</p>
-<h2 id="主题设置"><a class="markdownIt-Anchor" href="#主题设置"></a> 主题设置</h2>
-<h3 id="选择-scheme"><a class="markdownIt-Anchor" href="#选择-scheme"></a> 选择 Scheme</h3>
-<p>打开主题目录下 <code>_config.yml</code> 配置文件，更改：</p>
+<h2 id="主题设置"><a href="#主题设置" class="headerlink" title="主题设置"></a>主题设置</h2><h3 id="选择-Scheme"><a href="#选择-Scheme" class="headerlink" title="选择 Scheme"></a>选择 Scheme</h3><p>打开主题目录下 <code>_config.yml</code> 配置文件，更改：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scheme: Pisces</span><br></pre></td></tr></table></figure>
 <p>这个是双栏模式，个人比较喜欢，其他可以查看文首链接。</p>
-<h3 id="菜单"><a class="markdownIt-Anchor" href="#菜单"></a> 菜单</h3>
-<p><code>menu</code> 下有多项设置可选，看需求设置就好。</p>
+<h3 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h3><p><code>menu</code> 下有多项设置可选，看需求设置就好。</p>
 <p>如需自定页面，还需按需添加翻译信息（文件位置 <code>languages/{language}.yml</code>）</p>
 <p>以上设置完成差不多就可以 deploy 了，其他细节慢慢添加。</p>
 
@@ -863,7 +857,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装并启用-next"><span class="nav-number">1.</span> <span class="nav-text"> 安装并启用 NexT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载主题"><span class="nav-number">1.1.</span> <span class="nav-text"> 下载主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启用主题"><span class="nav-number">1.2.</span> <span class="nav-text"> 启用主题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题设置"><span class="nav-number">2.</span> <span class="nav-text"> 主题设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择-scheme"><span class="nav-number">2.1.</span> <span class="nav-text"> 选择 Scheme</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#菜单"><span class="nav-number">2.2.</span> <span class="nav-text"> 菜单</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装并启用-NexT"><span class="nav-number">1.</span> <span class="nav-text">安装并启用 NexT</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#下载主题"><span class="nav-number">1.1.</span> <span class="nav-text">下载主题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#启用主题"><span class="nav-number">1.2.</span> <span class="nav-text">启用主题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主题设置"><span class="nav-number">2.</span> <span class="nav-text">主题设置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#选择-Scheme"><span class="nav-number">2.1.</span> <span class="nav-text">选择 Scheme</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#菜单"><span class="nav-number">2.2.</span> <span class="nav-text">菜单</span></a></li></ol></li></ol></div>
             
 
           </div>

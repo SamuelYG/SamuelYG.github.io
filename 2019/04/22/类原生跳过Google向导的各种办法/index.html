@@ -508,8 +508,7 @@
       
         <script src="\assets\js\APlayer.min.js"> </script><p>相信很多人跟俺一样喜欢使用类原生的 Android 系统，而缺少了 Google 服务框架的 Android 就如同人没有了灵魂。但是有时候 Google 的开机向导却让人很烦，下面就总结一下各种跳过开机向导的办法。</p>
 <a id="more"></a>
-<h2 id="0-先说一下出现的原因"><a class="markdownIt-Anchor" href="#0-先说一下出现的原因"></a> 0、先说一下出现的原因</h2>
-<p>如果你先阅读了本章节，可能免去阅读以下章节造成的时间浪费。</p>
+<h2 id="0、先说一下出现的原因"><a href="#0、先说一下出现的原因" class="headerlink" title="0、先说一下出现的原因"></a>0、先说一下出现的原因</h2><p>如果你先阅读了本章节，可能免去阅读以下章节造成的时间浪费。</p>
 <p>下面几种操作会让你必须在第一次进入系统时完成设置向导：</p>
 <ul>
 <li>刷机之前没有退出登录 Google 账号</li>
@@ -519,29 +518,24 @@
 </ul>
 <p>如果你能避免以上操作，开机向导应该能非常舒适的<strong>跳过</strong>。</p>
 <p>总之，如果你因为上面的原因或其他不可预知的问题造成你未能舒适的进入系统，下面的内容可能就有你需要的。</p>
-<h2 id="1-方法有很多种"><a class="markdownIt-Anchor" href="#1-方法有很多种"></a> 1、方法有很多种</h2>
-<p>以下内容尽量采取由简到繁的顺序。但是部分方法因为没有设备或者条件不足或者懒的原因，本文并不提供具体方法。</p>
-<h3 id="良好的网络环境"><a class="markdownIt-Anchor" href="#良好的网络环境"></a> 良好的网络环境</h3>
-<ul>
+<h2 id="1、方法有很多种"><a href="#1、方法有很多种" class="headerlink" title="1、方法有很多种"></a>1、方法有很多种</h2><p>以下内容尽量采取由简到繁的顺序。但是部分方法因为没有设备或者条件不足或者懒的原因，本文并不提供具体方法。</p>
+<h3 id="良好的网络环境"><a href="#良好的网络环境" class="headerlink" title="良好的网络环境"></a>良好的网络环境</h3><ul>
 <li>身处国外</li>
 <li>路由器插件科学上网</li>
 <li>电脑科学上网并共享给手机</li>
 <li>非中国大陆地区电话卡</li>
 </ul>
-<h3 id="良好的-rom-gapps"><a class="markdownIt-Anchor" href="#良好的-rom-gapps"></a> “良好”的 ROM + Gapps</h3>
-<ul>
+<h3 id="“良好”的-ROM-Gapps"><a href="#“良好”的-ROM-Gapps" class="headerlink" title="“良好”的 ROM + Gapps"></a>“良好”的 ROM + Gapps</h3><ul>
 <li>设置向导界面点击四角跳过</li>
 <li>其他emmm</li>
 </ul>
-<h3 id="个人喜欢的方法"><a class="markdownIt-Anchor" href="#个人喜欢的方法"></a> 个人喜欢的方法</h3>
-<ul>
+<h3 id="个人喜欢的方法"><a href="#个人喜欢的方法" class="headerlink" title="个人喜欢的方法"></a>个人喜欢的方法</h3><ul>
 <li>数据线连接电脑，进入 TWRP 并 mount（挂载）system 分区</li>
 <li><code>adb devices</code> 确保一切无误</li>
 <li><code>adb pull system/build.prop /dir</code> 将所需文件拉取到电脑</li>
-<li><code>echo 'ro.setupwizard.mode=DISABLED' &gt;&gt; /dir/build.prop</code> 或手动编辑 <code>build.prop</code> 加入一行 <code>ro.setupwizard.mode=DISABLED</code></li>
+<li><code>echo &#39;ro.setupwizard.mode=DISABLED&#39; &gt;&gt; /dir/build.prop</code> 或手动编辑 <code>build.prop</code> 加入一行 <code>ro.setupwizard.mode=DISABLED</code></li>
 <li><code>adb push /dir/build.prop system</code> 将文件放回去</li>
-<li><code>adb shell</code> 进入手机内部 <code>shell</code>
-<ul>
+<li><code>adb shell</code> 进入手机内部 <code>shell</code><ul>
 <li><code>cd system</code></li>
 <li><code>chmod 0644 build.prop</code></li>
 <li><code>exit</code></li>
@@ -550,8 +544,7 @@
 <li>重启</li>
 </ul>
 <p>或者 TWRP 内直接使用 vi 编辑器添加 <code>ro.setupwizard.mode=DISABLED</code> ，前提是知道 vi 的基本操作。</p>
-<h3 id="不推荐的方法"><a class="markdownIt-Anchor" href="#不推荐的方法"></a> 不推荐的方法</h3>
-<ul>
+<h3 id="不推荐的方法"><a href="#不推荐的方法" class="headerlink" title="不推荐的方法"></a>不推荐的方法</h3><ul>
 <li>直接 TWRP 删除 setupwizard 相关软件</li>
 </ul>
 <p>大致如此，有更好的方法欢迎评论。当然，Google 如果能够回来才是最吼的。</p>
@@ -888,7 +881,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0-先说一下出现的原因"><span class="nav-number">1.</span> <span class="nav-text"> 0、先说一下出现的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-方法有很多种"><span class="nav-number">2.</span> <span class="nav-text"> 1、方法有很多种</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#良好的网络环境"><span class="nav-number">2.1.</span> <span class="nav-text"> 良好的网络环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#良好的-rom-gapps"><span class="nav-number">2.2.</span> <span class="nav-text"> “良好”的 ROM + Gapps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人喜欢的方法"><span class="nav-number">2.3.</span> <span class="nav-text"> 个人喜欢的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不推荐的方法"><span class="nav-number">2.4.</span> <span class="nav-text"> 不推荐的方法</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#0、先说一下出现的原因"><span class="nav-number">1.</span> <span class="nav-text">0、先说一下出现的原因</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1、方法有很多种"><span class="nav-number">2.</span> <span class="nav-text">1、方法有很多种</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#良好的网络环境"><span class="nav-number">2.1.</span> <span class="nav-text">良好的网络环境</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#“良好”的-ROM-Gapps"><span class="nav-number">2.2.</span> <span class="nav-text">“良好”的 ROM + Gapps</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#个人喜欢的方法"><span class="nav-number">2.3.</span> <span class="nav-text">个人喜欢的方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不推荐的方法"><span class="nav-number">2.4.</span> <span class="nav-text">不推荐的方法</span></a></li></ol></li></ol></div>
             
 
           </div>

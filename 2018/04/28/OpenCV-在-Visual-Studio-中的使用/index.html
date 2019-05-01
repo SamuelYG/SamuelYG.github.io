@@ -521,51 +521,38 @@
 <p>因为 nonfree 的算法问题，重写部分内容，文中图片暂不更换，文件名及路径以文字为准。</p>
 <p>PS: 文中理论上没有错误的地方了=￣ω￣=</p>
 <p>因为某些原因，阅读体验较差</p>
-<p>本文内容：</p>
+<p>本文内容：    </p>
 <ul>
 <li>OpenCV 的安装</li>
 <li>Visual Studio 的安装</li>
 <li>VS 中配置 OpenCV</li>
 </ul>
-<p>所需环境及文件（仅供参考）：</p>
+<p>所需环境及文件（仅供参考）：    </p>
 <ul>
 <li>Windows 10 64 bit</li>
 <li>opencv-2.4.13.6-vc14.exe</li>
 <li>Visual Studio 2017</li>
 </ul>
 <p>推荐使用 <code>OpenCV-2.*</code> 是因为可以更方便使用如 SIFT 等 nonfree 算法</p>
-<h2 id="opencv-的安装"><a class="markdownIt-Anchor" href="#opencv-的安装"></a> OpenCV 的安装</h2>
-<ol>
-<li>下载<br>
-在 OpenCV 的 GitHub 的 <a href="https://github.com/opencv/opencv/releases" target="_blank" rel="noopener">Releases</a> 页面下载 <code>opencv-2.4.13.6-vc14.exe</code> 文件 （<a href="https://www.opencv.org/releases.html" target="_blank" rel="noopener">OpenCV</a> 此页面也可下载到）</li>
-<li>安装<br>
-上述下载的文件为自解压文件，双击后选择要解压的目录即可（本文直接解压到 C 盘，后续用到的路径根据自己解压的路径自行替换）</li>
-<li>添加环境变量<br>
-右键此电脑 –&gt; 属性 –&gt; 高级系统设置 –&gt; 环境变量<br>
-编辑系统变量的 Path 变量，添加 <code>C:\opencv\build\x64\vc14\bin</code> 此路径</li>
+<h2 id="OpenCV-的安装"><a href="#OpenCV-的安装" class="headerlink" title="OpenCV 的安装"></a>OpenCV 的安装</h2><ol>
+<li>下载<br>在 OpenCV 的 GitHub 的 <a href="https://github.com/opencv/opencv/releases" target="_blank" rel="noopener">Releases</a> 页面下载 <code>opencv-2.4.13.6-vc14.exe</code> 文件 （<a href="https://www.opencv.org/releases.html" target="_blank" rel="noopener">OpenCV</a> 此页面也可下载到）</li>
+<li>安装<br>上述下载的文件为自解压文件，双击后选择要解压的目录即可（本文直接解压到 C 盘，后续用到的路径根据自己解压的路径自行替换）</li>
+<li>添加环境变量<br>右键此电脑 –&gt; 属性 –&gt; 高级系统设置 –&gt; 环境变量<br>编辑系统变量的 Path 变量，添加 <code>C:\opencv\build\x64\vc14\bin</code> 此路径</li>
 </ol>
-<h2 id="visual-studio-的安装"><a class="markdownIt-Anchor" href="#visual-studio-的安装"></a> Visual Studio 的安装</h2>
-<ol>
-<li>下载<br>
-进入官方<a href="https://www.visualstudio.com/zh-hans/downloads/" target="_blank" rel="noopener">下载</a>页面下载 Visual Studio Community 2017 版本 （确保你有微软账号，软件需要登陆，不登陆可能会有使用时间限制）</li>
-<li>安装<br>
-打开刚下载的软件，等待些许时间会进入 Visual Studio Installer , 选择 Visual Studio Community 2017 安装，接下来我们选择要安装的环境（本文选择 c++ ）如下图    (此处需要注意，C 盘务必保留充足空间，即使更换了安装位置还是要占用 C 盘部分空间)<br>
-<img src="https://miao.su/images/2018/04/26/vs_install14beb.png" alt="vs_install14beb.png"></li>
+<h2 id="Visual-Studio-的安装"><a href="#Visual-Studio-的安装" class="headerlink" title="Visual Studio 的安装"></a>Visual Studio 的安装</h2><ol>
+<li>下载<br>进入官方<a href="https://www.visualstudio.com/zh-hans/downloads/" target="_blank" rel="noopener">下载</a>页面下载 Visual Studio Community 2017 版本 （确保你有微软账号，软件需要登陆，不登陆可能会有使用时间限制）</li>
+<li>安装<br>打开刚下载的软件，等待些许时间会进入 Visual Studio Installer , 选择 Visual Studio Community 2017 安装，接下来我们选择要安装的环境（本文选择 c++ ）如下图    (此处需要注意，C 盘务必保留充足空间，即使更换了安装位置还是要占用 C 盘部分空间)<br><img src="https://miao.su/images/2018/04/26/vs_install14beb.png" alt="vs_install14beb.png"></li>
 </ol>
 <p>接下来等待安装程序自动下载安装，时间长短依赖个人网速及电脑性能</p>
-<h2 id="vs-中配置-opencv"><a class="markdownIt-Anchor" href="#vs-中配置-opencv"></a> VS 中配置 OpenCV</h2>
-<p>大致需要三个步骤：</p>
+<h2 id="VS-中配置-OpenCV"><a href="#VS-中配置-OpenCV" class="headerlink" title="VS 中配置 OpenCV"></a>VS 中配置 OpenCV</h2><p>大致需要三个步骤：</p>
 <ul>
 <li>编译器添加 include 路径</li>
 <li>编译器添加 lib 路径</li>
 <li>编译器添加 lib 文件</li>
 </ul>
 <ol>
-<li>新建一个空/控制台项目<br>
-<img src="https://miao.su/images/2018/04/26/create8e7cd.png" alt="create8e7cd.png"></li>
-<li>添加一个源文件<br>
-<img src="https://miao.su/images/2018/04/26/new_file20a5b.png" alt="new_file20a5b.png"><br>
-<img src="https://miao.su/images/2018/04/26/new_file_2b4733.png" alt="new_file_2b4733.png"></li>
+<li>新建一个空/控制台项目<br><img src="https://miao.su/images/2018/04/26/create8e7cd.png" alt="create8e7cd.png"></li>
+<li>添加一个源文件<br><img src="https://miao.su/images/2018/04/26/new_file20a5b.png" alt="new_file20a5b.png"><br><img src="https://miao.su/images/2018/04/26/new_file_2b4733.png" alt="new_file_2b4733.png"></li>
 <li>配置 OpenCV 并运行测试代码</li>
 </ol>
 <ul>
@@ -577,27 +564,8 @@
 <p><img src="https://miao.su/images/2018/04/27/set1c0bf0.png" alt="set1c0bf0.png"></p>
 <p>添加 <code>C:\opencv\build\x64\vc14\lib</code> 路径</p>
 <p><img src="https://miao.su/images/2018/04/27/set2fd47e.png" alt="set2fd47e.png"></p>
-<p>添加 <code>opencv_ml2413d.lib</code><br>
-<code>opencv_calib3d2413d.lib</code><br>
-<code>opencv_contrib2413d.lib</code><br>
-<code>opencv_core2413d.lib</code><br>
-<code>opencv_features2d2413d.lib</code><br>
-<code>opencv_flann2413d.lib</code><br>
-<code>opencv_gpu2413d.lib</code><br>
-<code>opencv_highgui2413d.lib</code><br>
-<code>opencv_imgproc2413d.lib</code><br>
-<code>opencv_legacy2413d.lib</code><br>
-<code>opencv_objdetect2413d.lib</code><br>
-<code>opencv_ts2413d.lib</code><br>
-<code>opencv_video2413d.lib</code><br>
-<code>opencv_nonfree2413d.lib</code><br>
-<code>opencv_ocl2413d.lib</code><br>
-<code>opencv_photo2413d.lib</code><br>
-<code>opencv_stitching2413d.lib</code><br>
-<code>opencv_superres2413d.lib</code><br>
-<code>opencv_videostab2413d.lib</code><br>
-这些库文件，Release mod 删除后缀前的 <code>d</code> 即可，其他版本根据具体版本修改每个文件中的数字（即版本号）</p>
-<p><img src="https://miao.su/images/2018/04/27/set3b23e4.png" alt="set3b23e4.png"></p>
+<p>添加 <code>opencv_ml2413d.lib</code><br><code>opencv_calib3d2413d.lib</code><br><code>opencv_contrib2413d.lib</code><br><code>opencv_core2413d.lib</code><br><code>opencv_features2d2413d.lib</code><br><code>opencv_flann2413d.lib</code><br><code>opencv_gpu2413d.lib</code><br><code>opencv_highgui2413d.lib</code><br><code>opencv_imgproc2413d.lib</code><br><code>opencv_legacy2413d.lib</code><br><code>opencv_objdetect2413d.lib</code><br><code>opencv_ts2413d.lib</code><br><code>opencv_video2413d.lib</code><br><code>opencv_nonfree2413d.lib</code><br><code>opencv_ocl2413d.lib</code><br><code>opencv_photo2413d.lib</code><br><code>opencv_stitching2413d.lib</code><br><code>opencv_superres2413d.lib</code><br><code>opencv_videostab2413d.lib</code><br>这些库文件，Release mod 删除后缀前的 <code>d</code> 即可，其他版本根据具体版本修改每个文件中的数字（即版本号）</p>
+<p><img src="https://miao.su/images/2018/04/27/set3b23e4.png" alt="set3b23e4.png">    </p>
 <ul>
 <li>测试代码</li>
 </ul>
@@ -643,15 +611,14 @@
     waitKey(0);
     return 0;
 }    
-</code></pre>
-<p>一切准备好了，现在，直接按 F5 运行即可。不出意外，你会看到下图，如果出现问题，请检查以上步骤。</p>
+</code></pre><p>一切准备好了，现在，直接按 F5 运行即可。不出意外，你会看到下图，如果出现问题，请检查以上步骤。</p>
 <p><img src="https://miao.su/images/2018/04/27/result90832.png" alt="result90832.png"></p>
 <hr>
 <p>关于 SIFT 算法的程序问题，新建项目时推荐新建 <code>Windows控制台应用程序</code> ，网上的程序可能会因为配置的 OpenCV 的路径不同，无法在你的电脑上运行（即找不到头文件），所以如果你使用本文的方法配置环境，对于 OpenCV 的扩展头文件应使用如下形式： <code>#include &quot;opencv2/highgui/highgui.hpp&quot;</code></p>
 <hr>
 <p>ps: 此方法在每次新建项目后都要重新配置，貌似是 vs2017 无法全局配置，可以尝试将配置导出，以后直接导入配置，应该会方便些，具体方法这里就不说了（或者其他的配置方式）。</p>
 <hr>
-<p>本文部分内容及代码借鉴自此博主 <a href="https://charlottehong.blogspot.tw/" target="_blank" rel="noopener">Charlotte.HonG</a> 的文章 <a href="https://charlottehong.blogspot.com/2017/06/opencv-320-vc14-visual-studio-2017.html?showComment=1524791827206#c7492050726078333196" target="_blank" rel="noopener">[圖文] OpenCV 3.4.1 安裝配置在 Visual Studio 2017</a> （感谢 <a href="https://charlottehong.blogspot.tw/" target="_blank" rel="noopener">Charlotte.HonG</a> <sup>_</sup>）</p>
+<p>本文部分内容及代码借鉴自此博主 <a href="https://charlottehong.blogspot.tw/" target="_blank" rel="noopener">Charlotte.HonG</a> 的文章 <a href="https://charlottehong.blogspot.com/2017/06/opencv-320-vc14-visual-studio-2017.html?showComment=1524791827206#c7492050726078333196" target="_blank" rel="noopener">[圖文] OpenCV 3.4.1 安裝配置在 Visual Studio 2017</a> （感谢 <a href="https://charlottehong.blogspot.tw/" target="_blank" rel="noopener">Charlotte.HonG</a> ^_^）</p>
 
       
     </div>
@@ -987,7 +954,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#opencv-的安装"><span class="nav-number">1.</span> <span class="nav-text"> OpenCV 的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#visual-studio-的安装"><span class="nav-number">2.</span> <span class="nav-text"> Visual Studio 的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#vs-中配置-opencv"><span class="nav-number">3.</span> <span class="nav-text"> VS 中配置 OpenCV</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#OpenCV-的安装"><span class="nav-number">1.</span> <span class="nav-text">OpenCV 的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Visual-Studio-的安装"><span class="nav-number">2.</span> <span class="nav-text">Visual Studio 的安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VS-中配置-OpenCV"><span class="nav-number">3.</span> <span class="nav-text">VS 中配置 OpenCV</span></a></li></ol></div>
             
 
           </div>
