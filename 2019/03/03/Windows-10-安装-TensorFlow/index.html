@@ -496,7 +496,8 @@
       
         <script src="\assets\js\APlayer.min.js"> </script><p>本文针对 Windows 10 下 TensorFlow 的安装提供一些经验（包含 CPU 版及 GPU 版）。</p>
 <a id="more"></a>
-<h2 id="TensorFlow-CPU-版本安装"><a href="#TensorFlow-CPU-版本安装" class="headerlink" title="TensorFlow CPU 版本安装"></a>TensorFlow CPU 版本安装</h2><p>基本软件需求：</p>
+<h2 id="tensorflow-cpu-版本安装"><a class="markdownIt-Anchor" href="#tensorflow-cpu-版本安装"></a> TensorFlow CPU 版本安装</h2>
+<p>基本软件需求：</p>
 <ul>
 <li><a href="https://www.python.org/downloads/windows/" target="_blank" rel="noopener">Python 3.6.*</a>：安装时记得勾选 “ADD TO PATH”</li>
 </ul>
@@ -504,7 +505,8 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --user --upgrade tensorflow</span><br></pre></td></tr></table></figure>
 <p>验证：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">"import tensorflow as tf; tf.enable_eager_execution(); print(tf.reduce_sum(tf.random_normal([1000, 1000])))"</span></span><br></pre></td></tr></table></figure>
-<h2 id="TensorFlow-GPU-版本安装"><a href="#TensorFlow-GPU-版本安装" class="headerlink" title="TensorFlow GPU 版本安装"></a>TensorFlow GPU 版本安装</h2><p>基本软件需求：</p>
+<h2 id="tensorflow-gpu-版本安装"><a class="markdownIt-Anchor" href="#tensorflow-gpu-版本安装"></a> TensorFlow GPU 版本安装</h2>
+<p>基本软件需求：</p>
 <ul>
 <li><a href="https://www.python.org/downloads/windows/" target="_blank" rel="noopener">Python 3.6.*</a> ：安装时记得勾选 “ADD TO PATH”</li>
 <li><a href="https://visualstudio.microsoft.com/vs/community/" target="_blank" rel="noopener">Visual Studio</a></li>
@@ -516,11 +518,14 @@
 <li><em>(可选)</em> <a href="https://docs.nvidia.com/deeplearning/sdk/tensorrt-install-guide/index.html" target="_blank" rel="noopener">TensorRT 4.0</a> ：在某些模型上改进延迟和吞吐量以进行推理（机翻，本文亦不作介绍）</li>
 </ul>
 <p>因为 <a href="https://developer.nvidia.com/cuda-zone" target="_blank" rel="noopener">CUDA® Toolkit</a> 中包含 GPU 驱动，因此省去 GPU 安装介绍。</p>
-<h3 id="Visual-Studio-安装"><a href="#Visual-Studio-安装" class="headerlink" title="Visual Studio 安装"></a>Visual Studio 安装</h3><p><a href="https://blog.samuelyg.cn/2018/04/28/OpenCV-%E5%9C%A8-Visual-Studio-%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/#Visual-Studio-%E7%9A%84%E5%AE%89%E8%A3%85">Visual Studio 安装</a></p>
-<h3 id="CUDA-安装"><a href="#CUDA-安装" class="headerlink" title="CUDA 安装"></a>CUDA 安装</h3><p><a href="https://developer.nvidia.com/cuda-90-download-archive?target_os=Windows&amp;target_arch=x86_64&amp;target_version=10&amp;target_type=exelocal" target="_blank" rel="noopener">CUDA 9.0 下载链接</a></p>
+<h3 id="visual-studio-安装"><a class="markdownIt-Anchor" href="#visual-studio-安装"></a> Visual Studio 安装</h3>
+<p><a href="https://blog.samuelyg.cn/2018/04/28/OpenCV-%E5%9C%A8-Visual-Studio-%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/#Visual-Studio-%E7%9A%84%E5%AE%89%E8%A3%85">Visual Studio 安装</a></p>
+<h3 id="cuda-安装"><a class="markdownIt-Anchor" href="#cuda-安装"></a> CUDA 安装</h3>
+<p><a href="https://developer.nvidia.com/cuda-90-download-archive?target_os=Windows&amp;target_arch=x86_64&amp;target_version=10&amp;target_type=exelocal" target="_blank" rel="noopener">CUDA 9.0 下载链接</a></p>
 <p>下载完成，双击根据提示进行安装。</p>
 <p>程序应该会自动添加仅环境变量。</p>
-<h3 id="cuDNN-安装"><a href="#cuDNN-安装" class="headerlink" title="cuDNN 安装"></a>cuDNN 安装</h3><p><a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank" rel="noopener">cuDNN 下载链接</a></p>
+<h3 id="cudnn-安装"><a class="markdownIt-Anchor" href="#cudnn-安装"></a> cuDNN 安装</h3>
+<p><a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank" rel="noopener">cuDNN 下载链接</a></p>
 <ul>
 <li>选择 “I Agree To the Terms of the cuDNN Software License Agreement”</li>
 <li>选择 “Download cuDNN v7.5.0 (Feb 21, 2019), for CUDA 9.0”</li>
@@ -528,18 +533,22 @@
 <li>将下载好的文件解压缩到某一路径</li>
 <li>将 <code>*/cuda/bin</code> <code>*/cuda/include</code> <code>*/cuda/lib/x64</code> 三个文件夹添加到环境变量</li>
 </ul>
-<h3 id="tensorflow-gpu-安装"><a href="#tensorflow-gpu-安装" class="headerlink" title="tensorflow-gpu 安装"></a>tensorflow-gpu 安装</h3><p>安装：</p>
+<h3 id="tensorflow-gpu-安装"><a class="markdownIt-Anchor" href="#tensorflow-gpu-安装"></a> tensorflow-gpu 安装</h3>
+<p>安装：</p>
 <p>因为直接安装的话默认会安装 <code>tensorflow-gpu 1.13.*</code> ，但是貌似兼容性会有问题，在使用时会出错，所以我们选择安装 1.12 版本。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --ignore-installed --upgrade tensorflow-gpu==<span class="number">1.12</span></span><br></pre></td></tr></table></figure>
 <p>验证：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">hello = tf.constant(<span class="string">"hello tensorflow"</span>)</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    print(sess.run(hello))</span><br></pre></td></tr></table></figure>
 <p>从运行结果中，也可以很明显的看出程序使用了 GPU 资源。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://tensorflow.google.cn/install" target="_blank" rel="noopener">tensorflow install</a></p>
+<h2 id="参考"><a class="markdownIt-Anchor" href="#参考"></a> 参考</h2>
+<p><a href="https://tensorflow.google.cn/install" target="_blank" rel="noopener">tensorflow install</a></p>
 <p><a href="https://github.com/jvishnuvardhan/Installing-TensorFlow-GPU-on-Windows-10-TF1.12" target="_blank" rel="noopener">jvishnuvardhan’s Installing-TensorFlow-GPU-on-Windows-10-TF1.12</a></p>
 <p><a href="https://tensorflow.google.cn/install/source_windows#tested_build_configurations" target="_blank" rel="noopener">官方经过测试的配置</a></p>
-<h2 id="一些经验"><a href="#一些经验" class="headerlink" title="一些经验"></a>一些经验</h2><p>虽然现在 GPU 内存都很大了，但不少人难免还在使用相对落后的笔记本电脑（比如我），可能 GPU 内存只有 2G ，这就会造成很多因为配置产生的问题。一个简单的例子就是 在运行 mnist 数据集的测试集时，会因为需要的内存较大而在一些显卡上无法运行。可以参考 <a href="https://github.com/tensorflow/tensorflow/issues/136" target="_blank" rel="noopener">ResourceExhaustedError in CNN/MNIST example (with GPU) #136</a> 和 <a href="https://github.com/tensorflow/tensorflow/pull/6764" target="_blank" rel="noopener">MNIST batch test #6764</a> ，其中提到了这个问题，并提供了解决办法，但是官方并为采纳。</p>
+<h2 id="一些经验"><a class="markdownIt-Anchor" href="#一些经验"></a> 一些经验</h2>
+<p>虽然现在 GPU 内存都很大了，但不少人难免还在使用相对落后的笔记本电脑（比如我），可能 GPU 内存只有 2G ，这就会造成很多因为配置产生的问题。一个简单的例子就是 在运行 mnist 数据集的测试集时，会因为需要的内存较大而在一些显卡上无法运行。可以参考 <a href="https://github.com/tensorflow/tensorflow/issues/136" target="_blank" rel="noopener">ResourceExhaustedError in CNN/MNIST example (with GPU) #136</a> 和 <a href="https://github.com/tensorflow/tensorflow/pull/6764" target="_blank" rel="noopener">MNIST batch test #6764</a> ，其中提到了这个问题，并提供了解决办法，但是官方并为采纳。</p>
 <p>所以，各位是安装 CPU 版还是 GPU 版还需根据自己电脑配置来斟酌。</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>部分链接在中国大陆或某些运营商宽度下可能速度较慢或无法访问，请自备科学上网工具以方便下载。</p>
+<h2 id="最后"><a class="markdownIt-Anchor" href="#最后"></a> 最后</h2>
+<p>部分链接在中国大陆或某些运营商宽度下可能速度较慢或无法访问，请自备科学上网工具以方便下载。</p>
 <p>如有问题，请在科学上网前提下在评论中说明/指正。</p>
 
       
@@ -669,7 +678,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -876,7 +885,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#TensorFlow-CPU-版本安装"><span class="nav-number">1.</span> <span class="nav-text">TensorFlow CPU 版本安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#TensorFlow-GPU-版本安装"><span class="nav-number">2.</span> <span class="nav-text">TensorFlow GPU 版本安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Visual-Studio-安装"><span class="nav-number">2.1.</span> <span class="nav-text">Visual Studio 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CUDA-安装"><span class="nav-number">2.2.</span> <span class="nav-text">CUDA 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cuDNN-安装"><span class="nav-number">2.3.</span> <span class="nav-text">cuDNN 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tensorflow-gpu-安装"><span class="nav-number">2.4.</span> <span class="nav-text">tensorflow-gpu 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text">参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些经验"><span class="nav-number">4.</span> <span class="nav-text">一些经验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text">最后</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#tensorflow-cpu-版本安装"><span class="nav-number">1.</span> <span class="nav-text"> TensorFlow CPU 版本安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#tensorflow-gpu-版本安装"><span class="nav-number">2.</span> <span class="nav-text"> TensorFlow GPU 版本安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#visual-studio-安装"><span class="nav-number">2.1.</span> <span class="nav-text"> Visual Studio 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cuda-安装"><span class="nav-number">2.2.</span> <span class="nav-text"> CUDA 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cudnn-安装"><span class="nav-number">2.3.</span> <span class="nav-text"> cuDNN 安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#tensorflow-gpu-安装"><span class="nav-number">2.4.</span> <span class="nav-text"> tensorflow-gpu 安装</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">3.</span> <span class="nav-text"> 参考</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些经验"><span class="nav-number">4.</span> <span class="nav-text"> 一些经验</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">5.</span> <span class="nav-text"> 最后</span></a></li></ol></div>
             
 
           </div>
@@ -1384,62 +1393,9 @@
         onPopupClose();
       }
     });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
-    
-      <script type="text/x-mathjax-config">
-  
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
-        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
-      }
-    });
-  });
-</script>
-
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
+  MathJax.Hub.Config("MathJax config");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1451,12 +1407,25 @@
   });
 </script>
 
-<script type="text/javascript" src>
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-    
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
   
 
 

@@ -518,17 +518,22 @@
 <li>Ubuntu 16.04 LTS / Windows</li>
 <li>Python 2.7</li>
 </ul>
-<h2 id="安装-opencv-contrib"><a href="#安装-opencv-contrib" class="headerlink" title="安装 opencv-contrib"></a>安装 opencv-contrib</h2><ul>
-<li><p>先安装 pip 软件包管理系统</p>
+<h2 id="安装-opencv-contrib"><a class="markdownIt-Anchor" href="#安装-opencv-contrib"></a> 安装 opencv-contrib</h2>
 <ul>
-<li><p>打开一个 Terminal (快捷键 <code>ctrl + alt + t</code> )</p>
+<li>
+<p>先安装 pip 软件包管理系统</p>
+<ul>
+<li>
+<p>打开一个 Terminal (快捷键 <code>ctrl + alt + t</code> )</p>
 </li>
-<li><p>输入以下命令后回车，按提示操作</p>
+<li>
+<p>输入以下命令后回车，按提示操作</p>
 </li>
 </ul>
 <p><code>sudo apt-get install python-pip</code></p>
 </li>
-<li><p>安装 OpenCV-contrib</p>
+<li>
+<p>安装 OpenCV-contrib</p>
 </li>
 </ul>
 <p>Terminal 中输入以下命令，等待提示完成即可</p>
@@ -541,8 +546,10 @@
 <p><code>import cv2 as cv</code></p>
 <p><code>print(cv.__version__)</code></p>
 <p>安装成功会输出当前版本号</p>
-<h2 id="SIFT-特征匹配"><a href="#SIFT-特征匹配" class="headerlink" title="SIFT 特征匹配"></a>SIFT 特征匹配</h2><ul>
-<li><p>代码</p>
+<h2 id="sift-特征匹配"><a class="markdownIt-Anchor" href="#sift-特征匹配"></a> SIFT 特征匹配</h2>
+<ul>
+<li>
+<p>代码</p>
 <pre><code>#sift feature
 import cv2
 import numpy as np
@@ -596,7 +603,8 @@ cv2.imwrite(&quot;found.png&quot;, found)
 cv2.imshow(&quot;matched&quot;, matched);
 #cv2.imshow(&quot;found&quot;, found);
 cv2.waitKey();cv2.destroyAllWindows()
-</code></pre></li>
+</code></pre>
+</li>
 </ul>
 <p>原始图像：</p>
 <p><a href="https://miao.su/image/w8eD7" target="_blank" rel="noopener"><img src="https://miao.su/images/2018/05/02/1e043b.md.jpg" alt="1e043b.md.jpg"></a></p>
@@ -731,7 +739,7 @@ cv2.waitKey();cv2.destroyAllWindows()
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">13</span>
+                    <span class="site-state-item-count">12</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -938,7 +946,7 @@ cv2.waitKey();cv2.destroyAllWindows()
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-opencv-contrib"><span class="nav-number">1.</span> <span class="nav-text">安装 opencv-contrib</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SIFT-特征匹配"><span class="nav-number">2.</span> <span class="nav-text">SIFT 特征匹配</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#安装-opencv-contrib"><span class="nav-number">1.</span> <span class="nav-text"> 安装 opencv-contrib</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#sift-特征匹配"><span class="nav-number">2.</span> <span class="nav-text"> SIFT 特征匹配</span></a></li></ol></div>
             
 
           </div>
@@ -1446,62 +1454,9 @@ cv2.waitKey();cv2.destroyAllWindows()
         onPopupClose();
       }
     });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-  
-    
-      <script type="text/x-mathjax-config">
-  
-
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') { next = next.nextSibling }
-        if (next && next.nodeName.toLowerCase() === 'br') { next.parentNode.removeChild(next) }
-      }
-    });
-  });
-</script>
-
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      document.getElementById(all[i].inputID + '-Frame').parentNode.className += ' has-jax';
-    }
-  });
-</script>
-<script src="//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
+  MathJax.Hub.Config("MathJax config");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1513,12 +1468,25 @@ cv2.waitKey();cv2.destroyAllWindows()
   });
 </script>
 
-<script type="text/javascript" src>
+<script type="text/javascript" src="custom_mathjax_source">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
 
-    
+
+
+
+
+  
+
+  
+
+  
+  
+
+  
+  
+
   
 
 
