@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://miao.su/images/2019/03/13/15523994212486ce95.png">
 <meta property="og:image" content="https://miao.su/images/2019/03/13/15524000053679b0b5.png">
 <meta property="og:image" content="https://miao.su/images/2019/03/13/15524023237505c1e7.png">
-<meta property="og:updated_time" content="2019-05-05T03:13:43.787Z">
+<meta property="og:updated_time" content="2019-05-05T06:39:12.067Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度抠图 Deep Image Matting 译文">
 <meta name="twitter:description" content="本文是 Adobe 等机构的论文 Deep Image Matting 译文。因为是初稿，如有错误及不当之处，烦请指正。">
@@ -462,7 +462,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-05 11:13:43" itemprop="dateModified" datetime="2019-05-05T11:13:43+08:00">2019-05-05</time>
+                <time title="修改时间：2019-05-05 14:39:12" itemprop="dateModified" datetime="2019-05-05T14:39:12+08:00">2019-05-05</time>
               
             
           </span>
@@ -548,7 +548,7 @@
 
 <center>{ningxu2, t-huang1}@illinois.edu, {bprice, scohen}@adobe.com</center>
 
-<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>抠图是一个基本的计算机视觉问题，并且拥有广阔的应用空间。但当图像的前景和背景颜色或复杂纹理类似时，早先的算法表现的差强人意。主要时因为：1. 只有低层次特征（low-level features）；2. 缺乏高层次上下文图镜（high-level context）。本文中，我们提出了一种基于深度学习的新算法，该算法可以解决这两个问题。我们的深度模型分为两个阶段：第一个阶段是深度卷积编码-解码网络（deep convolutional encoder=decoder network），该神经网络将图像和对应的三分图（trimap）作为输入，并预测图像的 α 蒙版（α matte）；第二阶段是一个小型卷积神经网络，该神经网络对第一个网络预测的 α 蒙版进行精炼从而拥有更准确的 α 值和锐化边缘。另外，我们还创建了一个大规模抠图数据集（large-scale image matting dataset），该数据集包含 49300 张训练图像和 1000 张测试图像。我们在抠图基准、测试数据集和各种真是图像上评估了我们的算法。实验结果清楚的表明了我们的算法比先前的方法更具优越性。</p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>抠图是一个基本的计算机视觉问题，并且拥有广阔的应用空间。但当图像的前景和背景颜色或复杂纹理类似时，早先的算法表现的差强人意。主要时因为：1. 只有低层次特征（low-level features）；2. 缺乏高层次上下文图镜（high-level context）。本文中，我们提出了一种基于深度学习的新算法，该算法可以解决这两个问题。我们的深度模型分为两个阶段：第一个阶段是深度卷积编码-解码网络（deep convolutional encoder-decoder network），该神经网络将图像和对应的三分图（trimap）作为输入，并预测图像的 α 蒙版（α matte）；第二阶段是一个小型卷积神经网络，该神经网络对第一个网络预测的 α 蒙版进行精炼从而拥有更准确的 α 值和锐化边缘。另外，我们还创建了一个大规模抠图数据集（large-scale image matting dataset），该数据集包含 49300 张训练图像和 1000 张测试图像。我们在抠图基准、测试数据集和各种真是图像上评估了我们的算法。实验结果清楚的表明了我们的算法比先前的方法更具优越性。</p>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>抠图是图像或视频中准确的前景估计问题，具有重要的现实意义。它是图像编辑和电影制作的关键技术，高效的自然图像抠图方法能极大地提升当前的图像视频处理流程的效率。并且这种技术是无约束场景（unconstrained scenes）下处理真实世界图像的必要方法。</p>
 <p>不幸的是，目前的抠图方法无法很好的推广到典型的日常场景。这在一定程度上是由于问题的难度：抠图问题是欠约束的，在每个像素上有 7 个未知值却仅有 3 个已知值：</p>
 <script type="math/tex; mode=display">
