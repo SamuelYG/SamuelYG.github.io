@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://miao.su/images/2019/03/13/15523994212486ce95.png">
 <meta property="og:image" content="https://miao.su/images/2019/03/13/15524000053679b0b5.png">
 <meta property="og:image" content="https://miao.su/images/2019/03/13/15524023237505c1e7.png">
-<meta property="og:updated_time" content="2019-05-01T14:16:28.622Z">
+<meta property="og:updated_time" content="2019-05-05T01:46:42.135Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深度抠图 Deep Image Matting 译文">
 <meta name="twitter:description" content="本文是 Adobe 等机构的论文 Deep Image Matting 译文。因为是初稿，如有错误及不当之处，烦请指正。">
@@ -462,7 +462,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-05-01 22:16:28" itemprop="dateModified" datetime="2019-05-01T22:16:28+08:00">2019-05-01</time>
+                <time title="修改时间：2019-05-05 09:46:42" itemprop="dateModified" datetime="2019-05-05T09:46:42+08:00">2019-05-05</time>
               
             
           </span>
@@ -534,7 +534,7 @@
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><p>本文是 Adobe 等机构的论文 <a href="https://arxiv.org/abs/1703.03872" target="_blank" rel="noopener">Deep Image Matting</a> 译文。因为是初稿，如有错误及不当之处，烦请指正。</p>
+        <p>本文是 Adobe 等机构的论文 <a href="https://arxiv.org/abs/1703.03872" target="_blank" rel="noopener">Deep Image Matting</a> 译文。因为是初稿，如有错误及不当之处，烦请指正。</p>
 <a id="more"></a>
 <h1 id="深度抠图"><a href="#深度抠图" class="headerlink" title="深度抠图"></a>深度抠图</h1><center>Ning Xu<sup>1,2</sup>, Brain Price<sup>3</sup>, Scott Cohen<sup>3</sup>, and Thomas Huang<sup>1,2</sup></center>
 
@@ -552,9 +552,7 @@
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>抠图是图像或视频中准确的前景估计问题，具有重要的现实意义。它是图像编辑和电影制作的关键技术，高效的自然图像抠图方法能极大地提升当前的图像视频处理流程的效率。并且这种技术是无约束场景（unconstrained scenes）下处理真实世界图像的必要方法。</p>
 <p>不幸的是，目前的抠图方法无法很好的推广到典型的日常场景。这在一定程度上是由于问题的难度：抠图问题是欠约束的，在每个像素上有 7 个未知值却仅有 3 个已知值：</p>
 <script type="math/tex; mode=display">
-\begin{align}
-I_i = α_iF_i + (1 - α_i)B_i \quad α_i∈[0, 1] \tag {1}
-\end{align}</script><p>其中 $I_i$ 是像素 $i$ 的 RGB 色彩，已知前景色 $F_i$ ，未知的背景色 $B_i$ 和蒙版估计（matte estimation）$α_i$ 。然而，目前的方法在其方法中进一步受到限制。</p>
+I_i = α_iF_i + (1 - α_i)B_i \quad α_i∈[0, 1] \tag {1}</script><p>其中 $I_i$ 是像素 $i$ 的 RGB 色彩，已知前景色 $F_i$ ，未知的背景色 $B_i$ 和蒙版估计（matte estimation）$α_i$ 。然而，目前的方法在其方法中进一步受到限制。</p>
 <p>第一个限制是目前用来求解抠图方程式（matting equation）的方法存在问题。</p>
 <p>这个方程将抠图问题表述为两种颜色的线性组合，因此目前大多数算法都将其作为颜色问题来处理。标准方法包括采样前景色和背景色 <sup><a href="#fn_3" id="reffn_3">3</a></sup><sup><a href="#fn_9" id="reffn_9">9</a></sup> ，根据抠图方程 <sup><a href="#fn_14" id="reffn_14">14</a></sup><sup><a href="#fn_31" id="reffn_31">31</a></sup><sup><a href="#fn_22" id="reffn_22">22</a></sup> 或者两者的混合 <sup><a href="#fn_32" id="reffn_32">32</a></sup><sup><a href="#fn_13" id="reffn_13">13</a></sup><sup><a href="#fn_28" id="reffn_28">28</a></sup><sup><a href="#fn_16" id="reffn_16">16</a></sup> 传播 $α$ 值。这种方法很大程度上依赖于颜色作为区别特征（通常与像素的空间位置一起），使得它们对前景和背景颜色分布重叠的情况非常敏感，对于这个方法不幸的是，自然图像的常见情况，根据方法的不同，往往导致低频“smearing”或高频“chunky”伪影（参见图 <a href="#1">1</a> 的顶行）。即使是最近提出的深度学习方法也高度依赖于颜色相关的传播方法<sup><a href="#fn_8" id="reffn_8">8</a></sup><sup><a href="#fn_29" id="reffn_29">29</a></sup>。</p>
 <p><img src="https://miao.su/images/2019/03/13/15524836698559c297.png" alt="图像|三分图|Closed-form|Ours"></p>
@@ -588,17 +586,11 @@ I_i = α_iF_i + (1 - α_i)B_i \quad α_i∈[0, 1] \tag {1}
 <p><strong>损失（Losses）：</strong></p>
 <p>我们的网络利用了两次损失。第一个损失称为 <strong>alpha 预测损失（alpha-prediction loss）</strong>，即数据真值 alpha 值与每个像素的预测 alpha 值之间的绝对差值。但是，由于绝对值的不可微分性，我们使用以下损失函数来近似它。</p>
 <script type="math/tex; mode=display">
-\begin{align}
-\mathcal{L}_α^i = \sqrt{(α_p^i-α_g^i)^2 + \epsilon^2} ，\ \ \ \ α_p^i,α_g^i \in [0,1] \tag{2}
-\end{align}</script><p>其中 $α<em>p^i$ 是预测层在阈值化为 0 到 1 之间的像素 $i$ 处的输出。$\alpha_g^i$ 是像素 $i$ 数据真值的 alpha 值。$\epsilon$ 是一个很小的值，在我们的实验中等于 $10^{-6}$ 。导数 $\frac{\partial \mathcal{L}\</em>\alpha^i}{\partial \alpha_p^i}$ 是简单的。</p>
+\mathcal{L}_α^i = \sqrt{(α_p^i-α_g^i)^2 + \epsilon^2} ，\ \ \ \ α_p^i,α_g^i \in [0,1] \tag{2}</script><p>其中 $α<em>p^i$ 是预测层在阈值化为 0 到 1 之间的像素 $i$ 处的输出。$\alpha_g^i$ 是像素 $i$ 数据真值的 alpha 值。$\epsilon$ 是一个很小的值，在我们的实验中等于 $10^{-6}$ 。导数 $\frac{\partial \mathcal{L}\</em>\alpha^i}{\partial \alpha_p^i}$ 是简单的。</p>
 <script type="math/tex; mode=display">
-\begin{align}
-\frac{\partial \mathcal{L}_\alpha^i}{\partial \alpha_p^i} = \frac{α_p^i-α_g^i}{\sqrt{(α_p^i-α_g^i)^2 + \epsilon^2}} \tag{3}
-\end{align}</script><p>第二个损失被称为<strong>组合损失（compositional loss）</strong>，它是数据真值的 RGB 颜色和由数据真值前景、背景和合成的 alpha 蒙版预测的 RGB 颜色之间的绝对差值。同样，我们可以使用以下损失函数来近似它。</p>
+\frac{\partial \mathcal{L}_\alpha^i}{\partial \alpha_p^i} = \frac{α_p^i-α_g^i}{\sqrt{(α_p^i-α_g^i)^2 + \epsilon^2}} \tag{3}</script><p>第二个损失被称为<strong>组合损失（compositional loss）</strong>，它是数据真值的 RGB 颜色和由数据真值前景、背景和合成的 alpha 蒙版预测的 RGB 颜色之间的绝对差值。同样，我们可以使用以下损失函数来近似它。</p>
 <script type="math/tex; mode=display">
-\begin{align}
-\mathcal{L}_c^i = \sqrt{(c_p^i - c_g^i)^2 + \epsilon^2} \tag{4}
-\end{align}</script><p>其中 $c$ 表示 RGB 通道，$p$ 表示由预测的 alpha 合成的图像，$g$ 表示由数据真值 alpha 构成的图像。组合损失（compositional loss）限制网络遵循组合操作（compositional operation），使得 alpha 预测更加准确。</p>
+\mathcal{L}_c^i = \sqrt{(c_p^i - c_g^i)^2 + \epsilon^2} \tag{4}</script><p>其中 $c$ 表示 RGB 通道，$p$ 表示由预测的 alpha 合成的图像，$g$ 表示由数据真值 alpha 构成的图像。组合损失（compositional loss）限制网络遵循组合操作（compositional operation），使得 alpha 预测更加准确。</p>
 <p>总损失是两个损失的加权求和，即 $\mathcal{L}_overall = {w_l} \cdot {\mathcal{L}_\alpha} + (1 - w_l) \cdot {\mathcal{L}_c}$ ，其中 $w_l$ 在我们的实验中设置为 $0.5$ 。此外，因为只需要推断三分图未知区域的 alpha 值，所以我们根据像素位置对两种类型的损失设置额外的权重，这可以帮助我们的网络更注重于重要区域。具体地，如果像素 $i$ 在三分图的未知区域内，则 $w_i = 1$ ，否则 $w_i = 0$ 。</p>
 <p><strong>实现（Implementation）：</strong></p>
 <p>虽然我们的训练数据集有 49300 个图像，但只有 493 个唯一对象。为了避免过拟合以及更有效的利用训练数据，我们使用了一些训练策略。首先，我们以未知区域中的像素为中心随机裁剪为 $320\times320 \ (image, trimap)$ 。这增加了我们的采样空间。其次，我们还裁剪了不同尺寸的训练对（例如：$480\times480 , 640\times640$）并将其调整为 $320\times320$ 。这使得我们的方法在扩展方面更加健壮，并有助于网络更好的学习上下文和语义。第三，在每个训练对上随机进行翻转（flipping）。第四，三分图从它们的数据真值 alpha 蒙版（ground truth alpha mattes）中随机扩张，帮助我们的模型对三分图的放置（placement）更稳健。最后，在每个训练周期结束后随机重建训练输入。</p>
@@ -1807,7 +1799,7 @@ I_i = α_iF_i + (1 - α_i)B_i \quad α_i∈[0, 1] \tag {1}
     });
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config("MathJax config");
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1819,7 +1811,7 @@ I_i = α_iF_i + (1 - α_i)B_i \quad α_i∈[0, 1] \tag {1}
   });
 </script>
 
-<script type="text/javascript" src="custom_mathjax_source">
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->

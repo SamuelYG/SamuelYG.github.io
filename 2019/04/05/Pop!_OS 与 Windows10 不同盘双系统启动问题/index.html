@@ -513,7 +513,7 @@
       
 
       
-        <script src="\assets\js\APlayer.min.js"> </script><p>前言：Pop!_OS 在新的版本不再使用 GRUB 而是选择了能让启动速度更快（在某些论坛看到一些说法，不知是否准确）的 <a href="https://wiki.archlinux.org/index.php/Systemd-boot_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">systemd-boot</a>&gt;) 。但是 <a href="https://wiki.archlinux.org/index.php/Systemd-boot_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">systemd-boot</a>&gt;) 无法识别到另一个磁盘 EFI 分区的 Windows 。因为不了解 <a href="https://wiki.archlinux.org/index.php/Systemd-boot_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">systemd-boot</a>&gt;) 所以就在网上搜索了一些信息，这里做个总结。</p>
+        <p>前言：Pop!_OS 在新的版本不再使用 GRUB 而是选择了能让启动速度更快（在某些论坛看到一些说法，不知是否准确）的 <a href="https://wiki.archlinux.org/index.php/Systemd-boot_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">systemd-boot</a>&gt;) 。但是 <a href="https://wiki.archlinux.org/index.php/Systemd-boot_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">systemd-boot</a>&gt;) 无法识别到另一个磁盘 EFI 分区的 Windows 。因为不了解 <a href="https://wiki.archlinux.org/index.php/Systemd-boot_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">systemd-boot</a>&gt;) 所以就在网上搜索了一些信息，这里做个总结。</p>
 <a id="more"></a>
 <h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>假设你是根据<a href="https://pop.system76.com/docs/dual-booting-windows/" target="_blank" rel="noopener">此教程</a>已完成双系统的安装，且 EFI 与 Windows 不在同一块硬盘。那么 Pop!_OS 的 EFI 会在 <code>/boot/efi/</code> 路径下，其中 <code>EFI</code> 下存有相应的文件，<code>loader</code> 下是对应的启动配置文件。</p>
 <p>找到 Windows 的 EFI 分区，挂载</p>
@@ -1377,7 +1377,7 @@
     });
   </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
-  MathJax.Hub.Config("MathJax config");
+  MathJax.Hub.Config("");
 </script>
 
 <script type="text/x-mathjax-config">
@@ -1389,7 +1389,7 @@
   });
 </script>
 
-<script type="text/javascript" src="custom_mathjax_source">
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
