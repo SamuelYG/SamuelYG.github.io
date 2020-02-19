@@ -1,100 +1,49 @@
 <!DOCTYPE html>
-
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<html class="theme-next pisces use-motion" lang="zh-CN">
-<head><meta name="generator" content="Hexo 3.8.0">
+<html lang="zh-CN">
+<head>
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 3.8.0">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+
+<link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  
-  
-  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
-
-
-
-
-
-
-
-<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
-
-<link rel="stylesheet" href="/css/main.css?v=7.0.1">
-
-
-
-  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png?v=7.0.1">
-
-
-  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png?v=7.0.1">
-
-
-
-
-
-
-
-
-<script id="hexo.configurations">
+<script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
+    hostname: new URL('https://blog.samuelyg.cn').hostname,
     root: '/',
     scheme: 'Pisces',
-    version: '7.0.1',
-    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
-    back2top: true,
-    back2top_sidebar: true,
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: true,
-    fastclick: false,
+    mediumzoom: false,
     lazyload: false,
-    tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
     algolia: {
-      applicationID: '',
+      appID: '',
       apiKey: '',
       indexName: '',
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    }
+    },
+    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
 </script>
-
-
-  
-
-
-
 
   <meta name="description" content="(ง •_•)ง">
 <meta property="og:type" content="website">
@@ -107,41 +56,29 @@
 <meta name="twitter:title" content="YangGang&#39;Blog">
 <meta name="twitter:description" content="(ง •_•)ง">
 
+<link rel="canonical" href="https://blog.samuelyg.cn/page/2/">
 
 
-
-
-  
-  
-  <link rel="canonical" href="https://blog.samuelyg.cn/page/2/">
-
-
-
-<script id="page.configurations">
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
+    isHome: true,
+    isPost: false
   };
 </script>
 
   <title>YangGang'Blog</title>
   
-
-
-
-
-  <script async src="//www.googletagmanager.com/gtag/js?id=UA-98889996-1"></script>
-  <script>
-    var host = window.location.hostname;
-    if (host !== "localhost" || !true) {
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'UA-98889996-1');
-    }
-  </script>
-
-
-
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-98889996-1"></script>
+    <script>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-98889996-1');
+      }
+    </script>
 
 
 
@@ -150,7 +87,6 @@
 
   <noscript>
   <style>
-  .use-motion .motion-element,
   .use-motion .brand,
   .use-motion .menu-item,
   .sidebar-inner,
@@ -159,9 +95,8 @@
   .use-motion .comments,
   .use-motion .post-header,
   .use-motion .post-body,
-  .use-motion .collection-title { opacity: initial; }
+  .use-motion .collection-header { opacity: initial; }
 
-  .use-motion .logo,
   .use-motion .site-title,
   .use-motion .site-subtitle {
     opacity: initial;
@@ -175,328 +110,136 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
-
-  
-  
-    
-  
-
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left 
-  page-home">
+<body itemscope itemtype="http://schema.org/WebPage">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container use-motion">
     <div class="headband"></div>
 
-    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
-      <div class="header-inner"><div class="site-brand-wrapper">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
   <div class="site-meta">
-    
 
-    <div class="custom-logo-site-title">
+    <div>
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
         <span class="site-title">YangGang'Blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
-    
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="切换导航栏">
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-      <span class="btn-bar"></span>
-    </button>
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
   </div>
 </div>
-
 
 
 <nav class="site-nav">
   
-    <ul id="menu" class="menu">
-      
-        
-        
-        
-          
-          <li class="menu-item menu-item-home">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-tags">
+        <li class="menu-item menu-item-about">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-categories">
+        <li class="menu-item menu-item-tags">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-archives">
+        <li class="menu-item menu-item-categories">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
 
   </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-about">
+        <li class="menu-item menu-item-archives">
 
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
+  </ul>
 
-      
-      
-        <li class="menu-item menu-item-search">
-          
-            <a href="javascript:;" class="popup-trigger">
-          
-            
-              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
-        </li>
-      
-    </ul>
-  
-
-  
-
-  
-    <div class="site-search">
-      
-  <div class="popup search-popup local-search-popup">
-  <div class="local-search-header clearfix">
-    <span class="search-icon">
-      <i class="fa fa-search"></i>
-    </span>
-    <span class="popup-btn-close">
-      <i class="fa fa-times-circle"></i>
-    </span>
-    <div class="local-search-input-wrapper">
-      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
-    </div>
-  </div>
-  <div id="local-search-result"></div>
-</div>
-
-
-
-    </div>
-  
 </nav>
-
-
-
-  
-
-
-
 </div>
     </header>
 
     
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
 
 
-    <main id="main" class="main">
+    <main class="main">
       <div class="main-inner">
         <div class="content-wrap">
           
+
+          <div class="content">
             
 
-          
-          <div id="content" class="content">
-            
-  <section id="posts" class="posts-expand">
-    
-      
-
-  
-
+  <div class="posts-expand">
+        
   
   
-  
-
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.samuelyg.cn/2017/05/19/给大学生的几条良心建议（转载）/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
       <meta itemprop="name" content="YangGang">
       <meta itemprop="description" content="(ง •_•)ง">
-      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="YangGang'Blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/05/19/给大学生的几条良心建议（转载）/" class="post-title-link" itemprop="url">给大学生的几条良心建议（转载）</a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/05/19/给大学生的几条良心建议（转载）/" class="post-title-link" itemprop="url">给大学生的几条良心建议（转载）</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">发表于</span>
 
               <time title="创建时间：2017-05-19 12:29:14" itemprop="dateCreated datePublished" datetime="2017-05-19T12:29:14+08:00">2017-05-19</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-03-03 16:14:13" itemprop="dateModified" datetime="2019-03-03T16:14:13+08:00">2019-03-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/转载/" itemprop="url" rel="index"><span itemprop="name">转载</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/转载/" itemprop="url" rel="index">
+                    <span itemprop="name">转载</span>
+                  </a>
                 </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/05/19/给大学生的几条良心建议（转载）/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/05/19/给大学生的几条良心建议（转载）/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -504,182 +247,98 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <a id="more"></a>
+<h4 id="原文：by-stormzhang"><a href="#原文：by-stormzhang" class="headerlink" title="原文：by:stormzhang"></a>原文：by:<a href="http://stormzhang.com" target="_blank" rel="noopener">stormzhang</a></h4><p>这篇文章是我写给小密圈中 20% 比例的大学生的，但是考虑到我公众号的读者中也有不少也是大学生或者研究生，所以姑且分享出来，希望对更多的还在校园的同学有所帮助与思考，更希望能够消除你们对未来的迷茫与恐慌。</p>
+<ol>
+<li>绝大部分的大学教育都是渣</li>
+</ol>
+<p>可能有人觉得话说的有点难听，但是事实就是如此，这不是大学的问题，本质上是中国教育的问题，中国的教育一向都是「灌输式」教学，成绩差跟成绩好的同学唯一的区别就是，成绩好的会很努力的去记那些理论性的东西，会非常在意自己的分数与奖项，成绩差的同学则比较懒，但不是笨，甚至很多人比成绩好的同学要聪明，但是本质上，他们都清一色的不知道自己所学的那些东西到底有什么用？这个才是最可悲的地方。</p>
+<p>所以，如果你在学校的成绩比较好，那么别骄傲，你只不过会是在毕业后的应聘简历上多一条「大学奖学金获得者」而已，其他没什么特别大的优势，成绩差的也别灰心，你只是比较懒，不愿让自己的付出回报不成正比而已。那些学校好的与学校差的同学，也只是在学历上的一点优势而已，中国绝大部分的学校教育都缺乏讨论、缺乏思考、缺乏实践。</p>
+<p>当然，名校肯定比一般的学校要好，这个毋庸置疑，而且平均水平肯定是名校比一般学校出来的人才更多，但是也只是平均而已，我跟比尔盖茨平均起来，我也是亿万富翁了，根本还是取决于个人。</p>
+<ol>
+<li>你现在的专业跟你以后的工作可能没什么关系</li>
+</ol>
+<p>很多毕业生毕业总是奢求能找到一份专业对口的工作，我告诉你，这很难，本质上也是因为中国的教育造成的，前面说到，你在学校学到的东西根本不知道以后干嘛用的。</p>
+<p>拿计算机专业的举例，正是因为计算机专业的同学大学学了一堆什么计算机网络、操作系统，C 语言、数据结构等等，都是最最枯燥、最最乏味的课程，你学了四年，你从来不知道这些东西能做什么用？导致很多计算机专业的同学对自己的课程很厌恶，甚至到了抵触的心理，这也直接造成很多计算机专业的同学毕业后有很多去做了销售，等你工作后才发现，反而工作中从事编程行业的，却很多不是计算机专业的，有很多都是其他理科类专业的同学，而且这部分人大部分是因为毕业后工作接触到了编程，对此产生兴趣，知道这个能赚钱，所以发奋自学，从而走上了这一行。</p>
+<p>所以，不管你是什么专业的，如果对本专业感兴趣，那还好，毕业之后尽量去找个专业相关的工作，如果对本专业不感兴趣，想从事别的行业，别担心，只要你感兴趣，肯用心去学习，那么一定不是问题，有时候甚至比那些科班生出身更有优势，因为这个职业是你自己出于兴趣以及回报而选择的，没有任何人逼你，你会更有动力去学习。</p>
+<ol>
+<li>「学习能力」是大学四年学到的最重要技能</li>
+</ol>
+<p>前面虽然把大学说的一无是处，有人会问，那干脆别读大学好了，这当然是不行的。虽然中国的大学教育有它各种各样的问题，但是这个时代，首先大学文凭是一个硬性规定，没有大学学历，你是很难在社会上立足的，起点会非常难。其次，大学跟高中的形式有着本质的区别，高中的教育是家长和老师的驱动下，面对种种压力你不得不去学习，所以高中的学习是压力下不得不去做的事。</p>
+<p>但是大学可就不一样了，没人看着你，没人会关注到你，你有更多的自由与选择空间，玩什么，结实什么样的人，去不去上课都完全取决于你，我相信绝大部分大学生的考试复习大都集中在考试前的最后两周，这种学习完全是自我驱动的，所以，大学还是非常有必要上的，而且每个人最主要的区别可能就体现在了「学习能力」上，因为你会发现，大家都是上着同样的课，甚至有的人根本不去听课，但是同样是最后两周的自学冲刺，有的人就能轻松考过，或者考了很高的分数，有的人却学了很久依然考的不理想，这就是学习能力的差异。</p>
+<p>即使是玩游戏，同样的时间，有的人玩的很好，会分析怎么出装更合理，团队战术怎么更容易取胜，有的人，却是一直沉迷于游戏，自制力很弱，而且还很有可能玩的不行。</p>
+<p>所以，自制力很好，学习能力很不错的人，会在以后的职场有更多、更好的选择，而且也容易有更好的发展，即使这个人在大学喜欢玩游戏，即使在大学成绩很一般。</p>
+<ol>
+<li>多动手，多实习</li>
+</ol>
+<p>前面说了，大学学的都是一些理论性的东西，你根本不知道那些东西能干嘛，但是如果你能尽早去实习，尽早去参与实践，那你会有别样的体会。</p>
+<p>举个例子，当计算机专业的同学都不知道所学的理论能干嘛的时候，你就去一家企业实习了，即使平时的工作只是打杂，但是你能真正认识了实际工作中是怎样的，别人在工作的时候用到了什么技能，看到别人拿到的高薪，你会发现原来，你所学的那些东西这么值钱，你会更有动力去学习，而且很有针对性的去学习，你得相信，理论与实践相结合，比那些只会闷头读书的人要有用的多，你想要的不是只在学校里空虚的考试分数而已，你更想要的是未来用自己的技能换取财富的能力！</p>
+<ol>
+<li>这些事情你该在大学就做了</li>
+</ol>
+<p>我以一个过来人的经验，真心建议你们，大学这些事必须要做了，甚至比拿什么奖学金，考什么证还要重要。</p>
+<p>多运动，坚持运动，有个好的身体比什么都重要。</p>
+<p>多阅读，坚持阅读，哪怕跟你的专业无关的书籍。</p>
+<p>考个驾照，一定要考，这个是 100% 所有工作之后的人最后悔的一件事，是的，就是 100%。</p>
+<p>如果可以的话，谈场恋爱吧，哪怕最后以失败告终。</p>
+<p>PS：以上就是我过来人的经验之谈，希望可以对更多的人有帮助，觉得有用，可以随手转发，谢谢。</p>
 
-      
-        
-          
-            <p>
-              
-原文：by:stormzhang这篇文章是我写给小密圈中 20% 比例的大学生的，但是考虑到我公众号的读者中也有不少也是大学生或者研究生，所以姑且分享出来，希望对更多的还在校园的同学有所帮助与思考，更希望能够消除你们对未来的迷茫与恐慌。
-
-绝大部分的大学教育都是渣
-
-可能有人觉得话说的有点难听，但
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/05/19/给大学生的几条良心建议（转载）/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.samuelyg.cn/2017/05/10/Google-I-O-17-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
       <meta itemprop="name" content="YangGang">
       <meta itemprop="description" content="(ง •_•)ง">
-      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="YangGang'Blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/05/10/Google-I-O-17-1/" class="post-title-link" itemprop="url">Google I/O 17</a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/05/10/Google-I-O-17-1/" class="post-title-link" itemprop="url">Google I/O 17</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">发表于</span>
 
               <time title="创建时间：2017-05-10 18:57:39" itemprop="dateCreated datePublished" datetime="2017-05-10T18:57:39+08:00">2017-05-10</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-03-03 16:13:52" itemprop="dateModified" datetime="2019-03-03T16:13:52+08:00">2019-03-03</time>
-              
-            
-          </span>
-
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/05/10/Google-I-O-17-1/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/05/10/Google-I-O-17-1/" itemprop="commentCount"></span>
-                </a>
               </span>
-            
-          
-
-          
-          
-
-          
-
-          
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -687,202 +346,88 @@
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <a id="more"></a>
+<p>&lt;/br&gt;</p>
+<svg width="277" height="95" viewbox="0 0 277 95" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path fill="#5471F9" d="M195.129 90.674h6.85V2.514h-6.85zm-111.083 0h6.85V24.919h-6.85zM81.709 8.359c0-3.238 2.619-5.845 5.871-5.845 3.253 0 5.872 2.607 5.872 5.845 0 3.237-2.62 5.845-5.872 5.845s-5.871-2.608-5.871-5.845M220.1 9.81l-.014-7.191 40.773-.082.014 7.192z"/><path fill="#40E7B8" d="M232.99 92.868l-6.122-3.06 43.927-87.052 6.122 3.06z"/><path fill="#5471F9" d="M147.112 38.276L143.7 21.693l2.409-.32 3.39 16.581z"/><path stroke="#5471F9" stroke-width=".5" d="M147.112 38.276L143.7 21.693l2.409-.32 3.39 16.581z"/><path fill="#5471F9" d="M154.681 42.097l3.674-16.528 2.33.686-3.691 16.517z"/><path stroke="#5471F9" stroke-width=".5" d="M154.681 42.097l3.674-16.528 2.33.686-3.691 16.517z"/><path fill="#5471F9" d="M160.062 48.656l10.075-13.638 1.852 1.565-10.086 13.62z"/><path stroke="#5471F9" stroke-width=".5" d="M160.062 48.656l10.075-13.638 1.852 1.565-10.086 13.62z"/><path fill="#5471F9" d="M162.295 56.817l14.79-8.357 1.05 2.182-14.794 8.336z"/><path stroke="#5471F9" stroke-width=".5" d="M162.295 56.817l14.79-8.357 1.05 2.182-14.794 8.336z"/><path fill="#5471F9" d="M161.014 65.196l16.922-1.697.074 2.418-16.916 1.677z"/><path stroke="#5471F9" stroke-width=".5" d="M161.014 65.196l16.922-1.697.074 2.418-16.916 1.677z"/><path fill="#5471F9" d="M156.424 72.312l16.152 5.301-.92 2.238-16.138-5.317z"/><path stroke="#5471F9" stroke-width=".5" d="M156.424 72.312l16.152 5.301-.92 2.238-16.138-5.317z"/><path fill="#5471F9" d="M149.331 76.977l12.615 11.353-1.751 1.677-12.597-11.363z"/><path stroke="#5471F9" stroke-width=".5" d="M149.331 76.977l12.615 11.353-1.751 1.677-12.597-11.363z"/><path fill="#5471F9" d="M140.96 78.353l6.81 15.512-2.29.811-6.788-15.513z"/><path stroke="#5471F9" stroke-width=".5" d="M140.96 78.353l6.81 15.512-2.29.811-6.788-15.513z"/><path fill="#5471F9" d="M132.715 76.253l-.02 16.927-2.424-.171.04-16.92z"/><path stroke="#5471F9" stroke-width=".5" d="M132.715 76.253l-.02 16.927-2.424-.171.04-16.92z"/><path fill="#5471F9" d="M126.049 70.982l-6.923 15.462-2.145-1.136 6.937-15.448z"/><path stroke="#5471F9" stroke-width=".5" d="M126.049 70.982l-6.923 15.462-2.145-1.136 6.937-15.448z"/><path fill="#5471F9" d="M122.106 63.49l-12.627 11.34-1.498-1.904 12.634-11.32z"/><path stroke="#5471F9" stroke-width=".5" d="M122.106 63.49l-12.627 11.34-1.498-1.904 12.634-11.32z"/><path fill="#5471F9" d="M121.573 55.072l-16.188 5.192-.582-2.348 16.187-5.17z"/><path stroke="#5471F9" stroke-width=".5" d="M121.573 55.072l-16.188 5.192-.582-2.348 16.187-5.17z"/><path fill="#5471F9" d="M124.507 47.11l-16.917-1.736.417-2.382 16.908 1.754z"/><path stroke="#5471F9" stroke-width=".5" d="M124.507 47.11l-16.917-1.736.417-2.382 16.908 1.754z"/><path fill="#5471F9" d="M130.436 41.046l-14.764-8.403 1.35-2.01 14.748 8.415z"/><path stroke="#5471F9" stroke-width=".5" d="M130.436 41.046l-14.764-8.403 1.35-2.01 14.748 8.415z"/><path fill="#5471F9" d="M138.337 37.891l-10.053-13.653 2.054-1.291 10.034 13.66z"/><path stroke="#5471F9" stroke-width=".5" d="M138.337 37.891l-10.053-13.653 2.054-1.291 10.034 13.66z"/><path fill="#40E7B8" d="M46.11 21.874l-.006-3.01 17.065-.033.005 3.01zm-22.642 0l-.006-3.01 17.064-.033.006 3.01zm-23.462 0L0 18.864l17.064-.033.006 3.01zM46.11 44.615l-.006-3.01 17.065-.034.005 3.01zm-22.642 0l-.006-3.01 17.064-.034.006 3.01zm-23.462 0L0 41.605l17.064-.034.006 3.01z"/><path fill="#32E8B7" d="M21.897 17.472l-3.024.006L18.839.493l3.024-.005z"/><path fill="#40E7B8" d="M21.897 40.008l-3.023.006-.035-16.984 3.024-.006zm0 23.352l-3.023.006-.035-16.984 3.024-.006z"/><path fill="#32E8B7" d="M44.745 17.472l-3.024.006L41.687.493 44.71.488z"/><path fill="#40E7B8" d="M44.745 40.008l-3.024.006-.034-16.984 3.023-.006zm0 23.352l-3.024.006-.034-16.984 3.023-.006z"/></g></svg>
 
-      
-        
-          
-            <p>
-              
-&lt;/br&gt;
+<p>&lt;/br&gt;</p>
+<font size="6">**Google I/O is an annual developer festival held at the outdoor Shoreline Amphitheatre.**</font>
+<br><font size="5">May 17-19, 2017</font>
+<br><font size="4">Shoreline Amphitheatre Mountain View, California</font>
 
+<p>&lt;/br&gt;</p>
+<iframe src="https://events.google.com/io/embed" style="width:700px;height:360px" frameborder="0" allowfullscreen></iframe>
 
-&lt;/br&gt;
-**Google I/O is an annual developer festival held at the outdoor Shoreline Amphitheatre.**
-May 17-19, 2017
-Shoreline Amphit
-              ...
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/05/10/Google-I-O-17-1/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
+<p>​    </p>
+<p>&lt;/br&gt;<font size="4">官方网站：<a href="https://events.google.com/io/" target="_blank" rel="noopener">Google I/O17</a></font></p>
+
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.samuelyg.cn/2017/04/17/修复Ubuntu17.04无法安装网易云音乐问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
       <meta itemprop="name" content="YangGang">
       <meta itemprop="description" content="(ง •_•)ง">
-      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="YangGang'Blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/04/17/修复Ubuntu17.04无法安装网易云音乐问题/" class="post-title-link" itemprop="url">修复Ubuntu17.04无法安装网易云音乐问题（转载）</a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/04/17/修复Ubuntu17.04无法安装网易云音乐问题/" class="post-title-link" itemprop="url">修复Ubuntu17.04无法安装网易云音乐问题（转载）</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">发表于</span>
 
               <time title="创建时间：2017-04-17 08:25:48" itemprop="dateCreated datePublished" datetime="2017-04-17T08:25:48+08:00">2017-04-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-03-03 16:07:50" itemprop="dateModified" datetime="2019-03-03T16:07:50+08:00">2019-03-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Tips/" itemprop="url" rel="index"><span itemprop="name">Tips</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Tips/" itemprop="url" rel="index">
+                    <span itemprop="name">Tips</span>
+                  </a>
                 </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/04/17/修复Ubuntu17.04无法安装网易云音乐问题/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/04/17/修复Ubuntu17.04无法安装网易云音乐问题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -890,191 +435,82 @@ Shoreline Amphit
     <div class="post-body" itemprop="articleBody">
 
       
-      
-
-      
-        
           <p>装了Ubuntu17.04的用户会出现这一问题，原因是libqt5libqgtk2的依赖问题，这里需要将其替换为qt5-style-plugins. </p>
           <!--noindex-->
-          
-            <div class="post-button text-center">
+            <div class="post-button">
               <a class="btn" href="/2017/04/17/修复Ubuntu17.04无法安装网易云音乐问题/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
-          
           <!--/noindex-->
         
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
-
-
-    
-      
-
-  
-
   
   
   
 
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+        
   
   
-  
-  <div class="post-block">
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://blog.samuelyg.cn/2017/02/17/Hello-World/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
       <meta itemprop="name" content="YangGang">
       <meta itemprop="description" content="(ง •_•)ง">
-      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="YangGang'Blog">
     </span>
-
-    
       <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                
-                <a href="/2017/02/17/Hello-World/" class="post-title-link" itemprop="url">Hello World</a>
-              
-            
-          </h1>
-        
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2017/02/17/Hello-World/" class="post-title-link" itemprop="url">Hello World</a>
+        </h1>
 
         <div class="post-meta">
-          <span class="post-time">
-
-            
-            
-            
-
-            
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-calendar-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-
-              
-                
-              
+              <span class="post-meta-item-text">发表于</span>
 
               <time title="创建时间：2017-02-17 22:29:40" itemprop="dateCreated datePublished" datetime="2017-02-17T22:29:40+08:00">2017-02-17</time>
-            
-
-            
-              
-
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
+            </span>
+              <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
+                <span class="post-meta-item-text">更新于</span>
                 <time title="修改时间：2019-03-03 16:14:39" itemprop="dateModified" datetime="2019-03-03T16:14:39+08:00">2019-03-03</time>
-              
-            
-          </span>
-
-          
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
+              </span>
+            <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="fa fa-folder-o"></i>
               </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/HelloWorld/" itemprop="url" rel="index"><span itemprop="name">HelloWorld</span></a></span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-            
-              
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/HelloWorld/" itemprop="url" rel="index">
+                    <span itemprop="name">HelloWorld</span>
+                  </a>
                 </span>
-            
-                <span class="post-meta-item-text">评论数：</span>
-                <a href="/2017/02/17/Hello-World/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2017/02/17/Hello-World/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
+            </span>
 
           
 
         </div>
       </header>
-    
 
     
     
@@ -1082,65 +518,23 @@ Shoreline Amphit
     <div class="post-body" itemprop="articleBody">
 
       
-      
+          <p><a href="https://miao.su/image/jOMk0" target="_blank" rel="noopener"><img src="https://miao.su/images/2017/04/30/6c2fc79ely1fetwfnj13oj20pp0bzwgz3127f.md.jpg" alt="6c2fc79ely1fetwfnj13oj20pp0bzwgz3127f.md.jpg"></a><br><a href="https://miao.su/image/jOJYO" target="_blank" rel="noopener"><img src="https://miao.su/images/2017/04/30/6c2fc79ely1fetwfnrishj20pp0bzmzqb2fe6.md.jpg" alt="6c2fc79ely1fetwfnrishj20pp0bzmzqb2fe6.md.jpg"></a></p>
 
-      
-        
-          
-            <p>
-              
-
-              
-            </p>
-          <!--noindex-->
-          
-            <div class="post-button text-center">
-              <a class="btn" href="/2017/02/17/Hello-World/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          
-          <!--/noindex-->
-        
       
     </div>
 
     
-
     
     
-    
-
-    
-
-    
-      
-    
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
+      <footer class="post-footer">
         <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
+      </footer>
   </article>
+  
+  
+  
 
-
-    
-  </section>
+  </div>
 
   
   <nav class="pagination">
@@ -1152,325 +546,153 @@ Shoreline Amphit
           </div>
           
 
-        </div>
-        
-          
-  
-  <div class="sidebar-toggle">
-    <div class="sidebar-toggle-line-wrap">
-      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
-      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
-    </div>
-  </div>
-
-  <aside id="sidebar" class="sidebar">
-    <div class="sidebar-inner">
-
-      
-
-      
-
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
-        <div class="site-overview">
-          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-            
-              <img class="site-author-image" itemprop="image" src="https://miao.su/images/2017/03/03/dark_deer302fb.png" alt="YangGang">
-            
-              <p class="site-author-name" itemprop="name">YangGang</p>
-              <div class="site-description motion-element" itemprop="description">(ง •_•)ง</div>
-          </div>
-
-          
-            <nav class="site-state motion-element">
-              
-                <div class="site-state-item site-state-posts">
-                
-                  <a href="/archives/">
-                
-                    <span class="site-state-item-count">14</span>
-                    <span class="site-state-item-name">日志</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-categories">
-                  
-                    
-                      <a href="/categories/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">13</span>
-                    <span class="site-state-item-name">分类</span>
-                  </a>
-                </div>
-              
-
-              
-                
-                
-                <div class="site-state-item site-state-tags">
-                  
-                    
-                      <a href="/tags/">
-                    
-                  
-                    
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">17</span>
-                    <span class="site-state-item-name">标签</span>
-                  </a>
-                </div>
-              
-            </nav>
-          
-
-          
-
-          
-
-          
-            <div class="links-of-author motion-element">
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://github.com/SamuelYG" title="GitHub &rarr; https://github.com/SamuelYG" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://twitter.com/yangg052" title="Twitter &rarr; https://twitter.com/yangg052" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://instagram.com/samuelyg1996/" title="Instagram &rarr; https://instagram.com/samuelyg1996/" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="https://weibo.com/5658432174" title="Weibo &rarr; https://weibo.com/5658432174" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
-                </span>
-              
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                    
-                  
-                  <a href="mailto:yangg052@gmail.com" title="E-Mail &rarr; mailto:yangg052@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
-                </span>
-              
-            </div>
-          
-
-          
-
-          
-          
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
-              <div class="links-of-blogroll-title">
-                <i class="fa  fa-fw fa-link"></i>
-                Links
-              </div>
-              <ul class="links-of-blogroll-list">
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://notes.iissnan.com/" title="https://notes.iissnan.com/" rel="noopener" target="_blank">IIssNan's Notes</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://milkice.me/" title="https://milkice.me/" rel="noopener" target="_blank">Milkice's IceBox</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="http://cdeveloper.cn/" title="http://cdeveloper.cn/" rel="noopener" target="_blank">cdeveloper</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://nfz.moe/" title="https://nfz.moe/" rel="noopener" target="_blank">neoFelhz</a>
-                  </li>
-                
-              </ul>
-            </div>
-          
-
-          
-            
-          
-          
-
-        </div>
-      </div>
-
-      
-
-      
-        <div class="back-to-top">
-          <i class="fa fa-arrow-up"></i>
-          
-            <span id="scrollpercent"><span>0</span>%</span>
-          
-        </div>
-      
-
-    </div>
-  </aside>
-  
-
-
-        
-      </div>
-    </main>
-
-    <footer id="footer" class="footer">
-      <div class="footer-inner">
-        <div class="copyright">&copy; 2016 – <span itemprop="copyrightYear">2019</span>
-  <span class="with-love" id="animate">
-    <i class="fa fa-user"></i>
-  </span>
-  <span class="author" itemprop="copyrightHolder">YangGang</span>
-
-  
-
-  
-</div>
-
-
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
-
-
-
-  <span class="post-meta-divider">|</span>
-
-
-
-  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.0.1</div>
-
-
-
-
-        
-
-
-
-
-
-
-
-
-        
-      </div>
-    </footer>
-
-    
-
-    
-
-    
-
-    
-  </div>
-
-  
-
 <script>
-  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
-    window.Promise = null;
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
   }
 </script>
 
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="YangGang" src="https://miao.su/images/2017/03/03/dark_deer302fb.png">
+  <p class="site-author-name" itemprop="name">YangGang</p>
+  <div class="site-description" itemprop="description">(ง •_•)ง</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">13</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/SamuelYG" title="GitHub → https://github.com/SamuelYG" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/yangg052" title="Twitter → https://twitter.com/yangg052" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://instagram.com/samuelyg1996/" title="Instagram → https://instagram.com/samuelyg1996/" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/5658432174" title="Weibo → https://weibo.com/5658432174" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:yangg052@gmail.com" title="E-Mail → mailto:yangg052@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://notes.iissnan.com/" title="https://notes.iissnan.com/" rel="noopener" target="_blank">IIssNan's Notes</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://milkice.me/" title="https://milkice.me/" rel="noopener" target="_blank">Milkice's IceBox</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="http://cdeveloper.cn/" title="http://cdeveloper.cn/" rel="noopener" target="_blank">cdeveloper</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://nfz.moe/" title="https://nfz.moe/" rel="noopener" target="_blank">neoFelhz</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YangGang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>
+
+        
 
 
 
@@ -1479,6 +701,19 @@ Shoreline Amphit
 
 
 
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+<script src="/js/schemes/pisces.js"></script>
+<script src="/js/next-boot.js"></script>
 
 
 
@@ -1499,445 +734,56 @@ Shoreline Amphit
 
 
   
-  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-  
-  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
-
-
-  
-
-
-  <script src="/js/utils.js?v=7.0.1"></script>
-
-  <script src="/js/motion.js?v=7.0.1"></script>
-
-
-
-  
-  
-
-
-  <script src="/js/affix.js?v=7.0.1"></script>
-
-  <script src="/js/schemes/pisces.js?v=7.0.1"></script>
-
-
-
-  
-
-  
-
-
-  <script src="/js/next-boot.js?v=7.0.1"></script>
-
-
-  
-
-  
-
-  
-
-  
-  
-  <script id="dsq-count-scr" src="https://samuelyg.disqus.com/count.js" async></script>
-
-
-
-
-
-
-
-  
-  <script>
-    // Popup Window;
-    var isfetched = false;
-    var isXml = true;
-    // Search DB path;
-    var search_path = "search.xml";
-    if (search_path.length === 0) {
-      search_path = "search.xml";
-    } else if (/json$/i.test(search_path)) {
-      isXml = false;
-    }
-    var path = "/" + search_path;
-    // monitor main search box;
-
-    var onPopupClose = function (e) {
-      $('.popup').hide();
-      $('#local-search-input').val('');
-      $('.search-result-list').remove();
-      $('#no-result').remove();
-      $(".local-search-pop-overlay").remove();
-      $('body').css('overflow', '');
-    }
-
-    function proceedsearch() {
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
-        .css('overflow', 'hidden');
-      $('.search-popup-overlay').click(onPopupClose);
-      $('.popup').toggle();
-      var $localSearchInput = $('#local-search-input');
-      $localSearchInput.attr("autocapitalize", "none");
-      $localSearchInput.attr("autocorrect", "off");
-      $localSearchInput.focus();
-    }
-
-    // search function;
-    var searchFunc = function(path, search_id, content_id) {
-      'use strict';
-
-      // start loading animation
-      $("body")
-        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
-          '<div id="search-loading-icon">' +
-          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
-          '</div>' +
-          '</div>')
-        .css('overflow', 'hidden');
-      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
-
       
+<script type="text/x-mathjax-config">
 
-      $.ajax({
-        url: path,
-        dataType: isXml ? "xml" : "json",
-        async: true,
-        success: function(res) {
-          // get the contents from search data
-          isfetched = true;
-          $('.popup').detach().appendTo('.header-inner');
-          var datas = isXml ? $("entry", res).map(function() {
-            return {
-              title: $("title", this).text(),
-              content: $("content",this).text(),
-              url: $("url" , this).text()
-            };
-          }).get() : res;
-          var input = document.getElementById(search_id);
-          var resultContent = document.getElementById(content_id);
-          var inputEventFunction = function() {
-            var searchText = input.value.trim().toLowerCase();
-            var keywords = searchText.split(/[\s\-]+/);
-            if (keywords.length > 1) {
-              keywords.push(searchText);
-            }
-            var resultItems = [];
-            if (searchText.length > 0) {
-              // perform local searching
-              datas.forEach(function(data) {
-                var isMatch = false;
-                var hitCount = 0;
-                var searchTextCount = 0;
-                var title = data.title.trim();
-                var titleInLowerCase = title.toLowerCase();
-                var content = data.content.trim().replace(/<[^>]+>/g,"");
-                
-                var contentInLowerCase = content.toLowerCase();
-                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
-                var indexOfTitle = [];
-                var indexOfContent = [];
-                // only match articles with not empty titles
-                if(title != '') {
-                  keywords.forEach(function(keyword) {
-                    function getIndexByWord(word, text, caseSensitive) {
-                      var wordLen = word.length;
-                      if (wordLen === 0) {
-                        return [];
-                      }
-                      var startPosition = 0, position = [], index = [];
-                      if (!caseSensitive) {
-                        text = text.toLowerCase();
-                        word = word.toLowerCase();
-                      }
-                      while ((position = text.indexOf(word, startPosition)) > -1) {
-                        index.push({position: position, word: word});
-                        startPosition = position + wordLen;
-                      }
-                      return index;
-                    }
-
-                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
-                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
-                  });
-                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
-                    isMatch = true;
-                    hitCount = indexOfTitle.length + indexOfContent.length;
-                  }
-                }
-
-                // show search results
-
-                if (isMatch) {
-                  // sort index by position of keyword
-
-                  [indexOfTitle, indexOfContent].forEach(function (index) {
-                    index.sort(function (itemLeft, itemRight) {
-                      if (itemRight.position !== itemLeft.position) {
-                        return itemRight.position - itemLeft.position;
-                      } else {
-                        return itemLeft.word.length - itemRight.word.length;
-                      }
-                    });
-                  });
-
-                  // merge hits into slices
-
-                  function mergeIntoSlice(text, start, end, index) {
-                    var item = index[index.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    var hits = [];
-                    var searchTextCountInSlice = 0;
-                    while (position + word.length <= end && index.length != 0) {
-                      if (word === searchText) {
-                        searchTextCountInSlice++;
-                      }
-                      hits.push({position: position, length: word.length});
-                      var wordEnd = position + word.length;
-
-                      // move to next position of hit
-
-                      index.pop();
-                      while (index.length != 0) {
-                        item = index[index.length - 1];
-                        position = item.position;
-                        word = item.word;
-                        if (wordEnd > position) {
-                          index.pop();
-                        } else {
-                          break;
-                        }
-                      }
-                    }
-                    searchTextCount += searchTextCountInSlice;
-                    return {
-                      hits: hits,
-                      start: start,
-                      end: end,
-                      searchTextCount: searchTextCountInSlice
-                    };
-                  }
-
-                  var slicesOfTitle = [];
-                  if (indexOfTitle.length != 0) {
-                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
-                  }
-
-                  var slicesOfContent = [];
-                  while (indexOfContent.length != 0) {
-                    var item = indexOfContent[indexOfContent.length - 1];
-                    var position = item.position;
-                    var word = item.word;
-                    // cut out 100 characters
-                    var start = position - 20;
-                    var end = position + 80;
-                    if(start < 0){
-                      start = 0;
-                    }
-                    if (end < position + word.length) {
-                      end = position + word.length;
-                    }
-                    if(end > content.length){
-                      end = content.length;
-                    }
-                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
-                  }
-
-                  // sort slices in content by search text's count and hits' count
-
-                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
-                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
-                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
-                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
-                      return sliceRight.hits.length - sliceLeft.hits.length;
-                    } else {
-                      return sliceLeft.start - sliceRight.start;
-                    }
-                  });
-
-                  // select top N slices in content
-
-                  var upperBound = parseInt('1');
-                  if (upperBound >= 0) {
-                    slicesOfContent = slicesOfContent.slice(0, upperBound);
-                  }
-
-                  // highlight title and content
-
-                  function highlightKeyword(text, slice) {
-                    var result = '';
-                    var prevEnd = slice.start;
-                    slice.hits.forEach(function (hit) {
-                      result += text.substring(prevEnd, hit.position);
-                      var end = hit.position + hit.length;
-                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
-                      prevEnd = end;
-                    });
-                    result += text.substring(prevEnd, slice.end);
-                    return result;
-                  }
-
-                  var resultItem = '';
-
-                  if (slicesOfTitle.length != 0) {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
-                  } else {
-                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
-                  }
-
-                  slicesOfContent.forEach(function (slice) {
-                    resultItem += "<a href='" + articleUrl + "'>" +
-                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
-                      "...</p>" + "</a>";
-                  });
-
-                  resultItem += "</li>";
-                  resultItems.push({
-                    item: resultItem,
-                    searchTextCount: searchTextCount,
-                    hitCount: hitCount,
-                    id: resultItems.length
-                  });
-                }
-              })
-            };
-            if (keywords.length === 1 && keywords[0] === "") {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
-            } else if (resultItems.length === 0) {
-              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
-            } else {
-              resultItems.sort(function (resultLeft, resultRight) {
-                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
-                  return resultRight.searchTextCount - resultLeft.searchTextCount;
-                } else if (resultLeft.hitCount !== resultRight.hitCount) {
-                  return resultRight.hitCount - resultLeft.hitCount;
-                } else {
-                  return resultRight.id - resultLeft.id;
-                }
-              });
-              var searchResultList = '<ul class=\"search-result-list\">';
-              resultItems.forEach(function (result) {
-                searchResultList += result.item;
-              })
-              searchResultList += "</ul>";
-              resultContent.innerHTML = searchResultList;
-            }
-          }
-
-          if ('auto' === 'auto') {
-            input.addEventListener('input', inputEventFunction);
-          } else {
-            $('.search-icon').click(inputEventFunction);
-            input.addEventListener('keypress', function (event) {
-              if (event.keyCode === 13) {
-                inputEventFunction();
-              }
-            });
-          }
-
-          // remove loading animation
-          $(".local-search-pop-overlay").remove();
-          $('body').css('overflow', '');
-
-          proceedsearch();
-        }
-      });
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      equationNumbers: {
+        autoNumber: 'AMS'
+      }
     }
+  });
 
-    // handle and trigger popup window;
-    $('.popup-trigger').click(function(e) {
-      e.stopPropagation();
-      if (isfetched === false) {
-        searchFunc(path, 'local-search-input', 'local-search-result');
-      } else {
-        proceedsearch();
-      };
-    });
-
-    $('.popup-btn-close').click(onPopupClose);
-    $('.popup').click(function(e){
-      e.stopPropagation();
-    });
-    $(document).on('keyup', function (event) {
-      var shouldDismissSearchPopup = event.which === 27 &&
-        $('.search-popup').is(':visible');
-      if (shouldDismissSearchPopup) {
-        onPopupClose();
+  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
+    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
+      if (data.display) {
+        var next = data.script.nextSibling;
+        while (next && next.nodeName.toLowerCase() === '#text') {
+          next = next.nextSibling;
+        }
+        if (next && next.nodeName.toLowerCase() === 'br') {
+          next.parentNode.removeChild(next);
+        }
       }
     });
-  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
-<script type="text/x-mathjax-config">
-  MathJax.Hub.Config("");
-</script>
+  });
 
-<script type="text/x-mathjax-config">
   MathJax.Hub.Queue(function() {
     var all = MathJax.Hub.getAllJax(), i;
-    for(i=0; i < all.length; i += 1) {
-      all[i].SourceElement().parentNode.className += ' has-jax';
+    for (i = 0; i < all.length; i += 1) {
+      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
+      if (element.nodeName.toLowerCase() == 'li') {
+        element = element.parentNode;
+      }
+      element.classList.add('has-jax');
     }
   });
 </script>
+<script>
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
+    MathJax.Hub.Typeset();
+  }, window.MathJax);
+</script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
-</script>
-<!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-
-
-
-
-
-  
-
-  
-
-  
-  
-
-  
-  
     
-      
-    
-      
-    
-      
-    
-      
-    
-  
-
-  
-
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
 
