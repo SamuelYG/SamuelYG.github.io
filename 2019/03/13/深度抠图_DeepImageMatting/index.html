@@ -18,14 +18,14 @@
 <script id="hexo-configurations">
   var NexT = window.NexT || {};
   var CONFIG = {
-    hostname: new URL('https://blog.samuelyg.cn').hostname,
+    hostname: new URL('https://blog.yanggang.cool').hostname,
     root: '/',
     scheme: 'Pisces',
     version: '7.7.0',
     exturl: false,
     sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
     copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
     bookmark: {"enable":false,"color":"#222","save":"auto"},
     fancybox: true,
     mediumzoom: false,
@@ -39,7 +39,7 @@
       hits: {"per_page":10},
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     },
-    localsearch: {"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
     path: 'search.xml',
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
   };
@@ -49,7 +49,7 @@
 <meta name="keywords" content="深度抠图,论文">
 <meta property="og:type" content="article">
 <meta property="og:title" content="深度抠图 Deep Image Matting 译文">
-<meta property="og:url" content="https://blog.samuelyg.cn/2019/03/13/深度抠图_DeepImageMatting/index.html">
+<meta property="og:url" content="https://blog.yanggang.cool/2019/03/13/深度抠图_DeepImageMatting/index.html">
 <meta property="og:site_name" content="YangGang&#39;Blog">
 <meta property="og:description" content="本文是 Adobe 等机构的论文 Deep Image Matting 译文。因为是初稿，如有错误及不当之处，烦请指正。">
 <meta property="og:locale" content="zh-CN">
@@ -79,7 +79,7 @@
 <meta name="twitter:description" content="本文是 Adobe 等机构的论文 Deep Image Matting 译文。因为是初稿，如有错误及不当之处，烦请指正。">
 <meta name="twitter:image" content="https://miao.su/images/2019/03/13/15524836698559c297.png">
 
-<link rel="canonical" href="https://blog.samuelyg.cn/2019/03/13/深度抠图_DeepImageMatting/">
+<link rel="canonical" href="https://blog.yanggang.cool/2019/03/13/深度抠图_DeepImageMatting/">
 
 
 <script id="page-configurations">
@@ -188,17 +188,41 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
+        <li class="menu-item menu-item-commonweal">
+
+    <a href="/404.html" rel="section"><i class="fa fa-fw fa-heartbeat"></i>公益 404</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
   </ul>
 
 </nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="搜索..." spellcheck="false" type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
 </div>
     </header>
 
     
-  <div class="back-to-top">
-    <i class="fa fa-arrow-up"></i>
-    <span>0%</span>
-  </div>
 
 
     <main class="main">
@@ -214,7 +238,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.samuelyg.cn/2019/03/13/深度抠图_DeepImageMatting/">
+    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2019/03/13/深度抠图_DeepImageMatting/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
@@ -226,9 +250,9 @@
       <meta itemprop="name" content="YangGang'Blog">
     </span>
       <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
+        <h2 class="post-title" itemprop="name headline">
           深度抠图 Deep Image Matting 译文
-        </h1>
+        </h2>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -854,6 +878,10 @@ I_i = α_iF_i + (1 - α_i)B_i \quad α_i∈[0, 1] \tag {1}</script><p>其中已�
   </div>
 
       </div>
+        <div class="back-to-top motion-element">
+          <i class="fa fa-arrow-up"></i>
+          <span>0%</span>
+        </div>
 
     </div>
   </aside>
@@ -908,9 +936,20 @@ I_i = α_iF_i + (1 - α_i)B_i \quad α_i∈[0, 1] \tag {1}</script><p>其中已�
 
 
   
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
 
 
 
+
+  <script src="/js/local-search.js"></script>
 
 
 
