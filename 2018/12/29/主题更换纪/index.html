@@ -4,9 +4,11 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.8.0">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/favicon.png" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -14,59 +16,33 @@
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://blog.yanggang.cool').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.7.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: true,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.yanggang.cool","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="原本使用的 Material Theme 这两日使用起来很不舒服，页面滚动起来竟然会有些掉帧。于是就想着换个主题用用。由于心水 NexT 已久，所以就着手更换了。">
-<meta name="keywords" content="日志">
 <meta property="og:type" content="article">
 <meta property="og:title" content="主题更换纪">
-<meta property="og:url" content="https://blog.yanggang.cool/2018/12/29/主题更换纪/index.html">
+<meta property="og:url" content="https://blog.yanggang.cool/2018/12/29/%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E7%BA%AA/index.html">
 <meta property="og:site_name" content="YangGang&#39;Blog">
 <meta property="og:description" content="原本使用的 Material Theme 这两日使用起来很不舒服，页面滚动起来竟然会有些掉帧。于是就想着换个主题用用。由于心水 NexT 已久，所以就着手更换了。">
-<meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-03T08:14:21.081Z">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2018-12-29T09:30:00.000Z">
+<meta property="article:modified_time" content="2019-03-03T08:14:21.081Z">
+<meta property="article:author" content="YangGang">
+<meta property="article:tag" content="日志">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="主题更换纪">
-<meta name="twitter:description" content="原本使用的 Material Theme 这两日使用起来很不舒服，页面滚动起来竟然会有些掉帧。于是就想着换个主题用用。由于心水 NexT 已久，所以就着手更换了。">
 
-<link rel="canonical" href="https://blog.yanggang.cool/2018/12/29/主题更换纪/">
+<link rel="canonical" href="https://blog.yanggang.cool/2018/12/29/%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E7%BA%AA/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: false,
-    isPost: true
+    isHome : false,
+    isPost : true
   };
 </script>
 
@@ -118,6 +94,14 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -129,11 +113,9 @@
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -186,7 +168,9 @@
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="搜索..." spellcheck="false" type="text" id="search-input">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
@@ -202,6 +186,7 @@
     </header>
 
     
+  <div class="reading-progress-bar"></div>
 
 
     <main class="main">
@@ -217,10 +202,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2018/12/29/主题更换纪/">
+    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2018/12/29/%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E7%BA%AA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
+      <meta itemprop="image" content="/images/round_yg.png">
       <meta itemprop="name" content="YangGang">
       <meta itemprop="description" content="(ง •_•)ง">
     </span>
@@ -229,9 +214,9 @@
       <meta itemprop="name" content="YangGang'Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           主题更换纪
-        </h2>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -255,9 +240,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/闲杂/" itemprop="url" rel="index">
-                    <span itemprop="name">闲杂</span>
-                  </a>
+                  <a href="/categories/%E9%97%B2%E6%9D%82/" itemprop="url" rel="index"><span itemprop="name">闲杂</span></a>
                 </span>
             </span>
 
@@ -275,7 +258,7 @@
         <p>原本使用的 <a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="noopener">Material Theme</a> 这两日使用起来很不舒服，页面滚动起来竟然会有些掉帧。于是就想着换个主题用用。由于心水 <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">NexT</a> 已久，所以就着手更换了。</p>
 <a id="more"></a>
 <p>参考<a href="git clone https://github.com/iissnan/hexo-theme-next themes/next">主题文档</a>。</p>
-<h2 id="安装并启用-NexT"><a href="#安装并启用-NexT" class="headerlink" title="安装并启用 NexT"></a>安装并启用 NexT</h2><h3 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd bolg</span><br><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
+<h2 id="安装并启用-NexT"><a href="#安装并启用-NexT" class="headerlink" title="安装并启用 NexT"></a>安装并启用 NexT</h2><h3 id="下载主题"><a href="#下载主题" class="headerlink" title="下载主题"></a>下载主题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd bolg</span><br><span class="line">git clone https:&#x2F;&#x2F;github.com&#x2F;iissnan&#x2F;hexo-theme-next themes&#x2F;next</span><br></pre></td></tr></table></figure>
 <h3 id="启用主题"><a href="#启用主题" class="headerlink" title="启用主题"></a>启用主题</h3><p>打开站点根目录下 <code>_config.yml</code> 配置文件，编辑：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme: next</span><br></pre></td></tr></table></figure>
 <p>此时网站语言可能是英文，因为旧的主题语言设置可能与此主题不同，所以设置：</p>
@@ -299,7 +282,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/日志/" rel="tag"># 日志</a>
+              <a href="/tags/%E6%97%A5%E5%BF%97/" rel="tag"># 日志</a>
           </div>
 
         
@@ -308,11 +291,11 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2018/06/05/Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python/" rel="prev" title="安装 opencv-contrib 做 SIFT 特征匹配(Python)">
+    <a href="/2018/06/05/Ubuntu-%E4%B8%8B%E5%AE%89%E8%A3%85-opencv-contrib-%E5%81%9A-SIFT-%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D-Python/" rel="prev" title="安装 opencv-contrib 做 SIFT 特征匹配(Python)">
       <i class="fa fa-chevron-left"></i> 安装 opencv-contrib 做 SIFT 特征匹配(Python)
     </a></div>
       <div class="post-nav-item">
-    <a href="/2019/03/03/Windows-10-安装-TensorFlow/" rel="next" title="Windows 10 安装 TensorFlow">
+    <a href="/2019/03/03/Windows-10-%E5%AE%89%E8%A3%85-TensorFlow/" rel="next" title="Windows 10 安装 TensorFlow">
       Windows 10 安装 TensorFlow <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
@@ -380,7 +363,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="YangGang" src="https://miao.su/images/2017/03/03/dark_deer302fb.png">
+    <img class="site-author-image" itemprop="image" alt="YangGang"
+      src="/images/round_yg.png">
   <p class="site-author-name" itemprop="name">YangGang</p>
   <div class="site-description" itemprop="description">(ง •_•)ง</div>
 </div>
@@ -418,34 +402,11 @@
         <a href="https://instagram.com/samuelyg1996/" title="Instagram → https://instagram.com/samuelyg1996/" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://weibo.com/5658432174" title="Weibo → https://weibo.com/5658432174" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
-      </span>
-      <span class="links-of-author-item">
         <a href="mailto:yangg052@gmail.com" title="E-Mail → mailto:yangg052@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
   </div>
 
 
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://notes.iissnan.com/" title="https://notes.iissnan.com/" rel="noopener" target="_blank">IIssNan's Notes</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://milkice.me/" title="https://milkice.me/" rel="noopener" target="_blank">Milkice's IceBox</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="http://cdeveloper.cn/" title="http://cdeveloper.cn/" rel="noopener" target="_blank">cdeveloper</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://nfz.moe/" title="https://nfz.moe/" rel="noopener" target="_blank">neoFelhz</a>
-        </li>
-    </ul>
-  </div>
 
       </div>
         <div class="back-to-top motion-element">
@@ -474,10 +435,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">YangGang</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.2
   </div>
 
         
@@ -499,27 +460,28 @@
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
+
   
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
 
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 
@@ -536,50 +498,55 @@
 
   
       
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
     

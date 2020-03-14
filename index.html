@@ -4,9 +4,11 @@
   <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
 <meta name="theme-color" content="#222">
-<meta name="generator" content="Hexo 3.8.0">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.png">
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.png">
+  <link rel="mask-icon" href="/images/favicon.png" color="#222">
 
 <link rel="stylesheet" href="/css/main.css">
 
@@ -14,36 +16,10 @@
 <link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.css">
 
-
 <script id="hexo-configurations">
-  var NexT = window.NexT || {};
-  var CONFIG = {
-    hostname: new URL('https://blog.yanggang.cool').hostname,
-    root: '/',
-    scheme: 'Pisces',
-    version: '7.7.0',
-    exturl: false,
-    sidebar: {"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},
-    copycode: {"enable":false,"show_result":false,"style":null},
-    back2top: {"enable":true,"sidebar":true,"scrollpercent":true},
-    bookmark: {"enable":false,"color":"#222","save":"auto"},
-    fancybox: true,
-    mediumzoom: false,
-    lazyload: false,
-    pangu: false,
-    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
-    algolia: {
-      appID: '',
-      apiKey: '',
-      indexName: '',
-      hits: {"per_page":10},
-      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
-    },
-    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
-    path: 'search.xml',
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
-  };
-</script>
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.yanggang.cool","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":"mac"},"back2top":{"enable":true,"sidebar":true,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":true,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":"valine","storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
 
   <meta name="description" content="(ง •_•)ง">
 <meta property="og:type" content="website">
@@ -51,10 +27,9 @@
 <meta property="og:url" content="https://blog.yanggang.cool/index.html">
 <meta property="og:site_name" content="YangGang&#39;Blog">
 <meta property="og:description" content="(ง •_•)ง">
-<meta property="og:locale" content="zh-CN">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="YangGang">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="YangGang&#39;Blog">
-<meta name="twitter:description" content="(ง •_•)ง">
 
 <link rel="canonical" href="https://blog.yanggang.cool/">
 
@@ -63,8 +38,8 @@
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome: true,
-    isPost: false
+    isHome : true,
+    isPost : false
   };
 </script>
 
@@ -116,6 +91,14 @@
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
   <div class="site-meta">
 
     <div>
@@ -127,11 +110,9 @@
     </div>
   </div>
 
-  <div class="site-nav-toggle">
-    <div class="toggle" aria-label="切换导航栏">
-      <span class="toggle-line toggle-line-first"></span>
-      <span class="toggle-line toggle-line-middle"></span>
-      <span class="toggle-line toggle-line-last"></span>
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
     </div>
   </div>
 </div>
@@ -184,7 +165,9 @@
     <i class="fa fa-search"></i>
   </span>
   <div class="search-input-container">
-    <input autocomplete="off" autocorrect="off" autocapitalize="none" placeholder="搜索..." spellcheck="false" type="text" id="search-input">
+    <input autocomplete="off" autocorrect="off" autocapitalize="off"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
   </div>
   <span class="popup-btn-close">
     <i class="fa fa-times-circle"></i>
@@ -200,6 +183,7 @@
     </header>
 
     
+  <div class="reading-progress-bar"></div>
 
 
     <main class="main">
@@ -215,10 +199,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2019/06/28/Docker试玩笔记/">
+    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2019/06/28/Docker%E8%AF%95%E7%8E%A9%E7%AC%94%E8%AE%B0/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
+      <meta itemprop="image" content="/images/round_yg.png">
       <meta itemprop="name" content="YangGang">
       <meta itemprop="description" content="(ง •_•)ง">
     </span>
@@ -227,10 +211,10 @@
       <meta itemprop="name" content="YangGang'Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/06/28/Docker试玩笔记/" class="post-title-link" itemprop="url">Docker试玩笔记</a>
-        </h2>
+            <a href="/2019/06/28/Docker%E8%AF%95%E7%8E%A9%E7%AC%94%E8%AE%B0/" class="post-title-link" itemprop="url">Docker试玩笔记</a>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -254,9 +238,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Docker/" itemprop="url" rel="index">
-                    <span itemprop="name">Docker</span>
-                  </a>
+                  <a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a>
                 </span>
             </span>
 
@@ -274,7 +256,7 @@
           <p>未完工。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/06/28/Docker试玩笔记/#more" rel="contents">
+              <a class="btn" href="/2019/06/28/Docker%E8%AF%95%E7%8E%A9%E7%AC%94%E8%AE%B0/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -298,10 +280,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2019/05/08/半自动生成Trimap/">
+    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2019/05/08/%E5%8D%8A%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90Trimap/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
+      <meta itemprop="image" content="/images/round_yg.png">
       <meta itemprop="name" content="YangGang">
       <meta itemprop="description" content="(ง •_•)ง">
     </span>
@@ -310,10 +292,10 @@
       <meta itemprop="name" content="YangGang'Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/05/08/半自动生成Trimap/" class="post-title-link" itemprop="url">半自动生成 Trimap</a>
-        </h2>
+            <a href="/2019/05/08/%E5%8D%8A%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90Trimap/" class="post-title-link" itemprop="url">半自动生成 Trimap</a>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -337,15 +319,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/" itemprop="url" rel="index">
-                    <span itemprop="name">Python</span>
-                  </a>
+                  <a href="/categories/Python/" itemprop="url" rel="index"><span itemprop="name">Python</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Python/CV/" itemprop="url" rel="index">
-                    <span itemprop="name">CV</span>
-                  </a>
+                  <a href="/categories/Python/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a>
                 </span>
             </span>
 
@@ -363,7 +341,7 @@
           <p>一个简单的 Trimap 生成方法。基于轮廓查找、填充以及形态学操作。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/05/08/半自动生成Trimap/#more" rel="contents">
+              <a class="btn" href="/2019/05/08/%E5%8D%8A%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90Trimap/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -387,10 +365,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2019/04/22/类原生跳过Google向导的各种办法/">
+    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2019/04/22/%E7%B1%BB%E5%8E%9F%E7%94%9F%E8%B7%B3%E8%BF%87Google%E5%90%91%E5%AF%BC%E7%9A%84%E5%90%84%E7%A7%8D%E5%8A%9E%E6%B3%95/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
+      <meta itemprop="image" content="/images/round_yg.png">
       <meta itemprop="name" content="YangGang">
       <meta itemprop="description" content="(ง •_•)ง">
     </span>
@@ -399,10 +377,10 @@
       <meta itemprop="name" content="YangGang'Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/04/22/类原生跳过Google向导的各种办法/" class="post-title-link" itemprop="url">类原生跳过 Google 向导的各种办法</a>
-        </h2>
+            <a href="/2019/04/22/%E7%B1%BB%E5%8E%9F%E7%94%9F%E8%B7%B3%E8%BF%87Google%E5%90%91%E5%AF%BC%E7%9A%84%E5%90%84%E7%A7%8D%E5%8A%9E%E6%B3%95/" class="post-title-link" itemprop="url">类原生跳过 Google 向导的各种办法</a>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -426,9 +404,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tips/" itemprop="url" rel="index">
-                    <span itemprop="name">Tips</span>
-                  </a>
+                  <a href="/categories/Tips/" itemprop="url" rel="index"><span itemprop="name">Tips</span></a>
                 </span>
             </span>
 
@@ -446,7 +422,7 @@
           <p>相信很多人跟俺一样喜欢使用类原生的 Android 系统，而缺少了 Google 服务框架的 Android 就如同人没有了灵魂。但是有时候 Google 的开机向导却让人很烦，下面就总结一下各种跳过开机向导的办法。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/04/22/类原生跳过Google向导的各种办法/#more" rel="contents">
+              <a class="btn" href="/2019/04/22/%E7%B1%BB%E5%8E%9F%E7%94%9F%E8%B7%B3%E8%BF%87Google%E5%90%91%E5%AF%BC%E7%9A%84%E5%90%84%E7%A7%8D%E5%8A%9E%E6%B3%95/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -470,10 +446,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2019/04/05/Pop!_OS 与 Windows10 不同盘双系统启动问题/">
+    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2019/04/05/Pop!_OS%20%E4%B8%8E%20Windows10%20%E4%B8%8D%E5%90%8C%E7%9B%98%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E9%97%AE%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
+      <meta itemprop="image" content="/images/round_yg.png">
       <meta itemprop="name" content="YangGang">
       <meta itemprop="description" content="(ง •_•)ง">
     </span>
@@ -482,10 +458,10 @@
       <meta itemprop="name" content="YangGang'Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/04/05/Pop!_OS 与 Windows10 不同盘双系统启动问题/" class="post-title-link" itemprop="url">Pop!_OS 与 Windows10 不同盘双系统启动问题</a>
-        </h2>
+            <a href="/2019/04/05/Pop!_OS%20%E4%B8%8E%20Windows10%20%E4%B8%8D%E5%90%8C%E7%9B%98%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">Pop!_OS 与 Windows10 不同盘双系统启动问题</a>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -509,15 +485,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/EFI/" itemprop="url" rel="index">
-                    <span itemprop="name">EFI</span>
-                  </a>
+                  <a href="/categories/EFI/" itemprop="url" rel="index"><span itemprop="name">EFI</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/EFI/双系统/" itemprop="url" rel="index">
-                    <span itemprop="name">双系统</span>
-                  </a>
+                  <a href="/categories/EFI/%E5%8F%8C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index"><span itemprop="name">双系统</span></a>
                 </span>
             </span>
 
@@ -535,7 +507,7 @@
           <p>前言：Pop!_OS 在新的版本不再使用 GRUB 而是选择了能让启动速度更快（在某些论坛看到一些说法，不知是否准确）的 <a href="https://wiki.archlinux.org/index.php/Systemd-boot_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">systemd-boot</a>&gt;) 。但是 <a href="https://wiki.archlinux.org/index.php/Systemd-boot_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">systemd-boot</a>&gt;) 无法识别到另一个磁盘 EFI 分区的 Windows 。因为不了解 <a href="https://wiki.archlinux.org/index.php/Systemd-boot_(%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87" target="_blank" rel="noopener">systemd-boot</a>&gt;) 所以就在网上搜索了一些信息，这里做个总结。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/04/05/Pop!_OS 与 Windows10 不同盘双系统启动问题/#more" rel="contents">
+              <a class="btn" href="/2019/04/05/Pop!_OS%20%E4%B8%8E%20Windows10%20%E4%B8%8D%E5%90%8C%E7%9B%98%E5%8F%8C%E7%B3%BB%E7%BB%9F%E5%90%AF%E5%8A%A8%E9%97%AE%E9%A2%98/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -559,10 +531,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2019/03/13/深度抠图_DeepImageMatting/">
+    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2019/03/13/%E6%B7%B1%E5%BA%A6%E6%8A%A0%E5%9B%BE_DeepImageMatting/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
+      <meta itemprop="image" content="/images/round_yg.png">
       <meta itemprop="name" content="YangGang">
       <meta itemprop="description" content="(ง •_•)ง">
     </span>
@@ -571,10 +543,10 @@
       <meta itemprop="name" content="YangGang'Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/03/13/深度抠图_DeepImageMatting/" class="post-title-link" itemprop="url">深度抠图 Deep Image Matting 译文</a>
-        </h2>
+            <a href="/2019/03/13/%E6%B7%B1%E5%BA%A6%E6%8A%A0%E5%9B%BE_DeepImageMatting/" class="post-title-link" itemprop="url">深度抠图 Deep Image Matting 译文</a>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -598,15 +570,11 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/译文/" itemprop="url" rel="index">
-                    <span itemprop="name">译文</span>
-                  </a>
+                  <a href="/categories/%E8%AF%91%E6%96%87/" itemprop="url" rel="index"><span itemprop="name">译文</span></a>
                 </span>
                   ，
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/译文/CV/" itemprop="url" rel="index">
-                    <span itemprop="name">CV</span>
-                  </a>
+                  <a href="/categories/%E8%AF%91%E6%96%87/CV/" itemprop="url" rel="index"><span itemprop="name">CV</span></a>
                 </span>
             </span>
 
@@ -624,7 +592,7 @@
           <p>本文是 Adobe 等机构的论文 <a href="https://arxiv.org/abs/1703.03872" target="_blank" rel="noopener">Deep Image Matting</a> 译文。因为是初稿，如有错误及不当之处，烦请指正。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/03/13/深度抠图_DeepImageMatting/#more" rel="contents">
+              <a class="btn" href="/2019/03/13/%E6%B7%B1%E5%BA%A6%E6%8A%A0%E5%9B%BE_DeepImageMatting/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -648,10 +616,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2019/03/03/Windows-10-安装-TensorFlow/">
+    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2019/03/03/Windows-10-%E5%AE%89%E8%A3%85-TensorFlow/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
+      <meta itemprop="image" content="/images/round_yg.png">
       <meta itemprop="name" content="YangGang">
       <meta itemprop="description" content="(ง •_•)ง">
     </span>
@@ -660,10 +628,10 @@
       <meta itemprop="name" content="YangGang'Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2019/03/03/Windows-10-安装-TensorFlow/" class="post-title-link" itemprop="url">Windows 10 安装 TensorFlow</a>
-        </h2>
+            <a href="/2019/03/03/Windows-10-%E5%AE%89%E8%A3%85-TensorFlow/" class="post-title-link" itemprop="url">Windows 10 安装 TensorFlow</a>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -681,9 +649,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/TensorFlow/" itemprop="url" rel="index">
-                    <span itemprop="name">TensorFlow</span>
-                  </a>
+                  <a href="/categories/TensorFlow/" itemprop="url" rel="index"><span itemprop="name">TensorFlow</span></a>
                 </span>
             </span>
 
@@ -701,7 +667,7 @@
           <p>本文针对 Windows 10 下 TensorFlow 的安装提供一些经验（包含 CPU 版及 GPU 版）。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2019/03/03/Windows-10-安装-TensorFlow/#more" rel="contents">
+              <a class="btn" href="/2019/03/03/Windows-10-%E5%AE%89%E8%A3%85-TensorFlow/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -725,10 +691,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2018/12/29/主题更换纪/">
+    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2018/12/29/%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E7%BA%AA/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
+      <meta itemprop="image" content="/images/round_yg.png">
       <meta itemprop="name" content="YangGang">
       <meta itemprop="description" content="(ง •_•)ง">
     </span>
@@ -737,10 +703,10 @@
       <meta itemprop="name" content="YangGang'Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2018/12/29/主题更换纪/" class="post-title-link" itemprop="url">主题更换纪</a>
-        </h2>
+            <a href="/2018/12/29/%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E7%BA%AA/" class="post-title-link" itemprop="url">主题更换纪</a>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -764,9 +730,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/闲杂/" itemprop="url" rel="index">
-                    <span itemprop="name">闲杂</span>
-                  </a>
+                  <a href="/categories/%E9%97%B2%E6%9D%82/" itemprop="url" rel="index"><span itemprop="name">闲杂</span></a>
                 </span>
             </span>
 
@@ -784,7 +748,7 @@
           <p>原本使用的 <a href="https://github.com/viosey/hexo-theme-material" target="_blank" rel="noopener">Material Theme</a> 这两日使用起来很不舒服，页面滚动起来竟然会有些掉帧。于是就想着换个主题用用。由于心水 <a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="noopener">NexT</a> 已久，所以就着手更换了。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2018/12/29/主题更换纪/#more" rel="contents">
+              <a class="btn" href="/2018/12/29/%E4%B8%BB%E9%A2%98%E6%9B%B4%E6%8D%A2%E7%BA%AA/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -808,10 +772,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2018/06/05/Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python/">
+    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2018/06/05/Ubuntu-%E4%B8%8B%E5%AE%89%E8%A3%85-opencv-contrib-%E5%81%9A-SIFT-%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D-Python/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
+      <meta itemprop="image" content="/images/round_yg.png">
       <meta itemprop="name" content="YangGang">
       <meta itemprop="description" content="(ง •_•)ง">
     </span>
@@ -820,10 +784,10 @@
       <meta itemprop="name" content="YangGang'Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2018/06/05/Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python/" class="post-title-link" itemprop="url">安装 opencv-contrib 做 SIFT 特征匹配(Python)</a>
-        </h2>
+            <a href="/2018/06/05/Ubuntu-%E4%B8%8B%E5%AE%89%E8%A3%85-opencv-contrib-%E5%81%9A-SIFT-%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D-Python/" class="post-title-link" itemprop="url">安装 opencv-contrib 做 SIFT 特征匹配(Python)</a>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -847,9 +811,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OpenCV/" itemprop="url" rel="index">
-                    <span itemprop="name">OpenCV</span>
-                  </a>
+                  <a href="/categories/OpenCV/" itemprop="url" rel="index"><span itemprop="name">OpenCV</span></a>
                 </span>
             </span>
 
@@ -867,7 +829,7 @@
           <p>因为 SIFT 算法的授权问题，导致 OpenCV 有两个版本，即如需使用 SIFT 算法就必须要用 OpenCV-contrib ，但是 VS2017 里配置 OpenCV-contrib 比较繁琐，使用 Python 就会方便很多。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2018/06/05/Ubuntu-下安装-opencv-contrib-做-SIFT-特征匹配-Python/#more" rel="contents">
+              <a class="btn" href="/2018/06/05/Ubuntu-%E4%B8%8B%E5%AE%89%E8%A3%85-opencv-contrib-%E5%81%9A-SIFT-%E7%89%B9%E5%BE%81%E5%8C%B9%E9%85%8D-Python/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -891,10 +853,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2018/04/28/OpenCV-在-Visual-Studio-中的使用/">
+    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2018/04/28/OpenCV-%E5%9C%A8-Visual-Studio-%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
+      <meta itemprop="image" content="/images/round_yg.png">
       <meta itemprop="name" content="YangGang">
       <meta itemprop="description" content="(ง •_•)ง">
     </span>
@@ -903,10 +865,10 @@
       <meta itemprop="name" content="YangGang'Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2018/04/28/OpenCV-在-Visual-Studio-中的使用/" class="post-title-link" itemprop="url">OpenCV 在 Visual Studio 中的使用</a>
-        </h2>
+            <a href="/2018/04/28/OpenCV-%E5%9C%A8-Visual-Studio-%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">OpenCV 在 Visual Studio 中的使用</a>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -930,9 +892,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/OpenCV/" itemprop="url" rel="index">
-                    <span itemprop="name">OpenCV</span>
-                  </a>
+                  <a href="/categories/OpenCV/" itemprop="url" rel="index"><span itemprop="name">OpenCV</span></a>
                 </span>
             </span>
 
@@ -950,7 +910,7 @@
           <p>本文介绍了 VS2017 中配置 OpenCV 的方法。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2018/04/28/OpenCV-在-Visual-Studio-中的使用/#more" rel="contents">
+              <a class="btn" href="/2018/04/28/OpenCV-%E5%9C%A8-Visual-Studio-%E4%B8%AD%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -974,10 +934,10 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2018/01/22/Chrome主页被篡改后如何解决？/">
+    <link itemprop="mainEntityOfPage" href="https://blog.yanggang.cool/2018/01/22/Chrome%E4%B8%BB%E9%A1%B5%E8%A2%AB%E7%AF%A1%E6%94%B9%E5%90%8E%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="https://miao.su/images/2017/03/03/dark_deer302fb.png">
+      <meta itemprop="image" content="/images/round_yg.png">
       <meta itemprop="name" content="YangGang">
       <meta itemprop="description" content="(ง •_•)ง">
     </span>
@@ -986,10 +946,10 @@
       <meta itemprop="name" content="YangGang'Blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
+        <h1 class="post-title" itemprop="name headline">
           
-            <a href="/2018/01/22/Chrome主页被篡改后如何解决？/" class="post-title-link" itemprop="url">Chrome主页被篡改后如何解决？(部分内容转载)</a>
-        </h2>
+            <a href="/2018/01/22/Chrome%E4%B8%BB%E9%A1%B5%E8%A2%AB%E7%AF%A1%E6%94%B9%E5%90%8E%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F/" class="post-title-link" itemprop="url">Chrome主页被篡改后如何解决？(部分内容转载)</a>
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -1013,9 +973,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/Tips/" itemprop="url" rel="index">
-                    <span itemprop="name">Tips</span>
-                  </a>
+                  <a href="/categories/Tips/" itemprop="url" rel="index"><span itemprop="name">Tips</span></a>
                 </span>
             </span>
 
@@ -1033,7 +991,7 @@
           <p>不少朋友可能都遇到过浏览器的主页被恶意篡改成某些令人作呕的国产网页，具体哪些网站，我想必也不必多说，大家也都心知肚明。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2018/01/22/Chrome主页被篡改后如何解决？/#more" rel="contents">
+              <a class="btn" href="/2018/01/22/Chrome%E4%B8%BB%E9%A1%B5%E8%A2%AB%E7%AF%A1%E6%94%B9%E5%90%8E%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3%EF%BC%9F/#more" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -1115,7 +1073,8 @@
 
       <div class="site-overview-wrap sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <img class="site-author-image" itemprop="image" alt="YangGang" src="https://miao.su/images/2017/03/03/dark_deer302fb.png">
+    <img class="site-author-image" itemprop="image" alt="YangGang"
+      src="/images/round_yg.png">
   <p class="site-author-name" itemprop="name">YangGang</p>
   <div class="site-description" itemprop="description">(ง •_•)ง</div>
 </div>
@@ -1153,34 +1112,11 @@
         <a href="https://instagram.com/samuelyg1996/" title="Instagram → https://instagram.com/samuelyg1996/" rel="noopener" target="_blank"><i class="fa fa-fw fa-instagram"></i>Instagram</a>
       </span>
       <span class="links-of-author-item">
-        <a href="https://weibo.com/5658432174" title="Weibo → https://weibo.com/5658432174" rel="noopener" target="_blank"><i class="fa fa-fw fa-weibo"></i>Weibo</a>
-      </span>
-      <span class="links-of-author-item">
         <a href="mailto:yangg052@gmail.com" title="E-Mail → mailto:yangg052@gmail.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
       </span>
   </div>
 
 
-  <div class="links-of-blogroll motion-element">
-    <div class="links-of-blogroll-title">
-      <i class="fa fa-fw fa-link"></i>
-      Links
-    </div>
-    <ul class="links-of-blogroll-list">
-        <li class="links-of-blogroll-item">
-          <a href="https://notes.iissnan.com/" title="https://notes.iissnan.com/" rel="noopener" target="_blank">IIssNan's Notes</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://milkice.me/" title="https://milkice.me/" rel="noopener" target="_blank">Milkice's IceBox</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="http://cdeveloper.cn/" title="http://cdeveloper.cn/" rel="noopener" target="_blank">cdeveloper</a>
-        </li>
-        <li class="links-of-blogroll-item">
-          <a href="https://nfz.moe/" title="https://nfz.moe/" rel="noopener" target="_blank">neoFelhz</a>
-        </li>
-    </ul>
-  </div>
 
       </div>
         <div class="back-to-top motion-element">
@@ -1209,10 +1145,10 @@
   </span>
   <span class="author" itemprop="copyrightHolder">YangGang</span>
 </div>
-  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.0
   </div>
   <span class="post-meta-divider">|</span>
-  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  <div class="theme-info">主题 – <a href="https://pisces.theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.2
   </div>
 
         
@@ -1234,27 +1170,28 @@
   <script src="//cdn.jsdelivr.net/gh/fancyapps/fancybox@3/dist/jquery.fancybox.min.js"></script>
   <script src="/lib/velocity/velocity.min.js"></script>
   <script src="/lib/velocity/velocity.ui.min.js"></script>
-<script src="/js/utils.js"></script><script src="/js/motion.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
 <script src="/js/schemes/pisces.js"></script>
+
+
 <script src="/js/next-boot.js"></script>
 
 
 
+
   
-  <script>
-    (function(){
-      var bp = document.createElement('script');
-      var curProtocol = window.location.protocol.split(':')[0];
-      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
-      var s = document.getElementsByTagName("script")[0];
-      s.parentNode.insertBefore(bp, s);
-    })();
-  </script>
 
 
 
 
-  <script src="/js/local-search.js"></script>
+  
+<script src="/js/local-search.js"></script>
+
 
 
 
@@ -1271,50 +1208,55 @@
 
   
       
-<script type="text/x-mathjax-config">
 
-  MathJax.Hub.Config({
-    tex2jax: {
-      inlineMath: [ ['$', '$'], ['\\(', '\\)'] ],
-      processEscapes: true,
-      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-    },
-    TeX: {
-      equationNumbers: {
-        autoNumber: 'AMS'
-      }
-    }
-  });
-
-  MathJax.Hub.Register.StartupHook('TeX Jax Ready', function() {
-    MathJax.InputJax.TeX.prefilterHooks.Add(function(data) {
-      if (data.display) {
-        var next = data.script.nextSibling;
-        while (next && next.nodeName.toLowerCase() === '#text') {
-          next = next.nextSibling;
-        }
-        if (next && next.nodeName.toLowerCase() === 'br') {
-          next.parentNode.removeChild(next);
-        }
-      }
-    });
-  });
-
-  MathJax.Hub.Queue(function() {
-    var all = MathJax.Hub.getAllJax(), i;
-    for (i = 0; i < all.length; i += 1) {
-      element = document.getElementById(all[i].inputID + '-Frame').parentNode;
-      if (element.nodeName.toLowerCase() == 'li') {
-        element = element.parentNode;
-      }
-      element.classList.add('has-jax');
-    }
-  });
-</script>
 <script>
-  NexT.utils.getScript('//cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS-MML_HTMLorMML', () => {
-    MathJax.Hub.Typeset();
-  }, window.MathJax);
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
 </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
     
